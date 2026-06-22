@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="light">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,15 +19,6 @@ html{scroll-behavior:smooth}
   --card-bg:rgba(40,40,42,0.02);
   --overlay:rgba(236,234,229,0.97);
   --invert:0;
-}
-[data-theme="dark"]{
-  --bg:#28282A;
-  --text:#ECEAE5;
-  --text-muted:rgba(236,234,229,0.35);
-  --border:rgba(236,234,229,0.07);
-  --card-bg:rgba(236,234,229,0.02);
-  --overlay:rgba(40,40,42,0.97);
-  --invert:1;
 }
 body{
   font-family:'Space Grotesk',sans-serif;
@@ -82,7 +73,6 @@ img{display:block;max-width:100%;height:auto}
   padding:0.85rem 1.25rem;
   background:transparent;color:var(--text);
   transition:color 0.5s ease;
-  mix-blend-mode:difference;
 }
 .top-bar-left{display:flex;align-items:center;gap:1.5rem;flex:0 0 auto}
 .top-bar-logo{
@@ -114,24 +104,7 @@ img{display:block;max-width:100%;height:auto}
 .num-nav-row a::before{content:attr(data-num)'. '}
 .num-nav-row a:hover,.num-nav-row a.active{opacity:1}
 
-/* Dark Mode Toggle */
-.dark-toggle{
-  background:none;border:1px solid var(--text);border-radius:50%;
-  width:24px;height:24px;cursor:pointer;position:relative;
-  display:flex;align-items:center;justify-content:center;
-  transition:all 0.3s ease;overflow:hidden;
-  opacity:0.35;font-size:0.65rem;
-}
-.dark-toggle:hover{opacity:1}
-.dark-toggle .icon-wrap{position:relative;width:12px;height:12px}
-.dark-toggle .icon-wrap span{
-  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
-  transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),opacity 0.25s ease;
-}
-.dark-toggle .sun{transform:translateY(0);opacity:1}
-.dark-toggle .moon{transform:translateY(100%);opacity:0}
-[data-theme="dark"] .dark-toggle .sun{transform:translateY(-100%);opacity:0}
-[data-theme="dark"] .dark-toggle .moon{transform:translateY(0);opacity:1}
+/* Dark Mode Toggle removed -- cream only */
 
 /* ===== MAIN CONTENT ===== */
 .main-content{opacity:0;transition:opacity 0.8s ease}
@@ -328,7 +301,6 @@ img{display:block;max-width:100%;height:auto}
 @media(max-width:480px){
   .top-bar-info .time-display{display:none}
   .top-bar-center{display:none}
-  .dark-toggle{width:20px;height:20px}
 }
 </style>
 </head>
@@ -368,12 +340,7 @@ img{display:block;max-width:100%;height:auto}
       <a href="#gallery" data-num="2"><span>Index</span></a>
       <a href="#more" data-num="3"><span>Information</span></a>
     </nav>
-    <button class="dark-toggle" id="darkToggle" aria-label="Turn on dark theme.">
-      <div class="icon-wrap">
-        <span class="sun">☀</span>
-        <span class="moon">☾</span>
-      </div>
-    </button>
+    <!-- Dark mode toggle removed -- cream only -->
   </div>
 </header>
 
@@ -468,7 +435,6 @@ const unsplashUrls = [
 const timeDisplay = document.getElementById('timeDisplay');
 const scrollPercent = document.getElementById('scrollPercent');
 const scrollIndicator = document.getElementById('scrollIndicator');
-const darkToggle = document.getElementById('darkToggle');
 const galleryGrid = document.getElementById('galleryGrid');
 const moreScroll = document.getElementById('moreScroll');
 const productCount = document.getElementById('productCount');
@@ -514,22 +480,6 @@ function updateScroll(){
 window.addEventListener('scroll',updateScroll,{passive:true});
 window.addEventListener('resize',updateScroll,{passive:true});
 
-// ===== DARK MODE =====
-function toggleTheme(){
-  const html=document.documentElement;
-  const current=html.getAttribute('data-theme');
-  const next=current==='dark'?'light':'dark';
-  html.setAttribute('data-theme',next);
-  localStorage.setItem('monolith-theme',next);
-  darkToggle.setAttribute('aria-label',next==='dark'?'Turn on light theme.':'Turn on dark theme.');
-}
-darkToggle.addEventListener('click',toggleTheme);
-const savedTheme=localStorage.getItem('monolith-theme');
-if(savedTheme){
-  document.documentElement.setAttribute('data-theme',savedTheme);
-  darkToggle.setAttribute('aria-label',savedTheme==='dark'?'Turn on light theme.':'Turn on dark theme.');
-}
-
 // ===== BUILD GALLERY =====
 function buildGallery(){
   let html='';
@@ -540,7 +490,7 @@ function buildGallery(){
         <div class="gallery-inner" style="grid-template-columns:${even?'1fr 1fr':'1fr 1fr'}">
           ${even?`
           <div class="gallery-img">
-            <img src="${unsplashUrls[i]}" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%">
+            <img src="${unsplashUrls[i]}" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%;background-color:#d4c9b3">
           </div>
           <div class="gallery-info">
             <div class="gallery-number">${p.no}</div>
@@ -555,7 +505,7 @@ function buildGallery(){
             <div class="gallery-price">${p.price}</div>
           </div>
           <div class="gallery-img">
-            <img src="${unsplashUrls[i]}" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%">
+            <img src="${unsplashUrls[i]}" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%;background-color:#d4c9b3">
           </div>`}
         </div>
         <span class="gallery-col-num">${String(i+1).padStart(3,'0')}</span>
@@ -572,7 +522,7 @@ function buildMore(){
     html+=`
       <div class="more-item reveal reveal-delay-${Math.min(i%5+1,2)}">
         <div class="more-img-wrap">
-          <img src="${unsplashUrls[Math.min(6 + i, 9)]}" alt="${item.name}" loading="lazy">
+          <img style="background-color:#d4c9b3" src="${unsplashUrls[Math.min(6 + i, 9)]}" alt="${item.name}" loading="lazy">
         </div>
         <div class="more-label">
           <span class="more-cat">${num} / ${item.id}</span>
