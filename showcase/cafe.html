@@ -282,9 +282,7 @@
 
     /* ===== UTILITY ===== */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-  </style>
-
-/* Shimmer loading animation for images */
+  /* Shimmer loading animation for images */
 @keyframes shimmer {
   0% { background-position: -200% 0; }
   100% { background-position: 200% 0; }
@@ -294,6 +292,7 @@ img {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
+</style>
 
 </head>
 <body>
@@ -479,7 +478,7 @@ img {
       </div>
       <div class="carousel-arrows">
         <button class="carousel-arrow" id="carouselPrev" aria-label="Previous">←</button>
-        <button class="carousel-arrow" id="carouselNext" aria-label="Next">→</button>
+        <button class="carousel-arrow" id="carouselNext" aria-label="Next"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
       </div>
     </div>
   </section>
