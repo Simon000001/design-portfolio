@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Haven &amp; Brew | Artisan Coffee &amp; Pastry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET ===== */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+/* ===== VARIABLES ===== */
+:root {
+  --beige: #f5e6d3;
+  --charcoal: #2c1810;
+  --brown: #8b6f47;
+  --beige-light: #faf0e6;
+  --beige-dark: #e8d5be;
+  --brown-light: #a8895e;
+  --brown-dark: #6d5537;
+  --cream: #fff9f0;
+  --shadow: rgba(44, 24, 16, 0.10);
+  --shadow-strong: rgba(44, 24, 16, 0.18);
+}
+
+/* ===== BASE ===== */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--beige);
+  color: var(--charcoal);
+  line-height: 1.7;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--charcoal);
+}
+
+a { color: var(--brown); text-decoration: none; transition: color 0.3s ease; }
+a:hover { color: var(--brown-light); }
+
+img { max-width: 100%; height: auto; display: block; }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section {
+  padding: 100px 0;
+}
+
+.section-title {
+  font-size: 2.8rem;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  letter-spacing: -0.01em;
+}
+
+.section-subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--brown);
+  font-weight: 400;
+  max-width: 600px;
+  margin: 0 auto 60px;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+}
+
+.accent-line {
+  width: 50px;
+  height: 3px;
+  background: var(--brown);
+  margin: 0 auto 20px;
+  border-radius: 2px;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 18px 0;
+  background: rgba(245, 230, 211, 0.88);
+  backdrop-filter: blur(16px) saturate(180%);
+  -webkit-backdrop-filter: blur(16px) saturate(180%);
+  border-bottom: 1px solid rgba(139, 111, 71, 0.12);
+  transition: padding 0.3s ease, background 0.3s ease;
+}
+
+.navbar.scrolled { padding: 12px 0; background: rgba(245, 230, 211, 0.96); }
+
+.navbar .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--charcoal);
+  letter-spacing: -0.02em;
+}
+
+.nav-logo span { color: var(--brown); }
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 32px;
+}
+
+.nav-links a {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--charcoal);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--brown);
+  transition: width 0.3s ease;
+  border-radius: 1px;
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 26px;
+  height: 2px;
+  background: var(--charcoal);
+  margin: 6px 0;
+  transition: all 0.3s ease;
+  border-radius: 1px;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  padding: 120px 24px 80px;
+  background:
+    radial-gradient(ellipse 90% 60% at 20% 20%, rgba(139, 111, 71, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 50% at 80% 80%, rgba(139, 111, 71, 0.06) 0%, transparent 60%),
+    repeating-conic-gradient(
+      from 0deg at 50% 50%,
+      rgba(139, 111, 71, 0.04) 0deg 5deg,
+      rgba(139, 111, 71, 0.02) 5deg 7deg,
+      rgba(139, 111, 71, 0.06) 7deg 9deg,
+      transparent 9deg 11deg
+    ),
+    repeating-linear-gradient(
+      45deg,
+      transparent,
+      transparent 30px,
+      rgba(139, 111, 71, 0.015) 30px,
+      rgba(139, 111, 71, 0.015) 31px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 30px,
+      rgba(139, 111, 71, 0.015) 30px,
+      rgba(139, 111, 71, 0.015) 31px
+    ),
+    radial-gradient(ellipse 120% 80% at 50% 50%, var(--beige) 0%, var(--beige-dark) 100%);
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 300px at 25% 30%, rgba(139, 111, 71, 0.10) 0%, transparent 100%),
+    radial-gradient(circle 250px at 70% 60%, rgba(139, 111, 71, 0.07) 0%, transparent 100%),
+    radial-gradient(circle 180px at 50% 10%, rgba(139, 111, 71, 0.06) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.hero-content { position: relative; z-index: 1; max-width: 820px; }
+
+.hero-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--brown);
+  border: 1px solid rgba(139, 111, 71, 0.25);
+  padding: 8px 20px;
+  border-radius: 100px;
+  margin-bottom: 32px;
+  font-family: 'Inter', sans-serif;
+}
+
+.hero h1 {
+  font-size: 5rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  margin-bottom: 24px;
+  color: var(--charcoal);
+}
+
+.hero h1 .accent { color: var(--brown); font-style: italic; }
+
+.hero p {
+  font-size: 1.2rem;
+  color: rgba(44, 24, 16, 0.7);
+  max-width: 580px;
+  margin: 0 auto 40px;
+  font-weight: 300;
+  line-height: 1.7;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 36px;
+  border-radius: 100px;
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: none;
+  letter-spacing: 0.02em;
+}
+
+.btn-primary {
+  background: var(--charcoal);
+  color: var(--beige);
+}
+
+.btn-primary:hover {
+  background: var(--brown);
+  color: var(--beige);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(139, 111, 71, 0.3);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--charcoal);
+  border: 1.5px solid var(--charcoal);
+}
+
+.btn-secondary:hover {
+  background: var(--charcoal);
+  color: var(--beige);
+  transform: translateY(-2px);
+}
+
+/* ===== MENU SECTION ===== */
+#menu { background: var(--cream); }
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.menu-category {
+  background: var(--beige);
+  border-radius: 20px;
+  padding: 40px 32px;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.menu-category:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 48px var(--shadow);
+}
+
+.menu-category-icon {
+  width: 56px;
+  height: 56px;
+  background: var(--brown);
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+.menu-category h3 {
+  font-size: 1.6rem;
+  margin-bottom: 20px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 14px 0;
+  border-bottom: 1px solid rgba(139, 111, 71, 0.1);
+}
+
+.menu-item:last-child { border-bottom: none; }
+
+.menu-item-name {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.menu-item-desc {
+  display: block;
+  font-size: 0.82rem;
+  color: rgba(44, 24, 16, 0.55);
+  font-weight: 400;
+  margin-top: 3px;
+}
+
+.menu-item-price {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--brown);
+  white-space: nowrap;
+  margin-left: 16px;
+}
+
+/* ===== DAILY SPECIALS ===== */
+#specials { background: var(--beige); }
+
+.specials-card {
+  max-width: 800px;
+  margin: 0 auto;
+  background: var(--charcoal);
+  border-radius: 24px;
+  padding: 60px 56px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.specials-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 400px at 20% 30%, rgba(139, 111, 71, 0.12) 0%, transparent 100%),
+    radial-gradient(circle 300px at 80% 70%, rgba(139, 111, 71, 0.08) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.specials-card > * { position: relative; z-index: 1; }
+
+.specials-card .section-title { color: var(--beige); }
+.specials-card .section-subtitle { color: rgba(245, 230, 211, 0.6); }
+
+.special-item {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  text-align: left;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(245, 230, 211, 0.08);
+}
+
+.special-item:last-child { border-bottom: none; }
+
+.special-badge {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  background: var(--brown);
+  color: var(--beige);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.special-badge .day { font-size: 1.3rem; }
+.special-badge .month { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; font-family: 'Inter', sans-serif; }
+
+.special-info h4 {
+  color: var(--beige);
+  font-size: 1.2rem;
+  margin-bottom: 4px;
+}
+
+.special-info p {
+  color: rgba(245, 230, 211, 0.55);
+  font-size: 0.85rem;
+}
+
+.special-price {
+  margin-left: auto;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--brown-light);
+  flex-shrink: 0;
+}
+
+/* ===== GALLERY ===== */
+#gallery { background: var(--cream); }
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.gallery-item {
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  position: relative;
+  transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.gallery-item:hover {
+  transform: scale(1.03);
+  box-shadow: 0 16px 48px var(--shadow-strong);
+}
+
+.gallery-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: rgba(44, 24, 16, 0.4);
+  font-weight: 400;
+  transition: all 0.5s ease;
+  position: relative;
+}
+
+.gallery-placeholder .icon { font-size: 2.2rem; margin-bottom: 8px; opacity: 0.6; }
+.gallery-placeholder .label { opacity: 0.5; }
+
+.gallery-item:nth-child(1) .gallery-placeholder {
+  background: linear-gradient(145deg, #e8d5be, #d4bd9e);
+}
+
+.gallery-item:nth-child(2) .gallery-placeholder {
+  background: linear-gradient(145deg, #ddd0b8, #c8b594);
+}
+
+.gallery-item:nth-child(3) .gallery-placeholder {
+  background: linear-gradient(145deg, #dcc8ae, #c4ad8a);
+}
+
+.gallery-item:nth-child(4) .gallery-placeholder {
+  background: linear-gradient(145deg, #e2d0b8, #ceb898);
+}
+
+.gallery-item:nth-child(1) .gallery-placeholder::before,
+.gallery-item:nth-child(2) .gallery-placeholder::before,
+.gallery-item:nth-child(3) .gallery-placeholder::before,
+.gallery-item:nth-child(4) .gallery-placeholder::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 100px at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 100%),
+    radial-gradient(circle 80px at 70% 60%, rgba(255,255,255,0.08) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ===== STORY SECTION ===== */
+#story {
+  background: var(--beige);
+  position: relative;
+}
+
+.story-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.story-image {
+  border-radius: 20px;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  background: linear-gradient(145deg, #d4bd9e, #c4ad8a);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.story-image::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle 200px at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 100%),
+    radial-gradient(circle 150px at 70% 70%, rgba(44,24,16,0.05) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.story-image .icon {
+  font-size: 3rem;
+  opacity: 0.3;
+}
+
+.story-text h2 {
+  font-size: 2.8rem;
+  margin-bottom: 24px;
+}
+
+.story-text p {
+  font-size: 1.05rem;
+  color: rgba(44, 24, 16, 0.7);
+  margin-bottom: 20px;
+  line-height: 1.8;
+}
+
+.story-text .signature {
+  font-family: 'Playfair Display', serif;
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--brown);
+  margin-top: 32px;
+}
+
+/* ===== LOCATION / HOURS ===== */
+#location { background: var(--cream); }
+
+.location-card {
+  max-width: 600px;
+  margin: 0 auto;
+  background: var(--beige);
+  border-radius: 20px;
+  padding: 48px 48px;
+  box-shadow: 0 8px 32px var(--shadow);
+  border: 1px solid rgba(139, 111, 71, 0.08);
+}
+
+.location-detail {
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(139, 111, 71, 0.1);
+}
+
+.location-detail:last-child { border-bottom: none; }
+
+.location-detail-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  background: var(--brown);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--beige);
+}
+
+.location-detail-content h4 {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+}
+
+.location-detail-content p {
+  font-size: 0.9rem;
+  color: rgba(44, 24, 16, 0.55);
+}
+
+.hours-grid {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 20px;
+  margin-top: 8px;
+}
+
+.hours-grid .day { font-weight: 500; font-size: 0.9rem; }
+.hours-grid .time { color: rgba(44, 24, 16, 0.55); font-size: 0.9rem; text-align: right; }
+.hours-grid .highlight .day,
+.hours-grid .highlight .time { color: var(--brown); font-weight: 600; }
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--charcoal);
+  color: rgba(245, 230, 211, 0.6);
+  padding: 48px 0;
+  text-align: center;
+}
+
+.footer-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: var(--beige);
+  margin-bottom: 8px;
+}
+
+.footer-logo span { color: var(--brown-light); }
+
+.footer p { font-size: 0.85rem; }
+.footer-socials { margin: 20px 0; display: flex; gap: 16px; justify-content: center; }
+.footer-socials a {
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(245, 230, 211, 0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(245, 230, 211, 0.5);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+.footer-socials a:hover { border-color: var(--brown); color: var(--brown-light); }
+
+/* ===== SCROLL ANIMATIONS ===== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-delay-1 { transition-delay: 0.1s; }
+.fade-in-delay-2 { transition-delay: 0.2s; }
+.fade-in-delay-3 { transition-delay: 0.3s; }
+.fade-in-delay-4 { transition-delay: 0.4s; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 968px) {
+  .section { padding: 80px 0; }
+  .hero h1 { font-size: 3.6rem; }
+  .section-title { font-size: 2.2rem; }
+  .menu-grid { grid-template-columns: 1fr 1fr; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+  .story-layout { grid-template-columns: 1fr; gap: 40px; }
+  .story-image { order: -1; }
+}
+
+@media (max-width: 700px) {
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: rgba(245, 230, 211, 0.98);
+    backdrop-filter: blur(16px);
+    flex-direction: column;
+    padding: 24px;
+    gap: 20px;
+    border-bottom: 1px solid rgba(139, 111, 71, 0.12);
+  }
+  .nav-links.open { display: flex; }
+  .nav-toggle { display: block; }
+  .hero { min-height: 90vh; }
+  .hero h1 { font-size: 2.6rem; }
+  .section-title { font-size: 1.8rem; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .specials-card { padding: 36px 24px; }
+  .special-item { flex-wrap: wrap; gap: 12px; }
+  .special-price { margin-left: 0; }
+  .gallery-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .location-card { padding: 32px 24px; }
+  .btn { padding: 14px 28px; font-size: 0.85rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar" id="navbar" role="navigation">
+  <div class="container">
+    <a href="#" class="nav-logo">Haven<span>&amp;</span>Brew</a>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#specials">Specials</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#story">Our Story</a></li>
+      <li><a href="#location">Visit</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-badge">Est. 2024 &middot; Artisan Roastery</div>
+    <h1>Where every <span class="accent">cup</span><br>tells a story</h1>
+    <p>Slow-roasted single-origin beans, hand-crafted pastries, and the warmest corner of the city &mdash; welcome to your new favourite place.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn btn-primary">Explore Menu &darr;</a>
+      <a href="#location" class="btn btn-secondary">Find Us</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MENU ===== -->
+<section class="section" id="menu">
+  <div class="container">
+    <div class="accent-line"></div>
+    <h2 class="section-title">Our Menu</h2>
+    <p class="section-subtitle">From carefully sourced espresso to buttery, flaky pastries &mdash; every item made in-house, daily.</p>
+
+    <div class="menu-grid">
+      <!-- Coffee -->
+      <div class="menu-category fade-in">
+        <div class="menu-category-icon" style="background:#6d5537;" aria-hidden="true">&#9749;</div>
+        <h3>Coffee</h3>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Espresso</span>
+            <span class="menu-item-desc">Single-origin, double shot</span>
+          </div>
+          <span class="menu-item-price">$3.50</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Flat White</span>
+            <span class="menu-item-desc">Velvety microfoam over ristretto</span>
+          </div>
+          <span class="menu-item-price">$4.75</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Pour Over</span>
+            <span class="menu-item-desc">Hand-poured, rotating origins</span>
+          </div>
+          <span class="menu-item-price">$5.50</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Cold Brew</span>
+            <span class="menu-item-desc">24-hour steep, silky smooth</span>
+          </div>
+          <span class="menu-item-price">$5.00</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Latte</span>
+            <span class="menu-item-desc">Choice of oat, almond &amp; whole milk</span>
+          </div>
+          <span class="menu-item-price">$5.25</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Cortado</span>
+            <span class="menu-item-desc">Equal parts espresso &amp; steamed milk</span>
+          </div>
+          <span class="menu-item-price">$4.25</span>
+        </div>
+      </div>
+
+      <!-- Pastries -->
+      <div class="menu-category fade-in fade-in-delay-1">
+        <div class="menu-category-icon" style="background:#8b6f47;" aria-hidden="true">&#9702;</div>
+        <h3>Pastries</h3>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Croissant</span>
+            <span class="menu-item-desc">Classic French butter, 72-hour lamination</span>
+          </div>
+          <span class="menu-item-price">$4.50</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Almond Croissant</span>
+            <span class="menu-item-desc">Frangipane filling, flakey top</span>
+          </div>
+          <span class="menu-item-price">$5.50</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Cinnamon Roll</span>
+            <span class="menu-item-desc">Brown butter glaze, house-made</span>
+          </div>
+          <span class="menu-item-price">$5.00</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Banana Bread</span>
+            <span class="menu-item-desc">Sourdough discard, dark chocolate</span>
+          </div>
+          <span class="menu-item-price">$4.25</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Morning Bun</span>
+            <span class="menu-item-desc">Orange zest &amp; cardamom sugar</span>
+          </div>
+          <span class="menu-item-price">$4.75</span>
+        </div>
+      </div>
+
+      <!-- Specialty Drinks -->
+      <div class="menu-category fade-in fade-in-delay-2">
+        <div class="menu-category-icon" style="background:#a8895e;" aria-hidden="true">&#10048;</div>
+        <h3>Specialty Drinks</h3>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Honey Lavender Latte</span>
+            <span class="menu-item-desc">Local honey, culinary lavender</span>
+          </div>
+          <span class="menu-item-price">$6.25</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Brown Sugar Oatmilk Shaken</span>
+            <span class="menu-item-desc">Brown sugar syrup, oat milk, espresso</span>
+          </div>
+          <span class="menu-item-price">$6.50</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Matcha Latte</span>
+            <span class="menu-item-desc">Ceremonial grade, hand-whisked</span>
+          </div>
+          <span class="menu-item-price">$5.75</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Turmeric Golden</span>
+            <span class="menu-item-desc">Turmeric, ginger, black pepper, oat milk</span>
+          </div>
+          <span class="menu-item-price">$5.50</span>
+        </div>
+        <div class="menu-item">
+          <div>
+            <span class="menu-item-name">Smoked Maple Latte</span>
+            <span class="menu-item-desc">Smoked maple syrup, cinnamon</span>
+          </div>
+          <span class="menu-item-price">$6.25</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== DAILY SPECIALS ===== -->
+<section class="section" id="specials">
+  <div class="container">
+    <div class="specials-card">
+      <div class="accent-line" style="background: var(--brown-light);"></div>
+      <h2 class="section-title">Today&rsquo;s Specials</h2>
+      <p class="section-subtitle">Hand-picked by our baristas &mdash; limited quantities, made fresh.</p>
+
+      <div class="special-item">
+        <div class="special-badge">
+          <span class="day">22</span>
+          <span class="month">Jun</span>
+        </div>
+        <div class="special-info">
+          <h4>Ethiopian Yirgacheffe Pour Over</h4>
+          <p>Bright floral notes &bull; bergamot &bull; honey finish</p>
+        </div>
+        <span class="special-price">$6.00</span>
+      </div>
+
+      <div class="special-item">
+        <div class="special-badge">
+          <span class="day">22</span>
+          <span class="month">Jun</span>
+        </div>
+        <div class="special-info">
+          <h4>Bourbon Vanilla Cold Brew</h4>
+          <p>24-hour steep &bull; Madagascar vanilla &bull; oat milk</p>
+        </div>
+        <span class="special-price">$6.50</span>
+      </div>
+
+      <div class="special-item">
+        <div class="special-badge">
+          <span class="day">22</span>
+          <span class="month">Jun</span>
+        </div>
+        <div class="special-info">
+          <h4>Pistachio &amp; Rose Croissant</h4>
+          <p>House pistachio paste &bull; dried rose petals</p>
+        </div>
+        <span class="special-price">$6.75</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== GALLERY ===== -->
+<section class="section" id="gallery">
+  <div class="container">
+    <div class="accent-line"></div>
+    <h2 class="section-title">The Atmosphere</h2>
+    <p class="section-subtitle">Warm light, soft music, and the quiet hum of conversation &mdash; find your corner.</p>
+
+    <div class="gallery-grid">
+      <div class="gallery-item fade-in">
+        <div class="gallery-placeholder">
+          <span class="icon">&#9728;</span>
+          <span class="label">Morning Light</span>
+        </div>
+      </div>
+      <div class="gallery-item fade-in fade-in-delay-1">
+        <div class="gallery-placeholder">
+          <span class="icon">&#9749;</span>
+          <span class="label">The Bar</span>
+        </div>
+      </div>
+      <div class="gallery-item fade-in fade-in-delay-2">
+        <div class="gallery-placeholder">
+          <span class="icon">&#9789;</span>
+          <span class="label">Evening Corner</span>
+        </div>
+      </div>
+      <div class="gallery-item fade-in fade-in-delay-3">
+        <div class="gallery-placeholder">
+          <span class="icon">&#9733;</span>
+          <span class="label">Reading Nook</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STORY ===== -->
+<section class="section" id="story">
+  <div class="container">
+    <div class="story-layout">
+      <div class="story-image fade-in">
+        <span class="icon">&#10048;</span>
+      </div>
+      <div class="story-text fade-in fade-in-delay-1">
+        <div class="accent-line" style="margin:0 0 20px 0;"></div>
+        <h2>Our Story</h2>
+        <p>Haven &amp; Brew was born from a simple belief &mdash; that a great cup of coffee can change your day. Founded in the heart of the city by two friends who traded corporate desks for espresso machines, we&rsquo;ve spent years perfecting our craft.</p>
+        <p>Every bean we roast is ethically sourced from small-batch farms in Ethiopia, Colombia, and Guatemala. Every pastry is laminated, folded, and baked in-house by hand. We believe in slow food, slow coffee, and genuine connection.</p>
+        <p>Whether you&rsquo;re here for a morning pour-over, an afternoon pastry, or an evening corner to read, you&rsquo;re family. Pull up a chair and stay awhile.</p>
+        <div class="signature">&mdash; Elena &amp; Marcus, Founders</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== LOCATION / HOURS ===== -->
+<section class="section" id="location">
+  <div class="container">
+    <div class="accent-line"></div>
+    <h2 class="section-title">Visit Us</h2>
+    <p class="section-subtitle">Come find your new favourite spot.</p>
+
+    <div class="location-card fade-in">
+      <div class="location-detail">
+        <div class="location-detail-icon" aria-hidden="true">&#9906;</div>
+        <div class="location-detail-content">
+          <h4>Address</h4>
+          <p>247 Grindstone Avenue, Portland, OR 97201</p>
+        </div>
+      </div>
+
+      <div class="location-detail">
+        <div class="location-detail-icon" aria-hidden="true">&#9993;</div>
+        <div class="location-detail-content">
+          <h4>Contact</h4>
+          <p>hello@havenandbrew.com &bull; (503) 555-0147</p>
+        </div>
+      </div>
+
+      <div class="location-detail">
+        <div class="location-detail-icon" aria-hidden="true">&#9200;</div>
+        <div class="location-detail-content">
+          <h4>Hours</h4>
+          <div class="hours-grid">
+            <span class="day">Monday &ndash; Friday</span>
+            <span class="time">6:30 AM &ndash; 7:00 PM</span>
+            <span class="day">Saturday</span>
+            <span class="time">7:00 AM &ndash; 8:00 PM</span>
+            <span class="day highlight">Sunday</span>
+            <span class="time highlight">8:00 AM &ndash; 5:00 PM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-logo">Haven<span>&amp;</span>Brew</div>
+    <div class="footer-socials">
+      <a href="#" aria-label="Instagram">&#9901;</a>
+      <a href="#" aria-label="Twitter/X">&#120143;</a>
+      <a href="#" aria-label="Facebook">&#102;</a>
+    </div>
+    <p>&copy; 2024 Haven &amp; Brew. Crafted with care, daily.</p>
+  </div>
+</footer>
+
+<!-- ===== SCRIPTS ===== -->
+<script>
+(function() {
+  'use strict';
+
+  // --- Mobile Nav Toggle ---
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  if (toggle && links) {
+    toggle.addEventListener('click', function() {
+      links.classList.toggle('open');
+    });
+    // Close nav on link click (mobile)
+    var navAnchors = links.querySelectorAll('a');
+    for (var i = 0; i < navAnchors.length; i++) {
+      navAnchors[i].addEventListener('click', function() {
+        links.classList.remove('open');
+      });
+    }
+  }
+
+  // --- Navbar shrink on scroll ---
+  var navbar = document.getElementById('navbar');
+  var didScroll = false;
+  window.addEventListener('scroll', function() {
+    if (!didScroll) {
+      window.requestAnimationFrame(function() {
+        if (window.scrollY > 60) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
+        didScroll = false;
+      });
+      didScroll = true;
+    }
+  });
+
+  // --- Scroll-triggered fade-in animations ---
+  var fadeEls = document.querySelectorAll('.fade-in');
+  if (fadeEls.length > 0) {
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+
+    for (var j = 0; j < fadeEls.length; j++) {
+      observer.observe(fadeEls[j]);
+    }
+  }
+})();
+</script>
+</body>
+</html>

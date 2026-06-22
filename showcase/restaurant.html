@@ -1,0 +1,1891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Maison Dorée | Fine Dining</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --deep-dark: #1a0f0a;
+  --gold: #c9a84c;
+  --cream: #f5f0e8;
+  --gold-light: #e8d48b;
+  --gold-dark: #a88a30;
+  --dark-translucent: rgba(26, 15, 10, 0.85);
+  --dark-semi: rgba(26, 15, 10, 0.6);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--deep-dark);
+  color: var(--cream);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+/* ─── Nav ─── */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+nav.scrolled {
+  background: var(--dark-translucent);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 0.9rem 3rem;
+  box-shadow: 0 1px 30px rgba(0,0,0,0.4);
+}
+
+.logo {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.8rem;
+  color: var(--gold);
+  letter-spacing: 0.15em;
+  text-decoration: none;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  align-items: center;
+}
+
+.nav-links a {
+  color: var(--cream);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--gold);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gold);
+}
+
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.reserve-btn {
+  background: transparent;
+  border: 1px solid var(--gold);
+  color: var(--gold) !important;
+  padding: 0.5rem 1.5rem;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+}
+
+.reserve-btn:hover {
+  background: var(--gold) !important;
+  color: var(--deep-dark) !important;
+}
+
+.reserve-btn::after {
+  display: none !important;
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 4px;
+}
+
+.hamburger span {
+  display: block;
+  width: 26px;
+  height: 1.5px;
+  background: var(--cream);
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(4px, 5px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(4px, -5px);
+}
+
+/* ─── Hero ─── */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background: var(--deep-dark);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 30% 40%, rgba(201, 168, 76, 0.08) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 70% at 70% 60%, rgba(201, 168, 76, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 100% 100% at 50% 50%, #2a1a12 0%, #1a0f0a 70%);
+}
+
+.hero-gradient {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    transparent 50%,
+    rgba(26, 15, 10, 0.4) 75%,
+    var(--deep-dark) 100%
+  );
+  z-index: 1;
+}
+
+.hero-overlay-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(26,15,10,0.5) 0%, transparent 100%);
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 900px;
+  padding: 2rem;
+}
+
+.hero-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeUp 1.2s ease 0.3s forwards;
+}
+
+.hero-divider {
+  width: 60px;
+  height: 1px;
+  background: var(--gold);
+  margin: 0 auto 2rem;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.6s forwards;
+}
+
+.hero-title {
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.15;
+  color: var(--cream);
+  letter-spacing: 0.03em;
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1.2s ease 0.5s forwards;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--gold);
+}
+
+.hero-desc {
+  font-size: 1rem;
+  font-weight: 300;
+  color: rgba(245, 240, 232, 0.7);
+  margin-bottom: 2.5rem;
+  max-width: 550px;
+  margin-left: auto;
+  margin-right: auto;
+  opacity: 0;
+  animation: fadeUp 1.2s ease 0.8s forwards;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 0.9rem 2.8rem;
+  border: 1px solid var(--gold);
+  color: var(--gold);
+  text-decoration: none;
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  transition: all 0.4s ease;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeUp 1.2s ease 1.1s forwards;
+  background: transparent;
+  cursor: pointer;
+}
+
+.hero-btn:hover {
+  background: var(--gold);
+  color: var(--deep-dark);
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  opacity: 0;
+  animation: fadeUp 1.2s ease 1.5s forwards;
+}
+
+.scroll-text {
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.4);
+  font-weight: 300;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(to bottom, var(--gold), transparent);
+  animation: scrollPulse 2s ease infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+  from { opacity: 0; transform: translateY(20px); }
+}
+
+/* ─── Section Shared ─── */
+section {
+  padding: 6rem 2rem;
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.section-tag {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.8rem;
+  font-weight: 400;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 400;
+  color: var(--cream);
+  line-height: 1.2;
+}
+
+.section-divider {
+  width: 50px;
+  height: 1px;
+  background: var(--gold);
+  margin: 1rem auto 0;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ─── About / Story ─── */
+.story {
+  background: var(--deep-dark);
+  position: relative;
+}
+
+.story::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent);
+}
+
+.story-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5rem;
+  align-items: center;
+}
+
+.story-image {
+  position: relative;
+  height: 500px;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%),
+    linear-gradient(135deg, #2a1a12 0%, #1a0f0a 100%);
+  border: 1px solid rgba(201,168,76,0.1);
+}
+
+.story-image::before {
+  content: '✦';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 3rem;
+  color: var(--gold);
+  opacity: 0.3;
+}
+
+.story-image .pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 30% 40%, rgba(201,168,76,0.04) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(201,168,76,0.03) 0%, transparent 50%);
+}
+
+.story-image .accent-line {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  right: 2rem;
+  height: 1px;
+  background: linear-gradient(to right, var(--gold), transparent);
+  opacity: 0.3;
+}
+
+.story-image .accent-line-bottom {
+  position: absolute;
+  bottom: 2rem;
+  left: 2rem;
+  right: 2rem;
+  height: 1px;
+  background: linear-gradient(to left, var(--gold), transparent);
+  opacity: 0.3;
+}
+
+.story-image .corner {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-color: var(--gold);
+  opacity: 0.2;
+}
+
+.story-image .corner.tl { top: 2rem; left: 2rem; border-top: 1px solid; border-left: 1px solid; }
+.story-image .corner.tr { top: 2rem; right: 2rem; border-top: 1px solid; border-right: 1px solid; }
+.story-image .corner.bl { bottom: 2rem; left: 2rem; border-bottom: 1px solid; border-left: 1px solid; }
+.story-image .corner.br { bottom: 2rem; right: 2rem; border-bottom: 1px solid; border-right: 1px solid; }
+
+.story-content h2 {
+  font-size: 2.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  line-height: 1.25;
+}
+
+.story-content h2 em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.story-content p {
+  color: rgba(245, 240, 232, 0.7);
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+  font-weight: 300;
+  line-height: 1.8;
+}
+
+.story-signature {
+  margin-top: 2rem;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  font-size: 1.2rem;
+  color: var(--gold);
+  letter-spacing: 0.05em;
+}
+
+/* ─── Menu Grid ─── */
+.menu {
+  background: linear-gradient(180deg, var(--deep-dark) 0%, #0f0906 100%);
+  position: relative;
+}
+
+.menu::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.menu-item {
+  position: relative;
+  height: 380px;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(201,168,76,0.08);
+  transition: border-color 0.4s ease, transform 0.4s ease;
+}
+
+.menu-item:hover {
+  border-color: rgba(201,168,76,0.3);
+  transform: translateY(-2px);
+}
+
+.menu-item-bg {
+  position: absolute;
+  inset: 0;
+  transition: transform 0.6s ease;
+}
+
+.menu-item:hover .menu-item-bg {
+  transform: scale(1.05);
+}
+
+.menu-item-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(26, 15, 10, 0.92) 0%,
+    rgba(26, 15, 10, 0.6) 40%,
+    rgba(26, 15, 10, 0.3) 60%,
+    rgba(26, 15, 10, 0.1) 100%
+  );
+  z-index: 1;
+}
+
+.menu-item-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 2rem;
+  z-index: 2;
+}
+
+.menu-item-category {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 0.4rem;
+  font-weight: 400;
+}
+
+.menu-item-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--cream);
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+.menu-item-price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  font-style: italic;
+}
+
+.menu-item-desc {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease, margin 0.5s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+
+.menu-item:hover .menu-item-desc {
+  max-height: 100px;
+  opacity: 1;
+  margin-top: 0.8rem;
+}
+
+.menu-item-desc p {
+  font-size: 0.85rem;
+  color: rgba(245, 240, 232, 0.7);
+  line-height: 1.6;
+  font-weight: 300;
+}
+
+.menu-item-1 .menu-item-bg { background: radial-gradient(ellipse at 30% 40%, rgba(201,168,76,0.15) 0%, #1a0f0a 70%); }
+.menu-item-2 .menu-item-bg { background: radial-gradient(ellipse at 60% 30%, rgba(180,80,60,0.15) 0%, #1a0f0a 70%); }
+.menu-item-3 .menu-item-bg { background: radial-gradient(ellipse at 40% 60%, rgba(100,180,140,0.12) 0%, #1a0f0a 70%); }
+.menu-item-4 .menu-item-bg { background: radial-gradient(ellipse at 50% 40%, rgba(220,180,120,0.18) 0%, #1a0f0a 70%); }
+.menu-item-5 .menu-item-bg { background: radial-gradient(ellipse at 30% 50%, rgba(160,100,140,0.14) 0%, #1a0f0a 70%); }
+.menu-item-6 .menu-item-bg { background: radial-gradient(ellipse at 60% 50%, rgba(200,140,80,0.12) 0%, #1a0f0a 70%); }
+
+.menu-item-accent {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 2;
+  font-size: 0.7rem;
+  color: var(--gold);
+  opacity: 0.5;
+  letter-spacing: 0.1em;
+}
+
+/* ─── Wine Accordion ─── */
+.wine {
+  background: var(--deep-dark);
+  position: relative;
+}
+
+.wine::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
+}
+
+.wine-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.wine-item {
+  border-bottom: 1px solid rgba(201,168,76,0.1);
+}
+
+.wine-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 0;
+  cursor: pointer;
+  transition: color 0.3s;
+  user-select: none;
+}
+
+.wine-header:hover {
+  color: var(--gold);
+}
+
+.wine-header-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.wine-year {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1rem;
+  color: var(--gold);
+  min-width: 3rem;
+}
+
+.wine-name {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.15rem;
+  font-weight: 500;
+}
+
+.wine-origin {
+  font-size: 0.8rem;
+  color: rgba(245, 240, 232, 0.5);
+  font-weight: 300;
+  margin-left: 0.5rem;
+}
+
+.wine-price {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-style: italic;
+  color: var(--gold);
+  font-size: 1.05rem;
+}
+
+.wine-toggle {
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-left: 1rem;
+  transition: transform 0.3s ease;
+  display: inline-block;
+}
+
+.wine-item.active .wine-toggle {
+  transform: rotate(45deg);
+}
+
+.wine-details {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.4s ease;
+  padding: 0 0 0 4rem;
+}
+
+.wine-item.active .wine-details {
+  max-height: 200px;
+  padding: 0 0 1.2rem 4rem;
+}
+
+.wine-details p {
+  font-size: 0.85rem;
+  color: rgba(245, 240, 232, 0.6);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.wine-details .pairing {
+  margin-top: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--gold);
+  font-style: italic;
+}
+
+/* ─── Reservation ─── */
+.reservation {
+  background: linear-gradient(180deg, #0f0906 0%, var(--deep-dark) 100%);
+  position: relative;
+}
+
+.reservation::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
+}
+
+.reservation-form {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 1.2rem;
+}
+
+.form-group {
+  margin-bottom: 1.2rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245, 240, 232, 0.5);
+  margin-bottom: 0.5rem;
+  font-weight: 400;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.85rem 1rem;
+  background: rgba(245, 240, 232, 0.05);
+  border: 1px solid rgba(201,168,76,0.15);
+  border-radius: 2px;
+  color: var(--cream);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  transition: border-color 0.3s, background 0.3s;
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: var(--gold);
+  background: rgba(245, 240, 232, 0.08);
+}
+
+.form-group input::placeholder {
+  color: rgba(245, 240, 232, 0.25);
+}
+
+.form-group select {
+  cursor: pointer;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23c9a84c' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  padding-right: 2.5rem;
+}
+
+.form-group select option {
+  background: var(--deep-dark);
+  color: var(--cream);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 1rem;
+  background: var(--gold);
+  border: none;
+  color: var(--deep-dark);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+  font-weight: 500;
+  border-radius: 2px;
+  margin-top: 0.5rem;
+}
+
+.submit-btn:hover {
+  background: var(--gold-light);
+  transform: translateY(-1px);
+}
+
+/* ─── Testimonials ─── */
+.testimonials {
+  background: var(--deep-dark);
+  position: relative;
+  overflow: hidden;
+}
+
+.testimonials::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
+}
+
+.testimonial-slider {
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+  min-height: 250px;
+}
+
+.testimonial-slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(10px);
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.testimonial-slide.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+  position: relative;
+}
+
+.testimonial-quote {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.6rem;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--cream);
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.testimonial-quote::before {
+  content: '\201C';
+  display: block;
+  font-size: 4rem;
+  color: var(--gold);
+  opacity: 0.3;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.testimonial-author {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.1rem;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.testimonial-role {
+  font-size: 0.75rem;
+  color: rgba(245, 240, 232, 0.4);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-top: 0.25rem;
+  font-weight: 300;
+}
+
+.testimonial-stars {
+  margin-bottom: 1rem;
+  color: var(--gold);
+  font-size: 0.9rem;
+  letter-spacing: 4px;
+}
+
+.slider-dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-top: 2rem;
+}
+
+.slider-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(201,168,76,0.2);
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.slider-dot.active {
+  background: var(--gold);
+  transform: scale(1.2);
+}
+
+.slider-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.slider-nav-btn {
+  background: transparent;
+  border: 1px solid rgba(201,168,76,0.3);
+  color: var(--gold);
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: all 0.3s;
+  border-radius: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.slider-nav-btn:hover {
+  background: rgba(201,168,76,0.1);
+  border-color: var(--gold);
+}
+
+/* ─── Instagram Feed ─── */
+.instagram {
+  background: linear-gradient(180deg, var(--deep-dark) 0%, #0f0906 100%);
+  position: relative;
+}
+
+.instagram::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
+}
+
+.instagram-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.insta-item {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: hidden;
+  cursor: pointer;
+  border: 1px solid rgba(201,168,76,0.06);
+}
+
+.insta-gradient {
+  width: 100%;
+  height: 100%;
+  transition: transform 0.6s ease, filter 0.4s ease;
+}
+
+.insta-item:hover .insta-gradient {
+  transform: scale(1.05);
+  filter: brightness(1.15);
+}
+
+.insta-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 15, 10, 0);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.4s ease;
+  z-index: 1;
+}
+
+.insta-item:hover .insta-overlay {
+  background: rgba(26, 15, 10, 0.5);
+}
+
+.insta-icon {
+  color: var(--cream);
+  font-size: 1.5rem;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s ease;
+}
+
+.insta-item:hover .insta-icon {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.insta-g1 { background: linear-gradient(135deg, #2a1a12 0%, #3a2a1a 50%, #1a0f0a 100%); }
+.insta-g2 { background: linear-gradient(135deg, #1a1510 0%, #2a1f10 50%, #1a0f0a 100%); }
+.insta-g3 { background: linear-gradient(135deg, #1f1210 0%, #2a1a1a 50%, #1a0f0a 100%); }
+.insta-g4 { background: linear-gradient(135deg, #201810 0%, #1a1a12 50%, #1a0f0a 100%); }
+.insta-g5 { background: linear-gradient(135deg, #141014 0%, #2a1a20 50%, #1a0f0a 100%); }
+.insta-g6 { background: linear-gradient(135deg, #1a1410 0%, #2a2218 50%, #1a0f0a 100%); }
+
+.insta-label {
+  text-align: center;
+  margin-top: 2.5rem;
+}
+
+.insta-label a {
+  color: var(--gold);
+  text-decoration: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+  font-weight: 400;
+}
+
+.insta-label a:hover {
+  opacity: 0.7;
+}
+
+/* ─── Footer ─── */
+footer {
+  background: #0f0906;
+  padding: 4rem 2rem 2rem;
+  border-top: 1px solid rgba(201,168,76,0.06);
+}
+
+.footer-grid {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+}
+
+.footer-brand .logo {
+  font-size: 1.5rem;
+}
+
+.footer-brand p {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: rgba(245, 240, 232, 0.4);
+  max-width: 280px;
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+.footer-col h4 {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1.2rem;
+  font-weight: 500;
+}
+
+.footer-col ul {
+  list-style: none;
+}
+
+.footer-col ul li {
+  margin-bottom: 0.6rem;
+}
+
+.footer-col ul li a {
+  color: rgba(245, 240, 232, 0.5);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 0.3s;
+  font-weight: 300;
+}
+
+.footer-col ul li a:hover {
+  color: var(--gold);
+}
+
+.footer-bottom {
+  max-width: 1200px;
+  margin: 3rem auto 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(201,168,76,0.06);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.75rem;
+  color: rgba(245, 240, 232, 0.3);
+  font-weight: 300;
+}
+
+.footer-socials {
+  display: flex;
+  gap: 1.2rem;
+}
+
+.footer-socials a {
+  color: rgba(245, 240, 232, 0.3);
+  text-decoration: none;
+  transition: color 0.3s;
+  font-size: 0.85rem;
+}
+
+.footer-socials a:hover {
+  color: var(--gold);
+}
+
+/* ─── Scroll Animations ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* ─── Responsive ─── */
+@media (max-width: 1024px) {
+  .menu-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .story-grid {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    padding: 1.2rem 1.5rem;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 70%;
+    max-width: 320px;
+    height: 100vh;
+    background: var(--dark-translucent);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 4rem 2rem;
+    transition: right 0.4s ease;
+  }
+
+  .nav-links.open {
+    right: 0;
+  }
+
+  section {
+    padding: 4rem 1.5rem;
+  }
+
+  .story-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .story-image {
+    height: 300px;
+  }
+
+  .story-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .menu-item {
+    height: 300px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .instagram-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .testimonial-quote {
+    font-size: 1.3rem;
+  }
+
+  .wine-details {
+    padding-left: 0 !important;
+  }
+
+  .wine-item.active .wine-details {
+    padding-left: 0 !important;
+  }
+
+  .wine-header-left {
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .instagram-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── Navigation ─── -->
+<nav id="navbar">
+  <a href="#" class="logo">La&thinsp;Maison&thinsp;Dorée</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#story">Our Story</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#wine">Wine</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#instagram">Gallery</a></li>
+    <li><a href="#reservation" class="reserve-btn">Reserve</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ─── Hero ─── -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-gradient"></div>
+  <div class="hero-overlay-top"></div>
+  <div class="hero-content">
+    <p class="hero-subtitle">Est. 1987</p>
+    <div class="hero-divider"></div>
+    <h1 class="hero-title">An Experience<br><em>in Every Bite</em></h1>
+    <p class="hero-desc">Where tradition meets innovation. An intimate journey through flavor, crafted with passion and served with grace.</p>
+    <a href="#reservation" class="hero-btn">Make a Reservation</a>
+  </div>
+  <div class="hero-scroll">
+    <span class="scroll-text">Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- ─── Chef's Story ─── -->
+<section id="story" class="story">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-tag">Our Heritage</p>
+      <h2 class="section-title">The Chef's Story</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="story-grid">
+      <div class="story-image reveal reveal-delay-1">
+        <div class="pattern"></div>
+        <div class="accent-line"></div>
+        <div class="accent-line-bottom"></div>
+        <div class="corner tl"></div>
+        <div class="corner tr"></div>
+        <div class="corner bl"></div>
+        <div class="corner br"></div>
+      </div>
+      <div class="story-content reveal reveal-delay-2">
+        <h2>Where <em>Passion</em> Meets the Palate</h2>
+        <p>Chef Jean-Luc Moreau's journey began in the sun-drenched hills of Provence, where his grandmother's farmhouse kitchen first ignited a lifelong love affair with food. After training at Le Cordon Bleu and earning his stripes in Michelin-starred kitchens across Europe, he returned to his roots to create something truly his own.</p>
+        <p>At La Maison Dorée, every dish tells a story — of terroir, of tradition reimagined, of ingredients sourced from the finest purveyors who share our commitment to excellence. The menu changes with the seasons, a living document of Chef Moreau's unending curiosity and respect for the craft.</p>
+        <p>"Cooking is not about perfection," Chef reflects. "It is about connection — to the land, to the ingredient, to the guest seated at your table."</p>
+        <div class="story-signature">— Jean-Luc Moreau, Chef &amp; Founder</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Menu ─── -->
+<section id="menu" class="menu">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-tag">Curated Flavors</p>
+      <h2 class="section-title">The Menu</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="menu-grid">
+      <div class="menu-item menu-item-1 reveal reveal-delay-1">
+        <div class="menu-item-bg"></div>
+        <div class="menu-item-overlay"></div>
+        <span class="menu-item-accent">✦</span>
+        <div class="menu-item-content">
+          <span class="menu-item-category">Amuse‑Bouche</span>
+          <h3 class="menu-item-name">Foie Gras Terrine</h3>
+          <span class="menu-item-price">$32</span>
+          <div class="menu-item-desc">
+            <p>Sauternes-poached foie gras, fig compote, toasted brioche, black truffle shavings, micro-herb salad</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item menu-item-2 reveal reveal-delay-2">
+        <div class="menu-item-bg"></div>
+        <div class="menu-item-overlay"></div>
+        <span class="menu-item-accent">✦</span>
+        <div class="menu-item-content">
+          <span class="menu-item-category">Entrée</span>
+          <h3 class="menu-item-name">Seared Scallops</h3>
+          <span class="menu-item-price">$38</span>
+          <div class="menu-item-desc">
+            <p>Diver scallops, cauliflower purée, brown butter beurre noisette, crispy capers, lemon zest, chervil</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item menu-item-3 reveal reveal-delay-3">
+        <div class="menu-item-bg"></div>
+        <div class="menu-item-overlay"></div>
+        <span class="menu-item-accent">✦</span>
+        <div class="menu-item-content">
+          <span class="menu-item-category">Entrée</span>
+          <h3 class="menu-item-name">Wild Mushroom Risotto</h3>
+          <span class="menu-item-price">$34</span>
+          <div class="menu-item-desc">
+            <p>Arborio carnaroli, porcini &amp; chanterelle medley, aged parmesan, white truffle oil, parsley foam</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item menu-item-4 reveal reveal-delay-1">
+        <div class="menu-item-bg"></div>
+        <div class="menu-item-overlay"></div>
+        <span class="menu-item-accent">✦</span>
+        <div class="menu-item-content">
+          <span class="menu-item-category">Plat Principal</span>
+          <h3 class="menu-item-name">Herb‑Crusted Rack of Lamb</h3>
+          <span class="menu-item-price">$56</span>
+          <div class="menu-item-desc">
+            <p>New Zealand lamb, rosemary-thyme crust, ratatouille Provençale, roasted garlic jus, pomme purée</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item menu-item-5 reveal reveal-delay-2">
+        <div class="menu-item-bg"></div>
+        <div class="menu-item-overlay"></div>
+        <span class="menu-item-accent">✦</span>
+        <div class="menu-item-content">
+          <span class="menu-item-category">Plat Principal</span>
+          <h3 class="menu-item-name">Pan‑Seared Duck Breast</h3>
+          <span class="menu-item-price">$48</span>
+          <div class="menu-item-desc">
+            <p>Liberty Farms duck, cherry gastrique, roasted fennel, wilted escarole, duck fat potatoes</p>
+          </div>
+        </div>
+      </div>
+      <div class="menu-item menu-item-6 reveal reveal-delay-3">
+        <div class="menu-item-bg"></div>
+        <div class="menu-item-overlay"></div>
+        <span class="menu-item-accent">✦</span>
+        <div class="menu-item-content">
+          <span class="menu-item-category">Dessert</span>
+          <h3 class="menu-item-name">Chocolate Soufflé</h3>
+          <span class="menu-item-price">$24</span>
+          <div class="menu-item-desc">
+            <p>Valrhona dark chocolate, vanilla bean crème anglaise, caramel fleur de sel, cocoa nib tuile</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Wine List Accordion ─── -->
+<section id="wine" class="wine">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-tag">Cellar Selection</p>
+      <h2 class="section-title">The Wine List</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="wine-list">
+      <div class="wine-item reveal">
+        <div class="wine-header">
+          <div class="wine-header-left">
+            <span class="wine-year">'18</span>
+            <span class="wine-name">Château Margaux</span>
+            <span class="wine-origin">Bordeaux, France</span>
+          </div>
+          <div style="display:flex;align-items:center;">
+            <span class="wine-price">$280</span>
+            <span class="wine-toggle">+</span>
+          </div>
+        </div>
+        <div class="wine-details">
+          <p>A masterful vintage from one of Bordeaux's premier estates. Deep ruby in color, with aromas of blackcurrant, violets, and cedar. Silky tannins lead to an extraordinarily long finish.</p>
+          <p class="pairing">Pairs beautifully with the Herb‑Crusted Rack of Lamb.</p>
+        </div>
+      </div>
+      <div class="wine-item reveal">
+        <div class="wine-header">
+          <div class="wine-header-left">
+            <span class="wine-year">'16</span>
+            <span class="wine-name">Opus One</span>
+            <span class="wine-origin">Napa Valley, California</span>
+          </div>
+          <div style="display:flex;align-items:center;">
+            <span class="wine-price">$350</span>
+            <span class="wine-toggle">+</span>
+          </div>
+        </div>
+        <div class="wine-details">
+          <p>A legendary Napa Cabernet Sauvignon blend. Layers of blackberry, cassis, and dark chocolate with hints of tobacco and vanilla. Full-bodied with polished, integrated tannins.</p>
+          <p class="pairing">Ideal alongside the Pan‑Seared Duck Breast.</p>
+        </div>
+      </div>
+      <div class="wine-item reveal">
+        <div class="wine-header">
+          <div class="wine-header-left">
+            <span class="wine-year">'19</span>
+            <span class="wine-name">Gaja Barbaresco</span>
+            <span class="wine-origin">Piedmont, Italy</span>
+          </div>
+          <div style="display:flex;align-items:center;">
+            <span class="wine-price">$220</span>
+            <span class="wine-toggle">+</span>
+          </div>
+        </div>
+        <div class="wine-details">
+          <p>Angelo Gaja's iconic Nebbiolo. A fragrant bouquet of rose, cherry, and spice with earthy undertones. Elegant structure with refined tannins and remarkable depth.</p>
+          <p class="pairing">A classic match for the Wild Mushroom Risotto.</p>
+        </div>
+      </div>
+      <div class="wine-item reveal">
+        <div class="wine-header">
+          <div class="wine-header-left">
+            <span class="wine-year">'20</span>
+            <span class="wine-name">Cloudy Bay Sauvignon Blanc</span>
+            <span class="wine-origin">Marlborough, New Zealand</span>
+          </div>
+          <div style="display:flex;align-items:center;">
+            <span class="wine-price">$95</span>
+            <span class="wine-toggle">+</span>
+          </div>
+        </div>
+        <div class="wine-details">
+          <p>The benchmark Marlborough Sauvignon Blanc. Vibrant notes of passionfruit, citrus, and fresh-cut herbs. Crisp acidity with a lingering mineral finish.</p>
+          <p class="pairing">Excellent with the Seared Scallops.</p>
+        </div>
+      </div>
+      <div class="wine-item reveal">
+        <div class="wine-header">
+          <div class="wine-header-left">
+            <span class="wine-year">'15</span>
+            <span class="wine-name">Dom Pérignon Rosé</span>
+            <span class="wine-origin">Champagne, France</span>
+          </div>
+          <div style="display:flex;align-items:center;">
+            <span class="wine-price">$320</span>
+            <span class="wine-toggle">+</span>
+          </div>
+        </div>
+        <div class="wine-details">
+          <p>An extraordinary rosé Champagne. Delicate notes of wild strawberry, pomegranate, and brioche with a persistent, creamy mousse. A wine of grace and power.</p>
+          <p class="pairing">A sublime pairing with the Foie Gras Terrine.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Testimonials ─── -->
+<section id="testimonials" class="testimonials">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-tag">Guest Impressions</p>
+      <h2 class="section-title">What They Say</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="testimonial-slider" id="testimonialSlider">
+      <div class="testimonial-slide active">
+        <div class="testimonial-quote">An evening at La Maison Dorée is nothing short of transcendent. Every course was a revelation — the kind of meal that reminds you why dining is an art form.</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-author">Eleanor Vance</div>
+        <div class="testimonial-role">The Gastronomic Chronicle</div>
+      </div>
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">Chef Moreau has created something truly special. The wine pairing was impeccable, the service was flawless, and the flavors — absolutely unforgettable.</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-author">Marcus Chen</div>
+        <div class="testimonial-role">Michelin Inspector (ret.)</div>
+      </div>
+      <div class="testimonial-slide">
+        <div class="testimonial-quote">This is dining at its finest. From the amuse-bouche to the petit fours, every detail is considered, every ingredient respected. A true gem of French cuisine.</div>
+        <div class="testimonial-stars">★★★★★</div>
+        <div class="testimonial-author">Sophie Bernard</div>
+        <div class="testimonial-role">Le Monde Culinaire</div>
+      </div>
+    </div>
+    <div class="slider-dots" id="sliderDots">
+      <button class="slider-dot active" data-index="0"></button>
+      <button class="slider-dot" data-index="1"></button>
+      <button class="slider-dot" data-index="2"></button>
+    </div>
+    <div class="slider-nav">
+      <button class="slider-nav-btn" id="prevTestimonial" aria-label="Previous">‹</button>
+      <button class="slider-nav-btn" id="nextTestimonial" aria-label="Next">›</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Instagram Feed ─── -->
+<section id="instagram" class="instagram">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-tag">Follow Us</p>
+      <h2 class="section-title">@lamaisondoree</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="instagram-grid">
+      <div class="insta-item reveal reveal-delay-1">
+        <div class="insta-gradient insta-g1"></div>
+        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
+      </div>
+      <div class="insta-item reveal reveal-delay-2">
+        <div class="insta-gradient insta-g2"></div>
+        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
+      </div>
+      <div class="insta-item reveal reveal-delay-3">
+        <div class="insta-gradient insta-g3"></div>
+        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
+      </div>
+      <div class="insta-item reveal reveal-delay-1">
+        <div class="insta-gradient insta-g4"></div>
+        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
+      </div>
+      <div class="insta-item reveal reveal-delay-2">
+        <div class="insta-gradient insta-g5"></div>
+        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
+      </div>
+      <div class="insta-item reveal reveal-delay-3">
+        <div class="insta-gradient insta-g6"></div>
+        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
+      </div>
+    </div>
+    <div class="insta-label">
+      <a href="#" target="_blank">Follow on Instagram →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── Reservation ─── -->
+<section id="reservation" class="reservation">
+  <div class="container">
+    <div class="section-header reveal">
+      <p class="section-tag">Join Us</p>
+      <h2 class="section-title">Make a Reservation</h2>
+      <div class="section-divider"></div>
+    </div>
+    <form class="reservation-form reveal reveal-delay-1" id="reservationForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="date">Date</label>
+          <input type="date" id="date" required>
+        </div>
+        <div class="form-group">
+          <label for="time">Time</label>
+          <select id="time" required>
+            <option value="">Select time</option>
+            <option value="17:00">5:00 PM</option>
+            <option value="17:30">5:30 PM</option>
+            <option value="18:00">6:00 PM</option>
+            <option value="18:30">6:30 PM</option>
+            <option value="19:00">7:00 PM</option>
+            <option value="19:30">7:30 PM</option>
+            <option value="20:00">8:00 PM</option>
+            <option value="20:30">8:30 PM</option>
+            <option value="21:00">9:00 PM</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="party">Party Size</label>
+          <select id="party" required>
+            <option value="">Number of guests</option>
+            <option value="1">1 Guest</option>
+            <option value="2">2 Guests</option>
+            <option value="3">3 Guests</option>
+            <option value="4">4 Guests</option>
+            <option value="5">5 Guests</option>
+            <option value="6">6 Guests</option>
+            <option value="7">7 Guests</option>
+            <option value="8">8 Guests</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" placeholder="Full name" required>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="you@example.com" required>
+      </div>
+      <button type="submit" class="submit-btn">Confirm Reservation</button>
+    </form>
+  </div>
+</section>
+
+<!-- ─── Footer ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="logo">La&thinsp;Maison&thinsp;Dorée</div>
+      <p>An intimate fine dining experience in the heart of the city. Where every meal becomes a memory.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Hours</h4>
+      <ul>
+        <li><a href="#">Tue–Thu: 5pm – 10pm</a></li>
+        <li><a href="#">Fri–Sat: 5pm – 11pm</a></li>
+        <li><a href="#">Sun: 11am – 9pm</a></li>
+        <li><a href="#">Mon: Closed</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="#">212 &amp; 34 Rue de Rivoli</a></li>
+        <li><a href="#">Paris, 75001</a></li>
+        <li><a href="#">+33 1 23 45 67 89</a></li>
+        <li><a href="#">reservations@lamaisondoree.fr</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Info</h4>
+      <ul>
+        <li><a href="#">Private Dining</a></li>
+        <li><a href="#">Gift Cards</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>&copy; 2026 La Maison Dorée. All rights reserved.</span>
+    <div class="footer-socials">
+      <a href="#" aria-label="Instagram">IG</a>
+      <a href="#" aria-label="Facebook">FB</a>
+      <a href="#" aria-label="Twitter">X</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ─── Nav scroll eﬀect ───
+const navbar = document.getElementById('navbar');
+let lastScroll = 0;
+
+window.addEventListener('scroll', () => {
+  const currentScroll = window.pageYOffset;
+  if (currentScroll > 80) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+  lastScroll = currentScroll;
+});
+
+// ─── Mobile menu ───
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
+
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navLinks.classList.toggle('open');
+});
+
+// Close mobile menu on link click
+navLinks.querySelectorAll('a').forEach(link => {
+  link.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navLinks.classList.remove('open');
+  });
+});
+
+// ─── Wine Accordion ───
+const wineItems = document.querySelectorAll('.wine-item');
+
+wineItems.forEach(item => {
+  const header = item.querySelector('.wine-header');
+  header.addEventListener('click', () => {
+    const isActive = item.classList.contains('active');
+
+    // Close all
+    wineItems.forEach(i => i.classList.remove('active'));
+
+    // Toggle clicked
+    if (!isActive) {
+      item.classList.add('active');
+    }
+  });
+});
+
+// ─── Reservation form ───
+const form = document.getElementById('reservationForm');
+
+// Set min date to today
+const dateInput = document.getElementById('date');
+const today = new Date().toISOString().split('T')[0];
+dateInput.setAttribute('min', today);
+dateInput.value = today;
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('name').value.trim();
+  const email = document.getElementById('email').value.trim();
+  const date = document.getElementById('date').value;
+  const time = document.getElementById('time').value;
+  const party = document.getElementById('party').value;
+
+  if (!name || !email || !date || !time || !party) {
+    alert('Please fill in all fields.');
+    return;
+  }
+
+  if (!email.includes('@') || !email.includes('.')) {
+    alert('Please enter a valid email address.');
+    return;
+  }
+
+  // Simulate submission
+  const btn = form.querySelector('.submit-btn');
+  const original = btn.textContent;
+  btn.textContent = 'Reservation Confirmed ✓';
+  btn.style.background = '#2e5c3a';
+  btn.style.color = '#f5f0e8';
+  btn.disabled = true;
+
+  setTimeout(() => {
+    btn.textContent = original;
+    btn.style.background = '';
+    btn.style.color = '';
+    btn.disabled = false;
+    form.reset();
+    dateInput.value = today;
+  }, 3000);
+});
+
+// ─── Testimonial Slider ───
+const slides = document.querySelectorAll('.testimonial-slide');
+const dots = document.querySelectorAll('.slider-dot');
+const prevBtn = document.getElementById('prevTestimonial');
+const nextBtn = document.getElementById('nextTestimonial');
+let currentSlide = 0;
+
+function goToSlide(index) {
+  slides.forEach(s => s.classList.remove('active'));
+  dots.forEach(d => d.classList.remove('active'));
+  slides[index].classList.add('active');
+  dots[index].classList.add('active');
+  currentSlide = index;
+}
+
+function nextSlide() {
+  goToSlide((currentSlide + 1) % slides.length);
+}
+
+function prevSlide() {
+  goToSlide((currentSlide - 1 + slides.length) % slides.length);
+}
+
+nextBtn.addEventListener('click', nextSlide);
+prevBtn.addEventListener('click', prevSlide);
+
+dots.forEach(dot => {
+  dot.addEventListener('click', () => {
+    goToSlide(parseInt(dot.dataset.index));
+  });
+});
+
+// Auto-advance
+let slideInterval = setInterval(nextSlide, 5000);
+
+const sliderContainer = document.getElementById('testimonialSlider');
+sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
+sliderContainer.addEventListener('mouseleave', () => {
+  slideInterval = setInterval(nextSlide, 5000);
+});
+
+// ─── Intersection Observer for scroll animations ───
+const revealElements = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+      observer.unobserve(entry.target);
+    }
+  });
+}, {
+  threshold: 0.12,
+  rootMargin: '0px 0px -40px 0px'
+});
+
+revealElements.forEach(el => observer.observe(el));
+
+// ─── Smooth scroll for anchor links ───
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+
+// ─── Keyboard nav for slider ───
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'ArrowLeft') prevSlide();
+  if (e.key === 'ArrowRight') nextSlide();
+});
+</script>
+</body>
+</html>

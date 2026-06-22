@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nova — Build Smarter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--navy:#0a0e27;--navy-light:#121738;--blue:#4f6ef7;--blue-glow:#4f6ef744;--white:#ffffff;--gray:#b0b5d0;--gray-light:#e8eaf6;--card-bg:#121738;--radius:12px;--radius-lg:20px;--transition:0.3s cubic-bezier(.4,0,.2,1)}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,sans-serif;background:var(--navy);color:var(--white);line-height:1.6;overflow-x:hidden}
+h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:800;line-height:1.15}
+h2{font-size:clamp(2rem,4vw,3.2rem);text-align:center;margin-bottom:0.5em}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:100px 0}
+
+/* ───── Floating Nav ───── */
+nav{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000;width:90%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(10,14,39,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(79,110,247,.15);border-radius:100px;box-shadow:0 8px 40px rgba(0,0,0,.4)}
+nav .logo{font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,var(--blue),#8ba3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+nav .nav-links{display:flex;gap:32px;align-items:center}
+nav .nav-links a{color:var(--gray);text-decoration:none;font-size:.875rem;font-weight:500;transition:color var(--transition)}
+nav .nav-links a:hover{color:var(--white)}
+nav .cta-btn{background:var(--blue);color:var(--white);border:none;padding:10px 28px;border-radius:100px;font-size:.875rem;font-weight:600;cursor:pointer;transition:all var(--transition)}
+nav .cta-btn:hover{background:#5d7af8;transform:translateY(-2px);box-shadow:0 8px 25px var(--blue-glow)}
+.mobile-menu-btn{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
+
+/* ───── Hero ───── */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;padding:120px 24px 60px;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(ellipse 80% 60% at 20% 20%,rgba(79,110,247,.12) 0%,transparent 60%),
+  radial-gradient(ellipse 60% 50% at 80% 80%,rgba(79,110,247,.08) 0%,transparent 60%),
+  radial-gradient(ellipse 50% 40% at 50% 50%,rgba(79,110,247,.05) 0%,transparent 50%);
+pointer-events:none}
+.hero .mesh-grid{position:absolute;inset:0;background-image:
+  linear-gradient(rgba(79,110,247,.03) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(79,110,247,.03) 1px,transparent 1px);
+background-size:60px 60px;pointer-events:none;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 30%,transparent 70%)}
+.hero h1{font-size:clamp(3.2rem,9vw,7rem);font-weight:900;letter-spacing:-.03em;margin-bottom:24px;position:relative}
+.hero h1 span{background:linear-gradient(135deg,var(--white) 30%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero p{font-size:clamp(1rem,2vw,1.25rem);color:var(--gray);max-width:600px;margin-bottom:40px;position:relative;line-height:1.7}
+.hero .hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative}
+.hero .btn-primary{background:var(--blue);color:var(--white);padding:16px 40px;border-radius:100px;font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:all var(--transition);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.hero .btn-primary:hover{background:#5d7af8;transform:translateY(-3px);box-shadow:0 12px 40px var(--blue-glow)}
+.hero .btn-secondary{background:rgba(255,255,255,.08);color:var(--white);padding:16px 40px;border-radius:100px;font-size:1rem;font-weight:500;border:1px solid rgba(255,255,255,.12);cursor:pointer;transition:all var(--transition);text-decoration:none}
+.hero .btn-secondary:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25)}
+.hero .scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gray);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;opacity:.5;animation:bounce 2s infinite}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ───── Features ───── */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
+.feature-card{background:var(--card-bg);border:1px solid rgba(79,110,247,.08);border-radius:var(--radius-lg);padding:40px 32px;transition:all var(--transition);position:relative;overflow:hidden}
+.feature-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#8ba3ff);opacity:0;transition:opacity var(--transition)}
+.feature-card:hover{transform:translateY(-6px);border-color:rgba(79,110,247,.2);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.feature-card:hover::after{opacity:1}
+.feature-card .icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(79,110,247,.15),rgba(79,110,247,.05));display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;border:1px solid rgba(79,110,247,.1)}
+.feature-card h3{font-size:1.3rem;margin-bottom:12px}
+.feature-card p{color:var(--gray);font-size:.925rem;line-height:1.7}
+
+/* ───── Metrics ───── */
+.metrics{background:var(--card-bg);border-top:1px solid rgba(79,110,247,.08);border-bottom:1px solid rgba(79,110,247,.08)}
+.metrics .container{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+.metric{text-align:center;padding:60px 24px;border-right:1px solid rgba(79,110,247,.08)}
+.metric:last-child{border-right:none}
+.metric .number{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,3vw,3rem);font-weight:900;background:linear-gradient(135deg,var(--white),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
+.metric .label{color:var(--gray);font-size:.875rem;font-weight:500}
+
+/* ───── Testimonials ───── */
+.testimonials{overflow:hidden}
+.testimonial-track{display:flex;gap:24px;margin-top:60px;animation:scroll 30s linear infinite;width:max-content}
+@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.testimonial-card{background:var(--card-bg);border:1px solid rgba(79,110,247,.08);border-radius:var(--radius-lg);padding:36px;min-width:380px;max-width:420px;flex-shrink:0}
+.testimonial-card .stars{color:#f0b429;font-size:1rem;margin-bottom:16px;letter-spacing:2px}
+.testimonial-card blockquote{color:var(--gray-light);font-size:.95rem;line-height:1.7;margin-bottom:20px;font-style:italic}
+.testimonial-card .author{display:flex;align-items:center;gap:14px}
+.testimonial-card .author .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#8ba3ff);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
+.testimonial-card .author .name{font-weight:600;font-size:.9rem}
+.testimonial-card .author .role{color:var(--gray);font-size:.8rem}
+
+/* ───── Pricing ───── */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;align-items:start}
+.pricing-card{background:var(--card-bg);border:1px solid rgba(79,110,247,.08);border-radius:var(--radius-lg);padding:40px 32px;transition:all var(--transition);text-align:center;position:relative}
+.pricing-card.featured{border-color:var(--blue);transform:scale(1.05);background:linear-gradient(180deg,rgba(79,110,247,.08),var(--card-bg))}
+.pricing-card.featured .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--blue);color:var(--white);padding:6px 20px;border-radius:100px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
+.pricing-card:hover{transform:translateY(-6px);border-color:rgba(79,110,247,.2);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.pricing-card.featured:hover{transform:scale(1.05) translateY(-6px);border-color:var(--blue)}
+.pricing-card .plan-name{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin-bottom:16px}
+.pricing-card .price{font-family:'Playfair Display',Georgia,serif;font-size:3rem;font-weight:900;margin-bottom:4px}
+.pricing-card .price span{font-size:1.2rem;font-weight:500;color:var(--gray)}
+.pricing-card .description{color:var(--gray);font-size:.875rem;margin-bottom:28px}
+.pricing-card ul{list-style:none;text-align:left;margin-bottom:32px}
+.pricing-card ul li{padding:10px 0;font-size:.875rem;border-bottom:1px solid rgba(79,110,247,.06);display:flex;align-items:center;gap:10px}
+.pricing-card ul li::before{content:'✓';color:var(--blue);font-weight:700}
+.pricing-card .btn-pricing{width:100%;padding:14px;border-radius:100px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all var(--transition);border:none}
+.pricing-card .btn-pricing.outline{background:transparent;border:1px solid rgba(79,110,247,.25);color:var(--white)}
+.pricing-card .btn-pricing.outline:hover{background:rgba(79,110,247,.1);border-color:var(--blue)}
+.pricing-card .btn-pricing.primary{background:var(--blue);color:var(--white)}
+.pricing-card .btn-pricing.primary:hover{background:#5d7af8;box-shadow:0 8px 25px var(--blue-glow)}
+
+/* ───── CTA ───── */
+.cta-section{text-align:center;background:var(--card-bg);border-radius:var(--radius-lg);margin:0 24px;padding:80px 40px;position:relative;overflow:hidden}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(79,110,247,.1),transparent);pointer-events:none}
+.cta-section h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:16px}
+.cta-section p{color:var(--gray);max-width:500px;margin:0 auto 40px}
+.cta-section .btn-primary{background:var(--blue);color:var(--white);padding:18px 48px;border-radius:100px;font-size:1.05rem;font-weight:600;border:none;cursor:pointer;transition:all var(--transition);text-decoration:none;display:inline-block}
+.cta-section .btn-primary:hover{background:#5d7af8;transform:translateY(-3px);box-shadow:0 12px 40px var(--blue-glow)}
+
+/* ───── Footer ───── */
+footer{background:var(--navy);border-top:1px solid rgba(79,110,247,.08);padding:60px 24px 40px}
+footer .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
+footer .col .logo{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;font-weight:800;background:linear-gradient(135deg,var(--blue),#8ba3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;display:inline-block}
+footer .col p{color:var(--gray);font-size:.875rem;max-width:300px;line-height:1.7}
+footer .col h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin-bottom:20px}
+footer .col a{display:block;color:var(--gray);text-decoration:none;font-size:.875rem;margin-bottom:12px;transition:color var(--transition)}
+footer .col a:hover{color:var(--white)}
+footer .bottom{border-top:1px solid rgba(79,110,247,.08);margin-top:48px;padding-top:24px;text-align:center;color:var(--gray);font-size:.8rem}
+
+/* ───── Responsive ───── */
+@media(max-width:992px){
+  .features-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}
+  .metrics .container{grid-template-columns:repeat(2,1fr)}
+  .metric:nth-child(2){border-right:none}
+  footer .container{grid-template-columns:1fr 1fr;gap:32px}
+}
+@media(max-width:768px){
+  nav{padding:14px 20px;width:94%;border-radius:50px}
+  nav .nav-links{display:none}
+  .mobile-menu-btn{display:block}
+  .section{padding:60px 0}
+  .features-grid,.pricing-grid{grid-template-columns:1fr}
+  .testimonial-card{min-width:300px}
+  .hero h1{font-size:clamp(2.5rem,12vw,4rem)}
+  .pricing-card.featured{transform:none}
+  .pricing-card.featured:hover{transform:translateY(-6px)}
+  footer .container{grid-template-columns:1fr;text-align:center}
+  footer .col p{max-width:none}
+  .cta-section{padding:60px 24px;margin:0 16px}
+}
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav>
+  <div class="logo">Nova</div>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#metrics">Metrics</a>
+    <a href="#testimonials">Testimonials</a>
+    <a href="#pricing">Pricing</a>
+    <button class="cta-btn">Get Started</button>
+  </div>
+  <button class="mobile-menu-btn" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="mesh-grid"></div>
+  <h1>Build <span>Smarter</span></h1>
+  <p>The intelligent platform that transforms how teams ship products. From ideation to deployment, Nova accelerates your workflow with AI-driven insights.</p>
+  <div class="hero-actions">
+    <a href="#" class="btn-primary">Start Free Trial &rarr;</a>
+    <a href="#" class="btn-secondary">Watch Demo</a>
+  </div>
+  <div class="scroll-indicator">
+    <span>Scroll</span>
+    <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><path d="M8 0v20M1 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="section" id="features">
+  <div class="container">
+    <h2>Everything you need to ship</h2>
+    <p style="text-align:center;color:var(--gray);max-width:600px;margin:0 auto">Powerful tools designed for modern product teams who move fast.</p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">&#9889;</div>
+        <h3>Lightning Deploy</h3>
+        <p>Deploy to production in seconds with our global edge network. Zero-config CI/CD that just works.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#129302;</div>
+        <h3>AI-Powered Insights</h3>
+        <p>Get intelligent recommendations on code quality, performance, and user behavior across your stack.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#128274;</div>
+        <h3>Enterprise Security</h3>
+        <p>SOC 2 Type II &amp; GDPR compliant. End-to-end encryption with granular access controls.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#128200;</div>
+        <h3>Real-time Analytics</h3>
+        <p>Understand your product with live dashboards, funnels, and cohort analysis — no SQL required.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#127760;</div>
+        <h3>Global Edge Network</h3>
+        <p>40+ regions worldwide. Your content delivered at the speed of light with automatic scaling.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#128736;</div>
+        <h3>Seamless Integrations</h3>
+        <p>Connect with Slack, GitHub, Jira, and 200+ tools. Build custom workflows with our API.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Metrics -->
+<section class="metrics" id="metrics">
+  <div class="container">
+    <div class="metric">
+      <div class="number">12K+</div>
+      <div class="label">Active Users</div>
+    </div>
+    <div class="metric">
+      <div class="number">99.9%</div>
+      <div class="label">Uptime SLA</div>
+    </div>
+    <div class="metric">
+      <div class="number">500M+</div>
+      <div class="label">Requests/Day</div>
+    </div>
+    <div class="metric">
+      <div class="number">4.9&star;</div>
+      <div class="label">Avg. Rating</div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section testimonials" id="testimonials">
+  <div class="container">
+    <h2>Trusted by innovators</h2>
+    <p style="text-align:center;color:var(--gray);max-width:500px;margin:0 auto">What our customers say about transforming their workflow.</p>
+  </div>
+  <div class="testimonial-track">
+    <div class="testimonial-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Nova completely changed how our team ships features. We went from weekly deploys to multiple times a day. The AI insights alone saved us countless hours."</blockquote>
+      <div class="author">
+        <div class="avatar">SK</div>
+        <div>
+          <div class="name">Sarah Kim</div>
+          <div class="role">CTO, Luminara</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"The edge network is incredible. We saw a 60% reduction in latency globally within days of switching. The developer experience is unmatched."</blockquote>
+      <div class="author">
+        <div class="avatar">MR</div>
+        <div>
+          <div class="name">Marcus Reed</div>
+          <div class="role">Lead Engineer, Orbit</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"We evaluated every platform out there. Nova's security model and compliance certifications made it the clear choice for our enterprise needs."</blockquote>
+      <div class="author">
+        <div class="avatar">AL</div>
+        <div>
+          <div class="name">Amara Lopez</div>
+          <div class="role">VP Engineering, Vault</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"Nova completely changed how our team ships features. We went from weekly deploys to multiple times a day. The AI insights alone saved us countless hours."</blockquote>
+      <div class="author">
+        <div class="avatar">SK</div>
+        <div>
+          <div class="name">Sarah Kim</div>
+          <div class="role">CTO, Luminara</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"The edge network is incredible. We saw a 60% reduction in latency globally within days of switching. The developer experience is unmatched."</blockquote>
+      <div class="author">
+        <div class="avatar">MR</div>
+        <div>
+          <div class="name">Marcus Reed</div>
+          <div class="role">Lead Engineer, Orbit</div>
+        </div>
+      </div>
+    </div>
+    <div class="testimonial-card">
+      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+      <blockquote>"We evaluated every platform out there. Nova's security model and compliance certifications made it the clear choice for our enterprise needs."</blockquote>
+      <div class="author">
+        <div class="avatar">AL</div>
+        <div>
+          <div class="name">Amara Lopez</div>
+          <div class="role">VP Engineering, Vault</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Pricing -->
+<section class="section" id="pricing">
+  <div class="container">
+    <h2>Simple, transparent pricing</h2>
+    <p style="text-align:center;color:var(--gray);max-width:500px;margin:0 auto">No hidden fees. Scale as you grow with plans for every team size.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="plan-name">Starter</div>
+        <div class="price">$29<span>/mo</span></div>
+        <div class="description">Perfect for small teams getting started.</div>
+        <ul>
+          <li>Up to 5 team members</li>
+          <li>10K API requests/month</li>
+          <li>Basic analytics</li>
+          <li>Community support</li>
+        </ul>
+        <button class="btn-pricing outline">Start Free Trial</button>
+      </div>
+      <div class="pricing-card featured">
+        <div class="badge">Most Popular</div>
+        <div class="plan-name">Professional</div>
+        <div class="price">$99<span>/mo</span></div>
+        <div class="description">For growing teams that need more power.</div>
+        <ul>
+          <li>Up to 25 team members</li>
+          <li>100K API requests/month</li>
+          <li>Advanced analytics + AI</li>
+          <li>Priority support</li>
+          <li>Custom integrations</li>
+        </ul>
+        <button class="btn-pricing primary">Start Free Trial</button>
+      </div>
+      <div class="pricing-card">
+        <div class="plan-name">Enterprise</div>
+        <div class="price">$299<span>/mo</span></div>
+        <div class="description">For large organizations with advanced needs.</div>
+        <ul>
+          <li>Unlimited team members</li>
+          <li>Unlimited API requests</li>
+          <li>Enterprise analytics + AI</li>
+          <li>Dedicated account manager</li>
+          <li>SSO &amp; advanced security</li>
+          <li>Custom SLA</li>
+        </ul>
+        <button class="btn-pricing outline">Contact Sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section" style="padding-bottom:0">
+  <div class="container">
+    <div class="cta-section">
+      <h2>Ready to build smarter?</h2>
+      <p>Join thousands of teams already shipping faster with Nova. Start your free trial today — no credit card required.</p>
+      <a href="#" class="btn-primary">Get Started Free &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+    <div class="col">
+      <span class="logo">Nova</span>
+      <p>The intelligent platform for modern product teams. Build, deploy, and scale with confidence.</p>
+    </div>
+    <div class="col">
+      <h4>Product</h4>
+      <a href="#">Features</a>
+      <a href="#">Integrations</a>
+      <a href="#">Changelog</a>
+      <a href="#">API Docs</a>
+    </div>
+    <div class="col">
+      <h4>Company</h4>
+      <a href="#">About</a>
+      <a href="#">Blog</a>
+      <a href="#">Careers</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="col">
+      <h4>Legal</h4>
+      <a href="#">Privacy</a>
+      <a href="#">Terms</a>
+      <a href="#">Security</a>
+      <a href="#">Cookies</a>
+    </div>
+  </div>
+  <div class="bottom">
+    <div class="container" style="border:none;padding-top:0;margin-top:0">&copy; 2026 Nova. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// Mobile menu toggle
+document.querySelector('.mobile-menu-btn')?.addEventListener('click', () => {
+  const nav = document.querySelector('.nav-links');
+  if (nav) {
+    const isOpen = nav.style.display === 'flex';
+    nav.style.display = isOpen ? 'none' : 'flex';
+    nav.style.flexDirection = 'column';
+    nav.style.position = 'absolute';
+    nav.style.top = '70px';
+    nav.style.left = '20px';
+    nav.style.right = '20px';
+    nav.style.background = 'rgba(10,14,39,.95)';
+    nav.style.backdropFilter = 'blur(20px)';
+    nav.style.borderRadius = '16px';
+    nav.style.padding = '24px';
+    nav.style.border = '1px solid rgba(79,110,247,.15)';
+  }
+});
+
+// Pause testimonial scroll on hover
+const track = document.querySelector('.testimonial-track');
+track?.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
+track?.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+</script>
+</body>
+</html>
