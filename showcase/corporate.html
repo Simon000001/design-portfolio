@@ -39,20 +39,20 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 .btn-portal{font-size:0.7rem;font-weight:600;padding:0.45rem 1rem;background:var(--red);color:var(--wh);border:none;cursor:pointer;transition:opacity 0.3s;letter-spacing:-0.01em;border-radius:2px;text-transform:uppercase}
 .btn-portal:hover{opacity:0.85}
 /* HERO - SPLIT LAYOUT */
-#hero{background:var(--wh);min-height:720px;display:flex;align-items:center;position:relative;padding:0 4rem}
-.hero-split{display:flex;width:100%;position:relative;min-height:600px}
-.hero-left{flex:0 0 auto;display:flex;align-items:center;padding-top:2rem}
-.hero-left h1{font-size:clamp(72px,9.3vw,149px);font-weight:500;line-height:0.98;letter-spacing:-5.97px;color:var(--tx);max-width:5em}
+#hero{background:var(--wh);min-height:90vh;display:flex;align-items:center;position:relative;padding:6rem 4rem 5rem}
+.hero-split{display:flex;width:100%;position:relative;min-height:560px;gap:3rem}
+.hero-left{flex:1 1 auto;display:flex;align-items:center}
+.hero-left h1{font-size:clamp(72px,9.3vw,149px);font-weight:500;line-height:0.95;letter-spacing:-5.97px;color:var(--tx);max-width:6em}
 .hero-left h1 .word{display:block}
 .hero-left h1 .char{display:inline-block;opacity:0;transform:translateY(40px);transition:all 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
 .hero-left h1 .char.revealed{opacity:1;transform:translateY(0)}
-.hero-right{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding-bottom:4rem;margin-left:auto;max-width:280px}
+.hero-right{flex:0 0 300px;display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding-bottom:2rem;margin-left:auto}
 .hero-right .hero-sub{font-size:0.8rem;font-weight:500;letter-spacing:-0.01em;color:var(--tx);line-height:1.5;margin-bottom:1.5rem}
 .hero-right .hero-link{font-size:0.75rem;font-weight:500;letter-spacing:-0.01em;color:var(--red);border-bottom:1px solid var(--red);padding-bottom:2px;transition:opacity 0.3s;display:inline-block}
 .hero-right .hero-link:hover{opacity:0.7}
 .scroll-ind{position:absolute;bottom:2rem;left:4rem;font-size:0.6rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted)}
 /* ABOUT */
-#about{background:var(--wh);padding:6rem 4rem}
+#about{background:var(--wh);padding:8rem 4rem;border-top:1px solid var(--lgr)}
 .about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
 .about-left .sec-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
 .about-left h2{font-size:clamp(1.5rem,2.2vw,2rem);font-weight:500;letter-spacing:-0.03em;color:var(--tx);line-height:1.3;margin-bottom:1.5rem}
@@ -73,7 +73,8 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 .solutions-scroll::-webkit-scrollbar{display:none}
 .solution-slide{flex:0 0 100%;height:720px;scroll-snap-align:start;display:flex;align-items:center;padding:0 4rem;position:relative;overflow:hidden}
 .solution-slide .slide-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;transform:translateZ(0);will-change:transform}
-.solution-slide .slide-content{position:relative;z-index:1;max-width:700px}
+.solution-slide .slide-content{position:relative;z-index:1;max-width:700px;opacity:0.45;transform:translateX(40px);transition:opacity 0.6s ease,transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94)}
+.solution-slide.active .slide-content{opacity:1;transform:translateX(0)}
 .solution-slide .slide-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1rem}
 .solution-slide h2{font-size:clamp(72px,9.3vw,149px);font-weight:500;line-height:0.95;letter-spacing:-5.97px;color:var(--wh);margin-bottom:1.5rem}
 .solution-slide .slide-desc{font-size:0.8rem;font-weight:400;letter-spacing:-0.01em;color:rgba(255,255,255,0.6);line-height:1.7;max-width:450px;margin-bottom:1.5rem}
@@ -88,7 +89,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 .sol-side-nav a.active,.sol-side-nav a:hover{color:var(--wh)}
 .sol-side-nav a.active .nav-line,.sol-side-nav a:hover .nav-line{background:var(--wh);width:32px}
 /* MAP */
-#map{background:var(--wh);padding:6rem 4rem}
+#map{background:var(--wh);padding:8rem 4rem}
 .map-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
 .map-left .sec-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
 .map-left h2{font-size:clamp(1.3rem,1.8vw,1.7rem);font-weight:500;letter-spacing:-0.03em;color:var(--tx);line-height:1.3;margin-bottom:1rem}
@@ -106,7 +107,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 .map-pin{fill:var(--red);stroke:var(--wh);stroke-width:1.5;cursor:pointer;transition:r 0.2s}
 .map-pin:hover{r:5}
 /* TEAM */
-#team{background:var(--team-bg);padding:6rem 4rem}
+#team{background:var(--team-bg);padding:8rem 4rem;border-top:1px solid var(--lgr)}
 .team-header{margin-bottom:3rem}
 .team-header .sec-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
 .team-header p{font-size:0.85rem;font-weight:400;letter-spacing:-0.01em;color:var(--muted);line-height:1.6;max-width:500px}
@@ -116,14 +117,17 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 .team-scroll::-webkit-scrollbar-thumb{background:var(--lgr);border-radius:2px}
 .team-card{flex:0 0 283px;min-height:478px;background:var(--wh);display:flex;flex-direction:column;scroll-snap-align:start;transition:transform 0.3s}
 .team-card:hover{transform:translateY(-4px)}
-.team-card .tc-img{width:100%;height:283px;object-fit:cover;background:var(--team-bg)}
+.team-card .tc-img{position:relative;width:100%;height:283px;background-size:cover;background-position:center;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.team-card .tc-img::after{content:'';position:absolute;inset:0;background:linear-gradient(155deg,rgba(43,43,43,0.62),rgba(228,22,19,0.32))}
+.team-card .tc-initials{position:relative;z-index:1;font-size:2.6rem;font-weight:600;letter-spacing:-0.04em;color:var(--wh)}
+.team-card:hover .tc-img{filter:saturate(1.1)}
 .team-card .tc-info{padding:1.2rem;flex:1;display:flex;flex-direction:column;justify-content:space-between}
 .team-card .tc-name{font-size:0.9rem;font-weight:500;letter-spacing:-0.02em;color:var(--tx);margin-bottom:0.2rem}
 .team-card .tc-role{font-size:0.65rem;font-weight:400;letter-spacing:-0.01em;color:var(--muted)}
 .team-card .tc-linkedin{font-size:0.65rem;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:4px;margin-top:0.8rem;transition:color 0.3s}
 .team-card .tc-linkedin:hover{color:var(--red)}
 /* CTA */
-#cta{background:var(--wh);padding:6rem 4rem;text-align:center}
+#cta{background:var(--wh);padding:9rem 4rem;text-align:center;border-top:1px solid var(--lgr)}
 #cta h2{font-size:clamp(1.5rem,2.5vw,2.5rem);font-weight:500;letter-spacing:-0.03em;color:var(--tx);line-height:1.2;max-width:600px;margin:0 auto 1.5rem}
 #cta .cta-link{font-size:0.8rem;font-weight:500;color:var(--red);border-bottom:1px solid var(--red);padding-bottom:2px;display:inline-block;transition:opacity 0.3s}
 #cta .cta-link:hover{opacity:0.7}
@@ -259,7 +263,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
   </div>
   <div class="solutions-scroll" id="solScroll">
     <div class="solution-slide" id="sol-private-equity">
-      <div class="slide-bg" style="background-image:url('images/img_1771920373490-2bf2f1f64b66.jpg');opacity:0.3"></div>
+      <div class="slide-bg" style="background-image:url('images/img_1779700210487-a01758a3c55a.jpg');opacity:0.35"></div>
       <div class="slide-content">
         <div class="slide-label">Soluciones financieras</div>
         <h2>Private<br>Equity</h2>
@@ -274,7 +278,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="solution-slide" id="sol-direct-lending">
-      <div class="slide-bg" style="background-image:url('images/img_1771919374230-7e7aa59b3d86.jpg');opacity:0.3"></div>
+      <div class="slide-bg" style="background-image:url('images/img_1742585665885-26db9db770af.jpg');opacity:0.35"></div>
       <div class="slide-content">
         <div class="slide-label">Soluciones financieras</div>
         <h2>Direct<br>Lending</h2>
@@ -289,7 +293,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="solution-slide" id="sol-fund-of-funds">
-      <div class="slide-bg" style="background-image:url('images/img_1771919374215-f6995c8ce42b.jpg');opacity:0.3"></div>
+      <div class="slide-bg" style="background-image:url('images/img_1742585667037-9b4bcb898c4b.jpg');opacity:0.35"></div>
       <div class="slide-content">
         <div class="slide-label">Soluciones financieras</div>
         <h2>Fund of<br>Funds</h2>
@@ -304,7 +308,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="solution-slide" id="sol-fund-financing">
-      <div class="slide-bg" style="background-image:url('images/img_1771919328088-3476e8fe65b0.jpg');opacity:0.3"></div>
+      <div class="slide-bg" style="background-image:url('images/img_1742585665960-4d2b6282ed10.jpg');opacity:0.35"></div>
       <div class="slide-content">
         <div class="slide-label">Soluciones financieras</div>
         <h2>Fund<br>Financing</h2>
@@ -378,7 +382,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
   </div>
   <div class="team-scroll">
     <div class="team-card">
-      <img class="tc-img" src="images/img_1779700210487-a01758a3c55a.jpg" alt="Rene Hartert" loading="lazy">
+      <div class="tc-img" style="background-image:url('images/img_1779700210487-a01758a3c55a.jpg')"><span class="tc-initials">RH</span></div>
       <div class="tc-info">
         <div><div class="tc-name">Rene Hartert</div><div class="tc-role">Socio</div></div>
         <a href="#" class="tc-linkedin">
@@ -388,7 +392,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="team-card">
-      <img class="tc-img" src="images/img_1742585665885-26db9db770af.jpg" alt="Vasil Peres" loading="lazy">
+      <div class="tc-img" style="background-image:url('images/img_1742585665885-26db9db770af.jpg')"><span class="tc-initials">VP</span></div>
       <div class="tc-info">
         <div><div class="tc-name">Vasil Peres</div><div class="tc-role">Analista</div></div>
         <a href="#" class="tc-linkedin">
@@ -398,7 +402,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="team-card">
-      <img class="tc-img" src="images/img_1742585667037-9b4bcb898c4b.jpg" alt="Eva Lozano" loading="lazy">
+      <div class="tc-img" style="background-image:url('images/img_1742585667037-9b4bcb898c4b.jpg')"><span class="tc-initials">EL</span></div>
       <div class="tc-info">
         <div><div class="tc-name">Eva Lozano</div><div class="tc-role">Relaci&oacute;n con Inversores</div></div>
         <a href="#" class="tc-linkedin">
@@ -408,7 +412,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="team-card">
-      <img class="tc-img" src="images/img_1742585665960-4d2b6282ed10.jpg" alt="Cristina Oñate" loading="lazy">
+      <div class="tc-img" style="background-image:url('images/img_1742585665960-4d2b6282ed10.jpg')"><span class="tc-initials">CO</span></div>
       <div class="tc-info">
         <div><div class="tc-name">Cristina O&ntilde;ate</div><div class="tc-role">Fund Manager</div></div>
         <a href="#" class="tc-linkedin">
@@ -418,7 +422,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="team-card">
-      <img class="tc-img" src="images/img_1761315413964-f8f01e105dde.jpg" alt="Pol Ruiz" loading="lazy">
+      <div class="tc-img" style="background-image:url('images/img_1779700210487-a01758a3c55a.jpg')"><span class="tc-initials">PR</span></div>
       <div class="tc-info">
         <div><div class="tc-name">Pol Ruiz</div><div class="tc-role">Analista</div></div>
         <a href="#" class="tc-linkedin">
@@ -428,7 +432,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="team-card">
-      <img class="tc-img" src="images/img_1758957701419-2c6e266f7988.jpg" alt="Norman Wallace" loading="lazy">
+      <div class="tc-img" style="background-image:url('images/img_1742585665885-26db9db770af.jpg')"><span class="tc-initials">NW</span></div>
       <div class="tc-info">
         <div><div class="tc-name">Norman Wallace</div><div class="tc-role">Socio</div></div>
         <a href="#" class="tc-linkedin">
@@ -438,7 +442,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="team-card">
-      <img class="tc-img" src="images/img_1732299164330-5e9f0f933e05.jpg" alt="Enrique Abascal" loading="lazy">
+      <div class="tc-img" style="background-image:url('images/img_1742585667037-9b4bcb898c4b.jpg')"><span class="tc-initials">EA</span></div>
       <div class="tc-info">
         <div><div class="tc-name">Enrique Abascal</div><div class="tc-role">Socio</div></div>
         <a href="#" class="tc-linkedin">
@@ -448,7 +452,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       </div>
     </div>
     <div class="team-card">
-      <img class="tc-img" src="images/img_1778731525495-c225978fe442.jpg" alt="Juan Treviño" loading="lazy">
+      <div class="tc-img" style="background-image:url('images/img_1742585665960-4d2b6282ed10.jpg')"><span class="tc-initials">JT</span></div>
       <div class="tc-info">
         <div><div class="tc-name">Juan Trevi&ntilde;o</div><div class="tc-role">Socio</div></div>
         <a href="#" class="tc-linkedin">
@@ -547,12 +551,18 @@ document.addEventListener('DOMContentLoaded', function() {
   // 3. ANIMATED COUNTERS
   (function() {
     var counters = document.querySelectorAll('.counter');
+    var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           var counter = entry.target;
           var target = parseInt(counter.dataset.target);
           if (isNaN(target)) return;
+          if (prefersReduced) {
+            counter.textContent = (target === 2014) ? '2014' : target.toLocaleString();
+            observer.unobserve(counter);
+            return;
+          }
           var duration = 2000;
           var step = Math.max(1, Math.floor(target / 60));
           var current = 0;
@@ -572,7 +582,7 @@ document.addEventListener('DOMContentLoaded', function() {
           observer.unobserve(counter);
         }
       });
-    }, { threshold: 0.5 });
+    }, { threshold: 0.25 });
     counters.forEach(function(c) { observer.observe(c); });
   })();
 
@@ -598,12 +608,12 @@ document.addEventListener('DOMContentLoaded', function() {
     function updateNav() {
       var scrollLeft = scroll.scrollLeft;
       var viewWidth = scroll.clientWidth;
+      var current = Math.round(scrollLeft / viewWidth);
       links.forEach(function(link, i) {
-        link.classList.remove('active');
-        var slideStart = i * viewWidth;
-        if (scrollLeft >= slideStart - viewWidth * 0.3 && scrollLeft < slideStart + viewWidth * 0.7) {
-          link.classList.add('active');
-        }
+        link.classList.toggle('active', i === current);
+      });
+      slides.forEach(function(slide, i) {
+        slide.classList.toggle('active', i === current);
       });
     }
     if (scroll) {
