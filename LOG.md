@@ -30,3 +30,9 @@
 - viewer-nav: 48→56px, bg .08→.15, border .25, font 24px, box-shadow, prev/next 16→24px from edge, Unicode →/← swapped for SVG chevrons. Mobile override 46px+20px svg.
 - Verified: grep clean (0 thumb-inner/mock-/lighten/&#8592). NOT browser-rendered.
 - Left: none.
+
+## 2026-06-22 — index.html: real screenshots + cleaner nav arrows (claude-code)
+- Cards now use <img src="showcase/images/thumb-{id}.jpg"> (object-fit:cover, fills thumb; accent bg = fallback). Removed buildPreview()/cafeCard() + dead .preview CSS. (no lighten() existed this rev).
+- viewer-nav: 56→48px, bg .15→.12, border .25→.2, box-shadow removed entirely, hover .3→.22; SVG stroke-width 2.2→2.5. Mobile 46px override untouched.
+- Verified: grep clean (0 buildPreview/cafeCard/lighten/.preview/mock-); all 6 thumb-*.jpg exist on disk. NOT browser-rendered.
+- Left: none.
