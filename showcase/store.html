@@ -20,8 +20,8 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text);transit
 nav{position:fixed;top:0;left:0;width:100%;height:var(--nav-height);display:flex;align-items:center;justify-content:space-between;padding:0 32px;z-index:1000;background:var(--bg);border-bottom:1px solid var(--border);transition:background .35s ease,border-color .35s ease}
 .nav-logo{font-family:var(--font-logo);font-weight:800;font-size:22px;letter-spacing:-0.02em;text-decoration:none;color:var(--text);transition:color .35s ease}
 .nav-logo sup{font-size:10px;top:-0.5em;position:relative}
-.nav-themes{display:flex;gap:4px;position:absolute;left:50%;transform:translateX(-50%)}
-.nav-themes button{width:28px;height:28px;border-radius:50%;border:2px solid var(--border);cursor:pointer;transition:all .25s ease;position:relative;background:transparent;overflow:hidden}
+.nav-themes{display:flex;gap:8px;align-items:center}
+.nav-themes button{width:20px;height:20px;border-radius:50%;border:2px solid var(--border);cursor:pointer;transition:all .25s ease;background:transparent;overflow:hidden}
 .nav-themes button:hover{transform:scale(1.15)}
 .nav-themes button::after{content:'';position:absolute;inset:3px;border-radius:50%}
 .theme-btn-dark{border-color:rgba(255,255,255,0.3)}.theme-btn-dark::after{background:#000}
