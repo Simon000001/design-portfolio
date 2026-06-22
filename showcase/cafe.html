@@ -655,6 +655,7 @@
       function setLang(lang) {
         currentLang = lang;
         htmlEl.setAttribute('data-lang', lang);
+        document.documentElement.lang = lang;
         langToggle.textContent = lang === 'en' ? 'FR' : 'EN';
         localStorage.setItem('escape-cafe-lang', lang);
       }
@@ -805,17 +806,12 @@
       const nextBtn = document.getElementById('carouselNext');
 
       if (track && prevBtn && nextBtn) {
-        const scrollAmount = () => {
-          const card = track.querySelector('.collection-card');
-          return card ? card.offsetWidth + 24 : 324;
-        };
-
         prevBtn.addEventListener('click', function() {
-          track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+          track.scrollBy({ left: -track.offsetWidth, behavior: 'smooth' });
         });
 
         nextBtn.addEventListener('click', function() {
-          track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+          track.scrollBy({ left: track.offsetWidth, behavior: 'smooth' });
         });
       }
 

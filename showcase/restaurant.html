@@ -958,7 +958,7 @@ footer{
     bar.style.width = '100%';
     clearInterval(interval);
     setTimeout(()=>{
-      loader.classList.add('hidden');
+      loader.style.display = 'none';
       document.body.style.overflow = '';
     }, 400);
   });
