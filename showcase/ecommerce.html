@@ -1,499 +1,674 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MØNA — Modern Essentials</title>
+<title>Monolith / Collectible Furniture and Objects</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
+/* ===== RESET & BASE ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--white:#fafafa;--charcoal:#1a1a1a;--charcoal-light:#2a2a2a;--gray:#8a8a8a;--gray-light:#d0d0d0;--gray-bg:#f0f0f0;--coral:#f05a4d;--coral-light:#f05a4d22;--coral-hover:#e04a3d;--radius:12px;--radius-sm:8px;--transition:0.3s cubic-bezier(.4,0,.2,1)}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,sans-serif;background:var(--white);color:var(--charcoal);line-height:1.6;-webkit-font-smoothing:antialiased}
-.container{max-width:1320px;margin:0 auto;padding:0 24px}
-.section{padding:80px 0}
-
-/* ───── Header ───── */
-header{position:sticky;top:0;z-index:100;background:rgba(250,250,250,.92);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-bottom:1px solid rgba(0,0,0,.06)}
-header .container{display:flex;align-items:center;justify-content:space-between;padding:18px 24px;max-width:1320px;margin:0 auto}
-header .logo{font-size:1.4rem;font-weight:800;letter-spacing:-.03em;color:var(--charcoal);text-decoration:none}
-header .logo span{color:var(--coral)}
-header nav{display:flex;align-items:center;gap:32px}
-header nav a{color:var(--gray);text-decoration:none;font-size:.875rem;font-weight:500;transition:color var(--transition);position:relative}
-header nav a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--coral);transition:width var(--transition)}
-header nav a:hover{color:var(--charcoal)}
-header nav a:hover::after{width:100%}
-header .cart-icon{position:relative;background:none;border:none;cursor:pointer;padding:8px;border-radius:50%;transition:background var(--transition)}
-header .cart-icon:hover{background:var(--gray-bg)}
-header .cart-icon svg{width:22px;height:22px;color:var(--charcoal);display:block}
-header .cart-badge{position:absolute;top:0;right:0;background:var(--coral);color:var(--white);font-size:.65rem;font-weight:700;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.mobile-nav-toggle{display:none;background:none;border:none;cursor:pointer;padding:4px}
-.mobile-nav-toggle svg{width:24px;height:24px;color:var(--charcoal)}
-
-/* ───── Hero / Featured Product ───── */
-.hero-product{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;padding:60px 0 80px}
-.hero-product .image-placeholder{aspect-ratio:4/3;border-radius:var(--radius-lg);background:linear-gradient(135deg,#e8e8e8,#d0d0d0);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.hero-product .image-placeholder::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,transparent 40%,rgba(240,90,77,.06) 100%)}
-.hero-product .image-placeholder .camera-icon{opacity:.15;font-size:4rem}
-.hero-product .badge{display:inline-block;background:var(--coral-light);color:var(--coral);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:6px 16px;border-radius:100px;margin-bottom:20px}
-.hero-product h1{font-size:clamp(2rem,3.5vw,3.2rem);font-weight:800;letter-spacing:-.03em;line-height:1.1;margin-bottom:16px}
-.hero-product h1 span{color:var(--coral)}
-.hero-product .price-lg{font-size:2.2rem;font-weight:700;margin-bottom:16px}
-.hero-product .price-lg .original{font-size:1.2rem;color:var(--gray);text-decoration:line-through;font-weight:400;margin-left:12px}
-.hero-product .description{color:var(--gray);font-size:.95rem;line-height:1.7;margin-bottom:24px;max-width:480px}
-.hero-product .variants{display:flex;gap:10px;margin-bottom:24px;flex-wrap:wrap}
-.hero-product .variants .swatch{width:32px;height:32px;border-radius:50%;border:2px solid transparent;cursor:pointer;transition:all var(--transition);position:relative}
-.hero-product .variants .swatch.active{border-color:var(--charcoal);transform:scale(1.15)}
-.hero-product .variants .swatch:hover{transform:scale(1.15)}
-.hero-product .size-selector{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap}
-.hero-product .size-selector .size-opt{padding:10px 20px;border:1.5px solid var(--gray-light);border-radius:var(--radius-sm);background:transparent;font-size:.85rem;font-weight:500;cursor:pointer;transition:all var(--transition);font-family:inherit}
-.hero-product .size-selector .size-opt:hover{border-color:var(--charcoal)}
-.hero-product .size-selector .size-opt.active{background:var(--charcoal);color:var(--white);border-color:var(--charcoal)}
-.hero-product .btn-add{display:inline-flex;align-items:center;gap:10px;background:var(--charcoal);color:var(--white);border:none;padding:16px 40px;border-radius:100px;font-size:.95rem;font-weight:600;cursor:pointer;transition:all var(--transition);font-family:inherit}
-.hero-product .btn-add:hover{background:var(--charcoal-light);transform:translateY(-2px);box-shadow:0 8px 30px rgba(0,0,0,.12)}
-.hero-product .btn-add .icon{font-size:1.2rem}
-
-/* ───── Filters + Grid ───── */
-.products-layout{display:grid;grid-template-columns:260px 1fr;gap:40px;margin-top:40px}
-.sidebar{border-right:1px solid rgba(0,0,0,.06);padding-right:32px}
-.sidebar .filter-group{margin-bottom:32px}
-.sidebar .filter-group h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--gray);margin-bottom:16px}
-.sidebar .filter-group label{display:flex;align-items:center;gap:10px;padding:8px 0;font-size:.875rem;cursor:pointer;transition:color var(--transition)}
-.sidebar .filter-group label:hover{color:var(--coral)}
-.sidebar .filter-group input[type="checkbox"]{appearance:none;width:18px;height:18px;border:2px solid var(--gray-light);border-radius:4px;cursor:pointer;position:relative;transition:all var(--transition);flex-shrink:0}
-.sidebar .filter-group input[type="checkbox"]:checked{background:var(--coral);border-color:var(--coral)}
-.sidebar .filter-group input[type="checkbox"]:checked::after{content:'✓';position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--white);font-size:.7rem;font-weight:700}
-.sidebar .filter-group .color-filter{display:flex;flex-wrap:wrap;gap:10px}
-.sidebar .filter-group .color-filter .dot{width:28px;height:28px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:all var(--transition)}
-.sidebar .filter-group .color-filter .dot.active{border-color:var(--charcoal);transform:scale(1.15)}
-.sidebar .filter-group .color-filter .dot:hover{transform:scale(1.15)}
-.products-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:28px}
-.products-header h2{font-size:1.4rem;font-weight:700}
-.products-header .sort-select{padding:10px 16px;border:1.5px solid var(--gray-light);border-radius:var(--radius-sm);font-size:.85rem;background:var(--white);font-family:inherit;cursor:pointer;outline:none}
-.products-header .sort-select:focus{border-color:var(--charcoal)}
-
-/* ───── Product Grid ───── */
-.product-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.product-card{background:var(--white);border:1px solid rgba(0,0,0,.06);border-radius:var(--radius);overflow:hidden;transition:all var(--transition);position:relative;cursor:pointer}
-.product-card:hover{transform:translateY(-6px);box-shadow:0 20px 50px rgba(0,0,0,.08);border-color:transparent}
-.product-card .product-image{aspect-ratio:3/4;background:linear-gradient(145deg,#f0f0f0,#e4e4e4);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
-.product-card .product-image .ph-icon{opacity:.1;font-size:2.5rem}
-.product-card .quick-add{position:absolute;bottom:16px;left:50%;transform:translateX(-50%) translateY(80px);background:var(--charcoal);color:var(--white);border:none;padding:10px 24px;border-radius:100px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all var(--transition);opacity:0;white-space:nowrap;font-family:inherit}
-.product-card:hover .quick-add{opacity:1;transform:translateX(-50%) translateY(0)}
-.product-card .quick-add:hover{background:var(--coral)}
-.product-card .product-info{padding:16px}
-.product-card .product-info .product-name{font-weight:600;font-size:.9rem;margin-bottom:4px}
-.product-card .product-info .product-price{font-weight:700;color:var(--charcoal);font-size:.95rem}
-.product-card .product-info .product-price .sale{color:var(--coral)}
-.product-card .product-info .product-price .original{color:var(--gray);font-size:.8rem;font-weight:400;text-decoration:line-through;margin-left:6px}
-.product-card .color-swatches{display:flex;gap:6px;margin-top:10px}
-.product-card .color-swatches .dot{width:14px;height:14px;border-radius:50%;border:1.5px solid rgba(0,0,0,.08);cursor:pointer;transition:transform var(--transition)}
-.product-card .color-swatches .dot:hover{transform:scale(1.3)}
-.product-card .tag{position:absolute;top:12px;left:12px;background:var(--coral);color:var(--white);font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:4px 10px;border-radius:100px;z-index:1}
-
-/* ───── Newsletter ───── */
-.newsletter{background:var(--charcoal);color:var(--white);padding:80px 24px;text-align:center}
-.newsletter .container{max-width:600px}
-.newsletter h2{font-size:clamp(1.5rem,3vw,2.4rem);font-weight:700;margin-bottom:12px}
-.newsletter p{color:rgba(255,255,255,.6);font-size:.9rem;margin-bottom:32px}
-.newsletter .form{display:flex;gap:12px;max-width:480px;margin:0 auto}
-.newsletter .form input{flex:1;padding:16px 20px;border-radius:100px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--white);font-size:.9rem;font-family:inherit;outline:none;transition:all var(--transition)}
-.newsletter .form input::placeholder{color:rgba(255,255,255,.35)}
-.newsletter .form input:focus{border-color:var(--coral);background:rgba(255,255,255,.1)}
-.newsletter .form button{padding:16px 32px;border-radius:100px;border:none;background:var(--coral);color:var(--white);font-weight:600;font-size:.9rem;cursor:pointer;transition:all var(--transition);font-family:inherit;white-space:nowrap}
-.newsletter .form button:hover{background:var(--coral-hover);transform:translateY(-2px)}
-
-/* ───── Footer ───── */
-footer{background:var(--charcoal);color:var(--white);padding:60px 24px 32px;border-top:1px solid rgba(255,255,255,.06)}
-footer .container{max-width:1320px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
-footer .col .logo{font-size:1.3rem;font-weight:800;letter-spacing:-.03em;margin-bottom:12px;display:inline-block}
-footer .col .logo span{color:var(--coral)}
-footer .col p{color:rgba(255,255,255,.5);font-size:.85rem;max-width:300px;line-height:1.7}
-footer .col h4{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.4);margin-bottom:16px}
-footer .col a{display:block;color:rgba(255,255,255,.5);text-decoration:none;font-size:.85rem;margin-bottom:10px;transition:color var(--transition)}
-footer .col a:hover{color:var(--coral)}
-footer .bottom{border-top:1px solid rgba(255,255,255,.06);margin-top:48px;padding-top:24px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;max-width:1320px;margin-left:auto;margin-right:auto;padding-left:24px;padding-right:24px}
-footer .bottom p{color:rgba(255,255,255,.3);font-size:.8rem}
-footer .bottom .socials{display:flex;gap:16px}
-footer .bottom .socials a{color:rgba(255,255,255,.3);text-decoration:none;font-size:.85rem;transition:color var(--transition)}
-footer .bottom .socials a:hover{color:var(--coral)}
-
-/* ───── Responsive ───── */
-@media(max-width:1200px){
-  .product-grid{grid-template-columns:repeat(3,1fr)}
+:root{
+  --bg:#ECEAE5;
+  --text:#28282A;
+  --text-muted:rgba(40,40,42,0.4);
+  --border:rgba(40,40,42,0.07);
+  --card-bg:rgba(40,40,42,0.02);
+  --overlay:rgba(236,234,229,0.97);
+  --invert:0;
 }
-@media(max-width:992px){
-  .hero-product{grid-template-columns:1fr;gap:40px}
-  .products-layout{grid-template-columns:1fr}
-  .sidebar{border-right:none;padding-right:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px;border-bottom:1px solid rgba(0,0,0,.06);padding-bottom:24px}
-  .product-grid{grid-template-columns:repeat(3,1fr)}
-  footer .container{grid-template-columns:1fr 1fr;gap:32px}
+[data-theme="dark"]{
+  --bg:#28282A;
+  --text:#ECEAE5;
+  --text-muted:rgba(236,234,229,0.35);
+  --border:rgba(236,234,229,0.07);
+  --card-bg:rgba(236,234,229,0.02);
+  --overlay:rgba(40,40,42,0.97);
+  --invert:1;
+}
+body{
+  font-family:'Space Grotesk',sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:background 0.5s ease,color 0.5s ease;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4,h5,h6{font-family:'Playfair Display',serif;font-weight:400;letter-spacing:-0.02em}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%;height:auto}
+::selection{background:var(--text);color:var(--bg)}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--text-muted);border-radius:2px}
+
+/* ===== LOADING OVERLAY ===== */
+.loading-overlay{
+  position:fixed;inset:0;z-index:10000;
+  background:var(--bg);display:flex;align-items:center;justify-content:center;
+  transition:opacity 0.8s ease,visibility 0.8s ease;
+  pointer-events:all;opacity:1;visibility:visible;
+}
+.loading-overlay.hidden{opacity:0;visibility:hidden;pointer-events:none}
+.loading-inner{text-align:center}
+.loading-inner .mono-lith{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(4rem,12vw,10rem);
+  line-height:0.85;letter-spacing:-0.04em;
+  color:var(--text);margin-bottom:1.5rem;
+}
+.loading-inner .mono-lith span{display:block}
+.loading-inner .loading-bar-wrap{
+  width:200px;height:1px;background:var(--border);margin:0 auto;overflow:hidden;
+}
+.loading-inner .loading-bar-fill{
+  height:100%;width:0%;background:var(--text);
+  transition:width 1.5s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+
+/* ===== SCROLL INDICATOR ===== */
+.scroll-indicator{
+  position:fixed;top:0;left:0;height:1px;background:var(--text);
+  z-index:1001;transition:width 0.1s ease;width:0%;
+}
+
+/* ===== TOP BAR ===== */
+.top-bar{
+  position:fixed;top:0;left:0;right:0;z-index:1000;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0.85rem 1.25rem;
+  background:transparent;color:var(--text);
+  transition:color 0.5s ease;
+  mix-blend-mode:difference;
+}
+.top-bar-left{display:flex;align-items:center;gap:1.5rem;flex:0 0 auto}
+.top-bar-logo{
+  font-family:'Playfair Display',serif;
+  font-size:0.85rem;letter-spacing:0.15em;text-transform:uppercase;
+  font-weight:500;
+}
+.top-bar-info{
+  display:flex;align-items:center;gap:0.75rem;
+  font-size:0.65rem;letter-spacing:0.05em;text-transform:uppercase;
+  font-weight:400;color:var(--text);
+  opacity:0.7;
+}
+.top-bar-info .time-display{font-variant-numeric:tabular-nums}
+.top-bar-center{position:absolute;left:50%;transform:translateX(-50%)}
+.top-bar-center .percentage{
+  font-size:0.65rem;letter-spacing:0.05em;font-weight:400;
+  opacity:0.7;
+}
+.top-bar-right{display:flex;align-items:center;gap:1rem}
+.num-nav-row{
+  display:flex;align-items:center;gap:0.25rem;
+}
+.num-nav-row a{
+  font-size:0.65rem;letter-spacing:0.02em;
+  color:var(--text);opacity:0.35;transition:opacity 0.3s ease;
+  line-height:1;padding:0.15rem 0.3rem;
+}
+.num-nav-row a::before{content:attr(data-num)'. '}
+.num-nav-row a:hover,.num-nav-row a.active{opacity:1}
+
+/* Dark Mode Toggle */
+.dark-toggle{
+  background:none;border:1px solid var(--text);border-radius:50%;
+  width:24px;height:24px;cursor:pointer;position:relative;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.3s ease;overflow:hidden;
+  opacity:0.35;font-size:0.65rem;
+}
+.dark-toggle:hover{opacity:1}
+.dark-toggle .icon-wrap{position:relative;width:12px;height:12px}
+.dark-toggle .icon-wrap span{
+  position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  transition:transform 0.4s cubic-bezier(0.68,-0.55,0.265,1.55),opacity 0.25s ease;
+}
+.dark-toggle .sun{transform:translateY(0);opacity:1}
+.dark-toggle .moon{transform:translateY(100%);opacity:0}
+[data-theme="dark"] .dark-toggle .sun{transform:translateY(-100%);opacity:0}
+[data-theme="dark"] .dark-toggle .moon{transform:translateY(0);opacity:1}
+
+/* ===== MAIN CONTENT ===== */
+.main-content{opacity:0;transition:opacity 0.8s ease}
+.main-content.visible{opacity:1}
+
+/* ===== GALLERY SECTION ===== */
+.gallery-section{padding-top:3.5rem}
+.gallery-item{
+  position:relative;display:block;overflow:hidden;
+  border-bottom:1px solid var(--border);
+}
+.gallery-item:last-child{border-bottom:none}
+.gallery-inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  min-height:80vh;
+}
+.gallery-item .gallery-img{
+  position:relative;overflow:hidden;
+  background:var(--card-bg);
+}
+.gallery-item .gallery-img img{
+  width:100%;height:100%;object-fit:cover;
+  display:block;
+  transition:transform 0.8s cubic-bezier(0.25,0.46,0.45,0.94);
+  filter:grayscale(0.1);
+  min-height:50vh;
+}
+.gallery-item:hover .gallery-img img{transform:scale(1.025)}
+.gallery-item .gallery-info{
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:2.5rem 2rem;
+}
+.gallery-item .gallery-number{
+  font-size:0.6rem;letter-spacing:0.12em;color:var(--text-muted);
+  text-transform:uppercase;font-weight:500;margin-bottom:0.3rem;
+}
+.gallery-item .gallery-catalog{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1.1rem,2vw,1.6rem);
+  letter-spacing:-0.01em;margin-bottom:0.25rem;
+}
+.gallery-item .gallery-sub{
+  font-size:0.7rem;letter-spacing:0.05em;color:var(--text-muted);
+  margin-bottom:0.5rem;
+}
+.gallery-item .gallery-price{
+  font-size:0.85rem;font-weight:500;letter-spacing:0.02em;
+}
+.gallery-item .gallery-col-num{
+  position:absolute;bottom:1.5rem;right:1.5rem;
+  font-size:0.55rem;letter-spacing:0.1em;color:var(--text-muted);
+  font-weight:500;
+}
+
+/* ===== SEE ALL SECTION ===== */
+.see-all-section{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:3rem 1.25rem;border-bottom:1px solid var(--border);
+}
+.see-all-section h2{
+  font-size:clamp(1.2rem,2.5vw,1.8rem);
+  letter-spacing:-0.02em;
+}
+.see-all-section .see-all-link{
+  font-size:0.7rem;letter-spacing:0.08em;text-transform:uppercase;
+  opacity:0.5;transition:opacity 0.3s ease;display:flex;align-items:center;gap:0.5rem;
+}
+.see-all-section .see-all-link:hover{opacity:1}
+.see-all-section .see-all-count{
+  font-size:0.6rem;letter-spacing:0.05em;color:var(--text-muted);
+}
+
+/* ===== MORE MONOLITHS ===== */
+.more-section{
+  padding:3rem 1.25rem;border-bottom:1px solid var(--border);
+}
+.more-header{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:2rem;
+}
+.more-header h2{
+  font-size:clamp(1.5rem,3vw,2.5rem);
+  line-height:1;letter-spacing:-0.02em;
+}
+.more-header h2 span{display:block}
+.more-header .more-count{
+  font-size:0.6rem;letter-spacing:0.08em;color:var(--text-muted);
+  font-weight:400;font-family:'Space Grotesk',sans-serif;
+  text-transform:uppercase;white-space:nowrap;
+}
+.more-scroll{
+  display:flex;gap:1px;overflow-x:auto;padding-bottom:1rem;
+  -webkit-overflow-scrolling:touch;scrollbar-width:none;
+  scroll-snap-type:x mandatory;
+}
+.more-scroll::-webkit-scrollbar{display:none}
+.more-item{
+  flex:0 0 auto;width:clamp(240px,30vw,380px);
+  scroll-snap-align:start;cursor:pointer;
+}
+.more-item .more-img-wrap{
+  position:relative;width:100%;padding-bottom:100%;
+  overflow:hidden;background:var(--card-bg);
+}
+.more-item .more-img-wrap img{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;transition:transform 0.6s cubic-bezier(0.25,0.46,0.45,0.94);
+  filter:grayscale(0.1);
+}
+.more-item:hover .more-img-wrap img{transform:scale(1.04)}
+.more-item .more-label{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-top:0.75rem;
+}
+.more-item .more-label .more-cat{
+  font-size:0.55rem;letter-spacing:0.1em;color:var(--text-muted);
+  text-transform:uppercase;font-weight:500;
+}
+.more-item .more-label .more-name{
+  font-family:'Playfair Display',serif;font-size:0.85rem;
+  letter-spacing:-0.01em;
+}
+.more-item .more-label .more-price{
+  font-size:0.7rem;font-weight:500;letter-spacing:0.02em;
+}
+
+/* ===== SITE LINKS ===== */
+.site-links{
+  padding:2.5rem 1.25rem;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+}
+.site-links a{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:1.25rem;font-size:0.75rem;letter-spacing:0.05em;
+  transition:opacity 0.3s ease;border-right:1px solid var(--border);
+}
+.site-links a:last-child{border-right:none}
+.site-links a:hover{opacity:0.5}
+.site-links a .link-arrow{font-size:0.6rem;opacity:0.4}
+
+/* ===== FOOTER ===== */
+.footer{
+  padding:2rem 1.25rem;
+  display:grid;grid-template-columns:repeat(5,auto);gap:1rem;
+  align-items:center;font-size:0.6rem;letter-spacing:0.05em;
+  color:var(--text-muted);
+}
+.footer a{color:var(--text);transition:opacity 0.3s ease}
+.footer a:hover{opacity:0.5}
+.footer .footer-brand{color:var(--text);font-weight:500}
+.footer .footer-right{display:flex;gap:1.5rem;align-items:center}
+.footer .footer-right a{display:flex;align-items:center;gap:0.35rem}
+
+/* ===== REVEAL ANIMATIONS ===== */
+.reveal{
+  opacity:0;transform:translateY(20px);
+  transition:all 0.7s cubic-bezier(0.25,0.46,0.45,0.94);
+}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+.reveal-delay-5{transition-delay:0.5s}
+.reveal-delay-6{transition-delay:0.6s}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .gallery-inner{grid-template-columns:1fr;min-height:auto}
+  .gallery-item .gallery-img img{min-height:40vh}
+  .gallery-item .gallery-info{padding:2rem 1.5rem}
+  .gallery-item .gallery-col-num{display:none}
+  .site-links{grid-template-columns:1fr}
+  .footer{grid-template-columns:1fr 1fr;gap:0.75rem}
 }
 @media(max-width:768px){
-  header nav{gap:20px}
-  header nav a{font-size:.8rem}
-  .mobile-nav-toggle{display:block}
-  header .nav-links{display:none}
-  header .nav-links.open{display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;background:var(--white);padding:20px 24px;border-bottom:1px solid rgba(0,0,0,.06);gap:16px;box-shadow:0 8px 30px rgba(0,0,0,.06)}
-  .product-grid{grid-template-columns:repeat(2,1fr)}
-  .sidebar{grid-template-columns:1fr 1fr}
-  .newsletter .form{flex-direction:column}
-  footer .container{grid-template-columns:1fr;text-align:center}
-  footer .col p{max-width:none;margin:0 auto}
-  footer .bottom{flex-direction:column;text-align:center}
+  .top-bar{padding:0.65rem 1rem}
+  .top-bar-logo{font-size:0.75rem}
+  .top-bar-info .location{display:none}
+  .num-nav-row a{font-size:0.6rem;padding:0.1rem 0.2rem}
+  .num-nav-row a span{display:none}
+  .num-nav-row a::before{content:attr(data-num)}
+  .num-nav-row a::after{content:none}
+  .gallery-item .gallery-info{padding:1.5rem 1rem}
+  .more-item{width:clamp(200px,45vw,300px)}
+  .footer{grid-template-columns:1fr;text-align:center;gap:0.5rem}
+  .footer .footer-right{justify-content:center}
+  .site-links{padding:1.5rem 0.75rem}
+  .site-links a{padding:0.85rem 0.75rem;border-right:none;border-bottom:1px solid var(--border)}
+  .site-links a:last-child{border-bottom:none}
+  .see-all-section{padding:2rem 1rem;flex-direction:column;align-items:flex-start;gap:0.75rem}
+  .more-section{padding:2rem 1rem}
 }
 @media(max-width:480px){
-  .product-grid{grid-template-columns:1fr}
-  .sidebar{grid-template-columns:1fr}
-  .hero-product .btn-add{width:100%;justify-content:center}
+  .top-bar-info .time-display{display:none}
+  .top-bar-center{display:none}
+  .dark-toggle{width:20px;height:20px}
 }
 </style>
 </head>
 <body>
 
-<!-- Header -->
-<header>
-  <div class="container">
-    <a href="#" class="logo">MØ<span>NA</span></a>
-    <nav>
-      <div class="nav-links">
-        <a href="#">New Arrivals</a>
-        <a href="#">Men</a>
-        <a href="#">Women</a>
-        <a href="#">Accessories</a>
-        <a href="#">Sale</a>
-      </div>
-      <button class="cart-icon" aria-label="Shopping cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/></svg>
-        <span class="cart-badge">3</span>
-      </button>
-      <button class="mobile-nav-toggle" aria-label="Toggle menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-      </button>
+<!-- Loading Overlay -->
+<div class="loading-overlay" id="loadingOverlay">
+  <div class="loading-inner">
+    <div class="mono-lith">
+      <span>Mono</span>
+      <span>Lith</span>
+    </div>
+    <div class="loading-bar-wrap">
+      <div class="loading-bar-fill" id="loadingBarFill"></div>
+    </div>
+  </div>
+</div>
+
+<!-- Scroll Indicator -->
+<div class="scroll-indicator" id="scrollIndicator"></div>
+
+<!-- Top Bar -->
+<header class="top-bar" id="topBar">
+  <div class="top-bar-left">
+    <a href="#" class="top-bar-logo">Monolith</a>
+    <div class="top-bar-info">
+      <span class="time-display" id="timeDisplay">00:00</span>
+      <span class="location">New York, NY</span>
+    </div>
+  </div>
+  <div class="top-bar-center">
+    <span class="percentage" id="scrollPercent">00%</span>
+  </div>
+  <div class="top-bar-right">
+    <nav class="num-nav-row" id="numNavRow">
+      <a href="#home" data-num="1" class="active"><span>Home</span></a>
+      <a href="#gallery" data-num="2"><span>Index</span></a>
+      <a href="#more" data-num="3"><span>Information</span></a>
     </nav>
+    <button class="dark-toggle" id="darkToggle" aria-label="Turn on dark theme.">
+      <div class="icon-wrap">
+        <span class="sun">☀</span>
+        <span class="moon">☾</span>
+      </div>
+    </button>
   </div>
 </header>
 
-<!-- Hero Product -->
-<section class="container">
-  <div class="hero-product">
-    <div class="image-placeholder">
-      <span class="camera-icon">&#128247;</span>
-    </div>
-    <div>
-      <span class="badge">New Season</span>
-      <h1>Slate Runner <span>X1</span></h1>
-      <div class="price-lg">$245 <span class="original">$320</span></div>
-      <p class="description">Inspired by brutalist architecture and minimalist design. The Slate Runner X1 features a lightweight knitted upper, responsive foam midsole, and recycled rubber outsole. Built for the modern urbanscape.</p>
-      <div class="variants">
-        <span class="swatch active" style="background:#2d2d2d" data-color="Charcoal" title="Charcoal"></span>
-        <span class="swatch" style="background:#f5f0eb" data-color="Cream" title="Cream"></span>
-        <span class="swatch" style="background:#c4a882" data-color="Sand" title="Sand"></span>
-        <span class="swatch" style="background:#8b4513" data-color="Sienna" title="Sienna"></span>
-        <span class="swatch" style="background:#f05a4d" data-color="Coral" title="Coral"></span>
-      </div>
-      <div class="size-selector">
-        <button class="size-opt">US 7</button>
-        <button class="size-opt">US 8</button>
-        <button class="size-opt active">US 9</button>
-        <button class="size-opt">US 10</button>
-        <button class="size-opt">US 11</button>
-        <button class="size-opt">US 12</button>
-      </div>
-      <button class="btn-add"><span class="icon">&#43;</span> Add to Cart</button>
-    </div>
+<!-- Main Content -->
+<div class="main-content" id="mainContent">
+
+<!-- ===== HOME / GALLERY ===== -->
+<section id="home" class="gallery-section">
+  <div class="gallery-grid" id="galleryGrid">
+    <!-- JS POPULATED -->
   </div>
 </section>
 
-<!-- Products -->
-<section class="section">
-  <div class="container">
-    <div class="products-layout">
-      <aside class="sidebar">
-        <div class="filter-group">
-          <h4>Category</h4>
-          <label><input type="checkbox" checked> Sneakers</label>
-          <label><input type="checkbox"> Boots</label>
-          <label><input type="checkbox"> Slides</label>
-          <label><input type="checkbox"> Loafers</label>
-          <label><input type="checkbox"> Sandals</label>
-        </div>
-        <div class="filter-group">
-          <h4>Size</h4>
-          <label><input type="checkbox"> US 7</label>
-          <label><input type="checkbox"> US 8</label>
-          <label><input type="checkbox" checked> US 9</label>
-          <label><input type="checkbox"> US 10</label>
-          <label><input type="checkbox"> US 11</label>
-          <label><input type="checkbox"> US 12</label>
-        </div>
-        <div class="filter-group">
-          <h4>Color</h4>
-          <div class="color-filter">
-            <span class="dot active" style="background:#2d2d2d" title="Charcoal"></span>
-            <span class="dot" style="background:#f5f0eb" title="Cream"></span>
-            <span class="dot" style="background:#c4a882" title="Sand"></span>
-            <span class="dot" style="background:#f05a4d" title="Coral"></span>
-            <span class="dot" style="background:#1a3a5c" title="Navy"></span>
-            <span class="dot" style="background:#2d5a3d" title="Forest"></span>
-          </div>
-        </div>
-        <div class="filter-group">
-          <h4>Price Range</h4>
-          <label><input type="checkbox"> Under $100</label>
-          <label><input type="checkbox"> $100 - $200</label>
-          <label><input type="checkbox" checked> $200 - $300</label>
-          <label><input type="checkbox"> $300+</label>
-        </div>
-      </aside>
+<!-- ===== SEE ALL MONOLITHS ===== -->
+<section id="gallery" class="see-all-section">
+  <h2 class="reveal">All Products</h2>
+  <a href="#" class="see-all-link reveal reveal-delay-1">See All Monoliths <span class="link-arrow">→</span></a>
+  <span class="see-all-count reveal reveal-delay-2" id="productCount">0_06</span>
+</section>
 
-      <div>
-        <div class="products-header">
-          <h2>All Sneakers <span style="font-weight:400;color:var(--gray);font-size:.9rem">(24 products)</span></h2>
-          <select class="sort-select">
-            <option>Latest</option>
-            <option>Price: Low to High</option>
-            <option>Price: High to Low</option>
-            <option>Best Selling</option>
-          </select>
-        </div>
-
-        <div class="product-grid">
-          <div class="product-card">
-            <div class="product-image">
-              <span class="ph-icon">&#128095;</span>
-              <button class="quick-add">Quick Add</button>
-            </div>
-            <div class="product-info">
-              <div class="product-name">Slate Runner X1</div>
-              <div class="product-price"><span class="sale">$245</span> <span class="original">$320</span></div>
-              <div class="color-swatches">
-                <span class="dot" style="background:#2d2d2d"></span>
-                <span class="dot" style="background:#f5f0eb"></span>
-                <span class="dot" style="background:#c4a882"></span>
-                <span class="dot" style="background:#f05a4d"></span>
-              </div>
-            </div>
-            <span class="tag">Sale</span>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">
-              <span class="ph-icon">&#128095;</span>
-              <button class="quick-add">Quick Add</button>
-            </div>
-            <div class="product-info">
-              <div class="product-name">Knit Venture Low</div>
-              <div class="product-price">$180</div>
-              <div class="color-swatches">
-                <span class="dot" style="background:#2d2d2d"></span>
-                <span class="dot" style="background:#f5f0eb"></span>
-                <span class="dot" style="background:#1a3a5c"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">
-              <span class="ph-icon">&#128095;</span>
-              <button class="quick-add">Quick Add</button>
-            </div>
-            <div class="product-info">
-              <div class="product-name">Terra Hike Pro</div>
-              <div class="product-price"><span class="sale">$210</span> <span class="original">$260</span></div>
-              <div class="color-swatches">
-                <span class="dot" style="background:#2d5a3d"></span>
-                <span class="dot" style="background:#8b4513"></span>
-                <span class="dot" style="background:#2d2d2d"></span>
-              </div>
-            </div>
-            <span class="tag">Sale</span>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">
-              <span class="ph-icon">&#128095;</span>
-              <button class="quick-add">Quick Add</button>
-            </div>
-            <div class="product-info">
-              <div class="product-name">Urban Drift Mule</div>
-              <div class="product-price">$135</div>
-              <div class="color-swatches">
-                <span class="dot" style="background:#2d2d2d"></span>
-                <span class="dot" style="background:#c4a882"></span>
-                <span class="dot" style="background:#f05a4d"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">
-              <span class="ph-icon">&#128095;</span>
-              <button class="quick-add">Quick Add</button>
-            </div>
-            <div class="product-info">
-              <div class="product-name">Canvas Court Classic</div>
-              <div class="product-price">$95</div>
-              <div class="color-swatches">
-                <span class="dot" style="background:#f5f0eb"></span>
-                <span class="dot" style="background:#2d2d2d"></span>
-                <span class="dot" style="background:#f05a4d"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">
-              <span class="ph-icon">&#128095;</span>
-              <button class="quick-add">Quick Add</button>
-            </div>
-            <div class="product-info">
-              <div class="product-name">Mesh Stride Air</div>
-              <div class="product-price">$165</div>
-              <div class="color-swatches">
-                <span class="dot" style="background:#1a3a5c"></span>
-                <span class="dot" style="background:#2d2d2d"></span>
-                <span class="dot" style="background:#8b4513"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">
-              <span class="ph-icon">&#128095;</span>
-              <button class="quick-add">Quick Add</button>
-            </div>
-            <div class="product-info">
-              <div class="product-name">Suede Luxe Pack</div>
-              <div class="product-price">$290</div>
-              <div class="color-swatches">
-                <span class="dot" style="background:#8b4513"></span>
-                <span class="dot" style="background:#c4a882"></span>
-                <span class="dot" style="background:#2d2d2d"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="product-card">
-            <div class="product-image">
-              <span class="ph-icon">&#128095;</span>
-              <button class="quick-add">Quick Add</button>
-            </div>
-            <div class="product-info">
-              <div class="product-name">Cloud Walk Slip-On</div>
-              <div class="product-price"><span class="sale">$110</span> <span class="original">$140</span></div>
-              <div class="color-swatches">
-                <span class="dot" style="background:#f5f0eb"></span>
-                <span class="dot" style="background:#2d2d2d"></span>
-                <span class="dot" style="background:#f05a4d"></span>
-              </div>
-            </div>
-            <span class="tag">Sale</span>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ===== MORE MONOLITHS ===== -->
+<section id="more" class="more-section">
+  <div class="more-header">
+    <h2 class="reveal">
+      <span>More</span>
+      <span>Monoliths</span>
+    </h2>
+    <span class="more-count reveal reveal-delay-1" id="moreCount">05_Images</span>
+  </div>
+  <div class="more-scroll" id="moreScroll">
+    <!-- JS POPULATED -->
   </div>
 </section>
 
-<!-- Newsletter -->
-<section class="newsletter">
-  <div class="container">
-    <h2>Stay in the loop</h2>
-    <p>Be the first to know about new drops, limited editions, and exclusive offers.</p>
-    <div class="form">
-      <input type="email" placeholder="Enter your email address">
-      <button type="submit">Subscribe</button>
-    </div>
-  </div>
-</section>
+<!-- ===== SITE LINKS ===== -->
+<div class="site-links">
+  <a href="#" class="reveal">Monolith Trade <span class="link-arrow">→</span></a>
+  <a href="mailto:info@monolith.nyc" class="reveal reveal-delay-1">Contact Us <span class="link-arrow">→</span></a>
+  <a href="https://instagram.com/monolith.studio" target="_blank" rel="noopener" class="reveal reveal-delay-2">Instagram <span class="link-arrow">→</span></a>
+</div>
 
-<!-- Footer -->
-<footer>
-  <div class="container">
-    <div class="col">
-      <span class="logo">MØ<span>NA</span></span>
-      <p>Modern essentials for the mindful. Ethically made, thoughtfully designed, built to last.</p>
-    </div>
-    <div class="col">
-      <h4>Shop</h4>
-      <a href="#">New Arrivals</a>
-      <a href="#">Men</a>
-      <a href="#">Women</a>
-      <a href="#">Accessories</a>
-      <a href="#">Sale</a>
-    </div>
-    <div class="col">
-      <h4>Support</h4>
-      <a href="#">Shipping &amp; Returns</a>
-      <a href="#">Size Guide</a>
-      <a href="#">FAQ</a>
-      <a href="#">Contact</a>
-      <a href="#">Track Order</a>
-    </div>
-    <div class="col">
-      <h4>About</h4>
-      <a href="#">Our Story</a>
-      <a href="#">Sustainability</a>
-      <a href="#">Careers</a>
-      <a href="#">Press</a>
-    </div>
-  </div>
-  <div class="bottom">
-    <p>&copy; 2026 MØNA. All rights reserved.</p>
-    <div class="socials">
-      <a href="#">Instagram</a>
-      <a href="#">Twitter</a>
-      <a href="#">Pinterest</a>
-      <a href="#">TikTok</a>
-    </div>
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <span class="footer-brand">Monolith</span>
+  <span>All Rights Reserved 2024</span>
+  <span>Contact <a href="mailto:info@monolith.nyc">info@monolith.nyc</a></span>
+  <span>Designed In New York City, NY</span>
+  <div class="footer-right">
+    <a href="https://instagram.com/monolith.studio" target="_blank" rel="noopener">Instagram ↑</a>
+    <a href="mailto:info@monolith.nyc">Get In Touch ↑</a>
   </div>
 </footer>
 
+</div><!-- /main-content -->
+
 <script>
-// Mobile nav toggle
-document.querySelector('.mobile-nav-toggle')?.addEventListener('click', () => {
-  document.querySelector('.nav-links')?.classList.toggle('open');
-});
+(function(){
+'use strict';
 
-// Color swatch selection (hero)
-document.querySelectorAll('.hero-product .swatch').forEach(s => {
-  s.addEventListener('click', () => {
-    document.querySelectorAll('.hero-product .swatch').forEach(x => x.classList.remove('active'));
-    s.classList.add('active');
+// ===== PRODUCT DATA =====
+const products = [
+  { id:'M_013', name:'Dining Chair', material:'White Oak', price:'$2,400', desc:'Sculpted with bold curvature', img:'monolith-chair', no:'001' },
+  { id:'M_001', name:'Chair', material:'Walnut', price:'$1,800', desc:'A classic monolithic silhouette', img:'monolith-chair2', no:'002' },
+  { id:'M_005', name:'Bench', material:'Travertine, steel', price:'$3,600', desc:'Sculptural bench form', img:'monolith-bench', no:'003' },
+  { id:'M_007', name:'Lounge Chair', material:'Lava Rock, leather', price:'$4,200', desc:'Deep, grounded lounge form', img:'monolith-lounge', no:'004' },
+  { id:'M_010', name:'Dining Table', material:'White Oak, marble', price:'$6,800', desc:'A monolithic table form', img:'monolith-table2', no:'005' },
+  { id:'M_004', name:'Lamp', material:'Brushed aluminum', price:'$2,600', desc:'Vertical light monolith', img:'monolith-lamp2', no:'006' }
+];
+
+const moreItems = [
+  { id:'M_014', name:'Lamp', img:'monolith-lamp3' },
+  { id:'M_002', name:'Side Table', img:'monolith-side' },
+  { id:'M_008', name:'Console', img:'monolith-console2' },
+  { id:'M_009', name:'Shelf', img:'monolith-shelf2' },
+  { id:'M_006', name:'Stool', img:'monolith-stool2' }
+];
+
+// ===== DOM REFS =====
+const timeDisplay = document.getElementById('timeDisplay');
+const scrollPercent = document.getElementById('scrollPercent');
+const scrollIndicator = document.getElementById('scrollIndicator');
+const darkToggle = document.getElementById('darkToggle');
+const galleryGrid = document.getElementById('galleryGrid');
+const moreScroll = document.getElementById('moreScroll');
+const productCount = document.getElementById('productCount');
+const moreCount = document.getElementById('moreCount');
+const navLinks = document.querySelectorAll('.num-nav-row a');
+const sections = document.querySelectorAll('section[id]');
+const loadingOverlay = document.getElementById('loadingOverlay');
+const loadingBarFill = document.getElementById('loadingBarFill');
+const mainContent = document.getElementById('mainContent');
+
+// ===== SET COUNTS =====
+productCount.textContent = '0_' + String(products.length).padStart(2,'0');
+moreCount.textContent = String(moreItems.length).padStart(2,'0') + '_Images';
+
+// ===== TIME UPDATE =====
+function updateTime(){
+  const d=new Date();
+  timeDisplay.textContent=d.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:false});
+}
+updateTime();
+setInterval(updateTime,1000);
+
+// ===== SCROLL TRACKING =====
+function updateScroll(){
+  const scrollTop=window.scrollY;
+  const docHeight=document.documentElement.scrollHeight-window.innerHeight;
+  const pct=docHeight>0?Math.round((scrollTop/docHeight)*100):0;
+  const pctStr=String(pct).padStart(2,'0')+'%';
+  scrollPercent.textContent=pctStr;
+  scrollIndicator.style.width=pct+'%';
+
+  // Nav active state
+  let current='';
+  sections.forEach(sec=>{
+    const top=sec.offsetTop-250;
+    const bottom=top+sec.offsetHeight;
+    if(scrollTop>=top&&scrollTop<bottom)current=sec.id;
+  });
+  navLinks.forEach(a=>{
+    a.classList.toggle('active',a.getAttribute('href')==='#'+current);
+  });
+}
+window.addEventListener('scroll',updateScroll,{passive:true});
+window.addEventListener('resize',updateScroll,{passive:true});
+
+// ===== DARK MODE =====
+function toggleTheme(){
+  const html=document.documentElement;
+  const current=html.getAttribute('data-theme');
+  const next=current==='dark'?'light':'dark';
+  html.setAttribute('data-theme',next);
+  localStorage.setItem('monolith-theme',next);
+  darkToggle.setAttribute('aria-label',next==='dark'?'Turn on light theme.':'Turn on dark theme.');
+}
+darkToggle.addEventListener('click',toggleTheme);
+const savedTheme=localStorage.getItem('monolith-theme');
+if(savedTheme){
+  document.documentElement.setAttribute('data-theme',savedTheme);
+  darkToggle.setAttribute('aria-label',savedTheme==='dark'?'Turn on light theme.':'Turn on dark theme.');
+}
+
+// ===== BUILD GALLERY =====
+function buildGallery(){
+  let html='';
+  products.forEach((p,i)=>{
+    const even=i%2===0;
+    html+=`
+      <div class="gallery-item reveal reveal-delay-${Math.min(i%6+1,3)}">
+        <div class="gallery-inner" style="grid-template-columns:${even?'1fr 1fr':'1fr 1fr'}">
+          ${even?`
+          <div class="gallery-img">
+            <img src="https://picsum.photos/seed/${p.img}/800/1000" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%">
+          </div>
+          <div class="gallery-info">
+            <div class="gallery-number">${p.no}</div>
+            <div class="gallery-catalog">${p.id} ${p.name}</div>
+            <div class="gallery-sub">${p.material}</div>
+            <div class="gallery-price">${p.price}</div>
+          </div>`:`
+          <div class="gallery-info">
+            <div class="gallery-number">${p.no}</div>
+            <div class="gallery-catalog">${p.id} ${p.name}</div>
+            <div class="gallery-sub">${p.material}</div>
+            <div class="gallery-price">${p.price}</div>
+          </div>
+          <div class="gallery-img">
+            <img src="https://picsum.photos/seed/${p.img}/800/1000" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%">
+          </div>`}
+        </div>
+        <span class="gallery-col-num">${String(i+1).padStart(3,'0')}</span>
+      </div>`;
+  });
+  galleryGrid.innerHTML=html;
+}
+
+// ===== BUILD MORE MONOLITHS =====
+function buildMore(){
+  let html='';
+  moreItems.forEach((item,i)=>{
+    const num=String(i+1).padStart(3,'0');
+    html+=`
+      <div class="more-item reveal reveal-delay-${Math.min(i%5+1,2)}">
+        <div class="more-img-wrap">
+          <img src="https://picsum.photos/seed/${item.img}/600/600" alt="${item.name}" loading="lazy">
+        </div>
+        <div class="more-label">
+          <span class="more-cat">${num} / ${item.id}</span>
+          <span class="more-name">${item.name}</span>
+        </div>
+      </div>`;
+  });
+  moreScroll.innerHTML=html;
+}
+
+// ===== NUMBER COUNTER ANIMATION =====
+function animateCounter(el,target,duration){
+  const start=performance.now();
+  function step(now){
+    const elapsed=now-start;
+    const progress=Math.min(elapsed/duration,1);
+    const eased=1-Math.pow(1-progress,3);
+    const current=Math.round(eased*target);
+    el.textContent=String(current).padStart(2,'0')+'%';
+    if(progress<1)requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ===== INTERSECTION OBSERVER =====
+function setupRevealObserver(){
+  const observer=new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  },{threshold:0.08,rootMargin:'0px 0px -40px 0px'});
+
+  document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+}
+
+// ===== SMOOTH SCROLL FOR NAV =====
+navLinks.forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const target=document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth',block:'start'});
   });
 });
 
-// Size selector (hero)
-document.querySelectorAll('.size-opt').forEach(s => {
-  s.addEventListener('click', () => {
-    document.querySelectorAll('.size-opt').forEach(x => x.classList.remove('active'));
-    s.classList.add('active');
+// ===== LOADING SEQUENCE =====
+function init(){
+  // Build content first
+  buildGallery();
+  buildMore();
+
+  // Animate loading bar
+  requestAnimationFrame(()=>{
+    loadingBarFill.style.width='100%';
   });
+
+  // After loading bar fills, hide overlay and show content
+  setTimeout(()=>{
+    loadingOverlay.classList.add('hidden');
+    mainContent.classList.add('visible');
+
+    // Setup observers
+    setupRevealObserver();
+
+    // Initial scroll update
+    updateScroll();
+
+    // Animate percentage counter
+    const pctEl=scrollPercent;
+    animateCounter(pctEl,0,400);
+    setTimeout(()=>{
+      const docH=document.documentElement.scrollHeight-window.innerHeight;
+      const pct=docH>0?Math.round((window.scrollY/docH)*100):0;
+      animateCounter(pctEl,pct,400);
+    },500);
+
+    // Check visible reveals after layout
+    setTimeout(()=>{
+      document.querySelectorAll('.reveal').forEach(el=>{
+        const rect=el.getBoundingClientRect();
+        if(rect.top<window.innerHeight-40&&rect.bottom>0)el.classList.add('visible');
+      });
+    },300);
+  },1800);
+}
+
+// Wait for everything
+if(document.readyState==='complete'){
+  init();
+}else{
+  window.addEventListener('load',init);
+}
+
+// ===== RESIZE REVEAL CHECK =====
+let resizeTimer;
+window.addEventListener('resize',()=>{
+  clearTimeout(resizeTimer);
+  resizeTimer=setTimeout(()=>{
+    document.querySelectorAll('.reveal:not(.visible)').forEach(el=>{
+      const rect=el.getBoundingClientRect();
+      if(rect.top<window.innerHeight-40&&rect.bottom>0)el.classList.add('visible');
+    });
+  },250);
 });
 
-// Color filter dots (sidebar)
-document.querySelectorAll('.color-filter .dot').forEach(d => {
-  d.addEventListener('click', () => {
-    d.classList.toggle('active');
-  });
-});
+console.log('Monolith // Loaded — '+new Date().toLocaleString());
 
-// Quick add button feedback
-document.querySelectorAll('.quick-add').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.stopPropagation();
-    const orig = btn.textContent;
-    btn.textContent = 'Added!';
-    btn.style.background = '#f05a4d';
-    setTimeout(() => {
-      btn.textContent = orig;
-      btn.style.background = '';
-    }, 1200);
-  });
-});
+})();
 </script>
 </body>
 </html>
