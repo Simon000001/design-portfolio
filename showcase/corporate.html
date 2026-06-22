@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tresmares Capital — Firma de Inversión Alternativa</title>
+<title>Tresmares Capital — Alternative Investment Firm</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 .dropdown-menu .dd-icon{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
 .nav-actions{display:flex;align-items:center;gap:1.2rem}
 .lang-toggle{display:flex;gap:0.2rem;font-size:0.7rem;font-weight:500;letter-spacing:-0.01em}
-.lang-toggle a{padding:0.2rem 0.4rem;color:var(--muted);transition:color 0.2s}
+.lang-toggle a{padding:0.2rem 0.4rem;color:var(--muted);transition:color 0.2s;cursor:pointer}
 .lang-toggle a.active{color:var(--red)}
 .lang-toggle a:hover{color:var(--red)}
 .btn-portal{font-size:0.7rem;font-weight:600;padding:0.45rem 1rem;background:var(--red);color:var(--wh);border:none;cursor:pointer;transition:opacity 0.3s;letter-spacing:-0.01em;border-radius:2px;text-transform:uppercase}
@@ -88,24 +88,26 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 .sol-side-nav a .nav-line{width:20px;height:1px;background:rgba(255,255,255,0.2);transition:background 0.3s,width 0.3s}
 .sol-side-nav a.active,.sol-side-nav a:hover{color:var(--wh)}
 .sol-side-nav a.active .nav-line,.sol-side-nav a:hover .nav-line{background:var(--wh);width:32px}
-/* MAP */
-#map{background:var(--wh);padding:8rem 4rem}
-.map-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.map-left .sec-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
-.map-left h2{font-size:clamp(1.3rem,1.8vw,1.7rem);font-weight:500;letter-spacing:-0.03em;color:var(--tx);line-height:1.3;margin-bottom:1rem}
-.map-left .map-desc{font-size:0.8rem;font-weight:400;letter-spacing:-0.01em;color:var(--muted);line-height:1.7;margin-bottom:2rem}
-.office-cards{display:flex;flex-direction:column;gap:1rem}
-.office-card{display:flex;gap:1rem;align-items:flex-start;padding:1rem;border:1px solid var(--lgr);transition:border-color 0.3s}
-.office-card:hover{border-color:var(--red)}
-.office-dot{width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0}
-.office-info h4{font-size:0.8rem;font-weight:500;letter-spacing:-0.01em;color:var(--tx);margin-bottom:0.2rem}
-.office-info p{font-size:0.7rem;font-weight:400;color:var(--muted);line-height:1.4}
-.map-right{display:flex;justify-content:center}
-.map-svg svg{width:100%;max-width:480px;height:auto}
-.map-svg .country{fill:#f0f0f0;stroke:var(--lgr);stroke-width:0.5;transition:fill 0.3s}
-.map-svg .country:hover{fill:rgba(228,22,19,0.1)}
-.map-pin{fill:var(--red);stroke:var(--wh);stroke-width:1.5;cursor:pointer;transition:r 0.2s}
-.map-pin:hover{r:5}
+/* OFFICES / OUR PRESENCE */
+#map{background:var(--wh);padding:8rem 4rem;border-top:1px solid var(--lgr)}
+.map-head{max-width:680px;margin:0 auto 3.5rem;text-align:center}
+.map-head .sec-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.map-head h2{font-size:clamp(1.4rem,2.1vw,2rem);font-weight:500;letter-spacing:-0.03em;color:var(--tx);line-height:1.25;margin-bottom:1rem}
+.map-head .map-desc{font-size:0.8rem;font-weight:400;letter-spacing:-0.01em;color:var(--muted);line-height:1.7}
+.offices{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;max-width:1100px;margin:0 auto}
+.office{background:var(--wh);border:1px solid var(--lgr);border-radius:6px;overflow:hidden;box-shadow:0 2px 16px rgba(0,0,0,0.04);transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94),box-shadow 0.4s}
+.office:hover{transform:translateY(-6px);box-shadow:0 20px 44px rgba(0,0,0,0.10)}
+.office-photo{position:relative;height:200px;background-size:cover}
+.office-photo::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(43,43,43,0.10) 30%,rgba(43,43,43,0.66))}
+.office-city{position:absolute;left:1.5rem;bottom:1.1rem;z-index:1;color:var(--wh);font-size:1.5rem;font-weight:600;letter-spacing:-0.03em}
+.office-body{padding:1.6rem 1.5rem}
+.office-row{display:flex;gap:0.7rem;align-items:flex-start;margin-bottom:1.1rem}
+.office-row:last-child{margin-bottom:0}
+.office-row svg{flex-shrink:0;margin-top:2px;color:var(--red)}
+.office-row .office-meta{font-size:0.5rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:0.25rem}
+.office-row .office-val{font-size:0.78rem;font-weight:400;letter-spacing:-0.01em;color:var(--tx);line-height:1.5}
+.office-row a.office-val{transition:color 0.3s}
+.office-row a.office-val:hover{color:var(--red)}
 /* TEAM */
 #team{background:var(--team-bg);padding:8rem 4rem;border-top:1px solid var(--lgr)}
 .team-header{margin-bottom:3rem}
@@ -148,7 +150,8 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 @media(max-width:1024px){
   nav{padding:0 2rem}.nav-links{gap:1.2rem}
   #hero{padding:0 2rem}.hero-left h1{font-size:clamp(60px,8vw,100px);letter-spacing:-4px}
-  .about-wrap{grid-template-columns:1fr;gap:3rem}.map-wrap{grid-template-columns:1fr;gap:2rem}
+  .about-wrap{grid-template-columns:1fr;gap:3rem}
+  .offices{grid-template-columns:1fr 1fr}
   .solution-slide{padding:0 2rem}.solution-slide h2{font-size:clamp(48px,7vw,80px);letter-spacing:-3px}
   #about,#map,#team,#cta,#footer{padding-left:2rem;padding-right:2rem}
 }
@@ -164,7 +167,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
   .solution-slide .slide-metrics{flex-wrap:wrap;gap:1rem}
   .sol-side-nav{display:none}
   .team-card{flex:0 0 220px;min-height:auto}
-  .office-cards{gap:0.8rem}
+  .offices{grid-template-columns:1fr;gap:1.2rem}
 }
 </style>
 </head>
@@ -172,12 +175,12 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="nav-logo"><span class="logo-dot"></span>Tresmares</a>
+  <a href="#hero" class="nav-logo"><span class="logo-dot"></span>Tresmares</a>
   <div class="nav-inner">
     <ul class="nav-links">
-      <li><a href="#about">Nosotros</a></li>
+      <li><a href="#about" data-es="Nosotros">About Us</a></li>
       <li>
-        <a href="#solutions">Soluciones</a>
+        <a href="#solutions" data-es="Soluciones">Solutions</a>
         <div class="dropdown-menu">
           <a href="#sol-private-equity"><span class="dd-icon"></span>Private Equity</a>
           <a href="#sol-direct-lending"><span class="dd-icon"></span>Direct Lending</a>
@@ -186,15 +189,15 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
         </div>
       </li>
       <li><a href="#map">Portfolio</a></li>
-      <li><a href="#team">Equipo</a></li>
-      <li><a href="#cta">Contacto</a></li>
+      <li><a href="#team" data-es="Equipo">Team</a></li>
+      <li><a href="#cta" data-es="Contacto">Contact</a></li>
     </ul>
     <div class="nav-actions">
       <div class="lang-toggle">
-        <a href="#" class="active">ES</a>
-        <a href="#">EN</a>
+        <a id="langEs">ES</a>
+        <a id="langEn" class="active">EN</a>
       </div>
-      <a href="#" class="btn-portal">Portal Inversores</a>
+      <a href="#cta" class="btn-portal" data-es="Portal Inversores">Investor Portal</a>
     </div>
   </div>
 </nav>
@@ -203,11 +206,11 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 <section id="hero">
   <div class="hero-split">
     <div class="hero-left">
-      <h1 id="heroH1"><span class="word">Impulso</span><span class="word">para</span><span class="word">crecer</span></h1>
+      <h1 id="heroH1" data-es="Impulso para crecer">Drive to grow</h1>
     </div>
     <div class="hero-right">
-      <p class="hero-sub">Financiación a medida para pymes de elevado crecimiento y gestoras de private equity.</p>
-      <a href="#solutions" class="hero-link">Soluciones financieras</a>
+      <p class="hero-sub" data-es="Financiación a medida para pymes de elevado crecimiento y gestoras de private equity.">Tailored financing for high-growth SMEs and private equity managers.</p>
+      <a href="#solutions" class="hero-link" data-es="Soluciones financieras">Financial Solutions</a>
     </div>
     <div class="scroll-ind">Scroll</div>
   </div>
@@ -217,36 +220,36 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 <section id="about">
   <div class="about-wrap">
     <div class="about-left">
-      <div class="sec-label">Sobre Tresmares</div>
-      <h2 id="aboutHeading">Una firma paneuropea de inversión alternativa enfocada en impulsar el crecimiento de PYMEs</h2>
-      <p class="about-desc">Fundada en 2014, actualmente cuenta con un equipo de m&aacute;s de 60 personas en sus tres oficinas de Madrid, Londres y Frankfurt, desde donde tiene la capacidad de hacer operaciones en toda Europa.</p>
-      <a href="#team" class="about-story">Conoce nuestra historia</a>
+      <div class="sec-label" data-es="Sobre Tresmares">About Tresmares</div>
+      <h2 id="aboutHeading" data-es="Una firma paneuropea de inversión alternativa enfocada en impulsar el crecimiento de PYMEs">A pan-European alternative investment firm focused on driving growth in SMEs</h2>
+      <p class="about-desc" data-es="Fundada en 2014, actualmente cuenta con un equipo de más de 60 personas en sus tres oficinas de Madrid, Londres y Frankfurt, desde donde tiene la capacidad de hacer operaciones en toda Europa.">Founded in 2014, the firm today has a team of more than 60 people across its three offices in Madrid, London and Frankfurt, from where it can execute transactions throughout Europe.</p>
+      <a href="#team" class="about-story" data-es="Conoce nuestra historia">Learn our story</a>
     </div>
     <div class="about-right">
       <div class="stats-grid">
         <div class="stat-item">
           <div class="stat-number"><span class="counter" data-target="2014">0</span></div>
-          <div class="stat-label">Año de fundaci&oacute;n</div>
+          <div class="stat-label" data-es="Año de fundación">Year founded</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">+<span class="counter" data-target="3500">0</span></div>
-          <div class="stat-label">Millones de &euro; comprometidos</div>
+          <div class="stat-label" data-es="Millones de € comprometidos">&euro; millions committed</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">+<span class="counter" data-target="2000">0</span></div>
-          <div class="stat-label">Millones de &euro; invertidos</div>
+          <div class="stat-label" data-es="Millones de € invertidos">&euro; millions invested</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">4 &ndash; 75</div>
-          <div class="stat-label">Millones de &euro; invertidos por compa&ntilde;&iacute;a</div>
+          <div class="stat-label" data-es="Millones de € invertidos por compañía">&euro; millions invested per company</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">+<span class="counter" data-target="100">0</span></div>
-          <div class="stat-label">Compa&ntilde;&iacute;as en 5 pa&iacute;ses</div>
+          <div class="stat-label" data-es="Compañías en 5 países">Companies in 5 countries</div>
         </div>
         <div class="stat-item">
           <div class="stat-number">+<span class="counter" data-target="60">0</span></div>
-          <div class="stat-label">Empleados</div>
+          <div class="stat-label" data-es="Empleados">Employees</div>
         </div>
       </div>
     </div>
@@ -265,110 +268,117 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
     <div class="solution-slide" id="sol-private-equity">
       <div class="slide-bg" style="background-image:url('images/img_1779700210487-a01758a3c55a.jpg');opacity:0.35"></div>
       <div class="slide-content">
-        <div class="slide-label">Soluciones financieras</div>
+        <div class="slide-label" data-es="Soluciones financieras">Financial Solutions</div>
         <h2>Private<br>Equity</h2>
-        <p class="slide-desc">Participaciones minoritarias en PYMEs, con vocaci&oacute;n de convertirnos en capital estrat&eacute;gico para apoyar en su profesionalizaci&oacute;n y acelerar su crecimiento.</p>
+        <p class="slide-desc" data-es="Participaciones minoritarias en PYMEs, con vocación de convertirnos en capital estratégico para apoyar en su profesionalización y acelerar su crecimiento.">Minority stakes in SMEs, aiming to become strategic capital that supports their professionalisation and accelerates their growth.</p>
         <div class="slide-metrics">
           <div class="slide-metric"><div class="metric-val">AuMs &euro;550m+</div><div class="metric-lbl">AuMs</div></div>
           <div class="slide-metric"><div class="metric-val">&euro;1m&ndash;&euro;25m</div><div class="metric-lbl">EBITDA</div></div>
           <div class="slide-metric"><div class="metric-val">&euro;5m&ndash;&euro;35m</div><div class="metric-lbl">Ticket</div></div>
-          <div class="slide-metric"><div class="metric-val">10+</div><div class="metric-lbl">Empleados</div></div>
+          <div class="slide-metric"><div class="metric-val">10+</div><div class="metric-lbl" data-es="Empleados">Employees</div></div>
         </div>
-        <a href="#" class="slide-link">M&aacute;s informaci&oacute;n</a>
+        <a href="#cta" class="slide-link" data-es="Más información">Learn more</a>
       </div>
     </div>
     <div class="solution-slide" id="sol-direct-lending">
       <div class="slide-bg" style="background-image:url('images/img_1742585665885-26db9db770af.jpg');opacity:0.35"></div>
       <div class="slide-content">
-        <div class="slide-label">Soluciones financieras</div>
+        <div class="slide-label" data-es="Soluciones financieras">Financial Solutions</div>
         <h2>Direct<br>Lending</h2>
-        <p class="slide-desc">Financiaci&oacute;n a medida que puede combinar tramos amortizables (TLA) y tramos sin amortizaci&oacute;n hasta el vencimiento / bullet (TLB) para financiar diferentes usos.</p>
+        <p class="slide-desc" data-es="Financiación a medida que puede combinar tramos amortizables (TLA) y tramos sin amortización hasta el vencimiento / bullet (TLB) para financiar diferentes usos.">Tailored financing that can combine amortising tranches (TLA) and bullet tranches (TLB) to fund a range of different uses.</p>
         <div class="slide-metrics">
           <div class="slide-metric"><div class="metric-val">AuMs &euro;2.3bn+</div><div class="metric-lbl">AuMs</div></div>
           <div class="slide-metric"><div class="metric-val">&euro;2m&ndash;&euro;25m</div><div class="metric-lbl">EBITDA</div></div>
           <div class="slide-metric"><div class="metric-val">&euro;5m&ndash;&euro;75m</div><div class="metric-lbl">Ticket</div></div>
-          <div class="slide-metric"><div class="metric-val">25+</div><div class="metric-lbl">Empleados</div></div>
+          <div class="slide-metric"><div class="metric-val">25+</div><div class="metric-lbl" data-es="Empleados">Employees</div></div>
         </div>
-        <a href="#" class="slide-link">M&aacute;s informaci&oacute;n</a>
+        <a href="#cta" class="slide-link" data-es="Más información">Learn more</a>
       </div>
     </div>
     <div class="solution-slide" id="sol-fund-of-funds">
       <div class="slide-bg" style="background-image:url('images/img_1742585667037-9b4bcb898c4b.jpg');opacity:0.35"></div>
       <div class="slide-content">
-        <div class="slide-label">Soluciones financieras</div>
+        <div class="slide-label" data-es="Soluciones financieras">Financial Solutions</div>
         <h2>Fund of<br>Funds</h2>
-        <p class="slide-desc">Invertimos en estrategias l&iacute;deres de Buyout y Growth a trav&eacute;s de una cartera selectiva de fondos de capital privado, respaldando gestores experimentados con rentabilidad constante.</p>
+        <p class="slide-desc" data-es="Invertimos en estrategias líderes de Buyout y Growth a través de una cartera selectiva de fondos de capital privado, respaldando gestores experimentados con rentabilidad constante.">We invest in leading Buyout and Growth strategies through a selective portfolio of private equity funds, backing experienced managers with consistent returns.</p>
         <div class="slide-metrics">
           <div class="slide-metric"><div class="metric-val">AuMs &euro;600m</div><div class="metric-lbl">AuMs</div></div>
-          <div class="slide-metric"><div class="metric-val">PE FoF &amp; Secondaries</div><div class="metric-lbl">Estrategia</div></div>
-          <div class="slide-metric"><div class="metric-val">Retail</div><div class="metric-lbl">Segmento</div></div>
-          <div class="slide-metric"><div class="metric-val">5+</div><div class="metric-lbl">Empleados</div></div>
+          <div class="slide-metric"><div class="metric-val">PE FoF &amp; Secondaries</div><div class="metric-lbl" data-es="Estrategia">Strategy</div></div>
+          <div class="slide-metric"><div class="metric-val">Retail</div><div class="metric-lbl" data-es="Segmento">Segment</div></div>
+          <div class="slide-metric"><div class="metric-val">5+</div><div class="metric-lbl" data-es="Empleados">Employees</div></div>
         </div>
-        <a href="#" class="slide-link">M&aacute;s informaci&oacute;n</a>
+        <a href="#cta" class="slide-link" data-es="Más información">Learn more</a>
       </div>
     </div>
     <div class="solution-slide" id="sol-fund-financing">
       <div class="slide-bg" style="background-image:url('images/img_1742585665960-4d2b6282ed10.jpg');opacity:0.35"></div>
       <div class="slide-content">
-        <div class="slide-label">Soluciones financieras</div>
+        <div class="slide-label" data-es="Soluciones financieras">Financial Solutions</div>
         <h2>Fund<br>Financing</h2>
-        <p class="slide-desc">Financiaci&oacute;n a medida para cubrir necesidades de liquidez de gestoras de Private Equity y dar flexibilidad a nivel operacional.</p>
+        <p class="slide-desc" data-es="Financiación a medida para cubrir necesidades de liquidez de gestoras de Private Equity y dar flexibilidad a nivel operacional.">Tailored financing to cover the liquidity needs of Private Equity managers and provide operational flexibility.</p>
         <div class="slide-metrics">
           <div class="slide-metric"><div class="metric-val">AuMs &euro;150m</div><div class="metric-lbl">AuMs</div></div>
           <div class="slide-metric"><div class="metric-val">&euro;5m&ndash;&euro;50m</div><div class="metric-lbl">Ticket</div></div>
-          <div class="slide-metric"><div class="metric-val">15+</div><div class="metric-lbl">Transacciones</div></div>
-          <div class="slide-metric"><div class="metric-val">2+</div><div class="metric-lbl">Empleados</div></div>
+          <div class="slide-metric"><div class="metric-val">15+</div><div class="metric-lbl" data-es="Transacciones">Transactions</div></div>
+          <div class="slide-metric"><div class="metric-val">2+</div><div class="metric-lbl" data-es="Empleados">Employees</div></div>
         </div>
-        <a href="#" class="slide-link">M&aacute;s informaci&oacute;n</a>
+        <a href="#cta" class="slide-link" data-es="Más información">Learn more</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MAP -->
+<!-- OUR PRESENCE / OFFICES -->
 <section id="map">
-  <div class="map-wrap">
-    <div class="map-left">
-      <div class="sec-label">Nuestra expansi&oacute;n</div>
-      <h2>Unimos fuerzas con el Banco Santander para llegar m&aacute;s lejos</h2>
-      <p class="map-desc">Gracias al respaldo internacional del Banco Santander a nuestra gesti&oacute;n independiente, damos servicio a toda Europa continental desde nuestras oficinas de Madrid, Londres y Frankfurt.</p>
-      <div class="office-cards">
-        <div class="office-card">
-          <div class="office-dot"></div>
-          <div class="office-info">
-            <h4>London</h4>
-            <p>11 Albemarle &ndash; 2nd floor, W1S 4HH, London</p>
-          </div>
+  <div class="map-head">
+    <div class="sec-label" data-es="Nuestra expansión">Our Presence</div>
+    <h2 data-es="Unimos fuerzas con el Banco Santander para llegar más lejos">Partnering with Santander to expand our reach</h2>
+    <p class="map-desc" data-es="Respaldados internacionalmente por el Banco Santander y manteniendo una gestión independiente, damos servicio a toda Europa continental desde nuestras oficinas de Madrid, Londres y Frankfurt.">Backed internationally by Banco Santander while retaining independent management, we serve all of continental Europe from our offices in Madrid, London and Frankfurt.</p>
+  </div>
+  <div class="offices">
+    <div class="office">
+      <div class="office-photo" style="background-image:url('images/img_1779700210487-a01758a3c55a.jpg');background-position:18% center">
+        <span class="office-city">London</span>
+      </div>
+      <div class="office-body">
+        <div class="office-row">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="office-meta" data-es="Dirección">Address</div><div class="office-val">11 Albemarle Street &ndash; 2nd Floor<br>W1S 4HH, London, United Kingdom</div></div>
         </div>
-        <div class="office-card">
-          <div class="office-dot"></div>
-          <div class="office-info">
-            <h4>Madrid</h4>
-            <p>C/ Serrano 37, 4a planta, 28001 Madrid</p>
-          </div>
-        </div>
-        <div class="office-card">
-          <div class="office-dot"></div>
-          <div class="office-info">
-            <h4>Frankfurt</h4>
-            <p>Rathenaupl. 1A &ndash; 3rd Floor, 60313 Frankfurt am Main</p>
-          </div>
+        <div class="office-row">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div><div class="office-meta" data-es="Teléfono">Phone</div><a href="tel:+442070169760" class="office-val">+44 20 7016 9760</a></div>
         </div>
       </div>
     </div>
-    <div class="map-right">
-      <div class="map-svg">
-        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
-          <path class="country" d="M180 80 Q200 70 220 80 Q250 65 280 75 Q300 70 310 80 L330 85 Q350 90 360 100 Q370 110 365 120 Q375 130 370 140 Q380 150 375 160 Q380 170 370 175 Q375 185 365 190 Q370 200 360 205 Q350 215 340 210 Q330 220 320 215 Q310 225 300 220 Q290 230 280 225 Q270 235 260 230 Q250 240 240 235 Q230 245 220 240 Q210 250 200 245 Q190 255 180 250 Q170 260 165 250 Q155 255 150 245 Q140 250 135 240 Q125 245 120 235 Q110 240 105 230 Q95 235 90 225 Q80 230 75 220 Q65 225 60 215 Q55 205 60 195 Q50 185 55 175 Q45 165 50 155 Q40 145 45 135 Q35 125 40 115 Q30 105 40 95 Q35 85 45 80 Q40 70 50 65 Q60 60 70 65 Q80 55 90 60 Q100 55 110 60 Q120 50 130 55 Q140 45 150 55 Q160 50 170 60 Q175 55 180 65 Z"/>
-          <path class="country" d="M80 130 Q85 125 90 130 Q95 120 100 125 Q105 115 110 120 Q105 130 100 135 Q95 140 90 135 Q85 140 80 135 Z"/>
-          <path class="country" d="M60 140 Q65 135 70 140 Q75 130 80 135 Q75 145 70 150 Q65 145 60 150 Z"/>
-          <path class="country" d="M120 55 Q130 50 140 55 Q145 45 150 50 Q155 40 160 45 Q165 35 170 40 Q175 30 180 35 Q175 45 170 50 Q165 55 160 55 Q155 60 150 60 Q145 65 140 60 Q135 65 130 60 Q125 65 120 60 Z"/>
-          <path class="country" d="M190 200 Q200 195 205 200 Q210 195 215 200 Q220 195 225 200 Q220 210 215 215 Q210 220 205 215 Q200 220 195 215 Q190 220 185 215 Q190 210 190 205 Z"/>
-          <path class="country" d="M110 210 Q120 205 130 210 Q140 205 145 210 Q150 205 155 210 Q160 205 165 210 Q160 220 155 225 Q150 230 145 225 Q140 230 135 225 Q130 230 125 225 Q120 230 115 225 Q110 220 110 215 Z"/>
-          <circle class="map-pin" cx="88" cy="138" r="4"><title>London</title></circle>
-          <circle class="map-pin" cx="128" cy="218" r="4"><title>Madrid</title></circle>
-          <circle class="map-pin" cx="200" cy="175" r="4"><title>Frankfurt</title></circle>
-        </svg>
+    <div class="office">
+      <div class="office-photo" style="background-image:url('images/img_1779700210487-a01758a3c55a.jpg');background-position:50% center">
+        <span class="office-city">Madrid</span>
+      </div>
+      <div class="office-body">
+        <div class="office-row">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="office-meta" data-es="Dirección">Address</div><div class="office-val">C/ Serrano 37 &ndash; 4th Floor<br>28001 Madrid, Spain</div></div>
+        </div>
+        <div class="office-row">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div><div class="office-meta" data-es="Teléfono">Phone</div><a href="tel:+34919031800" class="office-val">+34 919 03 18 00</a></div>
+        </div>
+      </div>
+    </div>
+    <div class="office">
+      <div class="office-photo" style="background-image:url('images/img_1779700210487-a01758a3c55a.jpg');background-position:82% center">
+        <span class="office-city">Frankfurt</span>
+      </div>
+      <div class="office-body">
+        <div class="office-row">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div><div class="office-meta" data-es="Dirección">Address</div><div class="office-val">Rathenauplatz 1A &ndash; 3rd Floor<br>60313 Frankfurt am Main, Germany</div></div>
+        </div>
+        <div class="office-row">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.33 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div><div class="office-meta" data-es="Teléfono">Phone</div><a href="tel:+496980884200" class="office-val">+49 69 8088 4200</a></div>
+        </div>
       </div>
     </div>
   </div>
@@ -377,15 +387,15 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 <!-- TEAM -->
 <section id="team">
   <div class="team-header">
-    <div class="sec-label">Nuestro Equipo</div>
-    <p>Somos un equipo de m&aacute;s de 60 profesionales con una amplia trayectoria en capital privado y en la inversi&oacute;n en PYMEs.</p>
+    <div class="sec-label" data-es="Nuestro Equipo">Our Team</div>
+    <p data-es="Somos un equipo de más de 60 profesionales con una amplia trayectoria en capital privado y en la inversión en PYMEs.">We are a team of more than 60 professionals with extensive experience in private equity and SME investment.</p>
   </div>
   <div class="team-scroll">
     <div class="team-card">
       <div class="tc-img" style="background-image:url('images/img_1779700210487-a01758a3c55a.jpg')"><span class="tc-initials">RH</span></div>
       <div class="tc-info">
-        <div><div class="tc-name">Rene Hartert</div><div class="tc-role">Socio</div></div>
-        <a href="#" class="tc-linkedin">
+        <div><div class="tc-name">Rene Hartert</div><div class="tc-role" data-es="Socio">Partner</div></div>
+        <a href="#team" class="tc-linkedin">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
@@ -394,8 +404,8 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
     <div class="team-card">
       <div class="tc-img" style="background-image:url('images/img_1742585665885-26db9db770af.jpg')"><span class="tc-initials">VP</span></div>
       <div class="tc-info">
-        <div><div class="tc-name">Vasil Peres</div><div class="tc-role">Analista</div></div>
-        <a href="#" class="tc-linkedin">
+        <div><div class="tc-name">Vasil Peres</div><div class="tc-role" data-es="Analista">Analyst</div></div>
+        <a href="#team" class="tc-linkedin">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
@@ -404,8 +414,8 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
     <div class="team-card">
       <div class="tc-img" style="background-image:url('images/img_1742585667037-9b4bcb898c4b.jpg')"><span class="tc-initials">EL</span></div>
       <div class="tc-info">
-        <div><div class="tc-name">Eva Lozano</div><div class="tc-role">Relaci&oacute;n con Inversores</div></div>
-        <a href="#" class="tc-linkedin">
+        <div><div class="tc-name">Eva Lozano</div><div class="tc-role" data-es="Relación con Inversores">Investor Relations</div></div>
+        <a href="#team" class="tc-linkedin">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
@@ -415,7 +425,7 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
       <div class="tc-img" style="background-image:url('images/img_1742585665960-4d2b6282ed10.jpg')"><span class="tc-initials">CO</span></div>
       <div class="tc-info">
         <div><div class="tc-name">Cristina O&ntilde;ate</div><div class="tc-role">Fund Manager</div></div>
-        <a href="#" class="tc-linkedin">
+        <a href="#team" class="tc-linkedin">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
@@ -424,8 +434,8 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
     <div class="team-card">
       <div class="tc-img" style="background-image:url('images/img_1779700210487-a01758a3c55a.jpg')"><span class="tc-initials">PR</span></div>
       <div class="tc-info">
-        <div><div class="tc-name">Pol Ruiz</div><div class="tc-role">Analista</div></div>
-        <a href="#" class="tc-linkedin">
+        <div><div class="tc-name">Pol Ruiz</div><div class="tc-role" data-es="Analista">Analyst</div></div>
+        <a href="#team" class="tc-linkedin">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
@@ -434,8 +444,8 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
     <div class="team-card">
       <div class="tc-img" style="background-image:url('images/img_1742585665885-26db9db770af.jpg')"><span class="tc-initials">NW</span></div>
       <div class="tc-info">
-        <div><div class="tc-name">Norman Wallace</div><div class="tc-role">Socio</div></div>
-        <a href="#" class="tc-linkedin">
+        <div><div class="tc-name">Norman Wallace</div><div class="tc-role" data-es="Socio">Partner</div></div>
+        <a href="#team" class="tc-linkedin">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
@@ -444,8 +454,8 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
     <div class="team-card">
       <div class="tc-img" style="background-image:url('images/img_1742585667037-9b4bcb898c4b.jpg')"><span class="tc-initials">EA</span></div>
       <div class="tc-info">
-        <div><div class="tc-name">Enrique Abascal</div><div class="tc-role">Socio</div></div>
-        <a href="#" class="tc-linkedin">
+        <div><div class="tc-name">Enrique Abascal</div><div class="tc-role" data-es="Socio">Partner</div></div>
+        <a href="#team" class="tc-linkedin">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
@@ -454,8 +464,8 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
     <div class="team-card">
       <div class="tc-img" style="background-image:url('images/img_1742585665960-4d2b6282ed10.jpg')"><span class="tc-initials">JT</span></div>
       <div class="tc-info">
-        <div><div class="tc-name">Juan Trevi&ntilde;o</div><div class="tc-role">Socio</div></div>
-        <a href="#" class="tc-linkedin">
+        <div><div class="tc-name">Juan Trevi&ntilde;o</div><div class="tc-role" data-es="Socio">Partner</div></div>
+        <a href="#team" class="tc-linkedin">
           <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
           LinkedIn
         </a>
@@ -466,14 +476,14 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
 
 <!-- CTA -->
 <section id="cta">
-  <h2>La oportunidad para crear, crecer y mirar hacia delante.</h2>
-  <a href="mailto:info@tresmarescapital.com" class="cta-link">Cont&aacute;ctanos</a>
+  <h2 data-es="La oportunidad para crear, crecer y mirar hacia delante.">The opportunity to create, grow, and look forward.</h2>
+  <a href="mailto:info@tresmarescapital.com" class="cta-link" data-es="Contáctanos">Contact us</a>
 </section>
 
 <!-- FOOTER -->
 <footer id="footer">
   <div class="footer-social">
-    <a href="#" aria-label="LinkedIn">
+    <a href="#footer" aria-label="LinkedIn">
       <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
     </a>
     <a href="mailto:info@tresmarescapital.com" aria-label="Email">
@@ -482,73 +492,106 @@ nav{position:static;width:100%;display:flex;align-items:center;justify-content:s
   </div>
   <div class="footer-line"></div>
   <div class="footer-legal">
-    <a href="#">Aviso Legal</a>
-    <a href="#">Pol&iacute;tica de Privacidad</a>
-    <a href="#">Pol&iacute;tica de Cookies</a>
-    <a href="#">Canal de denuncias</a>
+    <a href="#footer" data-es="Aviso Legal">Legal Notice</a>
+    <a href="#footer" data-es="Política de Privacidad">Privacy Policy</a>
+    <a href="#footer" data-es="Política de Cookies">Cookie Policy</a>
+    <a href="#footer" data-es="Canal de denuncias">Whistleblower Channel</a>
   </div>
   <div class="footer-copy">&copy; 2025 Tresmares Capital is registered with the CNMV.</div>
 </footer>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // 1. HERO LETTER-BY-LETTER ANIMATION
-  (function() {
-    const h1 = document.getElementById('heroH1');
-    const words = h1.querySelectorAll('.word');
-    // Split each word into letter spans
-    words.forEach((word, wi) => {
-      const text = word.textContent;
-      word.innerHTML = '';
-      text.split('').forEach((ch, ci) => {
-        const span = document.createElement('span');
-        span.className = 'char';
-        span.textContent = ch;
-        span.style.transitionDelay = (wi * 200 + ci * 50) + 'ms';
-        word.appendChild(span);
+  var heroH1 = document.getElementById('heroH1');
+  var aboutHeading = document.getElementById('aboutHeading');
+
+  // Build hero H1 into per-character spans and reveal
+  function buildHero() {
+    var text = heroH1.textContent.trim();
+    heroH1.innerHTML = '';
+    var idx = 0;
+    text.split(' ').forEach(function(w) {
+      var word = document.createElement('span');
+      word.className = 'word';
+      w.split('').forEach(function(ch) {
+        var s = document.createElement('span');
+        s.className = 'char';
+        s.textContent = ch;
+        s.style.transitionDelay = (idx * 40) + 'ms';
+        idx++;
+        word.appendChild(s);
+      });
+      heroH1.appendChild(word);
+    });
+    var chars = heroH1.querySelectorAll('.char');
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        chars.forEach(function(c) { c.classList.add('revealed'); });
       });
     });
-    // Reveal after short delay
-    setTimeout(function() {
-      const chars = h1.querySelectorAll('.char');
-      chars.forEach((ch, i) => {
-        setTimeout(function() {
-          ch.classList.add('revealed');
-        }, i * 40);
-      });
-    }, 300);
-  })();
+  }
 
-  // 2. ABOUT HEADING WORD REVEAL
-  (function() {
-    const heading = document.getElementById('aboutHeading');
-    const text = heading.textContent;
-    heading.innerHTML = '';
-    const words = text.split(' ');
+  // Build about heading into word spans; reveal optionally
+  function buildAbout(revealNow) {
+    var text = aboutHeading.textContent.trim();
+    aboutHeading.innerHTML = '';
+    var words = text.split(' ');
     words.forEach(function(w, i) {
-      const span = document.createElement('span');
-      span.className = 'word';
-      span.textContent = w + (i < words.length - 1 ? '\u00A0' : '');
-      heading.appendChild(span);
+      var s = document.createElement('span');
+      s.className = 'word';
+      s.textContent = w + (i < words.length - 1 ? ' ' : '');
+      aboutHeading.appendChild(s);
     });
-    const observeWords = function() {
-      const wordSpans = heading.querySelectorAll('.word');
-      var observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            wordSpans.forEach(function(w, i) {
-              setTimeout(function() { w.classList.add('revealed'); }, i * 30);
-            });
-            observer.disconnect();
-          }
-        });
-      }, { threshold: 0.3 });
-      observer.observe(heading);
-    };
-    setTimeout(observeWords, 500);
+    if (revealNow) {
+      aboutHeading.querySelectorAll('.word').forEach(function(s, i) {
+        setTimeout(function() { s.classList.add('revealed'); }, i * 30);
+      });
+    }
+  }
+
+  // 1. I18N TOGGLE (EN default, ES available). Capture EN before headings rebuild.
+  (function() {
+    var nodes = document.querySelectorAll('[data-es]');
+    nodes.forEach(function(n) { n.setAttribute('data-en', n.textContent); });
+    var enLink = document.getElementById('langEn');
+    var esLink = document.getElementById('langEs');
+    function setLang(lang) {
+      nodes.forEach(function(n) {
+        var v = (lang === 'es') ? n.getAttribute('data-es') : n.getAttribute('data-en');
+        if (v !== null) n.textContent = v;
+      });
+      document.documentElement.lang = lang;
+      enLink.classList.toggle('active', lang === 'en');
+      esLink.classList.toggle('active', lang === 'es');
+      buildHero();
+      buildAbout(true);
+    }
+    if (enLink && esLink) {
+      enLink.addEventListener('click', function(e) { e.preventDefault(); setLang('en'); });
+      esLink.addEventListener('click', function(e) { e.preventDefault(); setLang('es'); });
+    }
   })();
 
-  // 3. ANIMATED COUNTERS
+  // 2. INITIAL HERO REVEAL
+  buildHero();
+
+  // 3. ABOUT HEADING WORD REVEAL (observer)
+  (function() {
+    buildAbout(false);
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          aboutHeading.querySelectorAll('.word').forEach(function(s, i) {
+            setTimeout(function() { s.classList.add('revealed'); }, i * 30);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.3 });
+    observer.observe(aboutHeading);
+  })();
+
+  // 4. ANIMATED COUNTERS
   (function() {
     var counters = document.querySelectorAll('.counter');
     var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -563,22 +606,17 @@ document.addEventListener('DOMContentLoaded', function() {
             observer.unobserve(counter);
             return;
           }
-          var duration = 2000;
           var step = Math.max(1, Math.floor(target / 60));
           var current = 0;
           var timer = setInterval(function() {
             current += step;
             if (current >= target) {
-              if (target === 2014) {
-                counter.textContent = '2014';
-              } else {
-                counter.textContent = target.toLocaleString();
-              }
+              counter.textContent = (target === 2014) ? '2014' : target.toLocaleString();
               clearInterval(timer);
             } else {
               counter.textContent = current.toLocaleString();
             }
-          }, duration / 60);
+          }, 2000 / 60);
           observer.unobserve(counter);
         }
       });
@@ -586,7 +624,7 @@ document.addEventListener('DOMContentLoaded', function() {
     counters.forEach(function(c) { observer.observe(c); });
   })();
 
-  // 4. SCROLL REVEAL
+  // 5. SCROLL REVEAL
   (function() {
     var reveals = document.querySelectorAll('.reveal');
     var observer = new IntersectionObserver(function(entries) {
@@ -600,26 +638,19 @@ document.addEventListener('DOMContentLoaded', function() {
     reveals.forEach(function(el) { observer.observe(el); });
   })();
 
-  // 5. SOLUTION SLIDE SIDE NAV HIGHLIGHT
+  // 6. SOLUTION SLIDE SIDE NAV HIGHLIGHT
   (function() {
     var scroll = document.getElementById('solScroll');
     var links = document.querySelectorAll('.sol-side-nav a');
     var slides = document.querySelectorAll('.solution-slide');
     function updateNav() {
-      var scrollLeft = scroll.scrollLeft;
-      var viewWidth = scroll.clientWidth;
-      var current = Math.round(scrollLeft / viewWidth);
-      links.forEach(function(link, i) {
-        link.classList.toggle('active', i === current);
-      });
-      slides.forEach(function(slide, i) {
-        slide.classList.toggle('active', i === current);
-      });
+      var current = Math.round(scroll.scrollLeft / scroll.clientWidth);
+      links.forEach(function(link, i) { link.classList.toggle('active', i === current); });
+      slides.forEach(function(slide, i) { slide.classList.toggle('active', i === current); });
     }
     if (scroll) {
       scroll.addEventListener('scroll', updateNav, { passive: true });
       updateNav();
-      // Click links to scroll
       links.forEach(function(link, i) {
         link.addEventListener('click', function(e) {
           e.preventDefault();
@@ -629,7 +660,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   })();
 
-  // 6. SMOOTH SCROLL FOR ANCHOR LINKS
+  // 7. SMOOTH SCROLL FOR ANCHOR LINKS
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
       var href = this.getAttribute('href');
@@ -642,10 +673,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // 7. PARALLAX ON SOLUTIONS SLIDES
+  // 8. PARALLAX ON SOLUTIONS SLIDES
   (function() {
-    var slides = document.querySelectorAll('.solution-slide');
-    slides.forEach(function(slide) {
+    document.querySelectorAll('.solution-slide').forEach(function(slide) {
       var bg = slide.querySelector('.slide-bg');
       if (bg) {
         slide.addEventListener('mousemove', function(e) {
@@ -658,7 +688,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   })();
 
-  console.log('Tresmares Capital clone initialized successfully');
+  console.log('Tresmares Capital initialized successfully');
 });
 </script>
 </body>

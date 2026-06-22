@@ -684,10 +684,50 @@ img {
   background-size: 200% 100%;
   animation: shimmer 1.5s infinite;
 }
+
+/* Polished selection color (brand blue) */
+::selection{background:#D1E3FF;color:#180102}
+::-moz-selection{background:#D1E3FF;color:#180102}
+
+/* Scroll progress indicator */
+.scroll-progress{
+  position:fixed;
+  top:0;left:0;
+  height:3px;
+  width:0;
+  background:linear-gradient(90deg,#2a3a6a,#180102);
+  z-index:1100;
+  transition:width .08s linear
+}
+
+/* Nav refined shadow on scroll */
+nav{transition:box-shadow .3s,background .3s}
+nav.scrolled{box-shadow:0 4px 24px rgba(24,1,2,.08)}
+
+/* Feature card hover: subtle lift + scale */
+.feature-card:hover{
+  transform:translateY(-4px) scale(1.02);
+  box-shadow:0 16px 44px rgba(24,1,2,.08)
+}
+
+/* Trusted-by logos: staggered fade-in (backwards fill keeps hover intact) */
+@keyframes logoIn{
+  from{opacity:0;transform:translateY(10px)}
+  to{opacity:.5;transform:none}
+}
+.trusted-track img{animation:logoIn .7s cubic-bezier(.25,.46,.45,.94) backwards}
+
+/* CTA buttons: subtle lift + shadow growth on hover */
+.nav-cta{transition:opacity .2s,transform .2s,box-shadow .2s}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(24,1,2,.22)}
+.cta-btn:hover{box-shadow:0 14px 32px rgba(24,1,2,.24)}
 </style>
 
 </head>
 <body>
+
+<!-- Scroll progress indicator -->
+<div class="scroll-progress" id="scrollProgress"></div>
 
 <!-- Navigation -->
 <nav>
@@ -730,17 +770,17 @@ img {
   <div class="trusted-carousel">
     <div class="trusted-gradient"></div>
     <div class="trusted-track" id="trustedTrack">
-      <img src="images/img_1527430253228-e93688616381.jpg" alt="Partner logo" loading="lazy">
-      <img src="images/img_1531747118685-ca8fa6e08806.jpg" alt="Partner logo" loading="lazy">
-      <img src="images/img_1485827404703-89b55fcc595e.jpg" alt="Partner logo" loading="lazy">
-      <img src="images/img_1530893609608-32a9af3aa95c.jpg" alt="Partner logo" loading="lazy">
-      <img src="images/img_1488229297570-58520851e868.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1527430253228-e93688616381.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.05s">
+      <img src="images/img_1531747118685-ca8fa6e08806.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.15s">
+      <img src="images/img_1485827404703-89b55fcc595e.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.25s">
+      <img src="images/img_1530893609608-32a9af3aa95c.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.35s">
+      <img src="images/img_1488229297570-58520851e868.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.45s">
       <!-- Duplicate for seamless loop -->
-      <img src="images/img_1504639725590-34d0984388bd.jpg" alt="Partner logo" loading="lazy">
-      <img src="images/img_1535378917042-10a22c95931a.jpg" alt="Partner logo" loading="lazy">
-      <img src="images/img_1507925921958-8a62f3d1a50d.jpg" alt="Partner logo" loading="lazy">
-      <img src="images/img_1518314916381-77a37c2a49ae.jpg" alt="Partner logo" loading="lazy">
-      <img src="images/img_1555255707-c07966088b7b.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1504639725590-34d0984388bd.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.55s">
+      <img src="images/img_1535378917042-10a22c95931a.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.65s">
+      <img src="images/img_1507925921958-8a62f3d1a50d.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.75s">
+      <img src="images/img_1518314916381-77a37c2a49ae.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.85s">
+      <img src="images/img_1555255707-c07966088b7b.jpg" alt="Partner logo" loading="lazy" style="animation-delay:.95s">
     </div>
     <div class="trusted-gradient is-right"></div>
   </div>
@@ -1005,7 +1045,9 @@ document.addEventListener('DOMContentLoaded', function(){
   // Smooth scroll offset for fixed nav
   document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
     anchor.addEventListener('click', function(e){
-      var target = document.querySelector(this.getAttribute('href'));
+      var href = this.getAttribute('href');
+      if(!href || href === '#') return;
+      var target = document.querySelector(href);
       if(target){
         e.preventDefault();
         var offset = 100;
@@ -1014,6 +1056,30 @@ document.addEventListener('DOMContentLoaded', function(){
       }
     });
   });
+
+  // Scroll-driven UI: progress bar, nav shadow, subtle hero parallax
+  var progress = document.getElementById('scrollProgress');
+  var navEl = document.querySelector('nav');
+  var heroImg = document.querySelector('.hero-image-wrap img');
+  var prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var ticking = false;
+  function onScroll(){
+    var y = window.scrollY || window.pageYOffset;
+    var docH = document.documentElement.scrollHeight - window.innerHeight;
+    if(progress){
+      var pct = docH > 0 ? (y / docH) * 100 : 0;
+      progress.style.width = pct + '%';
+    }
+    if(navEl){ navEl.classList.toggle('scrolled', y > 10); }
+    if(heroImg && !prefersReduced && y < window.innerHeight * 1.5){
+      heroImg.style.transform = 'translateY(' + (y * 0.12) + 'px) scale(1.05)';
+    }
+    ticking = false;
+  }
+  window.addEventListener('scroll', function(){
+    if(!ticking){ window.requestAnimationFrame(onScroll); ticking = true; }
+  }, { passive: true });
+  onScroll();
 });
 </script>
 </body>
