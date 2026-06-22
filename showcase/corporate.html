@@ -1,329 +1,248 @@
 <!DOCTYPE html>
-<html lang="en" data-lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tresmares Capital — Alternative Investment Firm</title>
+<title>Tresmares Capital — Firma de Inversión Alternativa</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--red:#D81413;--white:#ffffff;--dark:#1a1a1a;--gray:#f5f5f5;--gray-dark:#888;--transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+:root{--tx:#2b2b2b;--red:#e41613;--wh:#ffffff;--team-bg:#f7f7f7;--ft-bg:#f2f2f2;--dark:#2b2b2b;--muted:#808080;--lgr:#e5e5e5}
 html{scroll-behavior:smooth;scrollbar-width:thin}
-body{font-family:'Inter',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:'Inter',sans-serif;font-weight:400;color:var(--tx);background:var(--wh);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased;letter-spacing:-0.02em}
 a{color:inherit;text-decoration:none}
 img{max-width:100%;display:block}
-/* NAV */
-nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:var(--transition);background:transparent}
-nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 20px rgba(0,0,0,0.06)}
-.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.3rem;color:var(--white);transition:var(--transition)}
-nav.scrolled .nav-logo{color:var(--dark)}
-.nav-logo .logo-dot{width:10px;height:10px;background:var(--red);border-radius:50%;display:inline-block}
-.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
-.nav-links > li{position:relative}
-.nav-links > li > a{font-size:0.85rem;font-weight:500;letter-spacing:0.02em;color:rgba(255,255,255,0.85);transition:var(--transition);padding:0.5rem 0;position:relative}
-nav.scrolled .nav-links > li > a{color:rgba(26,26,26,0.8)}
-.nav-links > li > a:hover{color:var(--red)}
-.nav-links > li > a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--red);transition:var(--transition)}
-.nav-links > li > a:hover::after{width:100%}
+@keyframes shimmer{0%{background-position:-200% 0}100%{background-position:200% 0}}
+img{background:linear-gradient(90deg,#e0e0e0 25%,#f0f0f0 50%,#e0e0e0 75%);background-size:200% 100%;animation:shimmer 1.5s infinite}
+/* NAV - STATIC */
+nav{position:static;width:100%;display:flex;align-items:center;justify-content:space-between;padding:0 4rem;height:64px;background:var(--wh)}
+.nav-logo{font-weight:600;font-size:1.25rem;color:var(--tx);letter-spacing:-0.03em;display:flex;align-items:center;gap:8px}
+.nav-logo .logo-dot{width:8px;height:8px;background:var(--red);display:inline-block;border-radius:50%}
+.nav-inner{display:flex;align-items:center;gap:3rem}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links>li{position:relative}
+.nav-links>li>a{font-size:0.75rem;font-weight:500;letter-spacing:-0.02em;color:var(--tx);padding:0.4rem 0;transition:color 0.3s}
+.nav-links>li>a:hover{color:var(--red)}
 /* Dropdown */
-.dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);min-width:240px;border-radius:12px;padding:0.8rem;opacity:0;visibility:hidden;transition:all 0.3s ease;box-shadow:0 20px 60px rgba(0,0,0,0.12);pointer-events:none}
-.nav-links > li:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
-.dropdown-menu a{display:flex;align-items:center;gap:12px;padding:0.75rem 1rem;border-radius:8px;color:var(--dark);font-size:0.85rem;font-weight:500;transition:var(--transition)}
-.dropdown-menu a:hover{background:#f8f8f8;color:var(--red)}
-.dropdown-menu .dd-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
-/* Nav actions */
-.nav-actions{display:flex;align-items:center;gap:1.5rem}
-.lang-toggle{display:flex;gap:0.3rem;font-size:0.8rem;font-weight:600}
-.lang-toggle a{padding:0.25rem 0.5rem;border-radius:4px;color:rgba(255,255,255,0.7);transition:var(--transition)}
-nav.scrolled .lang-toggle a{color:rgba(26,26,26,0.6)}
-.lang-toggle a.active{color:var(--red);background:rgba(216,20,19,0.1)}
+.dropdown-menu{position:absolute;top:100%;left:0;min-width:200px;background:var(--wh);border:1px solid var(--lgr);padding:0.5rem 0;opacity:0;visibility:hidden;transition:all 0.25s ease;pointer-events:none;z-index:100}
+.nav-links>li:hover .dropdown-menu{opacity:1;visibility:visible;pointer-events:auto}
+.dropdown-menu a{display:flex;align-items:center;gap:10px;padding:0.5rem 1.2rem;font-size:0.75rem;font-weight:400;color:var(--tx);transition:background 0.2s,color 0.2s}
+.dropdown-menu a:hover{background:var(--team-bg);color:var(--red)}
+.dropdown-menu .dd-icon{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
+.nav-actions{display:flex;align-items:center;gap:1.2rem}
+.lang-toggle{display:flex;gap:0.2rem;font-size:0.7rem;font-weight:500;letter-spacing:-0.01em}
+.lang-toggle a{padding:0.2rem 0.4rem;color:var(--muted);transition:color 0.2s}
+.lang-toggle a.active{color:var(--red)}
 .lang-toggle a:hover{color:var(--red)}
-.btn-portal{font-size:0.78rem;font-weight:600;padding:0.6rem 1.4rem;border:1.5px solid rgba(255,255,255,0.3);border-radius:50px;color:var(--white);transition:var(--transition);letter-spacing:0.02em}
-nav.scrolled .btn-portal{border-color:rgba(26,26,26,0.2);color:var(--dark)}
-.btn-portal:hover{background:var(--red);border-color:var(--red);color:var(--white)!important}
-/* Hamburger */
-.hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px;z-index:1001}
-.hamburger span{width:24px;height:2px;background:var(--white);transition:var(--transition);border-radius:2px}
-nav.scrolled .hamburger span{background:var(--dark)}
-.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
-.hamburger.active span:nth-child(2){opacity:0}
-.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-/* SECTION BASE */
-section{min-height:100vh;position:relative;overflow:hidden}
-.section-inner{max-width:1400px;margin:0 auto;padding:6rem 4rem;position:relative;z-index:2}
-/* HERO */
-#hero{height:100vh;display:flex;align-items:center;background:var(--dark);position:relative}
-#hero .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#1a1a1a 100%);z-index:0}
-#hero .hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(216,20,19,0.08) 0%,transparent 70%);z-index:0}
-.hero-grid{position:absolute;inset:0;z-index:0;opacity:0.03;background-image:linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px);background-size:60px 60px}
-#hero .section-inner{display:flex;flex-direction:column;justify-content:center;min-height:100vh}
-.hero-content{max-width:900px}
-.hero-subtitle{font-size:0.85rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:2rem;opacity:0;animation:fadeUp 0.8s ease forwards 0.3s}
-.hero-title{font-size: clamp(80px, 12vw, 149px);font-weight:800;line-height:1.05;margin-bottom:1.5rem;color:var(--white);min-height:1.2em}
-.hero-title .char{display:inline-block;opacity:0;transform:translateY(60px) rotateX(-40deg);transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)}
-.hero-title .char.revealed{opacity:1;transform:translateY(0) rotateX(0)}
-.hero-desc{font-size:clamp(1rem,1.3vw,1.25rem);font-weight:300;color:rgba(255,255,255,0.6);max-width:600px;margin-bottom:3rem;line-height:1.8;opacity:0;animation:fadeUp 0.8s ease forwards 0.8s}
-.btn-primary{display:inline-flex;align-items:center;gap:12px;padding:1rem 2.4rem;background:var(--red);color:var(--white);font-weight:600;font-size:0.9rem;border-radius:50px;border:none;cursor:pointer;transition:var(--transition);letter-spacing:0.02em}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(216,20,19,0.3)}
-.btn-primary .arrow{transition:transform 0.3s ease;display:inline-block}
-.btn-primary:hover .arrow{transform:translateX(6px)}
-.scroll-indicator{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.8rem;color:rgba(255,255,255,0.3);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;animation:fadeUp 0.8s ease forwards 1.2s;opacity:0}
-.scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,var(--red),transparent);animation:scrollPulse 2s ease infinite}
+.btn-portal{font-size:0.7rem;font-weight:600;padding:0.45rem 1rem;background:var(--red);color:var(--wh);border:none;cursor:pointer;transition:opacity 0.3s;letter-spacing:-0.01em;border-radius:2px;text-transform:uppercase}
+.btn-portal:hover{opacity:0.85}
+/* HERO - SPLIT LAYOUT */
+#hero{background:var(--wh);min-height:720px;display:flex;align-items:center;position:relative;padding:0 4rem}
+.hero-split{display:flex;width:100%;position:relative;min-height:600px}
+.hero-left{flex:0 0 auto;display:flex;align-items:center;padding-top:2rem}
+.hero-left h1{font-size:clamp(72px,9.3vw,149px);font-weight:500;line-height:0.98;letter-spacing:-5.97px;color:var(--tx);max-width:5em}
+.hero-left h1 .word{display:block}
+.hero-left h1 .char{display:inline-block;opacity:0;transform:translateY(40px);transition:all 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
+.hero-left h1 .char.revealed{opacity:1;transform:translateY(0)}
+.hero-right{display:flex;flex-direction:column;justify-content:flex-end;align-items:flex-start;padding-bottom:4rem;margin-left:auto;max-width:280px}
+.hero-right .hero-sub{font-size:0.8rem;font-weight:500;letter-spacing:-0.01em;color:var(--tx);line-height:1.5;margin-bottom:1.5rem}
+.hero-right .hero-link{font-size:0.75rem;font-weight:500;letter-spacing:-0.01em;color:var(--red);border-bottom:1px solid var(--red);padding-bottom:2px;transition:opacity 0.3s;display:inline-block}
+.hero-right .hero-link:hover{opacity:0.7}
+.scroll-ind{position:absolute;bottom:2rem;left:4rem;font-size:0.6rem;font-weight:400;letter-spacing:0.05em;text-transform:uppercase;color:var(--muted)}
 /* ABOUT */
-#about{background:var(--white);position:relative}
-#about .section-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;min-height:100vh}
-.about-label{font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem}
-.about-text .word{display:inline-block;opacity:0;transform:translateY(30px);transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)}
-.about-text .word.revealed{opacity:1;transform:translateY(0)}
-.about-text p{font-size:clamp(1.1rem,1.5vw,1.4rem);font-weight:300;color:var(--dark);line-height:1.8}
-.about-text strong{color:var(--red);font-weight:600}
-.about-details p{font-size:0.95rem;color:#666;line-height:1.8;margin-bottom:2rem}
-.btn-outline{display:inline-flex;align-items:center;gap:10px;padding:0.85rem 2rem;border:1.5px solid var(--dark);border-radius:50px;font-weight:600;font-size:0.85rem;transition:var(--transition);background:transparent}
-.btn-outline:hover{background:var(--red);border-color:var(--red);color:var(--white)}
-/* STATS */
-#stats{background:var(--gray);padding:5rem 0;position:relative}
-#stats .section-inner{padding:3rem 4rem;min-height:auto}
-.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
-.stats-row-2{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(0,0,0,0.06)}
-.stat-item{text-align:center}
-.stat-number{font-size:clamp(2rem,3vw,3.2rem);font-weight:800;color:var(--red);line-height:1.1;margin-bottom:0.3rem}
-.stat-label{font-size:0.85rem;color:#888;font-weight:400}
-/* SOLUTIONS */
-#solutions{background:var(--white);position:relative}
-#solutions .section-inner{padding:8rem 4rem;min-height:100vh}
-.solutions-header{text-align:center;margin-bottom:5rem}
-.solutions-header .sec-label{font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
-.solutions-header h2{font-size:clamp(2rem,3vw,3rem);font-weight:700;color:var(--dark);max-width:600px;margin:0 auto}
-.solutions-header .sec-desc{font-size:1rem;color:#888;max-width:500px;margin:1rem auto 0;line-height:1.7}
-.solutions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
-.solution-card{background:var(--gray);border-radius:20px;padding:2.5rem 2rem;cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;border:1px solid transparent}
-.solution-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,0.08);border-color:rgba(216,20,19,0.15);background:var(--white)}
-.solution-card .card-accent{position:absolute;top:0;left:0;width:100%;height:4px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.5s ease}
-.solution-card:hover .card-accent{transform:scaleX(1)}
-.solution-card .card-icon{width:48px;height:48px;border-radius:12px;background:rgba(216,20,19,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.4rem;color:var(--red)}
-.solution-card h3{font-size:1.3rem;font-weight:700;margin-bottom:0.8rem;color:var(--dark)}
-.solution-card .card-desc{font-size:0.85rem;color:#888;line-height:1.7;margin-bottom:1.5rem}
-.solution-card .card-cta{font-size:0.8rem;font-weight:600;color:var(--red);display:flex;align-items:center;gap:6px;transition:var(--transition)}
-.solution-card:hover .card-cta{gap:12px}
-.card-metrics{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(0,0,0,0.06)}
-.card-metric .metric-val{font-size:1.1rem;font-weight:700;color:var(--dark)}
-.card-metric .metric-lbl{font-size:0.7rem;color:#999;text-transform:uppercase;letter-spacing:0.05em}
-.card-metric.full{grid-column:1/-1}
+#about{background:var(--wh);padding:6rem 4rem}
+.about-wrap{display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start}
+.about-left .sec-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.about-left h2{font-size:clamp(1.5rem,2.2vw,2rem);font-weight:500;letter-spacing:-0.03em;color:var(--tx);line-height:1.3;margin-bottom:1.5rem}
+.about-left h2 .word{display:inline-block;opacity:0;transform:translateY(20px);transition:all 0.5s cubic-bezier(0.25,0.46,0.45,0.94)}
+.about-left h2 .word.revealed{opacity:1;transform:translateY(0)}
+.about-left .about-desc{font-size:0.8rem;font-weight:400;letter-spacing:-0.01em;color:var(--muted);line-height:1.7;margin-bottom:2rem}
+.about-left .about-story{font-size:0.75rem;font-weight:500;color:var(--red);border-bottom:1px solid var(--red);padding-bottom:2px;display:inline-block;transition:opacity 0.3s}
+.about-left .about-story:hover{opacity:0.7}
+/* STATS GRID */
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+.stat-item{text-align:left;border-top:1px solid var(--lgr);padding-top:1.2rem}
+.stat-number{font-size:clamp(1.5rem,2.5vw,2.8rem);font-weight:500;letter-spacing:-0.03em;color:var(--tx);line-height:1.1;margin-bottom:0.3rem}
+.stat-label{font-size:0.7rem;font-weight:400;letter-spacing:-0.01em;color:var(--muted)}
+.counter{display:inline-block}
+/* SOLUTIONS - DARK SECTION */
+#solutions{background:var(--dark);color:var(--wh);position:relative;overflow:hidden}
+.solutions-scroll{display:flex;width:100%;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+.solutions-scroll::-webkit-scrollbar{display:none}
+.solution-slide{flex:0 0 100%;height:720px;scroll-snap-align:start;display:flex;align-items:center;padding:0 4rem;position:relative;overflow:hidden}
+.solution-slide .slide-bg{position:absolute;inset:0;z-index:0;background-size:cover;background-position:center;transform:translateZ(0);will-change:transform}
+.solution-slide .slide-content{position:relative;z-index:1;max-width:700px}
+.solution-slide .slide-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:1rem}
+.solution-slide h2{font-size:clamp(72px,9.3vw,149px);font-weight:500;line-height:0.95;letter-spacing:-5.97px;color:var(--wh);margin-bottom:1.5rem}
+.solution-slide .slide-desc{font-size:0.8rem;font-weight:400;letter-spacing:-0.01em;color:rgba(255,255,255,0.6);line-height:1.7;max-width:450px;margin-bottom:1.5rem}
+.solution-slide .slide-metrics{display:flex;gap:2rem;margin-bottom:1.5rem}
+.slide-metric .metric-val{font-size:0.9rem;font-weight:500;color:var(--wh);letter-spacing:-0.01em}
+.slide-metric .metric-lbl{font-size:0.6rem;color:rgba(255,255,255,0.4);margin-top:0.2rem}
+.solution-slide .slide-link{font-size:0.75rem;font-weight:500;color:var(--wh);border-bottom:1px solid rgba(255,255,255,0.4);padding-bottom:2px;display:inline-block;transition:border-color 0.3s}
+.solution-slide .slide-link:hover{border-color:var(--red);color:var(--red)}
+.sol-side-nav{position:absolute;left:4rem;top:50%;transform:translateY(-50%);z-index:5;display:flex;flex-direction:column;gap:0.8rem}
+.sol-side-nav a{display:flex;align-items:center;gap:8px;font-size:0.65rem;font-weight:400;letter-spacing:-0.01em;color:rgba(255,255,255,0.3);transition:color 0.3s;text-transform:uppercase}
+.sol-side-nav a .nav-line{width:20px;height:1px;background:rgba(255,255,255,0.2);transition:background 0.3s,width 0.3s}
+.sol-side-nav a.active,.sol-side-nav a:hover{color:var(--wh)}
+.sol-side-nav a.active .nav-line,.sol-side-nav a:hover .nav-line{background:var(--wh);width:32px}
 /* MAP */
-#map{background:var(--dark);color:var(--white);position:relative}
-#map .section-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;min-height:100vh}
-.map-content .sec-label{font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
-.map-content h2{font-size:clamp(1.8rem,2.5vw,2.5rem);font-weight:700;margin-bottom:1.5rem;color:var(--white)}
-.map-content .sec-desc{font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:2rem}
-.map-visual{position:relative;display:flex;justify-content:center;align-items:center}
-.map-svg{width:100%;max-width:550px;height:auto}
-.map-svg svg{width:100%;height:auto}
-.map-svg .country{fill:rgba(255,255,255,0.06);stroke:rgba(255,255,255,0.12);stroke-width:0.5;transition:fill 0.4s ease}
-.map-svg .country:hover{fill:rgba(216,20,19,0.15)}
-.map-pin{position:absolute;width:16px;height:16px;cursor:pointer;z-index:5}
-.map-pin::before{content:'';position:absolute;width:16px;height:16px;background:var(--red);border-radius:50%;border:3px solid var(--white);box-shadow:0 0 20px rgba(216,20,19,0.4);animation:pinPulse 2s ease infinite}
-.map-pin::after{content:attr(data-label);position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);color:var(--white);padding:0.3rem 0.8rem;border-radius:6px;font-size:0.7rem;font-weight:500;opacity:0;transition:var(--transition);pointer-events:none}
-.map-pin:hover::after{opacity:1}
-.office-list{display:grid;gap:1rem;margin-top:2rem}
-.office-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);transition:var(--transition)}
-.office-item:hover{background:rgba(255,255,255,0.06)}
-.office-dot{width:10px;height:10px;border-radius:50%;background:var(--red);margin-top:6px;flex-shrink:0}
-.office-info h4{font-size:0.9rem;font-weight:600;margin-bottom:0.2rem}
-.office-info p{font-size:0.8rem;color:rgba(255,255,255,0.4)}
+#map{background:var(--wh);padding:6rem 4rem}
+.map-wrap{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
+.map-left .sec-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:1.5rem}
+.map-left h2{font-size:clamp(1.3rem,1.8vw,1.7rem);font-weight:500;letter-spacing:-0.03em;color:var(--tx);line-height:1.3;margin-bottom:1rem}
+.map-left .map-desc{font-size:0.8rem;font-weight:400;letter-spacing:-0.01em;color:var(--muted);line-height:1.7;margin-bottom:2rem}
+.office-cards{display:flex;flex-direction:column;gap:1rem}
+.office-card{display:flex;gap:1rem;align-items:flex-start;padding:1rem;border:1px solid var(--lgr);transition:border-color 0.3s}
+.office-card:hover{border-color:var(--red)}
+.office-dot{width:8px;height:8px;border-radius:50%;background:var(--red);margin-top:5px;flex-shrink:0}
+.office-info h4{font-size:0.8rem;font-weight:500;letter-spacing:-0.01em;color:var(--tx);margin-bottom:0.2rem}
+.office-info p{font-size:0.7rem;font-weight:400;color:var(--muted);line-height:1.4}
+.map-right{display:flex;justify-content:center}
+.map-svg svg{width:100%;max-width:480px;height:auto}
+.map-svg .country{fill:#f0f0f0;stroke:var(--lgr);stroke-width:0.5;transition:fill 0.3s}
+.map-svg .country:hover{fill:rgba(228,22,19,0.1)}
+.map-pin{fill:var(--red);stroke:var(--wh);stroke-width:1.5;cursor:pointer;transition:r 0.2s}
+.map-pin:hover{r:5}
 /* TEAM */
-#team{background:var(--gray);position:relative}
-#team .section-inner{padding:8rem 4rem;min-height:100vh}
-.team-header{text-align:center;margin-bottom:4rem}
-.team-header .sec-label{font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
-.team-header h2{font-size:clamp(1.8rem,2.5vw,2.5rem);font-weight:700;max-width:600px;margin:0 auto}
-.team-header .sec-desc{font-size:1rem;color:#888;max-width:550px;margin:1rem auto 0;line-height:1.7}
-.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:2rem}
-.team-card{background:var(--white);border-radius:16px;overflow:hidden;transition:var(--transition);cursor:pointer;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
-.team-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.08)}
-.team-card .team-img{width:100%;height:220px;object-fit:cover;background:var(--gray)}
-.team-card .team-info{padding:1.5rem}
-.team-card .team-role{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:0.3rem}
-.team-card .team-name{font-size:1.1rem;font-weight:700;color:var(--dark)}
-.team-card .team-linkedin{display:inline-flex;align-items:center;gap:6px;margin-top:0.8rem;font-size:0.8rem;color:#888;transition:var(--transition)}
-.team-card .team-linkedin:hover{color:var(--red)}
-/* CONTACT / FOOTER */
-#contact{background:var(--dark);color:var(--white);position:relative}
-#contact .section-inner{padding:6rem 4rem 3rem}
-.contact-cta{text-align:center;max-width:700px;margin:0 auto 4rem}
-.contact-cta h2{font-size:clamp(2rem,3vw,3rem);font-weight:700;margin-bottom:1.5rem;line-height:1.2}
-.contact-cta .btn-primary{margin-top:1rem}
-.footer-divider{height:1px;background:rgba(255,255,255,0.08);margin-bottom:2rem}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
-.footer-brand .logo-dot{width:10px;height:10px;background:var(--red);border-radius:50%;display:inline-block;margin-right:8px}
-.footer-brand h3{font-size:1.2rem;font-weight:700;margin-bottom:1rem}
-.footer-brand p{font-size:0.85rem;color:rgba(255,255,255,0.4);line-height:1.7;max-width:300px}
-.footer-col h4{font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.3);margin-bottom:1.2rem}
-.footer-col a{display:block;font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:0.7rem;transition:var(--transition)}
-.footer-col a:hover{color:var(--red)}
-.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06)}
-.footer-bottom p{font-size:0.75rem;color:rgba(255,255,255,0.25)}
-.footer-social{display:flex;gap:1rem}
-.footer-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:var(--transition);font-size:0.9rem;color:rgba(255,255,255,0.4)}
-.footer-social a:hover{background:var(--red);border-color:var(--red);color:var(--white)}
-/* ANIMATIONS */
-@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
-@keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
-@keyframes pinPulse{0%,100%{box-shadow:0 0 0 0 rgba(216,20,19,0.6)}50%{box-shadow:0 0 0 12px rgba(216,20,19,0)}}
+#team{background:var(--team-bg);padding:6rem 4rem}
+.team-header{margin-bottom:3rem}
+.team-header .sec-label{font-size:0.53rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);margin-bottom:0.5rem}
+.team-header p{font-size:0.85rem;font-weight:400;letter-spacing:-0.01em;color:var(--muted);line-height:1.6;max-width:500px}
+.team-scroll{display:flex;gap:1.5rem;overflow-x:auto;padding-bottom:1rem;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+.team-scroll::-webkit-scrollbar{height:4px}
+.team-scroll::-webkit-scrollbar-track{background:transparent}
+.team-scroll::-webkit-scrollbar-thumb{background:var(--lgr);border-radius:2px}
+.team-card{flex:0 0 283px;min-height:478px;background:var(--wh);display:flex;flex-direction:column;scroll-snap-align:start;transition:transform 0.3s}
+.team-card:hover{transform:translateY(-4px)}
+.team-card .tc-img{width:100%;height:283px;object-fit:cover;background:var(--team-bg)}
+.team-card .tc-info{padding:1.2rem;flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.team-card .tc-name{font-size:0.9rem;font-weight:500;letter-spacing:-0.02em;color:var(--tx);margin-bottom:0.2rem}
+.team-card .tc-role{font-size:0.65rem;font-weight:400;letter-spacing:-0.01em;color:var(--muted)}
+.team-card .tc-linkedin{font-size:0.65rem;font-weight:500;color:var(--muted);display:flex;align-items:center;gap:4px;margin-top:0.8rem;transition:color 0.3s}
+.team-card .tc-linkedin:hover{color:var(--red)}
+/* CTA */
+#cta{background:var(--wh);padding:6rem 4rem;text-align:center}
+#cta h2{font-size:clamp(1.5rem,2.5vw,2.5rem);font-weight:500;letter-spacing:-0.03em;color:var(--tx);line-height:1.2;max-width:600px;margin:0 auto 1.5rem}
+#cta .cta-link{font-size:0.8rem;font-weight:500;color:var(--red);border-bottom:1px solid var(--red);padding-bottom:2px;display:inline-block;transition:opacity 0.3s}
+#cta .cta-link:hover{opacity:0.7}
+/* FOOTER */
+#footer{background:var(--ft-bg);padding:3rem 4rem;color:var(--tx)}
+.footer-social{display:flex;gap:1rem;margin-bottom:1.5rem}
+.footer-social a{width:32px;height:32px;border:1px solid var(--lgr);display:flex;align-items:center;justify-content:center;transition:border-color 0.3s,background 0.3s;font-size:0.75rem;color:var(--muted)}
+.footer-social a:hover{border-color:var(--red);background:var(--red);color:var(--wh)}
+.footer-line{height:1px;background:var(--lgr);margin-bottom:1.5rem}
+.footer-legal{display:flex;flex-wrap:wrap;gap:1.5rem;margin-bottom:0.8rem}
+.footer-legal a{font-size:0.65rem;font-weight:400;color:var(--muted);transition:color 0.3s;letter-spacing:-0.01em}
+.footer-legal a:hover{color:var(--red)}
+.footer-copy{font-size:0.6rem;font-weight:400;color:var(--muted);letter-spacing:-0.01em}
+/* REVEAL UTILITY */
+.reveal{opacity:0;transform:translateY(30px);transition:all 0.7s cubic-bezier(0.25,0.46,0.45,0.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
 /* RESPONSIVE */
 @media(max-width:1024px){
-  nav{padding:1rem 2rem}
-  .section-inner{padding:4rem 2rem!important}
-  #about .section-inner{grid-template-columns:1fr;gap:3rem}
-  #map .section-inner{grid-template-columns:1fr;gap:3rem}
-  .solutions-grid{grid-template-columns:repeat(2,1fr)}
-  .stats-grid,.stats-row-2{grid-template-columns:repeat(3,1fr);gap:1.5rem}
-  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+  nav{padding:0 2rem}.nav-links{gap:1.2rem}
+  #hero{padding:0 2rem}.hero-left h1{font-size:clamp(60px,8vw,100px);letter-spacing:-4px}
+  .about-wrap{grid-template-columns:1fr;gap:3rem}.map-wrap{grid-template-columns:1fr;gap:2rem}
+  .solution-slide{padding:0 2rem}.solution-slide h2{font-size:clamp(48px,7vw,80px);letter-spacing:-3px}
+  #about,#map,#team,#cta,#footer{padding-left:2rem;padding-right:2rem}
 }
 @media(max-width:768px){
-  nav{padding:0.8rem 1.5rem}
   .nav-links{display:none}
   .nav-actions .btn-portal{display:none}
-  .hamburger{display:flex}
-  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);justify-content:center;align-items:center;gap:2rem;z-index:999}
-  .nav-links.open > li > a{color:var(--dark)!important;font-size:1.2rem}
-  .dropdown-menu{position:static;transform:none;opacity:1;visibility:visible;background:transparent;box-shadow:none;padding:0.5rem 0 0.5rem 1rem;pointer-events:auto;min-width:auto}
-  .nav-links.open .nav-actions-mobile{display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:1rem}
-  .nav-actions-mobile .btn-portal{display:inline-flex;color:var(--dark)!important;border-color:var(--dark)}
-  .hero-title{font-size:clamp(2.5rem,12vw,4rem)}
-  .solutions-grid{grid-template-columns:1fr}
-  .stats-grid,.stats-row-2{grid-template-columns:1fr;gap:2rem}
-  .team-grid{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:1fr}
-  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
-}
-/* Parallax layers */
-.parallax-layer{position:absolute;pointer-events:none;z-index:0}
-.parallax-bg{position:absolute;inset:0;z-index:0}
-/* Reveal animations */
-.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94)}
-.reveal.visible{opacity:1;transform:translateY(0)}
-/* Counter */
-.counter{display:inline-block}
-/* Shimmer loading animation for images */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-img {
-  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
+  .hero-split{flex-direction:column;gap:1rem}
+  .hero-left h1{font-size:clamp(44px,10vw,72px);letter-spacing:-2.5px}
+  .hero-right{margin-left:0;max-width:100%;padding-bottom:2rem}
+  .hero-left{padding-top:0}
+  .scroll-ind{left:2rem}
+  .stats-grid{grid-template-columns:1fr}
+  .solution-slide .slide-metrics{flex-wrap:wrap;gap:1rem}
+  .sol-side-nav{display:none}
+  .team-card{flex:0 0 220px;min-height:auto}
+  .office-cards{gap:0.8rem}
 }
 </style>
-
 </head>
 <body>
 
 <!-- NAV -->
-<nav id="navbar">
-  <a href="#" class="nav-logo">
-    <span class="logo-dot"></span>
-    <span data-en="Tresmares" data-es="Tresmares">Tresmares</span>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#about" data-en="About Us" data-es="Nosotros">About Us</a></li>
-    <li>
-      <a href="#solutions" data-en="Solutions" data-es="Soluciones">Solutions</a>
-      <div class="dropdown-menu">
-        <a href="#solutions"><span class="dd-dot"></span> <span>Private Equity</span></a>
-        <a href="#solutions"><span class="dd-dot"></span> <span>Direct Lending</span></a>
-        <a href="#solutions"><span class="dd-dot"></span> <span>Fund of Funds</span></a>
-        <a href="#solutions"><span class="dd-dot"></span> <span>Fund Financing</span></a>
-      </div>
-    </li>
-    <li><a href="#map" data-en="Portfolio" data-es="Portfolio">Portfolio</a></li>
-    <li><a href="#team" data-en="Team" data-es="Equipo">Team</a></li>
-    <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
-    <li class="nav-actions-mobile" style="display:none">
+<nav>
+  <a href="#" class="nav-logo"><span class="logo-dot"></span>Tresmares</a>
+  <div class="nav-inner">
+    <ul class="nav-links">
+      <li><a href="#about">Nosotros</a></li>
+      <li>
+        <a href="#solutions">Soluciones</a>
+        <div class="dropdown-menu">
+          <a href="#sol-private-equity"><span class="dd-icon"></span>Private Equity</a>
+          <a href="#sol-direct-lending"><span class="dd-icon"></span>Direct Lending</a>
+          <a href="#sol-fund-of-funds"><span class="dd-icon"></span>Fund of Funds</a>
+          <a href="#sol-fund-financing"><span class="dd-icon"></span>Fund Financing</a>
+        </div>
+      </li>
+      <li><a href="#map">Portfolio</a></li>
+      <li><a href="#team">Equipo</a></li>
+      <li><a href="#cta">Contacto</a></li>
+    </ul>
+    <div class="nav-actions">
       <div class="lang-toggle">
-        <a href="#" class="active" data-lang="en">EN</a>
-        <a href="#" data-lang="es">ES</a>
+        <a href="#" class="active">ES</a>
+        <a href="#">EN</a>
       </div>
-      <a href="#" class="btn-portal" data-en="Investor Portal" data-es="Portal Inversores">Investor Portal</a>
-    </li>
-  </ul>
-  <div class="nav-actions">
-    <div class="lang-toggle">
-      <a href="#" class="active" data-lang="en">EN</a>
-      <a href="#" data-lang="es">ES</a>
-    </div>
-    <a href="#" class="btn-portal" data-en="Investor Portal" data-es="Portal Inversores">Investor Portal</a>
-    <div class="hamburger" id="hamburger">
-      <span></span><span></span><span></span>
+      <a href="#" class="btn-portal">Portal Inversores</a>
     </div>
   </div>
 </nav>
 
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="section-inner">
-    <div class="hero-content">
-      <div class="hero-subtitle" data-en="Alternative Investment Firm" data-es="Firma de Inversión Alternativa">Alternative Investment Firm</div>
-      <h1 class="hero-title" id="heroTitle" data-en="Drive to grow" data-es="Impulso para crecer"></h1>
-      <p class="hero-desc" data-en="Tailored financing for high-growth SMEs and private equity managers across Europe." data-es="Financiación a medida para pymes de elevado crecimiento y gestoras de private equity.">Tailored financing for high-growth SMEs and private equity managers across Europe.</p>
-      <a href="#solutions" class="btn-primary" data-en="Explore Solutions" data-es="Soluciones financieras">
-        <span data-en="Explore Solutions" data-es="Soluciones financieras">Explore Solutions</span>
-        <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </a>
+  <div class="hero-split">
+    <div class="hero-left">
+      <h1 id="heroH1"><span class="word">Impulso</span><span class="word">para</span><span class="word">crecer</span></h1>
     </div>
-    <div class="scroll-indicator">
-      <span data-en="Scroll" data-es="Scroll">Scroll</span>
-      <div class="scroll-line"></div>
+    <div class="hero-right">
+      <p class="hero-sub">Financiación a medida para pymes de elevado crecimiento y gestoras de private equity.</p>
+      <a href="#solutions" class="hero-link">Soluciones financieras</a>
     </div>
+    <div class="scroll-ind">Scroll</div>
   </div>
 </section>
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="parallax-bg" style="background:linear-gradient(135deg,#fafafa 0%,#fff 100%)"></div>
-  <div class="section-inner">
-    <div class="about-text reveal">
-      <div class="about-label" data-en="About Tresmares" data-es="Sobre Tresmares">About Tresmares</div>
-      <p id="aboutPara" data-en="A pan-European alternative investment firm focused on driving growth in SMEs. Founded in 2014, we have a team of over 60 professionals across our offices in Madrid, London, and Frankfurt, with the capacity to operate across Europe." data-es="Una firma paneuropea de inversión alternativa enfocada en impulsar el crecimiento de PYMEs. Fundada en 2014, actualmente cuenta con un equipo de más de 60 personas en sus tres oficinas de Madrid, Londres y Frankfurt, desde donde tiene la capacidad de hacer operaciones en toda Europa.">
-      </p>
-      <a href="#team" class="btn-outline" style="margin-top:2rem">
-        <span data-en="Meet our team" data-es="Conoce nuestra historia">Meet our team</span>
-        <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </a>
+  <div class="about-wrap">
+    <div class="about-left">
+      <div class="sec-label">Sobre Tresmares</div>
+      <h2 id="aboutHeading">Una firma paneuropea de inversión alternativa enfocada en impulsar el crecimiento de PYMEs</h2>
+      <p class="about-desc">Fundada en 2014, actualmente cuenta con un equipo de m&aacute;s de 60 personas en sus tres oficinas de Madrid, Londres y Frankfurt, desde donde tiene la capacidad de hacer operaciones en toda Europa.</p>
+      <a href="#team" class="about-story">Conoce nuestra historia</a>
     </div>
-    <div class="about-details reveal">
-      <div id="stats">
-        <div class="stats-grid">
-          <div class="stat-item">
-            <div class="stat-number"><span class="counter" data-target="2014">0</span></div>
-            <div class="stat-label" data-en="Year founded" data-es="Año de fundación">Year founded</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">€<span class="counter" data-target="3500">0</span>m+</div>
-            <div class="stat-label" data-en="Committed capital" data-es="Millones de € comprometidos">Committed capital</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">€<span class="counter" data-target="2000">0</span>m+</div>
-            <div class="stat-label" data-en="Capital invested" data-es="Millones de € invertidos">Capital invested</div>
-          </div>
+    <div class="about-right">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number"><span class="counter" data-target="2014">0</span></div>
+          <div class="stat-label">Año de fundaci&oacute;n</div>
         </div>
-        <div class="stats-row-2">
-          <div class="stat-item">
-            <div class="stat-number">€4m – €75m</div>
-            <div class="stat-label" data-en="Per company" data-es="Millones de € invertidos por compañía">Per company</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">+<span class="counter" data-target="100">0</span></div>
-            <div class="stat-label" data-en="Companies in 5 countries" data-es="Compañías en 5 países">Companies in 5 countries</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">+<span class="counter" data-target="60">0</span></div>
-            <div class="stat-label" data-en="Employees" data-es="Empleados">Employees</div>
-          </div>
+        <div class="stat-item">
+          <div class="stat-number">+<span class="counter" data-target="3500">0</span></div>
+          <div class="stat-label">Millones de &euro; comprometidos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">+<span class="counter" data-target="2000">0</span></div>
+          <div class="stat-label">Millones de &euro; invertidos</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">4 &ndash; 75</div>
+          <div class="stat-label">Millones de &euro; invertidos por compa&ntilde;&iacute;a</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">+<span class="counter" data-target="100">0</span></div>
+          <div class="stat-label">Compa&ntilde;&iacute;as en 5 pa&iacute;ses</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">+<span class="counter" data-target="60">0</span></div>
+          <div class="stat-label">Empleados</div>
         </div>
       </div>
     </div>
@@ -332,139 +251,119 @@ img {
 
 <!-- SOLUTIONS -->
 <section id="solutions">
-  <div class="section-inner">
-    <div class="solutions-header reveal">
-      <div class="sec-label" data-en="Financial Solutions" data-es="Soluciones financieras">Financial Solutions</div>
-      <h2 data-en="Four strategies designed to offer tailored financing across the capital structure" data-es="Nuestras cuatro estrategias tienen vocación de servicio para ofrecer soluciones de financiación a medida en toda la estructura de capital">
-        Four strategies designed to offer tailored financing across the capital structure
-      </h2>
+  <div class="sol-side-nav">
+    <a href="#sol-private-equity" class="active"><span class="nav-line"></span>Private Equity</a>
+    <a href="#sol-direct-lending"><span class="nav-line"></span>Direct Lending</a>
+    <a href="#sol-fund-of-funds"><span class="nav-line"></span>Fund of Funds</a>
+    <a href="#sol-fund-financing"><span class="nav-line"></span>Fund Financing</a>
+  </div>
+  <div class="solutions-scroll" id="solScroll">
+    <div class="solution-slide" id="sol-private-equity">
+      <div class="slide-bg" style="background-image:url('images/img_1771920373490-2bf2f1f64b66.jpg');opacity:0.3"></div>
+      <div class="slide-content">
+        <div class="slide-label">Soluciones financieras</div>
+        <h2>Private<br>Equity</h2>
+        <p class="slide-desc">Participaciones minoritarias en PYMEs, con vocaci&oacute;n de convertirnos en capital estrat&eacute;gico para apoyar en su profesionalizaci&oacute;n y acelerar su crecimiento.</p>
+        <div class="slide-metrics">
+          <div class="slide-metric"><div class="metric-val">AuMs &euro;550m+</div><div class="metric-lbl">AuMs</div></div>
+          <div class="slide-metric"><div class="metric-val">&euro;1m&ndash;&euro;25m</div><div class="metric-lbl">EBITDA</div></div>
+          <div class="slide-metric"><div class="metric-val">&euro;5m&ndash;&euro;35m</div><div class="metric-lbl">Ticket</div></div>
+          <div class="slide-metric"><div class="metric-val">10+</div><div class="metric-lbl">Empleados</div></div>
+        </div>
+        <a href="#" class="slide-link">M&aacute;s informaci&oacute;n</a>
+      </div>
     </div>
-    <div class="solutions-grid">
-      <!-- Card 1: Private Equity -->
-      <div class="solution-card reveal">
-        <div class="card-accent"></div>
-        <div class="card-icon">📊</div>
-        <h3>Private Equity</h3>
-        <p class="card-desc" data-en="Minority stakes in SMEs, providing strategic capital to support professionalization and accelerate growth." data-es="Participaciones minoritarias en PYMEs, con vocación de convertirnos en capital estratégico para apoyar en su profesionalización y acelerar su crecimiento.">
-          Minority stakes in SMEs, providing strategic capital to support professionalization and accelerate growth.
-        </p>
-        <a href="#" class="card-cta"><span data-en="Learn more" data-es="Más información">Learn more</span> <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        <div class="card-metrics">
-          <div class="card-metric"><div class="metric-val" data-en="AuMs €550m+" data-es="AuMs €550m+">AuMs €550m+</div><div class="metric-lbl">AuMs</div></div>
-          <div class="card-metric"><div class="metric-val">€1m – €25m</div><div class="metric-lbl">EBITDA</div></div>
-          <div class="card-metric"><div class="metric-val">€5m – €35m</div><div class="metric-lbl">Ticket</div></div>
-          <div class="card-metric"><div class="metric-val">10+</div><div class="metric-lbl">Employees</div></div>
+    <div class="solution-slide" id="sol-direct-lending">
+      <div class="slide-bg" style="background-image:url('images/img_1771919374230-7e7aa59b3d86.jpg');opacity:0.3"></div>
+      <div class="slide-content">
+        <div class="slide-label">Soluciones financieras</div>
+        <h2>Direct<br>Lending</h2>
+        <p class="slide-desc">Financiaci&oacute;n a medida que puede combinar tramos amortizables (TLA) y tramos sin amortizaci&oacute;n hasta el vencimiento / bullet (TLB) para financiar diferentes usos.</p>
+        <div class="slide-metrics">
+          <div class="slide-metric"><div class="metric-val">AuMs &euro;2.3bn+</div><div class="metric-lbl">AuMs</div></div>
+          <div class="slide-metric"><div class="metric-val">&euro;2m&ndash;&euro;25m</div><div class="metric-lbl">EBITDA</div></div>
+          <div class="slide-metric"><div class="metric-val">&euro;5m&ndash;&euro;75m</div><div class="metric-lbl">Ticket</div></div>
+          <div class="slide-metric"><div class="metric-val">25+</div><div class="metric-lbl">Empleados</div></div>
         </div>
+        <a href="#" class="slide-link">M&aacute;s informaci&oacute;n</a>
       </div>
-      <!-- Card 2: Direct Lending -->
-      <div class="solution-card reveal">
-        <div class="card-accent"></div>
-        <div class="card-icon">🏦</div>
-        <h3>Direct Lending</h3>
-        <p class="card-desc" data-en="Tailored financing combining amortizing (TLA) and bullet (TLB) tranches for acquisitions, capex, M&A, dividends, and more." data-es="Financiación a medida que puede combinar tramos amortizables (TLA) y tramos sin amortización hasta el vencimiento / bullet (TLB) para financiar diferentes usos.">
-          Tailored financing combining amortizing (TLA) and bullet (TLB) tranches for acquisitions, capex, M&A, dividends, and more.
-        </p>
-        <a href="#" class="card-cta"><span data-en="Learn more" data-es="Más información">Learn more</span> <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        <div class="card-metrics">
-          <div class="card-metric"><div class="metric-val" data-en="AuMs €2.3bn+" data-es="AuMs €2.3bn+">AuMs €2.3bn+</div><div class="metric-lbl">AuMs</div></div>
-          <div class="card-metric"><div class="metric-val">€2m – €25m</div><div class="metric-lbl">EBITDA</div></div>
-          <div class="card-metric"><div class="metric-val">€5m – €75m</div><div class="metric-lbl">Ticket</div></div>
-          <div class="card-metric"><div class="metric-val">25+</div><div class="metric-lbl">Employees</div></div>
+    </div>
+    <div class="solution-slide" id="sol-fund-of-funds">
+      <div class="slide-bg" style="background-image:url('images/img_1771919374215-f6995c8ce42b.jpg');opacity:0.3"></div>
+      <div class="slide-content">
+        <div class="slide-label">Soluciones financieras</div>
+        <h2>Fund of<br>Funds</h2>
+        <p class="slide-desc">Invertimos en estrategias l&iacute;deres de Buyout y Growth a trav&eacute;s de una cartera selectiva de fondos de capital privado, respaldando gestores experimentados con rentabilidad constante.</p>
+        <div class="slide-metrics">
+          <div class="slide-metric"><div class="metric-val">AuMs &euro;600m</div><div class="metric-lbl">AuMs</div></div>
+          <div class="slide-metric"><div class="metric-val">PE FoF &amp; Secondaries</div><div class="metric-lbl">Estrategia</div></div>
+          <div class="slide-metric"><div class="metric-val">Retail</div><div class="metric-lbl">Segmento</div></div>
+          <div class="slide-metric"><div class="metric-val">5+</div><div class="metric-lbl">Empleados</div></div>
         </div>
+        <a href="#" class="slide-link">M&aacute;s informaci&oacute;n</a>
       </div>
-      <!-- Card 3: Fund of Funds -->
-      <div class="solution-card reveal">
-        <div class="card-accent"></div>
-        <div class="card-icon">🔷</div>
-        <h3>Fund of Funds</h3>
-        <p class="card-desc" data-en="Investing in leading Buyout and Growth strategies through a selective portfolio of private capital funds, backing experienced managers with consistent top-quartile performance." data-es="Invertimos en estrategias líderes de Buyout y Growth a través de una cartera selectiva de fondos de capital privado.">
-          Investing in leading Buyout and Growth strategies through a selective portfolio of private capital funds.
-        </p>
-        <a href="#" class="card-cta"><span data-en="Learn more" data-es="Más información">Learn more</span> <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        <div class="card-metrics">
-          <div class="card-metric"><div class="metric-val">AuMs €600m</div><div class="metric-lbl">AuMs</div></div>
-          <div class="card-metric"><div class="metric-val">Retail</div><div class="metric-lbl">Target Segment</div></div>
-          <div class="card-metric"><div class="metric-val">PE FoF & Secondaries</div><div class="metric-lbl">Strategy</div></div>
-          <div class="card-metric"><div class="metric-val">5+</div><div class="metric-lbl">Employees</div></div>
+    </div>
+    <div class="solution-slide" id="sol-fund-financing">
+      <div class="slide-bg" style="background-image:url('images/img_1771919328088-3476e8fe65b0.jpg');opacity:0.3"></div>
+      <div class="slide-content">
+        <div class="slide-label">Soluciones financieras</div>
+        <h2>Fund<br>Financing</h2>
+        <p class="slide-desc">Financiaci&oacute;n a medida para cubrir necesidades de liquidez de gestoras de Private Equity y dar flexibilidad a nivel operacional.</p>
+        <div class="slide-metrics">
+          <div class="slide-metric"><div class="metric-val">AuMs &euro;150m</div><div class="metric-lbl">AuMs</div></div>
+          <div class="slide-metric"><div class="metric-val">&euro;5m&ndash;&euro;50m</div><div class="metric-lbl">Ticket</div></div>
+          <div class="slide-metric"><div class="metric-val">15+</div><div class="metric-lbl">Transacciones</div></div>
+          <div class="slide-metric"><div class="metric-val">2+</div><div class="metric-lbl">Empleados</div></div>
         </div>
-      </div>
-      <!-- Card 4: Fund Financing -->
-      <div class="solution-card reveal">
-        <div class="card-accent"></div>
-        <div class="card-icon">💼</div>
-        <h3>Fund Financing</h3>
-        <p class="card-desc" data-en="Tailored financing to cover liquidity needs of Private Equity managers, providing operational flexibility." data-es="Financiación a medida para cubrir necesidades de liquidez de gestoras de Private Equity y dar flexibilidad a nivel operacional.">
-          Tailored financing to cover liquidity needs of Private Equity managers, providing operational flexibility.
-        </p>
-        <a href="#" class="card-cta"><span data-en="Learn more" data-es="Más información">Learn more</span> <span><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span></a>
-        <div class="card-metrics">
-          <div class="card-metric"><div class="metric-val">AuMs €150m</div><div class="metric-lbl">AuMs</div></div>
-          <div class="card-metric"><div class="metric-val">€5m – €50m</div><div class="metric-lbl">Ticket</div></div>
-          <div class="card-metric"><div class="metric-val">15+</div><div class="metric-lbl">Transactions</div></div>
-          <div class="card-metric"><div class="metric-val">2+</div><div class="metric-lbl">Employees</div></div>
-        </div>
+        <a href="#" class="slide-link">M&aacute;s informaci&oacute;n</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MAP SECTION -->
+<!-- MAP -->
 <section id="map">
-  <div class="section-inner">
-    <div class="map-content reveal">
-      <div class="sec-label" data-en="Our Presence" data-es="Nuestra expansión">Our Presence</div>
-      <h2 data-en="Pan-European reach from our offices in Madrid, London &amp; Frankfurt" data-es="Unimos fuerzas con el Banco Santander para llegar más lejos">Pan-European reach from our offices in Madrid, London &amp; Frankfurt</h2>
-      <p class="sec-desc" data-en="Thanks to our international reach and independent management, we serve the whole of continental Europe from our offices in Madrid, London and Frankfurt." data-es="Gracias al respaldo internacional del Banco Santander a nuestra gestion independiente, damos servicio a toda Europa continental desde nuestras oficinas de Madrid, Londres y Frankfurt.">
-        Thanks to our international reach and independent management, we serve the whole of continental Europe from our offices in Madrid, London and Frankfurt.
-      </p>
-      <div class="office-list">
-        <div class="office-item">
+  <div class="map-wrap">
+    <div class="map-left">
+      <div class="sec-label">Nuestra expansi&oacute;n</div>
+      <h2>Unimos fuerzas con el Banco Santander para llegar m&aacute;s lejos</h2>
+      <p class="map-desc">Gracias al respaldo internacional del Banco Santander a nuestra gesti&oacute;n independiente, damos servicio a toda Europa continental desde nuestras oficinas de Madrid, Londres y Frankfurt.</p>
+      <div class="office-cards">
+        <div class="office-card">
           <div class="office-dot"></div>
           <div class="office-info">
             <h4>London</h4>
-            <p>11 Albemarle – 2nd floor, W1S 4HH, London</p>
+            <p>11 Albemarle &ndash; 2nd floor, W1S 4HH, London</p>
           </div>
         </div>
-        <div class="office-item">
+        <div class="office-card">
           <div class="office-dot"></div>
           <div class="office-info">
             <h4>Madrid</h4>
             <p>C/ Serrano 37, 4a planta, 28001 Madrid</p>
           </div>
         </div>
-        <div class="office-item">
+        <div class="office-card">
           <div class="office-dot"></div>
           <div class="office-info">
             <h4>Frankfurt</h4>
-            <p>Rathenaupl. 1A – 3rd Floor, 60313 Frankfurt am Main</p>
+            <p>Rathenaupl. 1A &ndash; 3rd Floor, 60313 Frankfurt am Main</p>
           </div>
         </div>
       </div>
     </div>
-    <div class="map-visual reveal">
+    <div class="map-right">
       <div class="map-svg">
-        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="background:transparent;border-radius:20px">
-          <!-- Simplified Europe outline -->
-          <path class="country" d="M180 80 Q200 70 220 80 Q250 65 280 75 Q300 70 310 80 L330 85 Q350 90 360 100 Q370 110 365 120 Q375 130 370 140 Q380 150 375 160 Q380 170 370 175 Q375 185 365 190 Q370 200 360 205 Q350 215 340 210 Q330 220 320 215 Q310 225 300 220 Q290 230 280 225 Q270 235 260 230 Q250 240 240 235 Q230 245 220 240 Q210 250 200 245 Q190 255 180 250 Q170 260 165 250 Q155 255 150 245 Q140 250 135 240 Q125 245 120 235 Q110 240 105 230 Q95 235 90 225 Q80 230 75 220 Q65 225 60 215 Q55 205 60 195 Q50 185 55 175 Q45 165 50 155 Q40 145 45 135 Q35 125 40 115 Q30 105 40 95 Q35 85 45 80 Q40 70 50 65 Q60 60 70 65 Q80 55 90 60 Q100 55 110 60 Q120 50 130 55 Q140 45 150 55 Q160 50 170 60 Q175 55 180 65 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
-          <!-- UK / Ireland -->
-          <path class="country" d="M80 130 Q85 125 90 130 Q95 120 100 125 Q105 115 110 120 Q105 130 100 135 Q95 140 90 135 Q85 140 80 135 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
-          <path class="country" d="M60 140 Q65 135 70 140 Q75 130 80 135 Q75 145 70 150 Q65 145 60 150 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
-          <!-- Scandinavia -->
-          <path class="country" d="M120 55 Q130 50 140 55 Q145 45 150 50 Q155 40 160 45 Q165 35 170 40 Q175 30 180 35 Q175 45 170 50 Q165 55 160 55 Q155 60 150 60 Q145 65 140 60 Q135 65 130 60 Q125 65 120 60 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
-          <!-- Italy -->
-          <path class="country" d="M190 200 Q200 195 205 200 Q210 195 215 200 Q220 195 225 200 Q220 210 215 215 Q210 220 205 215 Q200 220 195 215 Q190 220 185 215 Q190 210 190 205 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
-          <!-- Iberia -->
-          <path class="country" d="M110 210 Q120 205 130 210 Q140 205 145 210 Q150 205 155 210 Q160 205 165 210 Q160 220 155 225 Q150 230 145 225 Q140 230 135 225 Q130 230 125 225 Q120 230 115 225 Q110 220 110 215 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
-          <!-- Dots for office locations -->
-          <circle cx="88" cy="138" r="4" fill="#D81413" stroke="#fff" stroke-width="1.5">
-            <title>London</title>
-          </circle>
-          <circle cx="128" cy="218" r="4" fill="#D81413" stroke="#fff" stroke-width="1.5">
-            <title>Madrid</title>
-          </circle>
-          <circle cx="200" cy="175" r="4" fill="#D81413" stroke="#fff" stroke-width="1.5">
-            <title>Frankfurt</title>
-          </circle>
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg">
+          <path class="country" d="M180 80 Q200 70 220 80 Q250 65 280 75 Q300 70 310 80 L330 85 Q350 90 360 100 Q370 110 365 120 Q375 130 370 140 Q380 150 375 160 Q380 170 370 175 Q375 185 365 190 Q370 200 360 205 Q350 215 340 210 Q330 220 320 215 Q310 225 300 220 Q290 230 280 225 Q270 235 260 230 Q250 240 240 235 Q230 245 220 240 Q210 250 200 245 Q190 255 180 250 Q170 260 165 250 Q155 255 150 245 Q140 250 135 240 Q125 245 120 235 Q110 240 105 230 Q95 235 90 225 Q80 230 75 220 Q65 225 60 215 Q55 205 60 195 Q50 185 55 175 Q45 165 50 155 Q40 145 45 135 Q35 125 40 115 Q30 105 40 95 Q35 85 45 80 Q40 70 50 65 Q60 60 70 65 Q80 55 90 60 Q100 55 110 60 Q120 50 130 55 Q140 45 150 55 Q160 50 170 60 Q175 55 180 65 Z"/>
+          <path class="country" d="M80 130 Q85 125 90 130 Q95 120 100 125 Q105 115 110 120 Q105 130 100 135 Q95 140 90 135 Q85 140 80 135 Z"/>
+          <path class="country" d="M60 140 Q65 135 70 140 Q75 130 80 135 Q75 145 70 150 Q65 145 60 150 Z"/>
+          <path class="country" d="M120 55 Q130 50 140 55 Q145 45 150 50 Q155 40 160 45 Q165 35 170 40 Q175 30 180 35 Q175 45 170 50 Q165 55 160 55 Q155 60 150 60 Q145 65 140 60 Q135 65 130 60 Q125 65 120 60 Z"/>
+          <path class="country" d="M190 200 Q200 195 205 200 Q210 195 215 200 Q220 195 225 200 Q220 210 215 215 Q210 220 205 215 Q200 220 195 215 Q190 220 185 215 Q190 210 190 205 Z"/>
+          <path class="country" d="M110 210 Q120 205 130 210 Q140 205 145 210 Q150 205 155 210 Q160 205 165 210 Q160 220 155 225 Q150 230 145 225 Q140 230 135 225 Q130 230 125 225 Q120 230 115 225 Q110 220 110 215 Z"/>
+          <circle class="map-pin" cx="88" cy="138" r="4"><title>London</title></circle>
+          <circle class="map-pin" cx="128" cy="218" r="4"><title>Madrid</title></circle>
+          <circle class="map-pin" cx="200" cy="175" r="4"><title>Frankfurt</title></circle>
         </svg>
       </div>
     </div>
@@ -473,223 +372,198 @@ img {
 
 <!-- TEAM -->
 <section id="team">
-  <div class="section-inner">
-    <div class="team-header reveal">
-      <div class="sec-label" data-en="Our Team" data-es="Nuestro Equipo">Our Team</div>
-      <h2 data-en="A team of over 60 professionals with extensive experience in private capital and SME investment." data-es="Somos un equipo de más de 60 profesionales con una amplia trayectoria en capital privado y en la inversión en PYMEs.">
-        A team of over 60 professionals with extensive experience in private capital and SME investment.
-      </h2>
-      <p class="sec-desc" data-en="Our diverse team brings together expertise from leading financial institutions across Europe." data-es="Nuestro diverso equipo reúne experiencia de las principales instituciones financieras de toda Europa.">
-        Our diverse team brings together expertise from leading financial institutions across Europe.
-      </p>
+  <div class="team-header">
+    <div class="sec-label">Nuestro Equipo</div>
+    <p>Somos un equipo de m&aacute;s de 60 profesionales con una amplia trayectoria en capital privado y en la inversi&oacute;n en PYMEs.</p>
+  </div>
+  <div class="team-scroll">
+    <div class="team-card">
+      <img class="tc-img" src="images/img_1779700210487-a01758a3c55a.jpg" alt="Rene Hartert" loading="lazy">
+      <div class="tc-info">
+        <div><div class="tc-name">Rene Hartert</div><div class="tc-role">Socio</div></div>
+        <a href="#" class="tc-linkedin">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
     </div>
-    <div class="team-grid">
-      <div class="team-card reveal">
-        <img class="team-img" src="images/img_1779700210487-a01758a3c55a.jpg" alt="Team member" loading="lazy">
-        <div class="team-info">
-          <div class="team-role" data-en="Partner" data-es="Socio">Partner</div>
-          <div class="team-name">Rene Hartert</div>
-          <a href="#" class="team-linkedin">LinkedIn <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
+    <div class="team-card">
+      <img class="tc-img" src="images/img_1742585665885-26db9db770af.jpg" alt="Vasil Peres" loading="lazy">
+      <div class="tc-info">
+        <div><div class="tc-name">Vasil Peres</div><div class="tc-role">Analista</div></div>
+        <a href="#" class="tc-linkedin">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
       </div>
-      <div class="team-card reveal">
-        <img class="team-img" src="images/img_1742585665960-4d2b6282ed10.jpg" alt="Team member" loading="lazy">
-        <div class="team-info">
-          <div class="team-role" data-en="Fund Manager" data-es="Fund Manager">Fund Manager</div>
-          <div class="team-name">Cristina Oñate</div>
-          <a href="#" class="team-linkedin">LinkedIn <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
+    </div>
+    <div class="team-card">
+      <img class="tc-img" src="images/img_1742585667037-9b4bcb898c4b.jpg" alt="Eva Lozano" loading="lazy">
+      <div class="tc-info">
+        <div><div class="tc-name">Eva Lozano</div><div class="tc-role">Relaci&oacute;n con Inversores</div></div>
+        <a href="#" class="tc-linkedin">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
       </div>
-      <div class="team-card reveal">
-        <img class="team-img" src="images/img_1742585665885-26db9db770af.jpg" alt="Team member" loading="lazy">
-        <div class="team-info">
-          <div class="team-role" data-en="Analyst" data-es="Analista">Analyst</div>
-          <div class="team-name">Vasil Peres</div>
-          <a href="#" class="team-linkedin">LinkedIn <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
+    </div>
+    <div class="team-card">
+      <img class="tc-img" src="images/img_1742585665960-4d2b6282ed10.jpg" alt="Cristina Oñate" loading="lazy">
+      <div class="tc-info">
+        <div><div class="tc-name">Cristina O&ntilde;ate</div><div class="tc-role">Fund Manager</div></div>
+        <a href="#" class="tc-linkedin">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
       </div>
-      <div class="team-card reveal">
-        <img class="team-img" src="images/img_1742585667037-9b4bcb898c4b.jpg" alt="Team member" loading="lazy">
-        <div class="team-info">
-          <div class="team-role" data-en="Investor Relations" data-es="Responsable de Relación con Inversores">Investor Relations</div>
-          <div class="team-name">Eva Lozano</div>
-          <a href="#" class="team-linkedin">LinkedIn <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
-        </div>
+    </div>
+    <div class="team-card">
+      <img class="tc-img" src="images/img_1761315413964-f8f01e105dde.jpg" alt="Pol Ruiz" loading="lazy">
+      <div class="tc-info">
+        <div><div class="tc-name">Pol Ruiz</div><div class="tc-role">Analista</div></div>
+        <a href="#" class="tc-linkedin">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="team-card">
+      <img class="tc-img" src="images/img_1758957701419-2c6e266f7988.jpg" alt="Norman Wallace" loading="lazy">
+      <div class="tc-info">
+        <div><div class="tc-name">Norman Wallace</div><div class="tc-role">Socio</div></div>
+        <a href="#" class="tc-linkedin">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="team-card">
+      <img class="tc-img" src="images/img_1732299164330-5e9f0f933e05.jpg" alt="Enrique Abascal" loading="lazy">
+      <div class="tc-info">
+        <div><div class="tc-name">Enrique Abascal</div><div class="tc-role">Socio</div></div>
+        <a href="#" class="tc-linkedin">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
+      </div>
+    </div>
+    <div class="team-card">
+      <img class="tc-img" src="images/img_1778731525495-c225978fe442.jpg" alt="Juan Treviño" loading="lazy">
+      <div class="tc-info">
+        <div><div class="tc-name">Juan Trevi&ntilde;o</div><div class="tc-role">Socio</div></div>
+        <a href="#" class="tc-linkedin">
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+          LinkedIn
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT / FOOTER -->
-<section id="contact">
-  <div class="section-inner">
-    <div class="contact-cta reveal">
-      <h2 data-en="The opportunity to create, grow, and look forward." data-es="La oportunidad para crear, crecer y mirar hacia delante.">
-        The opportunity to create, grow, and look forward.
-      </h2>
-      <a href="mailto:info@tresmarescapital.com" class="btn-primary">
-        <span data-en="Contact us" data-es="Contáctanos">Contact us</span>
-        <span class="arrow"><svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></span>
-      </a>
-    </div>
-    <div class="footer-divider"></div>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <h3><span class="logo-dot"></span>Tresmares</h3>
-        <p data-en="A pan-European alternative investment firm committed to driving growth in SMEs across the continent." data-es="Una firma paneuropea de inversión alternativa comprometida con impulsar el crecimiento de las PYMEs en todo el continente.">
-          A pan-European alternative investment firm committed to driving growth in SMEs across the continent.
-        </p>
-      </div>
-      <div class="footer-col">
-        <h4 data-en="Solutions" data-es="Soluciones">Solutions</h4>
-        <a href="#">Private Equity</a>
-        <a href="#">Direct Lending</a>
-        <a href="#">Fund of Funds</a>
-        <a href="#">Fund Financing</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-en="Company" data-es="Compañía">Company</h4>
-        <a href="#about" data-en="About Us" data-es="Nosotros">About Us</a>
-        <a href="#team" data-en="Team" data-es="Equipo">Team</a>
-        <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-en="Legal" data-es="Legal">Legal</h4>
-        <a href="#" data-en="Legal Notice" data-es="Aviso Legal">Legal Notice</a>
-        <a href="#" data-en="Privacy Policy" data-es="Política de Privacidad">Privacy Policy</a>
-        <a href="#" data-en="Cookie Policy" data-es="Política de Cookies">Cookie Policy</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>© 2025 Tresmares Capital. All rights reserved.</p>
-      <div class="footer-social">
-        <a href="#" aria-label="LinkedIn">in</a>
-        <a href="mailto:info@tresmarescapital.com" aria-label="Email">@</a>
-      </div>
-    </div>
-  </div>
+<!-- CTA -->
+<section id="cta">
+  <h2>La oportunidad para crear, crecer y mirar hacia delante.</h2>
+  <a href="mailto:info@tresmarescapital.com" class="cta-link">Cont&aacute;ctanos</a>
 </section>
+
+<!-- FOOTER -->
+<footer id="footer">
+  <div class="footer-social">
+    <a href="#" aria-label="LinkedIn">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+    </a>
+    <a href="mailto:info@tresmarescapital.com" aria-label="Email">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+    </a>
+  </div>
+  <div class="footer-line"></div>
+  <div class="footer-legal">
+    <a href="#">Aviso Legal</a>
+    <a href="#">Pol&iacute;tica de Privacidad</a>
+    <a href="#">Pol&iacute;tica de Cookies</a>
+    <a href="#">Canal de denuncias</a>
+  </div>
+  <div class="footer-copy">&copy; 2025 Tresmares Capital is registered with the CNMV.</div>
+</footer>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {
-  // =====================
-  // 1. HERO LETTER-BY-LETTER REVEAL
-  // =====================
-  (function heroReveal() {
-    const titles = {
-      en: 'Drive to grow',
-      es: 'Impulso para crecer'
-    };
-    const h1 = document.getElementById('heroTitle');
-    let currentLang = 'en';
-
-    function buildChars(text) {
-      h1.innerHTML = '';
-      const words = text.split(' ');
-      words.forEach((word, wi) => {
-        word.split('').forEach((ch, ci) => {
-          const span = document.createElement('span');
-          span.className = 'char';
-          span.textContent = ch === ' ' ? '\u00A0' : ch;
-          if (ch === ' ') span.innerHTML = '&nbsp;';
-          h1.appendChild(span);
-        });
-        if (wi < words.length - 1) {
-          const space = document.createElement('span');
-          space.className = 'char';
-          space.innerHTML = '&nbsp;';
-          h1.appendChild(space);
-        }
+  // 1. HERO LETTER-BY-LETTER ANIMATION
+  (function() {
+    const h1 = document.getElementById('heroH1');
+    const words = h1.querySelectorAll('.word');
+    // Split each word into letter spans
+    words.forEach((word, wi) => {
+      const text = word.textContent;
+      word.innerHTML = '';
+      text.split('').forEach((ch, ci) => {
+        const span = document.createElement('span');
+        span.className = 'char';
+        span.textContent = ch;
+        span.style.transitionDelay = (wi * 200 + ci * 50) + 'ms';
+        word.appendChild(span);
       });
-    }
-
-    function revealChars() {
+    });
+    // Reveal after short delay
+    setTimeout(function() {
       const chars = h1.querySelectorAll('.char');
       chars.forEach((ch, i) => {
-        setTimeout(() => {
+        setTimeout(function() {
           ch.classList.add('revealed');
-        }, i * 60);
+        }, i * 40);
       });
-    }
-
-    buildChars(titles[currentLang]);
-    setTimeout(revealChars, 400);
-
-    // Expose for language toggle
-    window._heroReveal = function(lang) {
-      currentLang = lang;
-      h1.innerHTML = '';
-      buildChars(titles[lang]);
-      setTimeout(revealChars, 100);
-    };
+    }, 300);
   })();
 
-  // =====================
-  // 2. ABOUT TEXT WORD REVEAL
-  // =====================
-  (function aboutReveal() {
-    const texts = {
-      en: 'A pan-European alternative investment firm focused on driving growth in SMEs. Founded in 2014, we have a team of over 60 professionals across our offices in Madrid, London, and Frankfurt, with the capacity to operate across Europe.',
-      es: 'Una firma paneuropea de inversión alternativa enfocada en impulsar el crecimiento de PYMEs. Fundada en 2014, actualmente cuenta con un equipo de más de 60 personas en sus tres oficinas de Madrid, Londres y Frankfurt, desde donde tiene la capacidad de hacer operaciones en toda Europa.'
-    };
-    const aboutP = document.getElementById('aboutPara');
-    let currentAboutLang = 'en';
-
-    function buildWords(text) {
-      aboutP.innerHTML = '';
-      const words = text.split(' ');
-      words.forEach((w, i) => {
-        const span = document.createElement('span');
-        span.className = 'word';
-        span.textContent = w + ' ';
-        aboutP.appendChild(span);
-      });
-    }
-
-    function revealWords() {
-      const words = aboutP.querySelectorAll('.word');
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
+  // 2. ABOUT HEADING WORD REVEAL
+  (function() {
+    const heading = document.getElementById('aboutHeading');
+    const text = heading.textContent;
+    heading.innerHTML = '';
+    const words = text.split(' ');
+    words.forEach(function(w, i) {
+      const span = document.createElement('span');
+      span.className = 'word';
+      span.textContent = w + (i < words.length - 1 ? '\u00A0' : '');
+      heading.appendChild(span);
+    });
+    const observeWords = function() {
+      const wordSpans = heading.querySelectorAll('.word');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
           if (entry.isIntersecting) {
-            words.forEach((w, i) => {
-              setTimeout(() => w.classList.add('revealed'), i * 40);
+            wordSpans.forEach(function(w, i) {
+              setTimeout(function() { w.classList.add('revealed'); }, i * 30);
             });
             observer.disconnect();
           }
         });
       }, { threshold: 0.3 });
-      observer.observe(aboutP);
-    }
-
-    buildWords(texts[currentAboutLang]);
-    setTimeout(revealWords, 500);
-
-    window._aboutReveal = function(lang) {
-      currentAboutLang = lang;
-      aboutP.innerHTML = '';
-      buildWords(texts[lang]);
-      setTimeout(revealWords, 100);
+      observer.observe(heading);
     };
+    setTimeout(observeWords, 500);
   })();
 
-  // =====================
   // 3. ANIMATED COUNTERS
-  // =====================
-  (function animateCounters() {
-    const counters = document.querySelectorAll('.counter');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  (function() {
+    var counters = document.querySelectorAll('.counter');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
-          const counter = entry.target;
-          const target = parseInt(counter.dataset.target);
+          var counter = entry.target;
+          var target = parseInt(counter.dataset.target);
           if (isNaN(target)) return;
-          const duration = 2000;
-          const step = Math.max(1, Math.floor(target / 60));
-          let current = 0;
-          const timer = setInterval(() => {
+          var duration = 2000;
+          var step = Math.max(1, Math.floor(target / 60));
+          var current = 0;
+          var timer = setInterval(function() {
             current += step;
             if (current >= target) {
-              counter.textContent = target.toLocaleString();
+              if (target === 2014) {
+                counter.textContent = '2014';
+              } else {
+                counter.textContent = target.toLocaleString();
+              }
               clearInterval(timer);
             } else {
               counter.textContent = current.toLocaleString();
@@ -699,124 +573,58 @@ document.addEventListener('DOMContentLoaded', function() {
         }
       });
     }, { threshold: 0.5 });
-    counters.forEach(c => observer.observe(c));
+    counters.forEach(function(c) { observer.observe(c); });
   })();
 
-  // =====================
   // 4. SCROLL REVEAL
-  // =====================
-  (function scrollReveal() {
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
+  (function() {
+    var reveals = document.querySelectorAll('.reveal');
+    var observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
           observer.unobserve(entry.target);
         }
       });
     }, { threshold: 0.15 });
-    reveals.forEach(el => observer.observe(el));
+    reveals.forEach(function(el) { observer.observe(el); });
   })();
 
-  // =====================
-  // 5. NAVBAR SCROLL EFFECT
-  // =====================
-  (function navScroll() {
-    const nav = document.getElementById('navbar');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 80) {
-        nav.classList.add('scrolled');
-      } else {
-        nav.classList.remove('scrolled');
-      }
-    }, { passive: true });
-  })();
-
-  // =====================
-  // 6. HAMBURGER MENU
-  // =====================
-  (function hamburger() {
-    const btn = document.getElementById('hamburger');
-    const links = document.getElementById('navLinks');
-    btn.addEventListener('click', function() {
-      btn.classList.toggle('active');
-      links.classList.toggle('open');
-      if (links.classList.contains('open')) {
-        document.body.style.overflow = 'hidden';
-      } else {
-        document.body.style.overflow = '';
-      }
-    });
-    // Close on link click
-    links.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', function() {
-        btn.classList.remove('active');
-        links.classList.remove('open');
-        document.body.style.overflow = '';
-      });
-    });
-  })();
-
-  // =====================
-  // 7. LANGUAGE TOGGLE
-  // =====================
-  (function langToggle() {
-    const langLinks = document.querySelectorAll('.lang-toggle a');
-    const html = document.documentElement;
-
-    function setLang(lang) {
-      html.setAttribute('data-lang', lang);
-      langLinks.forEach(l => l.classList.toggle('active', l.dataset.lang === lang));
-
-      // Update all data-en/data-es attributes
-      document.querySelectorAll('[data-en]').forEach(el => {
-        if (el.dataset[lang]) {
-          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
-            el.placeholder = el.dataset[lang];
-          } else if (el.classList.contains('counter') || el.classList.contains('char') || el.classList.contains('word') || el.closest('.char')) {
-            // skip animated elements handled separately
-          } else {
-            el.textContent = el.dataset[lang];
-          }
+  // 5. SOLUTION SLIDE SIDE NAV HIGHLIGHT
+  (function() {
+    var scroll = document.getElementById('solScroll');
+    var links = document.querySelectorAll('.sol-side-nav a');
+    var slides = document.querySelectorAll('.solution-slide');
+    function updateNav() {
+      var scrollLeft = scroll.scrollLeft;
+      var viewWidth = scroll.clientWidth;
+      links.forEach(function(link, i) {
+        link.classList.remove('active');
+        var slideStart = i * viewWidth;
+        if (scrollLeft >= slideStart - viewWidth * 0.3 && scrollLeft < slideStart + viewWidth * 0.7) {
+          link.classList.add('active');
         }
       });
-
-      // Hero reveal
-      if (window._heroReveal) window._heroReveal(lang);
-      // About reveal
-      if (window._aboutReveal) window._aboutReveal(lang);
     }
-
-    langLinks.forEach(a => {
-      a.addEventListener('click', function(e) {
-        e.preventDefault();
-        const lang = this.dataset.lang;
-        setLang(lang);
+    if (scroll) {
+      scroll.addEventListener('scroll', updateNav, { passive: true });
+      updateNav();
+      // Click links to scroll
+      links.forEach(function(link, i) {
+        link.addEventListener('click', function(e) {
+          e.preventDefault();
+          scroll.scrollTo({ left: i * scroll.clientWidth, behavior: 'smooth' });
+        });
       });
-    });
+    }
   })();
 
-  // =====================
-  // 8. PARALLAX ON SCROLL
-  // =====================
-  (function parallax() {
-    window.addEventListener('scroll', function() {
-      const scrolled = window.pageYOffset;
-      document.querySelectorAll('.parallax-bg').forEach(bg => {
-        const speed = 0.3;
-        bg.style.transform = `translateY(${scrolled * speed}px)`;
-      });
-    }, { passive: true });
-  })();
-
-  // =====================
-  // 9. SMOOTH SCROLL FOR ANCHOR LINKS
-  // =====================
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  // 6. SMOOTH SCROLL FOR ANCHOR LINKS
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
     anchor.addEventListener('click', function(e) {
-      const href = this.getAttribute('href');
+      var href = this.getAttribute('href');
       if (!href || href === '#') return;
-      const target = document.querySelector(href);
+      var target = document.querySelector(href);
       if (target) {
         e.preventDefault();
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -824,7 +632,23 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  console.log('Tresmares Capital clone initialized successfully ✓');
+  // 7. PARALLAX ON SOLUTIONS SLIDES
+  (function() {
+    var slides = document.querySelectorAll('.solution-slide');
+    slides.forEach(function(slide) {
+      var bg = slide.querySelector('.slide-bg');
+      if (bg) {
+        slide.addEventListener('mousemove', function(e) {
+          var rect = slide.getBoundingClientRect();
+          var x = (e.clientX - rect.left) / rect.width - 0.5;
+          var y = (e.clientY - rect.top) / rect.height - 0.5;
+          bg.style.transform = 'translate(' + (x * 20) + 'px, ' + (y * 20) + 'px)';
+        });
+      }
+    });
+  })();
+
+  console.log('Tresmares Capital clone initialized successfully');
 });
 </script>
 </body>
