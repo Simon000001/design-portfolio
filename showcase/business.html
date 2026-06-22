@@ -196,9 +196,10 @@ section{padding:80px 0}
 .trusted-track{
   display:flex;
   gap:60px;
-  animation:scroll 30s linear infinite;
+  animation:scroll-logos 20s linear infinite;
   width:fit-content
 }
+.trusted-track:hover{animation-play-state:paused}
 .trusted-track img{
   height:40px;
   width:auto;
@@ -207,7 +208,7 @@ section{padding:80px 0}
   flex-shrink:0
 }
 .trusted-track img:hover{opacity:.8}
-@keyframes scroll{
+@keyframes scroll-logos{
   0%{transform:translateX(0)}
   100%{transform:translateX(-50%)}
 }
@@ -250,8 +251,7 @@ section{padding:80px 0}
 .feature-card{
   background:rgba(255,255,255,.5);
   border-radius:20px;
-  padding:40px 32px;
-  transition:transform .3s,box-shadow .3s
+  padding:40px 32px
 }
 .feature-card:hover{
   transform:translateY(-4px);
@@ -412,12 +412,13 @@ section{padding:80px 0}
   border-radius:20px;
   padding:40px 24px;
   text-align:center;
-  transition:transform .3s,background .3s;
+  border:1px solid transparent;
+  transition:all 0.3s ease;
   cursor:default
 }
 .use-case:hover{
-  transform:translateY(-4px);
-  background:#D1E3FF
+  transform:translateY(-3px);
+  border-color:#D1E3FF
 }
 .use-case-icon{
   width:64px;
@@ -591,8 +592,7 @@ section{padding:80px 0}
   font-size:11px;
   font-weight:500;
   letter-spacing:2px;
-  text-transform:uppercase;
-  transition:opacity .2s,transform .2s
+  text-transform:uppercase
 }
 .cta-btn:hover{opacity:.85;transform:translateY(-2px)}
 @media(max-width:768px){
@@ -674,16 +674,10 @@ footer{
   .use-case{padding:28px 16px}
   .footer-grid{grid-template-columns:1fr}
 }
-/* Shimmer loading animation for images */
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
-}
-img {
-  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
-  background-size: 200% 100%;
-  animation: shimmer 1.5s infinite;
-}
+/* Image fade-in on load */
+img { transition: opacity 0.5s ease; }
+img[loading="lazy"] { opacity: 0; }
+img.loaded, img[src]:not([loading]) { opacity: 1; }
 
 /* Polished selection color (brand blue) */
 ::selection{background:#D1E3FF;color:#180102}
@@ -695,18 +689,19 @@ img {
   top:0;left:0;
   height:3px;
   width:0;
-  background:linear-gradient(90deg,#2a3a6a,#180102);
+  background:#D1E3FF;
   z-index:1100;
   transition:width .08s linear
 }
 
 /* Nav refined shadow on scroll */
 nav{transition:box-shadow .3s,background .3s}
-nav.scrolled{box-shadow:0 4px 24px rgba(24,1,2,.08)}
+nav.nav-scrolled{box-shadow:0 1px 0 rgba(0,0,0,0.06)}
 
 /* Feature card hover: subtle lift + scale */
+.feature-card{transition:all 0.4s cubic-bezier(0.16,1,0.3,1)}
 .feature-card:hover{
-  transform:translateY(-4px) scale(1.02);
+  transform:scale(1.02) translateY(-4px);
   box-shadow:0 16px 44px rgba(24,1,2,.08)
 }
 
@@ -718,9 +713,10 @@ nav.scrolled{box-shadow:0 4px 24px rgba(24,1,2,.08)}
 .trusted-track img{animation:logoIn .7s cubic-bezier(.25,.46,.45,.94) backwards}
 
 /* CTA buttons: subtle lift + shadow growth on hover */
-.nav-cta{transition:opacity .2s,transform .2s,box-shadow .2s}
+.nav-cta,.cta-btn{transition:all 0.25s cubic-bezier(0.16,1,0.3,1)}
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 10px 26px rgba(24,1,2,.22)}
-.cta-btn:hover{box-shadow:0 14px 32px rgba(24,1,2,.24)}
+.cta-btn:hover{transform:translateY(-2px);opacity:.85;box-shadow:0 14px 32px rgba(24,1,2,.24)}
+.nav-cta:active,.cta-btn:active{transform:scale(0.98)}
 </style>
 
 </head>
@@ -1070,9 +1066,9 @@ document.addEventListener('DOMContentLoaded', function(){
       var pct = docH > 0 ? (y / docH) * 100 : 0;
       progress.style.width = pct + '%';
     }
-    if(navEl){ navEl.classList.toggle('scrolled', y > 10); }
+    if(navEl){ navEl.classList.toggle('nav-scrolled', y > 80); }
     if(heroImg && !prefersReduced && y < window.innerHeight * 1.5){
-      heroImg.style.transform = 'translateY(' + (y * 0.12) + 'px) scale(1.05)';
+      heroImg.style.transform = 'translateY(' + (y * 0.3) + 'px)';
     }
     ticking = false;
   }
@@ -1080,6 +1076,12 @@ document.addEventListener('DOMContentLoaded', function(){
     if(!ticking){ window.requestAnimationFrame(onScroll); ticking = true; }
   }, { passive: true });
   onScroll();
+
+  // Image fade-in: add loaded class on load
+  document.querySelectorAll('img[loading="lazy"]').forEach(function(img){
+    img.addEventListener('load', function(){ this.classList.add('loaded'); });
+    if(img.complete){ img.classList.add('loaded'); }
+  });
 });
 </script>
 </body>
