@@ -3,430 +3,800 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nova — Build Smarter</title>
+<title>NOVA — SaaS Platform</title>
+<meta name="description" content="NOVA is the modern operations platform that unifies your workflows, automates the busywork, and gives every team real-time insight. Ship faster, scale calmer.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="NOVA — SaaS Platform">
+<meta property="og:description" content="Unify your workflows, automate the busywork, and give every team real-time insight. Ship faster, scale calmer with NOVA.">
+<meta property="og:image" content="https://nova.example.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="NOVA — SaaS Platform">
+<meta name="twitter:description" content="Unify your workflows, automate the busywork, and give every team real-time insight.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e27'/%3E%3Cpath d='M9 23V9l14 14V9' fill='none' stroke='%234f6ef7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--navy:#0a0e27;--navy-light:#121738;--blue:#4f6ef7;--blue-glow:#4f6ef744;--white:#ffffff;--gray:#b0b5d0;--gray-light:#e8eaf6;--card-bg:#121738;--radius:12px;--radius-lg:20px;--transition:0.3s cubic-bezier(.4,0,.2,1)}
-html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,sans-serif;background:var(--navy);color:var(--white);line-height:1.6;overflow-x:hidden}
-h1,h2,h3{font-family:'Playfair Display',Georgia,serif;font-weight:800;line-height:1.15}
-h2{font-size:clamp(2rem,4vw,3.2rem);text-align:center;margin-bottom:0.5em}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.section{padding:100px 0}
-
-/* ───── Floating Nav ───── */
-nav{position:fixed;top:24px;left:50%;transform:translateX(-50%);z-index:1000;width:90%;max-width:1100px;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(10,14,39,.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border:1px solid rgba(79,110,247,.15);border-radius:100px;box-shadow:0 8px 40px rgba(0,0,0,.4)}
-nav .logo{font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;font-weight:800;background:linear-gradient(135deg,var(--blue),#8ba3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-nav .nav-links{display:flex;gap:32px;align-items:center}
-nav .nav-links a{color:var(--gray);text-decoration:none;font-size:.875rem;font-weight:500;transition:color var(--transition)}
-nav .nav-links a:hover{color:var(--white)}
-nav .cta-btn{background:var(--blue);color:var(--white);border:none;padding:10px 28px;border-radius:100px;font-size:.875rem;font-weight:600;cursor:pointer;transition:all var(--transition)}
-nav .cta-btn:hover{background:#5d7af8;transform:translateY(-2px);box-shadow:0 8px 25px var(--blue-glow)}
-.mobile-menu-btn{display:none;background:none;border:none;color:var(--white);font-size:1.5rem;cursor:pointer}
-
-/* ───── Hero ───── */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;position:relative;padding:120px 24px 60px;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:
-  radial-gradient(ellipse 80% 60% at 20% 20%,rgba(79,110,247,.12) 0%,transparent 60%),
-  radial-gradient(ellipse 60% 50% at 80% 80%,rgba(79,110,247,.08) 0%,transparent 60%),
-  radial-gradient(ellipse 50% 40% at 50% 50%,rgba(79,110,247,.05) 0%,transparent 50%);
-pointer-events:none}
-.hero .mesh-grid{position:absolute;inset:0;background-image:
-  linear-gradient(rgba(79,110,247,.03) 1px,transparent 1px),
-  linear-gradient(90deg,rgba(79,110,247,.03) 1px,transparent 1px);
-background-size:60px 60px;pointer-events:none;mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 30%,transparent 70%);-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 50%,black 30%,transparent 70%)}
-.hero h1{font-size:clamp(3.2rem,9vw,7rem);font-weight:900;letter-spacing:-.03em;margin-bottom:24px;position:relative}
-.hero h1 span{background:linear-gradient(135deg,var(--white) 30%,var(--blue) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.hero p{font-size:clamp(1rem,2vw,1.25rem);color:var(--gray);max-width:600px;margin-bottom:40px;position:relative;line-height:1.7}
-.hero .hero-actions{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;position:relative}
-.hero .btn-primary{background:var(--blue);color:var(--white);padding:16px 40px;border-radius:100px;font-size:1rem;font-weight:600;border:none;cursor:pointer;transition:all var(--transition);text-decoration:none;display:inline-flex;align-items:center;gap:8px}
-.hero .btn-primary:hover{background:#5d7af8;transform:translateY(-3px);box-shadow:0 12px 40px var(--blue-glow)}
-.hero .btn-secondary{background:rgba(255,255,255,.08);color:var(--white);padding:16px 40px;border-radius:100px;font-size:1rem;font-weight:500;border:1px solid rgba(255,255,255,.12);cursor:pointer;transition:all var(--transition);text-decoration:none}
-.hero .btn-secondary:hover{background:rgba(255,255,255,.14);border-color:rgba(255,255,255,.25)}
-.hero .scroll-indicator{position:absolute;bottom:40px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--gray);font-size:.75rem;letter-spacing:.15em;text-transform:uppercase;opacity:.5;animation:bounce 2s infinite}
-@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
-
-/* ───── Features ───── */
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px}
-.feature-card{background:var(--card-bg);border:1px solid rgba(79,110,247,.08);border-radius:var(--radius-lg);padding:40px 32px;transition:all var(--transition);position:relative;overflow:hidden}
-.feature-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--blue),#8ba3ff);opacity:0;transition:opacity var(--transition)}
-.feature-card:hover{transform:translateY(-6px);border-color:rgba(79,110,247,.2);box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.feature-card:hover::after{opacity:1}
-.feature-card .icon{width:52px;height:52px;border-radius:14px;background:linear-gradient(135deg,rgba(79,110,247,.15),rgba(79,110,247,.05));display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:20px;border:1px solid rgba(79,110,247,.1)}
-.feature-card h3{font-size:1.3rem;margin-bottom:12px}
-.feature-card p{color:var(--gray);font-size:.925rem;line-height:1.7}
-
-/* ───── Metrics ───── */
-.metrics{background:var(--card-bg);border-top:1px solid rgba(79,110,247,.08);border-bottom:1px solid rgba(79,110,247,.08)}
-.metrics .container{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
-.metric{text-align:center;padding:60px 24px;border-right:1px solid rgba(79,110,247,.08)}
-.metric:last-child{border-right:none}
-.metric .number{font-family:'Playfair Display',Georgia,serif;font-size:clamp(2rem,3vw,3rem);font-weight:900;background:linear-gradient(135deg,var(--white),var(--blue));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:4px}
-.metric .label{color:var(--gray);font-size:.875rem;font-weight:500}
-
-/* ───── Testimonials ───── */
-.testimonials{overflow:hidden}
-.testimonial-track{display:flex;gap:24px;margin-top:60px;animation:scroll 30s linear infinite;width:max-content}
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-.testimonial-card{background:var(--card-bg);border:1px solid rgba(79,110,247,.08);border-radius:var(--radius-lg);padding:36px;min-width:380px;max-width:420px;flex-shrink:0}
-.testimonial-card .stars{color:#f0b429;font-size:1rem;margin-bottom:16px;letter-spacing:2px}
-.testimonial-card blockquote{color:var(--gray-light);font-size:.95rem;line-height:1.7;margin-bottom:20px;font-style:italic}
-.testimonial-card .author{display:flex;align-items:center;gap:14px}
-.testimonial-card .author .avatar{width:44px;height:44px;border-radius:50%;background:linear-gradient(135deg,var(--blue),#8ba3ff);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.9rem}
-.testimonial-card .author .name{font-weight:600;font-size:.9rem}
-.testimonial-card .author .role{color:var(--gray);font-size:.8rem}
-
-/* ───── Pricing ───── */
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:60px;align-items:start}
-.pricing-card{background:var(--card-bg);border:1px solid rgba(79,110,247,.08);border-radius:var(--radius-lg);padding:40px 32px;transition:all var(--transition);text-align:center;position:relative}
-.pricing-card.featured{border-color:var(--blue);transform:scale(1.05);background:linear-gradient(180deg,rgba(79,110,247,.08),var(--card-bg))}
-.pricing-card.featured .badge{position:absolute;top:-14px;left:50%;transform:translateX(-50%);background:var(--blue);color:var(--white);padding:6px 20px;border-radius:100px;font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em}
-.pricing-card:hover{transform:translateY(-6px);border-color:rgba(79,110,247,.2);box-shadow:0 20px 60px rgba(0,0,0,.3)}
-.pricing-card.featured:hover{transform:scale(1.05) translateY(-6px);border-color:var(--blue)}
-.pricing-card .plan-name{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin-bottom:16px}
-.pricing-card .price{font-family:'Playfair Display',Georgia,serif;font-size:3rem;font-weight:900;margin-bottom:4px}
-.pricing-card .price span{font-size:1.2rem;font-weight:500;color:var(--gray)}
-.pricing-card .description{color:var(--gray);font-size:.875rem;margin-bottom:28px}
-.pricing-card ul{list-style:none;text-align:left;margin-bottom:32px}
-.pricing-card ul li{padding:10px 0;font-size:.875rem;border-bottom:1px solid rgba(79,110,247,.06);display:flex;align-items:center;gap:10px}
-.pricing-card ul li::before{content:'✓';color:var(--blue);font-weight:700}
-.pricing-card .btn-pricing{width:100%;padding:14px;border-radius:100px;font-size:.9rem;font-weight:600;cursor:pointer;transition:all var(--transition);border:none}
-.pricing-card .btn-pricing.outline{background:transparent;border:1px solid rgba(79,110,247,.25);color:var(--white)}
-.pricing-card .btn-pricing.outline:hover{background:rgba(79,110,247,.1);border-color:var(--blue)}
-.pricing-card .btn-pricing.primary{background:var(--blue);color:var(--white)}
-.pricing-card .btn-pricing.primary:hover{background:#5d7af8;box-shadow:0 8px 25px var(--blue-glow)}
-
-/* ───── CTA ───── */
-.cta-section{text-align:center;background:var(--card-bg);border-radius:var(--radius-lg);margin:0 24px;padding:80px 40px;position:relative;overflow:hidden}
-.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(79,110,247,.1),transparent);pointer-events:none}
-.cta-section h2{font-size:clamp(2rem,4vw,3rem);margin-bottom:16px}
-.cta-section p{color:var(--gray);max-width:500px;margin:0 auto 40px}
-.cta-section .btn-primary{background:var(--blue);color:var(--white);padding:18px 48px;border-radius:100px;font-size:1.05rem;font-weight:600;border:none;cursor:pointer;transition:all var(--transition);text-decoration:none;display:inline-block}
-.cta-section .btn-primary:hover{background:#5d7af8;transform:translateY(-3px);box-shadow:0 12px 40px var(--blue-glow)}
-
-/* ───── Footer ───── */
-footer{background:var(--navy);border-top:1px solid rgba(79,110,247,.08);padding:60px 24px 40px}
-footer .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px}
-footer .col .logo{font-family:'Playfair Display',Georgia,serif;font-size:1.3rem;font-weight:800;background:linear-gradient(135deg,var(--blue),#8ba3ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:12px;display:inline-block}
-footer .col p{color:var(--gray);font-size:.875rem;max-width:300px;line-height:1.7}
-footer .col h4{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--blue);margin-bottom:20px}
-footer .col a{display:block;color:var(--gray);text-decoration:none;font-size:.875rem;margin-bottom:12px;transition:color var(--transition)}
-footer .col a:hover{color:var(--white)}
-footer .bottom{border-top:1px solid rgba(79,110,247,.08);margin-top:48px;padding-top:24px;text-align:center;color:var(--gray);font-size:.8rem}
-
-/* ───── Responsive ───── */
-@media(max-width:992px){
-  .features-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}
-  .metrics .container{grid-template-columns:repeat(2,1fr)}
-  .metric:nth-child(2){border-right:none}
-  footer .container{grid-template-columns:1fr 1fr;gap:32px}
+:root{
+  --navy:#0a0e27;
+  --panel:#16213e;
+  --panel-2:#1c2a52;
+  --blue:#4f6ef7;
+  --blue-soft:rgba(79,110,247,.18);
+  --teal:#00d4aa;
+  --teal-soft:rgba(0,212,170,.16);
+  --white:#f4f6ff;
+  --gray:#9aa3c7;
+  --gray-dim:#6b7299;
+  --line:rgba(132,148,200,.14);
+  --radius:14px;
+  --radius-lg:22px;
+  --ease:cubic-bezier(.22,1,.36,1);
 }
-@media(max-width:768px){
-  nav{padding:14px 20px;width:94%;border-radius:50px}
-  nav .nav-links{display:none}
-  .mobile-menu-btn{display:block}
-  .section{padding:60px 0}
-  .features-grid,.pricing-grid{grid-template-columns:1fr}
-  .testimonial-card{min-width:300px}
-  .hero h1{font-size:clamp(2.5rem,12vw,4rem)}
-  .pricing-card.featured{transform:none}
-  .pricing-card.featured:hover{transform:translateY(-6px)}
-  footer .container{grid-template-columns:1fr;text-align:center}
-  footer .col p{max-width:none}
-  .cta-section{padding:60px 24px;margin:0 16px}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--navy);color:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,.font-display{font-family:'Space Grotesk','Inter',sans-serif;font-weight:600;line-height:1.08;letter-spacing:-.02em}
+a{color:inherit}
+img,svg{display:block}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+.section{padding:120px 0;position:relative}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:18px}
+.eyebrow::before{content:"";width:24px;height:1px;background:var(--teal);opacity:.6}
+.section-head{max-width:640px;margin:0 auto 64px;text-align:center}
+.section-head h2{font-size:clamp(1.9rem,4vw,3rem)}
+.section-head p{color:var(--gray);margin-top:16px;font-size:1.05rem}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;padding:14px 28px;border-radius:100px;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .25s,border-color .25s,color .25s;white-space:nowrap}
+.btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(79,110,247,.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(79,110,247,.5)}
+.btn-ghost{background:rgba(255,255,255,.04);color:var(--white);border-color:var(--line)}
+.btn-ghost:hover{transform:translateY(-3px);background:rgba(255,255,255,.08);border-color:rgba(132,148,200,.35)}
+.btn svg{width:18px;height:18px}
+
+/* -- Nav -- */
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:background .3s,border-color .3s,box-shadow .3s;border-bottom:1px solid transparent}
+header.scrolled{background:rgba(10,14,39,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom-color:var(--line);box-shadow:0 6px 30px rgba(0,0,0,.35)}
+nav{display:flex;align-items:center;justify-content:space-between;height:74px;max-width:1200px;margin:0 auto;padding:0 24px}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--white)}
+.logo .logo-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--teal));display:grid;place-items:center;flex:none}
+.logo .logo-mark svg{width:18px;height:18px;stroke:#fff}
+.nav-links{display:flex;gap:34px;align-items:center}
+.nav-links a{color:var(--gray);text-decoration:none;font-size:.92rem;font-weight:500;transition:color .2s;position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--teal);transition:width .3s var(--ease)}
+.nav-links a:hover{color:var(--white)}
+.nav-links a:hover::after{width:100%}
+.nav-actions{display:flex;align-items:center;gap:18px}
+.nav-actions .login{font-size:.92rem;font-weight:500;color:var(--gray);text-decoration:none;transition:color .2s}
+.nav-actions .login:hover{color:var(--white)}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;cursor:pointer;padding:0}
+.hamburger span{display:block;width:18px;height:2px;background:var(--white);margin:0 auto;border-radius:2px;transition:transform .3s var(--ease),opacity .2s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mobile-panel{position:fixed;inset:74px 0 auto 0;background:rgba(10,14,39,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:6px;transform:translateY(-120%);transition:transform .4s var(--ease);z-index:999}
+.mobile-panel.open{transform:translateY(0)}
+.mobile-panel a{padding:14px 8px;color:var(--gray);text-decoration:none;font-size:1.05rem;font-weight:500;border-bottom:1px solid var(--line)}
+.mobile-panel a:last-of-type{border-bottom:none}
+.mobile-panel .btn{margin-top:14px}
+
+/* -- Hero -- */
+.hero{position:relative;padding:150px 0 90px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
+.hero-bg .glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55}
+.hero-bg .g1{width:560px;height:560px;background:radial-gradient(circle,rgba(79,110,247,.55),transparent 70%);top:-180px;left:-120px}
+.hero-bg .g2{width:480px;height:480px;background:radial-gradient(circle,rgba(0,212,170,.4),transparent 70%);top:40px;right:-140px}
+.hero-bg .g3{width:420px;height:420px;background:radial-gradient(circle,rgba(79,110,247,.3),transparent 70%);bottom:-200px;left:35%}
+.grid-overlay{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(132,148,200,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(132,148,200,.06) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000 40%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000 40%,transparent 100%)}
+.hero-inner{position:relative;z-index:2;text-align:center;max-width:860px;margin:0 auto}
+.badge{display:inline-flex;align-items:center;gap:9px;padding:7px 16px 7px 8px;border-radius:100px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:.82rem;color:var(--gray);margin-bottom:30px}
+.badge .pill{font-size:.7rem;font-weight:700;letter-spacing:.05em;background:var(--teal-soft);color:var(--teal);padding:3px 9px;border-radius:100px}
+.hero h1{font-size:clamp(2.6rem,6.5vw,4.7rem);font-weight:700}
+.hero h1 .grad{background:linear-gradient(110deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p.sub{color:var(--gray);font-size:clamp(1.05rem,2vw,1.25rem);max-width:580px;margin:26px auto 38px}
+.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.hero-trust{margin-top:42px;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gray-dim);font-size:.85rem;flex-wrap:wrap}
+.hero-trust .avatars{display:flex}
+.hero-trust .avatars span{width:30px;height:30px;border-radius:50%;border:2px solid var(--navy);margin-left:-9px;background:linear-gradient(135deg,var(--blue),var(--teal))}
+.hero-trust .avatars span:first-child{margin-left:0}
+.hero-trust .avatars span:nth-child(2){background:linear-gradient(135deg,var(--teal),#3ad)}
+.hero-trust .avatars span:nth-child(3){background:linear-gradient(135deg,#7d8cff,var(--blue))}
+.hero-trust .avatars span:nth-child(4){background:linear-gradient(135deg,#00d4aa,#4f6ef7)}
+
+/* -- Product mock -- */
+.mock-wrap{position:relative;z-index:2;max-width:980px;margin:70px auto 0;perspective:1600px}
+.mock{background:linear-gradient(180deg,rgba(28,42,82,.9),rgba(22,33,62,.95));border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.7),0 0 0 1px rgba(79,110,247,.08);transform:rotateX(8deg);transform-origin:center top}
+.mock-bar{display:flex;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid var(--line);background:rgba(10,14,39,.5)}
+.mock-bar .dots{display:flex;gap:7px}
+.mock-bar .dots i{width:11px;height:11px;border-radius:50%;background:rgba(132,148,200,.35)}
+.mock-bar .url{flex:1;max-width:300px;height:22px;border-radius:6px;background:rgba(132,148,200,.1);display:flex;align-items:center;padding:0 12px;font-size:.7rem;color:var(--gray-dim);font-family:'Space Grotesk',sans-serif}
+.mock-body{display:grid;grid-template-columns:180px 1fr;min-height:330px}
+.mock-side{border-right:1px solid var(--line);padding:20px 16px;display:flex;flex-direction:column;gap:10px;background:rgba(10,14,39,.3)}
+.mock-side .s-item{height:34px;border-radius:8px;display:flex;align-items:center;gap:10px;padding:0 12px;color:var(--gray);font-size:.8rem;font-weight:500}
+.mock-side .s-item.active{background:var(--blue-soft);color:#fff}
+.mock-side .s-item span{width:14px;height:14px;border-radius:4px;background:currentColor;opacity:.7;flex:none}
+.mock-main{padding:24px}
+.mock-main .m-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+.mock-main .m-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.05rem}
+.mock-main .m-tag{font-size:.7rem;color:var(--teal);background:var(--teal-soft);padding:4px 10px;border-radius:100px;font-weight:600}
+.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.stat-card{background:rgba(10,14,39,.4);border:1px solid var(--line);border-radius:12px;padding:14px}
+.stat-card .lbl{font-size:.68rem;color:var(--gray-dim);text-transform:uppercase;letter-spacing:.08em}
+.stat-card .val{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;margin-top:6px}
+.stat-card .val.t{color:var(--teal)}
+.stat-card .val.b{color:var(--blue)}
+.chart{height:130px;background:rgba(10,14,39,.4);border:1px solid var(--line);border-radius:12px;padding:16px;position:relative;overflow:hidden}
+.chart svg{width:100%;height:100%}
+
+/* -- Logos -- */
+.logos{padding:50px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.logos p{text-align:center;color:var(--gray-dim);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px}
+.logo-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:44px}
+.logo-row .brand{display:flex;align-items:center;gap:9px;color:var(--gray);opacity:.6;transition:opacity .3s;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.1rem;letter-spacing:-.01em}
+.logo-row .brand:hover{opacity:1}
+.logo-row .brand svg{width:22px;height:22px;stroke:currentColor}
+
+/* -- Metrics -- */
+.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.metric{text-align:center;padding:36px 20px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(28,42,82,.5),rgba(22,33,62,.2));transition:transform .4s var(--ease),border-color .3s}
+.metric:hover{transform:translateY(-6px);border-color:rgba(79,110,247,.4)}
+.metric .num{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3.1rem);font-weight:700;background:linear-gradient(120deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
+.metric .lbl{color:var(--gray);font-size:.95rem;margin-top:12px}
+
+/* -- Features -- */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feature{padding:34px 30px;border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(180deg,rgba(28,42,82,.4),rgba(22,33,62,.15));transition:transform .4s var(--ease),border-color .3s,box-shadow .4s;position:relative;overflow:hidden}
+.feature::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at top right,var(--blue-soft),transparent 60%);opacity:0;transition:opacity .4s}
+.feature:hover{transform:translateY(-8px);border-color:rgba(79,110,247,.4);box-shadow:0 24px 50px -20px rgba(0,0,0,.6)}
+.feature:hover::before{opacity:1}
+.feature .icon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:var(--blue-soft);border:1px solid rgba(79,110,247,.3);margin-bottom:22px;position:relative}
+.feature:nth-child(2n) .icon{background:var(--teal-soft);border-color:rgba(0,212,170,.3)}
+.feature .icon svg{width:26px;height:26px;fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.feature:nth-child(2n) .icon svg{stroke:var(--teal)}
+.feature h3{font-size:1.25rem;margin-bottom:10px}
+.feature p{color:var(--gray);font-size:.96rem}
+
+/* -- How it works -- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;position:relative}
+.steps::before{content:"";position:absolute;top:32px;left:16%;right:16%;height:2px;background:linear-gradient(90deg,var(--blue),var(--teal));opacity:.25}
+.step{position:relative;text-align:center;padding:0 12px}
+.step .badge-num{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto 24px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;background:var(--navy);border:2px solid var(--blue);color:var(--white);position:relative;z-index:1}
+.step:nth-child(2) .badge-num{border-color:var(--teal);color:var(--teal)}
+.step:nth-child(3) .badge-num{border-color:var(--teal);color:var(--teal)}
+.step h3{font-size:1.2rem;margin-bottom:10px}
+.step p{color:var(--gray);font-size:.95rem;max-width:300px;margin:0 auto}
+
+/* -- Pricing -- */
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
+.plan{display:flex;flex-direction:column;padding:36px 32px;border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(180deg,rgba(28,42,82,.4),rgba(22,33,62,.15));transition:transform .4s var(--ease),border-color .3s}
+.plan:hover{transform:translateY(-6px)}
+.plan.featured{border-color:var(--blue);background:linear-gradient(180deg,rgba(79,110,247,.16),rgba(22,33,62,.3));box-shadow:0 30px 70px -30px rgba(79,110,247,.6);position:relative;transform:scale(1.03)}
+.plan.featured:hover{transform:scale(1.03) translateY(-6px)}
+.plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(120deg,var(--blue),var(--teal));color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:6px 16px;border-radius:100px;text-transform:uppercase}
+.plan .plan-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.05rem;color:var(--gray)}
+.plan .price{margin:18px 0 6px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:3rem;line-height:1}
+.plan .price span{font-size:1rem;font-weight:500;color:var(--gray-dim)}
+.plan .desc{color:var(--gray);font-size:.92rem;margin-bottom:26px;min-height:42px}
+.plan ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:30px;flex:1}
+.plan li{display:flex;align-items:flex-start;gap:11px;font-size:.94rem;color:var(--gray)}
+.plan li svg{width:18px;height:18px;flex:none;margin-top:2px;stroke:var(--teal);stroke-width:2.5;fill:none}
+.plan .btn{width:100%}
+
+/* -- Testimonials -- */
+.tcards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.tcard{padding:30px;border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(180deg,rgba(28,42,82,.4),rgba(22,33,62,.15));display:flex;flex-direction:column;transition:transform .4s var(--ease),border-color .3s}
+.tcard:hover{transform:translateY(-6px);border-color:rgba(0,212,170,.35)}
+.stars{display:flex;gap:3px;margin-bottom:16px}
+.stars svg{width:17px;height:17px;fill:var(--teal)}
+.stars svg.empty{fill:rgba(132,148,200,.25)}
+.tcard blockquote{font-size:1rem;color:var(--white);line-height:1.6;flex:1;margin-bottom:22px}
+.tcard .who{display:flex;align-items:center;gap:13px}
+.tcard .who .ava{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff;font-size:.95rem}
+.tcard .who .name{font-weight:600;font-size:.95rem}
+.tcard .who .role{font-size:.82rem;color:var(--gray-dim)}
+
+/* -- CTA -- */
+.cta-band{position:relative;overflow:hidden;border-radius:28px;padding:74px 40px;text-align:center;background:linear-gradient(135deg,var(--panel),var(--panel-2));border:1px solid rgba(79,110,247,.25)}
+.cta-band .glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;pointer-events:none}
+.cta-band .cg1{width:380px;height:380px;background:radial-gradient(circle,rgba(79,110,247,.6),transparent 70%);top:-160px;left:-80px}
+.cta-band .cg2{width:340px;height:340px;background:radial-gradient(circle,rgba(0,212,170,.5),transparent 70%);bottom:-160px;right:-60px}
+.cta-band-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
+.cta-band h2{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:18px}
+.cta-band p{color:var(--gray);font-size:1.08rem;margin-bottom:34px}
+.cta-form{display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.cta-form input{flex:1;min-width:220px;padding:14px 20px;border-radius:100px;border:1px solid var(--line);background:rgba(10,14,39,.6);color:var(--white);font-family:inherit;font-size:.95rem;outline:none;transition:border-color .25s}
+.cta-form input:focus{border-color:var(--blue)}
+.cta-form input::placeholder{color:var(--gray-dim)}
+.form-msg{margin-top:18px;font-size:.92rem;color:var(--teal);min-height:22px;opacity:0;transition:opacity .3s}
+.form-msg.show{opacity:1}
+
+/* -- Footer -- */
+footer{border-top:1px solid var(--line);padding:70px 0 36px;margin-top:30px}
+.foot-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;margin-bottom:54px}
+.foot-brand p{color:var(--gray);font-size:.92rem;margin-top:18px;max-width:280px}
+.foot-social{display:flex;gap:12px;margin-top:22px}
+.foot-social a{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;transition:border-color .25s,transform .25s,background .25s}
+.foot-social a:hover{border-color:rgba(79,110,247,.4);transform:translateY(-2px);background:var(--blue-soft)}
+.foot-social svg{width:18px;height:18px;stroke:var(--gray);fill:none;stroke-width:2}
+.foot-social a:hover svg{stroke:var(--white)}
+.foot-col h4{font-family:'Space Grotesk',sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-dim);margin-bottom:18px}
+.foot-col a{display:block;color:var(--gray);text-decoration:none;font-size:.93rem;margin-bottom:12px;transition:color .2s}
+.foot-col a:hover{color:var(--white)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--gray-dim);font-size:.85rem}
+
+/* -- Reveal -- */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+.reveal-d1{transition-delay:.08s}
+.reveal-d2{transition-delay:.16s}
+.reveal-d3{transition-delay:.24s}
+
+@media(max-width:900px){
+  .nav-links,.nav-actions .login,.nav-actions .btn{display:none}
+  .hamburger{display:flex}
+  .features-grid,.pricing-grid,.tcards,.steps,.metrics-grid{grid-template-columns:1fr}
+  .metrics-grid{grid-template-columns:1fr 1fr}
+  .plan.featured{transform:none}
+  .plan.featured:hover{transform:translateY(-6px)}
+  .steps::before{display:none}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .mock{transform:none}
+  .mock-body{grid-template-columns:1fr}
+  .mock-side{display:none}
+}
+@media(max-width:560px){
+  .section{padding:84px 0}
+  .metrics-grid{grid-template-columns:1fr}
+  .foot-grid{grid-template-columns:1fr}
+  .stat-row{grid-template-columns:1fr}
+  .hero{padding:120px 0 70px}
+}
+@media(prefers-reduced-motion:reduce){
+  .reveal{opacity:1;transform:none;transition:none}
+  html{scroll-behavior:auto}
 }
 </style>
 </head>
 <body>
 
-<!-- Navigation -->
-<nav>
-  <div class="logo">Nova</div>
-  <div class="nav-links">
+<header id="top">
+  <nav>
+    <a href="#top" class="logo">
+      <span class="logo-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18V6l12 12V6"/></svg>
+      </span>
+      NOVA
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#testimonials">Customers</a>
+    </div>
+    <div class="nav-actions">
+      <a href="#top" class="login">Sign in</a>
+      <a href="#get-started" class="btn btn-primary">Start free</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+  <div class="mobile-panel" id="mobilePanel">
     <a href="#features">Features</a>
-    <a href="#metrics">Metrics</a>
-    <a href="#testimonials">Testimonials</a>
+    <a href="#how">How it works</a>
     <a href="#pricing">Pricing</a>
-    <button class="cta-btn">Get Started</button>
+    <a href="#testimonials">Customers</a>
+    <a href="#get-started" class="btn btn-primary">Start free</a>
   </div>
-  <button class="mobile-menu-btn" aria-label="Menu">&#9776;</button>
-</nav>
+</header>
 
-<!-- Hero -->
+<!-- -- Hero -- -->
 <section class="hero">
-  <div class="mesh-grid"></div>
-  <h1>Build <span>Smarter</span></h1>
-  <p>The intelligent platform that transforms how teams ship products. From ideation to deployment, Nova accelerates your workflow with AI-driven insights.</p>
-  <div class="hero-actions">
-    <a href="#" class="btn-primary">Start Free Trial &rarr;</a>
-    <a href="#" class="btn-secondary">Watch Demo</a>
+  <div class="hero-bg">
+    <div class="glow g1"></div>
+    <div class="glow g2"></div>
+    <div class="glow g3"></div>
   </div>
-  <div class="scroll-indicator">
-    <span>Scroll</span>
-    <svg width="16" height="24" viewBox="0 0 16 24" fill="none"><path d="M8 0v20M1 13l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  <div class="grid-overlay"></div>
+  <div class="container">
+    <div class="hero-inner reveal">
+      <span class="badge"><span class="pill">NEW</span> Automations 2.0 — build flows in minutes</span>
+      <h1>Run your whole company on <span class="grad">one calm platform</span></h1>
+      <p class="sub">NOVA unifies your workflows, automates the busywork, and gives every team real-time insight — so you ship faster and scale calmer.</p>
+      <div class="hero-cta">
+        <a href="#get-started" class="btn btn-primary">Start free
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a href="#how" class="btn btn-ghost">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
+          See how it works
+        </a>
+      </div>
+      <div class="hero-trust">
+        <div class="avatars"><span></span><span></span><span></span><span></span></div>
+        Trusted by 14,000+ teams shipping faster every day
+      </div>
+    </div>
+
+    <!-- Product UI mock -->
+    <div class="mock-wrap reveal reveal-d1">
+      <div class="mock">
+        <div class="mock-bar">
+          <div class="dots"><i></i><i></i><i></i></div>
+          <div class="url">app.nova.io / dashboard</div>
+        </div>
+        <div class="mock-body">
+          <aside class="mock-side">
+            <div class="s-item active"><span></span>Overview</div>
+            <div class="s-item"><span></span>Workflows</div>
+            <div class="s-item"><span></span>Automations</div>
+            <div class="s-item"><span></span>Insights</div>
+            <div class="s-item"><span></span>Team</div>
+          </aside>
+          <div class="mock-main">
+            <div class="m-head">
+              <div class="m-title">Operations Overview</div>
+              <div class="m-tag">Live • last 30 days</div>
+            </div>
+            <div class="stat-row">
+              <div class="stat-card"><div class="lbl">Active flows</div><div class="val b">248</div></div>
+              <div class="stat-card"><div class="lbl">Tasks automated</div><div class="val t">19.4k</div></div>
+              <div class="stat-card"><div class="lbl">Hours saved</div><div class="val">1,820</div></div>
+            </div>
+            <div class="chart">
+              <svg viewBox="0 0 320 110" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="cArea" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#4f6ef7" stop-opacity=".4"/>
+                    <stop offset="1" stop-color="#4f6ef7" stop-opacity="0"/>
+                  </linearGradient>
+                </defs>
+                <path d="M0,90 L40,72 L80,80 L120,52 L160,60 L200,34 L240,44 L280,20 L320,28 L320,110 L0,110 Z" fill="url(#cArea)"/>
+                <path d="M0,90 L40,72 L80,80 L120,52 L160,60 L200,34 L240,44 L280,20 L320,28" fill="none" stroke="#4f6ef7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M0,98 L40,92 L80,88 L120,84 L160,76 L200,70 L240,62 L280,58 L320,50" fill="none" stroke="#00d4aa" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<!-- Features -->
+<!-- -- Logos -- -->
+<div class="logos">
+  <div class="container reveal">
+    <p>Powering operations at fast-moving teams</p>
+    <div class="logo-row">
+      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9-9 9z"/></svg>Vantyx</span>
+      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>Loopwise</span>
+      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M9 12l2 2 4-4"/></svg>Driftlabs</span>
+      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>Northwind</span>
+      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6a2 2 0 012-2h7l5 5v9a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg>Quanta</span>
+    </div>
+  </div>
+</div>
+
+<!-- -- Metrics -- -->
+<section class="section" id="metrics">
+  <div class="container">
+    <div class="metrics-grid">
+      <div class="metric reveal" data-count="99.99" data-suffix="%" data-decimals="2">
+        <div class="num">0</div><div class="lbl">Uptime SLA</div>
+      </div>
+      <div class="metric reveal reveal-d1" data-count="14000" data-suffix="+">
+        <div class="num">0</div><div class="lbl">Active teams</div>
+      </div>
+      <div class="metric reveal reveal-d2" data-count="62" data-suffix="%">
+        <div class="num">0</div><div class="lbl">Less manual work</div>
+      </div>
+      <div class="metric reveal reveal-d3" data-count="2.4" data-suffix="M" data-decimals="1">
+        <div class="num">0</div><div class="lbl">Tasks automated daily</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -- Features -- -->
 <section class="section" id="features">
   <div class="container">
-    <h2>Everything you need to ship</h2>
-    <p style="text-align:center;color:var(--gray);max-width:600px;margin:0 auto">Powerful tools designed for modern product teams who move fast.</p>
+    <div class="section-head reveal">
+      <span class="eyebrow">Platform</span>
+      <h2>Everything your team needs, none of the sprawl</h2>
+      <p>One connected workspace replaces a dozen disconnected tools. Built for speed, secured by default.</p>
+    </div>
     <div class="features-grid">
-      <div class="feature-card">
-        <div class="icon">&#9889;</div>
-        <h3>Lightning Deploy</h3>
-        <p>Deploy to production in seconds with our global edge network. Zero-config CI/CD that just works.</p>
+      <div class="feature reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
+        <h3>Instant automations</h3>
+        <p>Chain triggers, conditions and actions with a visual builder. Ship a working flow before your coffee gets cold.</p>
       </div>
-      <div class="feature-card">
-        <div class="icon">&#129302;</div>
-        <h3>AI-Powered Insights</h3>
-        <p>Get intelligent recommendations on code quality, performance, and user behavior across your stack.</p>
+      <div class="feature reveal reveal-d1">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Security by default</h3>
+        <p>SOC 2 Type II, SSO, granular roles and full audit logs. Enterprise-grade controls without the enterprise overhead.</p>
       </div>
-      <div class="feature-card">
-        <div class="icon">&#128274;</div>
-        <h3>Enterprise Security</h3>
-        <p>SOC 2 Type II &amp; GDPR compliant. End-to-end encryption with granular access controls.</p>
+      <div class="feature reveal reveal-d2">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 16V9M12 16V5M17 16v-4"/><path d="M5 11l4-4 4 3 5-6"/></svg></div>
+        <h3>Real-time insights</h3>
+        <p>Live dashboards turn raw activity into decisions. Track throughput, spot bottlenecks and forecast in one glance.</p>
       </div>
-      <div class="feature-card">
-        <div class="icon">&#128200;</div>
-        <h3>Real-time Analytics</h3>
-        <p>Understand your product with live dashboards, funnels, and cohort analysis — no SQL required.</p>
+      <div class="feature reveal">
+        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 5.8 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.8-4-9s1.5-6.4 4-9z"/></svg></div>
+        <h3>Global by design</h3>
+        <p>Multi-region data residency, 12 languages and sub-100ms edge delivery. Scale across borders without friction.</p>
       </div>
-      <div class="feature-card">
-        <div class="icon">&#127760;</div>
-        <h3>Global Edge Network</h3>
-        <p>40+ regions worldwide. Your content delivered at the speed of light with automatic scaling.</p>
+      <div class="feature reveal reveal-d1">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></div>
+        <h3>AI copilot</h3>
+        <p>Describe what you want in plain language and NOVA drafts the workflow, the report, or the summary for you.</p>
       </div>
-      <div class="feature-card">
-        <div class="icon">&#128736;</div>
-        <h3>Seamless Integrations</h3>
-        <p>Connect with Slack, GitHub, Jira, and 200+ tools. Build custom workflows with our API.</p>
+      <div class="feature reveal reveal-d2">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 00-5.4 5.4l-6 6 2 2 6-6a4 4 0 005.4-5.4l-2.6 2.6-2-2z"/></svg></div>
+        <h3>700+ integrations</h3>
+        <p>Connect the stack you already run. Native apps, webhooks and a clean REST API keep your data flowing both ways.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Metrics -->
-<section class="metrics" id="metrics">
+<!-- -- How it works -- -->
+<section class="section" id="how">
   <div class="container">
-    <div class="metric">
-      <div class="number">12K+</div>
-      <div class="label">Active Users</div>
+    <div class="section-head reveal">
+      <span class="eyebrow">How it works</span>
+      <h2>From signup to shipping in three steps</h2>
+      <p>No long onboarding, no consultants. Most teams run their first automation on day one.</p>
     </div>
-    <div class="metric">
-      <div class="number">99.9%</div>
-      <div class="label">Uptime SLA</div>
-    </div>
-    <div class="metric">
-      <div class="number">500M+</div>
-      <div class="label">Requests/Day</div>
-    </div>
-    <div class="metric">
-      <div class="number">4.9&star;</div>
-      <div class="label">Avg. Rating</div>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonials -->
-<section class="section testimonials" id="testimonials">
-  <div class="container">
-    <h2>Trusted by innovators</h2>
-    <p style="text-align:center;color:var(--gray);max-width:500px;margin:0 auto">What our customers say about transforming their workflow.</p>
-  </div>
-  <div class="testimonial-track">
-    <div class="testimonial-card">
-      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <blockquote>"Nova completely changed how our team ships features. We went from weekly deploys to multiple times a day. The AI insights alone saved us countless hours."</blockquote>
-      <div class="author">
-        <div class="avatar">SK</div>
-        <div>
-          <div class="name">Sarah Kim</div>
-          <div class="role">CTO, Luminara</div>
-        </div>
+    <div class="steps">
+      <div class="step reveal">
+        <div class="badge-num">1</div>
+        <h3>Connect your tools</h3>
+        <p>Link your apps in a couple of clicks. NOVA maps your data and surfaces what matters automatically.</p>
       </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <blockquote>"The edge network is incredible. We saw a 60% reduction in latency globally within days of switching. The developer experience is unmatched."</blockquote>
-      <div class="author">
-        <div class="avatar">MR</div>
-        <div>
-          <div class="name">Marcus Reed</div>
-          <div class="role">Lead Engineer, Orbit</div>
-        </div>
+      <div class="step reveal reveal-d1">
+        <div class="badge-num">2</div>
+        <h3>Build your flows</h3>
+        <p>Drag triggers and actions onto the canvas, or ask the AI copilot to draft a flow you can refine.</p>
       </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <blockquote>"We evaluated every platform out there. Nova's security model and compliance certifications made it the clear choice for our enterprise needs."</blockquote>
-      <div class="author">
-        <div class="avatar">AL</div>
-        <div>
-          <div class="name">Amara Lopez</div>
-          <div class="role">VP Engineering, Vault</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <blockquote>"Nova completely changed how our team ships features. We went from weekly deploys to multiple times a day. The AI insights alone saved us countless hours."</blockquote>
-      <div class="author">
-        <div class="avatar">SK</div>
-        <div>
-          <div class="name">Sarah Kim</div>
-          <div class="role">CTO, Luminara</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <blockquote>"The edge network is incredible. We saw a 60% reduction in latency globally within days of switching. The developer experience is unmatched."</blockquote>
-      <div class="author">
-        <div class="avatar">MR</div>
-        <div>
-          <div class="name">Marcus Reed</div>
-          <div class="role">Lead Engineer, Orbit</div>
-        </div>
-      </div>
-    </div>
-    <div class="testimonial-card">
-      <div class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-      <blockquote>"We evaluated every platform out there. Nova's security model and compliance certifications made it the clear choice for our enterprise needs."</blockquote>
-      <div class="author">
-        <div class="avatar">AL</div>
-        <div>
-          <div class="name">Amara Lopez</div>
-          <div class="role">VP Engineering, Vault</div>
-        </div>
+      <div class="step reveal reveal-d2">
+        <div class="badge-num">3</div>
+        <h3>Scale with insight</h3>
+        <p>Go live, watch the dashboards, and let NOVA flag what to optimize next as you grow.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- Pricing -->
+<!-- -- Pricing -- -->
 <section class="section" id="pricing">
   <div class="container">
-    <h2>Simple, transparent pricing</h2>
-    <p style="text-align:center;color:var(--gray);max-width:500px;margin:0 auto">No hidden fees. Scale as you grow with plans for every team size.</p>
+    <div class="section-head reveal">
+      <span class="eyebrow">Pricing</span>
+      <h2>Simple plans that scale with you</h2>
+      <p>Start free, upgrade when you're ready. No hidden fees, cancel anytime.</p>
+    </div>
     <div class="pricing-grid">
-      <div class="pricing-card">
+      <div class="plan reveal">
         <div class="plan-name">Starter</div>
-        <div class="price">$29<span>/mo</span></div>
-        <div class="description">Perfect for small teams getting started.</div>
+        <div class="price">$0<span>/mo</span></div>
+        <div class="desc">For individuals and small projects getting off the ground.</div>
         <ul>
-          <li>Up to 5 team members</li>
-          <li>10K API requests/month</li>
-          <li>Basic analytics</li>
-          <li>Community support</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Up to 3 workflows</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>1,000 tasks / month</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Community support</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Core integrations</li>
         </ul>
-        <button class="btn-pricing outline">Start Free Trial</button>
+        <a href="#get-started" class="btn btn-ghost">Get started</a>
       </div>
-      <div class="pricing-card featured">
-        <div class="badge">Most Popular</div>
-        <div class="plan-name">Professional</div>
-        <div class="price">$99<span>/mo</span></div>
-        <div class="description">For growing teams that need more power.</div>
+      <div class="plan featured reveal reveal-d1">
+        <div class="tag">Most popular</div>
+        <div class="plan-name">Growth</div>
+        <div class="price">$49<span>/mo</span></div>
+        <div class="desc">For growing teams that need automation and insight at scale.</div>
         <ul>
-          <li>Up to 25 team members</li>
-          <li>100K API requests/month</li>
-          <li>Advanced analytics + AI</li>
-          <li>Priority support</li>
-          <li>Custom integrations</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Unlimited workflows</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>50,000 tasks / month</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>AI copilot included</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Advanced dashboards</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Priority support</li>
         </ul>
-        <button class="btn-pricing primary">Start Free Trial</button>
+        <a href="#get-started" class="btn btn-primary">Start free trial</a>
       </div>
-      <div class="pricing-card">
+      <div class="plan reveal reveal-d2">
         <div class="plan-name">Enterprise</div>
-        <div class="price">$299<span>/mo</span></div>
-        <div class="description">For large organizations with advanced needs.</div>
+        <div class="price">Custom</div>
+        <div class="desc">For organizations with advanced security and scale needs.</div>
         <ul>
-          <li>Unlimited team members</li>
-          <li>Unlimited API requests</li>
-          <li>Enterprise analytics + AI</li>
-          <li>Dedicated account manager</li>
-          <li>SSO &amp; advanced security</li>
-          <li>Custom SLA</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Everything in Growth</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>SSO &amp; SCIM provisioning</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Dedicated success manager</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>99.99% uptime SLA</li>
+          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Custom data residency</li>
         </ul>
-        <button class="btn-pricing outline">Contact Sales</button>
+        <a href="#get-started" class="btn btn-ghost">Contact sales</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="section" style="padding-bottom:0">
+<!-- -- Testimonials -- -->
+<section class="section" id="testimonials">
   <div class="container">
-    <div class="cta-section">
-      <h2>Ready to build smarter?</h2>
-      <p>Join thousands of teams already shipping faster with Nova. Start your free trial today — no credit card required.</p>
-      <a href="#" class="btn-primary">Get Started Free &rarr;</a>
+    <div class="section-head reveal">
+      <span class="eyebrow">Customers</span>
+      <h2>Loved by teams who hate busywork</h2>
+      <p>Real stories from operators, founders and engineers who switched to NOVA.</p>
+    </div>
+    <div class="tcards">
+      <div class="tcard reveal">
+        <div class="stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <blockquote>"We replaced four separate tools with NOVA in a single sprint. Our ops team got back roughly two days a week almost overnight."</blockquote>
+        <div class="who">
+          <div class="ava" style="background:linear-gradient(135deg,#4f6ef7,#00d4aa)">PM</div>
+          <div><div class="name">Priya Menon</div><div class="role">Head of Operations, Loopwise</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal reveal-d1">
+        <div class="stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <blockquote>"The AI copilot writes the first draft of every workflow now. What used to take an afternoon takes me about five minutes."</blockquote>
+        <div class="who">
+          <div class="ava" style="background:linear-gradient(135deg,#00d4aa,#3ad)">DO</div>
+          <div><div class="name">Daniel Okafor</div><div class="role">Staff Engineer, Driftlabs</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal reveal-d2">
+        <div class="stars" aria-label="4 out of 5 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg class="empty" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <blockquote>"Onboarding was genuinely painless. We connected our stack on a Monday and had three live automations by Wednesday."</blockquote>
+        <div class="who">
+          <div class="ava" style="background:linear-gradient(135deg,#7d8cff,#4f6ef7)">SR</div>
+          <div><div class="name">Sofia Reyes</div><div class="role">Founder, Cadence Studio</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal">
+        <div class="stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <blockquote>"The audit logs and SSO support cleared our security review on the first pass. That never happens with a tool this easy to use."</blockquote>
+        <div class="who">
+          <div class="ava" style="background:linear-gradient(135deg,#4f6ef7,#7d8cff)">MA</div>
+          <div><div class="name">Marcus Albright</div><div class="role">VP Security, Northwind Group</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal reveal-d1">
+        <div class="stars" aria-label="4 out of 5 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg class="empty" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <blockquote>"Our support queue dropped 40% after we automated triage in NOVA. The dashboards finally tell us where the real friction is."</blockquote>
+        <div class="who">
+          <div class="ava" style="background:linear-gradient(135deg,#00d4aa,#4f6ef7)">LC</div>
+          <div><div class="name">Lena Castellanos</div><div class="role">Director of CX, Vantyx</div></div>
+        </div>
+      </div>
+
+      <div class="tcard reveal reveal-d2">
+        <div class="stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
+        </div>
+        <blockquote>"As a finance lead, the real-time forecasting alone paid for the whole platform. I close the books a full week earlier now."</blockquote>
+        <div class="who">
+          <div class="ava" style="background:linear-gradient(135deg,#3ad,#00d4aa)">TI</div>
+          <div><div class="name">Theo Iversen</div><div class="role">CFO, Quanta Robotics</div></div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- Footer -->
+<!-- -- Final CTA -- -->
+<section class="section" id="get-started">
+  <div class="container">
+    <div class="cta-band reveal">
+      <div class="glow cg1"></div>
+      <div class="glow cg2"></div>
+      <div class="cta-band-inner">
+        <span class="eyebrow" style="justify-content:center">Get started</span>
+        <h2>Ready to run calmer?</h2>
+        <p>Start free in under two minutes. No credit card, no sales call — just you and your first automation.</p>
+        <form class="cta-form" id="ctaForm" novalidate>
+          <input type="email" id="ctaEmail" placeholder="you@company.com" aria-label="Work email" required>
+          <button type="submit" class="btn btn-primary">Start free</button>
+        </form>
+        <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- -- Footer -- -->
 <footer>
   <div class="container">
-    <div class="col">
-      <span class="logo">Nova</span>
-      <p>The intelligent platform for modern product teams. Build, deploy, and scale with confidence.</p>
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <a href="#top" class="logo">
+          <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18V6l12 12V6"/></svg></span>
+          NOVA
+        </a>
+        <p>The calm operations platform for teams that want to move fast without the sprawl.</p>
+        <div class="foot-social">
+          <a href="#top" aria-label="Twitter / X"><svg viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="M18.9 2H22l-7.5 8.6L23 22h-6.8l-5.3-7-6.1 7H1.7l8-9.2L1 2h7l4.8 6.4L18.9 2zm-2.4 18h1.9L7.6 4H5.6l10.9 16z"/></svg></a>
+          <a href="#top" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v6M8 7v.01M12 17v-4a2 2 0 014 0v4"/></svg></a>
+          <a href="#top" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2.5-6-3m12 5v-3.5a3 3 0 00-.9-2.5c3-.3 6-1.5 6-6.5a5 5 0 00-1.4-3.5 4.6 4.6 0 00-.1-3.5s-1.1-.3-3.6 1.3a12.5 12.5 0 00-6.5 0C6.5 1 5.4 1.3 5.4 1.3a4.6 4.6 0 00-.1 3.5A5 5 0 004 8.3c0 5 3 6.2 6 6.5a3 3 0 00-.9 2.3V21"/></svg></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Product</h4>
+        <a href="#features">Features</a>
+        <a href="#how">How it works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#testimonials">Customers</a>
+      </div>
+      <div class="foot-col">
+        <h4>Company</h4>
+        <a href="#top">About</a>
+        <a href="#top">Careers</a>
+        <a href="#top">Blog</a>
+        <a href="#top">Contact</a>
+      </div>
+      <div class="foot-col">
+        <h4>Resources</h4>
+        <a href="#top">Docs</a>
+        <a href="#top">API reference</a>
+        <a href="#top">Status</a>
+        <a href="#top">Security</a>
+      </div>
     </div>
-    <div class="col">
-      <h4>Product</h4>
-      <a href="#">Features</a>
-      <a href="#">Integrations</a>
-      <a href="#">Changelog</a>
-      <a href="#">API Docs</a>
+    <div class="foot-bottom">
+      <span>© 2026 NOVA, Inc. All rights reserved.</span>
+      <span>Built for teams who'd rather be shipping.</span>
     </div>
-    <div class="col">
-      <h4>Company</h4>
-      <a href="#">About</a>
-      <a href="#">Blog</a>
-      <a href="#">Careers</a>
-      <a href="#">Contact</a>
-    </div>
-    <div class="col">
-      <h4>Legal</h4>
-      <a href="#">Privacy</a>
-      <a href="#">Terms</a>
-      <a href="#">Security</a>
-      <a href="#">Cookies</a>
-    </div>
-  </div>
-  <div class="bottom">
-    <div class="container" style="border:none;padding-top:0;margin-top:0">&copy; 2026 Nova. All rights reserved.</div>
   </div>
 </footer>
 
 <script>
-// Mobile menu toggle
-document.querySelector('.mobile-menu-btn')?.addEventListener('click', () => {
-  const nav = document.querySelector('.nav-links');
-  if (nav) {
-    const isOpen = nav.style.display === 'flex';
-    nav.style.display = isOpen ? 'none' : 'flex';
-    nav.style.flexDirection = 'column';
-    nav.style.position = 'absolute';
-    nav.style.top = '70px';
-    nav.style.left = '20px';
-    nav.style.right = '20px';
-    nav.style.background = 'rgba(10,14,39,.95)';
-    nav.style.backdropFilter = 'blur(20px)';
-    nav.style.borderRadius = '16px';
-    nav.style.padding = '24px';
-    nav.style.border = '1px solid rgba(79,110,247,.15)';
-  }
-});
+(function(){
+  "use strict";
 
-// Pause testimonial scroll on hover
-const track = document.querySelector('.testimonial-track');
-track?.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');
-track?.addEventListener('mouseleave', () => track.style.animationPlayState = 'running');
+  // Sticky nav background
+  var header = document.getElementById('top');
+  function onScroll(){
+    if(window.scrollY > 20){ header.classList.add('scrolled'); }
+    else { header.classList.remove('scrolled'); }
+  }
+  window.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  // Mobile menu
+  var burger = document.getElementById('hamburger');
+  var panel = document.getElementById('mobilePanel');
+  function closeMenu(){ burger.classList.remove('open'); panel.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
+  burger.addEventListener('click', function(){
+    var open = panel.classList.toggle('open');
+    burger.classList.toggle('open', open);
+    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
+
+  // Reveal on scroll
+  var reveals = document.querySelectorAll('.reveal');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){
+          e.target.classList.add('in');
+          io.unobserve(e.target);
+          if(e.target.classList.contains('metrics-grid') || e.target.querySelector){}
+        }
+      });
+    }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    reveals.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // Count-up metrics
+  var counters = document.querySelectorAll('.metric[data-count]');
+  function animateCount(el){
+    var target = parseFloat(el.getAttribute('data-count'));
+    var suffix = el.getAttribute('data-suffix') || '';
+    var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+    var numEl = el.querySelector('.num');
+    var dur = 1600, start = null;
+    function fmt(v){
+      var out;
+      if(decimals > 0){ out = v.toFixed(decimals); }
+      else if(target >= 1000){ out = Math.round(v).toLocaleString('en-US'); }
+      else { out = Math.round(v).toString(); }
+      return out + suffix;
+    }
+    function tick(ts){
+      if(start === null) start = ts;
+      var p = Math.min((ts - start) / dur, 1);
+      var eased = 1 - Math.pow(1 - p, 3);
+      numEl.textContent = fmt(target * eased);
+      if(p < 1) requestAnimationFrame(tick);
+      else numEl.textContent = fmt(target);
+    }
+    requestAnimationFrame(tick);
+  }
+  if('IntersectionObserver' in window){
+    var cio = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if(e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); }
+      });
+    }, {threshold:0.5});
+    counters.forEach(function(c){ cio.observe(c); });
+  } else {
+    counters.forEach(animateCount);
+  }
+
+  // Form (sandbox-safe, no real submission)
+  var form = document.getElementById('ctaForm');
+  var msg = document.getElementById('formMsg');
+  var emailInput = document.getElementById('ctaEmail');
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    var val = (emailInput.value || '').trim();
+    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+    if(!ok){
+      msg.textContent = 'Please enter a valid work email.';
+      msg.style.color = '#ff7d8a';
+      msg.classList.add('show');
+      return;
+    }
+    msg.textContent = "You're in! Check " + val + " for your setup link.";
+    msg.style.color = 'var(--teal)';
+    msg.classList.add('show');
+    form.reset();
+  });
+
+  // Smooth-scroll for in-page anchors (accounts for fixed header)
+  document.querySelectorAll('a[href^="#"]').forEach(function(a){
+    a.addEventListener('click', function(ev){
+      var id = a.getAttribute('href');
+      if(id.length < 2) return;
+      var target = document.querySelector(id);
+      if(target){
+        ev.preventDefault();
+        var y = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({top: Math.max(y,0), behavior:'smooth'});
+      }
+    });
+  });
+})();
 </script>
 </body>
 </html>

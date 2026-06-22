@@ -3,36 +3,48 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>La Maison Dorée | Fine Dining</title>
+<title>GEM — Fine Dining</title>
+<meta name="description" content="GEM is an upscale fine-dining restaurant. A cinematic tasting experience of seasonal cuisine, rare wines, and quiet luxury.">
+
+<!-- Social meta -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="GEM — Fine Dining">
+<meta property="og:description" content="An intimate tasting experience. Seasonal cuisine, a curated cellar, and quiet luxury — reservations now open.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GEM — Fine Dining">
+<meta name="twitter:description" content="An intimate tasting experience. Seasonal cuisine, a curated cellar, and quiet luxury.">
+
+<!-- Inline SVG favicon: faceted gem in gold -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a0f0a'/%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M9 12h14l-7 11z'/%3E%3Cpath d='M9 12l3-4h8l3 4'/%3E%3Cpath d='M13 12l3 11 3-11'/%3E%3C/g%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 :root {
-  --deep-dark: #1a0f0a;
+  --espresso: #1a0f0a;
+  --espresso-2: #160c07;
+  --coffee: #3d2b1f;
   --gold: #c9a84c;
+  --gold-light: #e3c878;
+  --gold-deep: #a8862f;
   --cream: #f5f0e8;
-  --gold-light: #e8d48b;
-  --gold-dark: #a88a30;
-  --dark-translucent: rgba(26, 15, 10, 0.85);
-  --dark-semi: rgba(26, 15, 10, 0.6);
+  --cream-dim: rgba(245, 240, 232, 0.62);
+  --cream-faint: rgba(245, 240, 232, 0.34);
+  --line: rgba(201, 168, 76, 0.16);
+  --nav-bg: rgba(20, 11, 6, 0.82);
 }
 
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--deep-dark);
+  font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
+  background: var(--espresso);
   color: var(--cream);
   line-height: 1.7;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -40,1612 +52,1131 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.01em;
+}
+
+::selection { background: var(--gold); color: var(--espresso); }
+
+a { color: inherit; }
+
+.container { max-width: 1180px; margin: 0 auto; }
+
+.eyebrow {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.68rem;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 400;
 }
 
 /* ─── Nav ─── */
 nav {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 0; left: 0; right: 0;
   z-index: 1000;
-  padding: 1.5rem 3rem;
+  padding: 1.6rem clamp(1.4rem, 4vw, 3.2rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: all 0.4s ease;
+  transition: padding .4s ease, background .4s ease, box-shadow .4s ease;
   background: transparent;
 }
-
 nav.scrolled {
-  background: var(--dark-translucent);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  padding: 0.9rem 3rem;
-  box-shadow: 0 1px 30px rgba(0,0,0,0.4);
+  background: var(--nav-bg);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding-top: .95rem;
+  padding-bottom: .95rem;
+  box-shadow: 0 1px 0 var(--line), 0 18px 40px rgba(0,0,0,.45);
 }
 
 .logo {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.8rem;
-  color: var(--gold);
-  letter-spacing: 0.15em;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
   text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.logo svg { width: 26px; height: 26px; display: block; }
+.logo .wordmark {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.7rem;
+  color: var(--cream);
+  letter-spacing: 0.42em;
   font-weight: 600;
   text-transform: uppercase;
+  padding-left: .2em;
 }
 
 .nav-links {
   display: flex;
-  gap: 2.5rem;
+  gap: 2.4rem;
   list-style: none;
   align-items: center;
 }
-
 .nav-links a {
   color: var(--cream);
   text-decoration: none;
-  font-size: 0.85rem;
+  font-size: 0.74rem;
   font-weight: 400;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  transition: color 0.3s;
+  transition: color .3s;
   position: relative;
 }
-
-.nav-links a::after {
+.nav-links a:not(.reserve-btn)::after {
   content: '';
   position: absolute;
-  bottom: -4px;
-  left: 0;
-  width: 0;
-  height: 1px;
+  bottom: -5px; left: 0;
+  width: 0; height: 1px;
   background: var(--gold);
-  transition: width 0.3s ease;
+  transition: width .35s ease;
 }
-
-.nav-links a:hover {
-  color: var(--gold);
-}
-
-.nav-links a:hover::after {
-  width: 100%;
-}
+.nav-links a:not(.reserve-btn):hover { color: var(--gold); }
+.nav-links a:not(.reserve-btn):hover::after { width: 100%; }
 
 .reserve-btn {
-  background: transparent;
   border: 1px solid var(--gold);
-  color: var(--gold) !important;
-  padding: 0.5rem 1.5rem;
-  border-radius: 2px;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.12em;
+  color: var(--gold);
+  padding: .55rem 1.5rem;
+  border-radius: 1px;
+  transition: background .35s ease, color .35s ease;
 }
-
-.reserve-btn:hover {
-  background: var(--gold) !important;
-  color: var(--deep-dark) !important;
-}
-
-.reserve-btn::after {
-  display: none !important;
-}
+.reserve-btn:hover { background: var(--gold); color: var(--espresso); }
 
 .hamburger {
   display: none;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
   cursor: pointer;
   background: none;
   border: none;
-  padding: 4px;
+  padding: 6px;
+  z-index: 1100;
 }
-
 .hamburger span {
   display: block;
-  width: 26px;
-  height: 1.5px;
+  width: 26px; height: 1.5px;
   background: var(--cream);
-  transition: all 0.3s ease;
+  transition: transform .35s ease, opacity .25s ease;
 }
-
-.hamburger.active span:nth-child(1) {
-  transform: rotate(45deg) translate(4px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-  opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-  transform: rotate(-45deg) translate(4px, -5px);
-}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background: var(--gold); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background: var(--gold); }
 
 /* ─── Hero ─── */
 .hero {
   position: relative;
-  width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  background: var(--deep-dark);
+  background: var(--espresso);
+  padding: 6rem 1.5rem 4rem;
 }
-
-.hero-bg {
-  position: absolute;
-  inset: 0;
+.hero-stage { position: absolute; inset: 0; overflow: hidden; }
+.hero-glow {
+  position: absolute; inset: 0;
   background:
-    radial-gradient(ellipse 80% 60% at 30% 40%, rgba(201, 168, 76, 0.08) 0%, transparent 70%),
-    radial-gradient(ellipse 60% 70% at 70% 60%, rgba(201, 168, 76, 0.05) 0%, transparent 70%),
-    radial-gradient(ellipse 100% 100% at 50% 50%, #2a1a12 0%, #1a0f0a 70%);
+    radial-gradient(ellipse 70% 55% at 50% 38%, rgba(201,168,76,0.13) 0%, transparent 62%),
+    radial-gradient(ellipse 90% 90% at 50% 50%, #2a1812 0%, var(--espresso) 68%);
 }
-
-.hero-gradient {
+.hero-vignette {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(20,11,6,.6) 0%, transparent 22%, transparent 62%, var(--espresso) 100%);
+  z-index: 3;
+}
+/* designed SVG plating illustration as hero centerpiece */
+.hero-plate {
   position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to bottom,
-    transparent 0%,
-    transparent 50%,
-    rgba(26, 15, 10, 0.4) 75%,
-    var(--deep-dark) 100%
-  );
+  top: 50%; left: 50%;
+  transform: translate(-50%, -54%);
+  width: min(78vmin, 620px);
+  height: min(78vmin, 620px);
   z-index: 1;
-}
-
-.hero-overlay-top {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 30%;
-  background: linear-gradient(to bottom, rgba(26,15,10,0.5) 0%, transparent 100%);
-  z-index: 1;
-}
-
-.hero-content {
-  position: relative;
-  z-index: 2;
-  max-width: 900px;
-  padding: 2rem;
-}
-
-.hero-subtitle {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.35em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.5rem;
-  font-weight: 400;
   opacity: 0;
-  animation: fadeUp 1.2s ease 0.3s forwards;
+  animation: plateIn 1.8s cubic-bezier(.16,1,.3,1) .2s forwards;
 }
+.hero-plate svg { width: 100%; height: 100%; }
+.ring-rotate { transform-origin: 300px 300px; animation: slowSpin 60s linear infinite; }
+@keyframes slowSpin { to { transform: rotate(360deg); } }
+@keyframes plateIn { from { opacity: 0; transform: translate(-50%, -50%) scale(.92); } to { opacity: 1; transform: translate(-50%, -54%) scale(1); } }
 
-.hero-divider {
-  width: 60px;
-  height: 1px;
-  background: var(--gold);
+.hero-content { position: relative; z-index: 4; max-width: 880px; }
+.hero-est {
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 1.1s ease .35s forwards;
+}
+.hero-rule {
+  width: 64px; height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold), transparent);
   margin: 0 auto 2rem;
   opacity: 0;
-  animation: fadeUp 1s ease 0.6s forwards;
+  animation: fadeUp 1s ease .55s forwards;
 }
-
 .hero-title {
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  font-weight: 300;
-  line-height: 1.15;
-  color: var(--cream);
-  letter-spacing: 0.03em;
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 1.2s ease 0.5s forwards;
-}
-
-.hero-title em {
-  font-style: italic;
-  color: var(--gold);
-}
-
-.hero-desc {
-  font-size: 1rem;
-  font-weight: 300;
-  color: rgba(245, 240, 232, 0.7);
-  margin-bottom: 2.5rem;
-  max-width: 550px;
-  margin-left: auto;
-  margin-right: auto;
-  opacity: 0;
-  animation: fadeUp 1.2s ease 0.8s forwards;
-}
-
-.hero-btn {
-  display: inline-block;
-  padding: 0.9rem 2.8rem;
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  text-decoration: none;
-  text-transform: uppercase;
-  font-size: 0.8rem;
-  letter-spacing: 0.2em;
-  transition: all 0.4s ease;
-  font-family: 'Inter', sans-serif;
+  font-size: clamp(3.4rem, 11vw, 8rem);
   font-weight: 400;
+  line-height: .96;
+  letter-spacing: 0.02em;
+  color: var(--cream);
+  margin-bottom: 1.6rem;
   opacity: 0;
-  animation: fadeUp 1.2s ease 1.1s forwards;
-  background: transparent;
-  cursor: pointer;
+  animation: fadeUp 1.2s ease .5s forwards;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-desc {
+  font-size: 1.05rem;
+  color: var(--cream-dim);
+  max-width: 520px;
+  margin: 0 auto 2.6rem;
+  opacity: 0;
+  animation: fadeUp 1.2s ease .8s forwards;
+}
+.hero-actions {
+  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 1.2s ease 1.05s forwards;
 }
 
-.hero-btn:hover {
-  background: var(--gold);
-  color: var(--deep-dark);
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .65rem;
+  padding: .95rem 2.4rem;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  font-weight: 400;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 1px;
+  transition: background .4s ease, color .4s ease, border-color .4s ease, transform .3s ease;
+  background: transparent;
 }
+.btn-solid { background: var(--gold); color: var(--espresso); border: 1px solid var(--gold); }
+.btn-solid:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); }
+.btn-ghost { border: 1px solid var(--line); color: var(--cream); }
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
+.btn svg { width: 14px; height: 14px; }
 
 .hero-scroll {
   position: absolute;
-  bottom: 2.5rem;
-  left: 50%;
+  bottom: 2rem; left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
+  z-index: 4;
+  display: flex; flex-direction: column; align-items: center; gap: 9px;
   opacity: 0;
-  animation: fadeUp 1.2s ease 1.5s forwards;
+  animation: fadeUp 1.2s ease 1.4s forwards;
 }
-
-.scroll-text {
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.4);
-  font-weight: 300;
+.hero-scroll span {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--cream-faint);
 }
-
-.scroll-line {
-  width: 1px;
-  height: 30px;
+.hero-scroll .line {
+  width: 1px; height: 34px;
   background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollPulse 2s ease infinite;
+  animation: scrollPulse 2.2s ease infinite;
 }
+@keyframes scrollPulse { 0%,100% { opacity: .25; } 50% { opacity: .9; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
 
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 0.8; }
+/* ─── Section shared ─── */
+section { padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 4vw, 2rem); position: relative; }
+.section-divider-top::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(to right, transparent, var(--line), transparent);
 }
-
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
-  from { opacity: 0; transform: translateY(20px); }
-}
-
-/* ─── Section Shared ─── */
-section {
-  padding: 6rem 2rem;
-}
-
-.section-header {
-  text-align: center;
-  margin-bottom: 4rem;
-}
-
-.section-tag {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.8rem;
-  font-weight: 400;
-}
-
+.section-header { text-align: center; margin-bottom: 4rem; }
+.section-header .eyebrow { display: block; margin-bottom: .9rem; }
 .section-title {
-  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-size: clamp(2.2rem, 5vw, 3.6rem);
   font-weight: 400;
   color: var(--cream);
-  line-height: 1.2;
+  line-height: 1.1;
 }
+.section-title em { font-style: italic; color: var(--gold); }
+.section-rule { width: 54px; height: 1px; background: var(--gold); margin: 1.1rem auto 0; }
 
-.section-divider {
-  width: 50px;
-  height: 1px;
-  background: var(--gold);
-  margin: 1rem auto 0;
-}
-
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ─── About / Story ─── */
-.story {
-  background: var(--deep-dark);
-  position: relative;
-}
-
-.story::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,168,76,0.2), transparent);
-}
-
+/* ─── Story ─── */
 .story-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  grid-template-columns: 1fr 1.1fr;
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
 }
-
-.story-image {
+.story-figure {
   position: relative;
-  height: 500px;
-  overflow: hidden;
+  aspect-ratio: 4 / 5;
+  border: 1px solid var(--line);
   background:
-    radial-gradient(ellipse at center, rgba(201,168,76,0.06) 0%, transparent 70%),
-    linear-gradient(135deg, #2a1a12 0%, #1a0f0a 100%);
-  border: 1px solid rgba(201,168,76,0.1);
+    radial-gradient(ellipse at 38% 32%, rgba(201,168,76,0.08) 0%, transparent 60%),
+    linear-gradient(150deg, #2a1812 0%, var(--espresso) 70%);
+  overflow: hidden;
 }
-
-.story-image::before {
-  content: '✦';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 3rem;
-  color: var(--gold);
-  opacity: 0.3;
+.story-figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.story-frame {
+  position: absolute; inset: 1.4rem;
+  border: 1px solid rgba(201,168,76,0.2);
+  pointer-events: none;
 }
-
-.story-image .pattern {
-  position: absolute;
-  inset: 0;
-  background-image:
-    radial-gradient(circle at 30% 40%, rgba(201,168,76,0.04) 0%, transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(201,168,76,0.03) 0%, transparent 50%);
+.story-figure .figcap {
+  position: absolute; bottom: 1.6rem; left: 0; right: 0; text-align: center;
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  color: var(--gold); font-size: 1.05rem; letter-spacing: .04em;
 }
-
-.story-image .accent-line {
-  position: absolute;
-  top: 2rem;
-  left: 2rem;
-  right: 2rem;
-  height: 1px;
-  background: linear-gradient(to right, var(--gold), transparent);
-  opacity: 0.3;
+.story-content h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); line-height: 1.16; margin-bottom: 1.5rem; }
+.story-content h2 em { color: var(--gold); font-style: italic; }
+.story-content p { color: var(--cream-dim); margin-bottom: 1.15rem; font-size: 0.98rem; }
+.story-content p .pull { color: var(--cream); font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; }
+.story-sign {
+  margin-top: 1.8rem;
+  display: flex; align-items: center; gap: 1rem;
 }
-
-.story-image .accent-line-bottom {
-  position: absolute;
-  bottom: 2rem;
-  left: 2rem;
-  right: 2rem;
-  height: 1px;
-  background: linear-gradient(to left, var(--gold), transparent);
-  opacity: 0.3;
+.story-sign .sig {
+  font-family: 'Cormorant Garamond', serif; font-style: italic;
+  font-size: 1.5rem; color: var(--gold);
 }
+.story-sign .role { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--cream-faint); }
 
-.story-image .corner {
-  position: absolute;
-  width: 40px;
-  height: 40px;
-  border-color: var(--gold);
-  opacity: 0.2;
-}
-
-.story-image .corner.tl { top: 2rem; left: 2rem; border-top: 1px solid; border-left: 1px solid; }
-.story-image .corner.tr { top: 2rem; right: 2rem; border-top: 1px solid; border-right: 1px solid; }
-.story-image .corner.bl { bottom: 2rem; left: 2rem; border-bottom: 1px solid; border-left: 1px solid; }
-.story-image .corner.br { bottom: 2rem; right: 2rem; border-bottom: 1px solid; border-right: 1px solid; }
-
-.story-content h2 {
-  font-size: 2.5rem;
-  font-weight: 400;
-  margin-bottom: 1.5rem;
-  line-height: 1.25;
-}
-
-.story-content h2 em {
-  color: var(--gold);
-  font-style: italic;
-}
-
-.story-content p {
-  color: rgba(245, 240, 232, 0.7);
-  margin-bottom: 1.2rem;
-  font-size: 0.95rem;
-  font-weight: 300;
-  line-height: 1.8;
-}
-
-.story-signature {
-  margin-top: 2rem;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
-  font-size: 1.2rem;
-  color: var(--gold);
-  letter-spacing: 0.05em;
-}
-
-/* ─── Menu Grid ─── */
-.menu {
-  background: linear-gradient(180deg, var(--deep-dark) 0%, #0f0906 100%);
-  position: relative;
-}
-
-.menu::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
-}
-
+/* ─── Menu (hover-reveal) ─── */
+.menu { background: linear-gradient(180deg, var(--espresso) 0%, var(--espresso-2) 100%); }
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  gap: 1.4rem;
 }
-
 .menu-item {
   position: relative;
-  height: 380px;
+  min-height: 360px;
   overflow: hidden;
+  border: 1px solid var(--line);
   cursor: pointer;
-  border: 1px solid rgba(201,168,76,0.08);
-  transition: border-color 0.4s ease, transform 0.4s ease;
+  transition: border-color .45s ease, transform .45s ease, box-shadow .45s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1.9rem;
 }
-
-.menu-item:hover {
-  border-color: rgba(201,168,76,0.3);
-  transform: translateY(-2px);
+.menu-item:hover, .menu-item:focus-within {
+  border-color: rgba(201,168,76,0.45);
+  transform: translateY(-4px);
+  box-shadow: 0 24px 48px rgba(0,0,0,.4);
 }
-
-.menu-item-bg {
-  position: absolute;
-  inset: 0;
-  transition: transform 0.6s ease;
+.menu-item-art { position: absolute; inset: 0; transition: transform .7s cubic-bezier(.16,1,.3,1); }
+.menu-item-art svg { width: 100%; height: 100%; }
+.menu-item:hover .menu-item-art, .menu-item:focus-within .menu-item-art { transform: scale(1.06); }
+.menu-item-veil {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(20,11,6,.94) 8%, rgba(20,11,6,.55) 45%, rgba(20,11,6,.12) 80%);
 }
-
-.menu-item:hover .menu-item-bg {
-  transform: scale(1.05);
+.menu-item-no {
+  position: absolute; top: 1.5rem; left: 1.9rem;
+  font-family: 'Cormorant Garamond', serif; font-size: .9rem; color: var(--gold);
+  letter-spacing: .25em; opacity: .7;
 }
-
-.menu-item-overlay {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(26, 15, 10, 0.92) 0%,
-    rgba(26, 15, 10, 0.6) 40%,
-    rgba(26, 15, 10, 0.3) 60%,
-    rgba(26, 15, 10, 0.1) 100%
-  );
-  z-index: 1;
+.menu-item-body { position: relative; z-index: 2; }
+.menu-cat {
+  font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .26em;
+  text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; display: block;
 }
-
-.menu-item-content {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem;
-  z-index: 2;
-}
-
-.menu-item-category {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.4rem;
-  font-weight: 400;
-}
-
-.menu-item-name {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.5rem;
-  color: var(--cream);
-  margin-bottom: 0.3rem;
-  font-weight: 500;
-}
-
-.menu-item-price {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.1rem;
-  color: var(--gold);
-  font-style: italic;
-}
-
-.menu-item-desc {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s ease, opacity 0.5s ease, margin 0.5s ease;
-  opacity: 0;
+.menu-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+.menu-name { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; color: var(--cream); font-weight: 500; line-height: 1.1; }
+.menu-price { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; color: var(--gold); white-space: nowrap; }
+.menu-reveal {
+  max-height: 0; opacity: 0; overflow: hidden;
+  transition: max-height .55s cubic-bezier(.16,1,.3,1), opacity .45s ease, margin-top .5s ease;
   margin-top: 0;
 }
-
-.menu-item:hover .menu-item-desc {
-  max-height: 100px;
-  opacity: 1;
-  margin-top: 0.8rem;
+.menu-item:hover .menu-reveal, .menu-item:focus-within .menu-reveal {
+  max-height: 140px; opacity: 1; margin-top: .9rem;
 }
+.menu-reveal p { font-size: .86rem; color: var(--cream-dim); line-height: 1.6; }
+.menu-reveal .menu-rule { width: 34px; height: 1px; background: var(--gold); margin-bottom: .7rem; }
 
-.menu-item-desc p {
-  font-size: 0.85rem;
-  color: rgba(245, 240, 232, 0.7);
-  line-height: 1.6;
-  font-weight: 300;
-}
-
-.menu-item-1 .menu-item-bg { background: radial-gradient(ellipse at 30% 40%, rgba(201,168,76,0.15) 0%, #1a0f0a 70%); }
-.menu-item-2 .menu-item-bg { background: radial-gradient(ellipse at 60% 30%, rgba(180,80,60,0.15) 0%, #1a0f0a 70%); }
-.menu-item-3 .menu-item-bg { background: radial-gradient(ellipse at 40% 60%, rgba(100,180,140,0.12) 0%, #1a0f0a 70%); }
-.menu-item-4 .menu-item-bg { background: radial-gradient(ellipse at 50% 40%, rgba(220,180,120,0.18) 0%, #1a0f0a 70%); }
-.menu-item-5 .menu-item-bg { background: radial-gradient(ellipse at 30% 50%, rgba(160,100,140,0.14) 0%, #1a0f0a 70%); }
-.menu-item-6 .menu-item-bg { background: radial-gradient(ellipse at 60% 50%, rgba(200,140,80,0.12) 0%, #1a0f0a 70%); }
-
-.menu-item-accent {
-  position: absolute;
-  top: 1.5rem;
-  right: 1.5rem;
-  z-index: 2;
-  font-size: 0.7rem;
-  color: var(--gold);
-  opacity: 0.5;
-  letter-spacing: 0.1em;
-}
-
-/* ─── Wine Accordion ─── */
-.wine {
-  background: var(--deep-dark);
-  position: relative;
-}
-
-.wine::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
-}
-
-.wine-list {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.wine-item {
-  border-bottom: 1px solid rgba(201,168,76,0.1);
-}
-
-.wine-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.2rem 0;
-  cursor: pointer;
-  transition: color 0.3s;
-  user-select: none;
-}
-
-.wine-header:hover {
-  color: var(--gold);
-}
-
-.wine-header-left {
-  display: flex;
+/* ─── Wine accordion ─── */
+.wine-list { max-width: 840px; margin: 0 auto; }
+.wine-item { border-bottom: 1px solid var(--line); }
+.wine-item:first-child { border-top: 1px solid var(--line); }
+.wine-trigger {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 3rem 1fr auto auto;
   align-items: center;
   gap: 1rem;
-}
-
-.wine-year {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1rem;
-  color: var(--gold);
-  min-width: 3rem;
-}
-
-.wine-name {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.15rem;
-  font-weight: 500;
-}
-
-.wine-origin {
-  font-size: 0.8rem;
-  color: rgba(245, 240, 232, 0.5);
-  font-weight: 300;
-  margin-left: 0.5rem;
-}
-
-.wine-price {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-style: italic;
-  color: var(--gold);
-  font-size: 1.05rem;
-}
-
-.wine-toggle {
-  font-size: 0.8rem;
-  color: var(--gold);
-  margin-left: 1rem;
-  transition: transform 0.3s ease;
-  display: inline-block;
-}
-
-.wine-item.active .wine-toggle {
-  transform: rotate(45deg);
-}
-
-.wine-details {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease, padding 0.4s ease;
-  padding: 0 0 0 4rem;
-}
-
-.wine-item.active .wine-details {
-  max-height: 200px;
-  padding: 0 0 1.2rem 4rem;
-}
-
-.wine-details p {
-  font-size: 0.85rem;
-  color: rgba(245, 240, 232, 0.6);
-  line-height: 1.7;
-  font-weight: 300;
-}
-
-.wine-details .pairing {
-  margin-top: 0.5rem;
-  font-size: 0.8rem;
-  color: var(--gold);
-  font-style: italic;
-}
-
-/* ─── Reservation ─── */
-.reservation {
-  background: linear-gradient(180deg, #0f0906 0%, var(--deep-dark) 100%);
-  position: relative;
-}
-
-.reservation::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
-}
-
-.reservation-form {
-  max-width: 640px;
-  margin: 0 auto;
-}
-
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.2rem;
-  margin-bottom: 1.2rem;
-}
-
-.form-group {
-  margin-bottom: 1.2rem;
-}
-
-.form-group label {
-  display: block;
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(245, 240, 232, 0.5);
-  margin-bottom: 0.5rem;
-  font-weight: 400;
-}
-
-.form-group input,
-.form-group select {
-  width: 100%;
-  padding: 0.85rem 1rem;
-  background: rgba(245, 240, 232, 0.05);
-  border: 1px solid rgba(201,168,76,0.15);
-  border-radius: 2px;
+  padding: 1.4rem 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
   color: var(--cream);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  transition: border-color 0.3s, background 0.3s;
+  font-family: inherit;
+  transition: color .3s;
+}
+.wine-trigger:hover, .wine-trigger:focus-visible { color: var(--gold); outline: none; }
+.wine-trigger:focus-visible .wine-name { text-decoration: underline; text-underline-offset: 4px; }
+.wine-year { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--gold); }
+.wine-id { min-width: 0; }
+.wine-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; }
+.wine-origin { display: block; font-size: .72rem; color: var(--cream-faint); letter-spacing: .08em; text-transform: uppercase; margin-top: .15rem; }
+.wine-price { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--gold); }
+.wine-icon { width: 18px; height: 18px; color: var(--gold); transition: transform .4s ease; flex-shrink: 0; }
+.wine-trigger[aria-expanded="true"] .wine-icon { transform: rotate(135deg); }
+.wine-panel {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .45s cubic-bezier(.16,1,.3,1);
+}
+.wine-panel[hidden] { display: grid; }
+.wine-trigger[aria-expanded="true"] + .wine-panel { grid-template-rows: 1fr; }
+.wine-panel-inner { overflow: hidden; }
+.wine-panel-pad { padding: 0 0 1.5rem 4rem; }
+.wine-panel-pad p { font-size: .9rem; color: var(--cream-dim); line-height: 1.7; }
+.wine-pair { margin-top: .7rem; font-size: .82rem; font-style: italic; color: var(--gold); font-family: 'Cormorant Garamond', serif; }
+
+/* ─── Tasting / experience strip ─── */
+.experience { background: var(--espresso-2); }
+.exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+.exp-card { text-align: center; padding: 2.2rem 1.4rem; border: 1px solid var(--line); transition: border-color .4s ease, transform .4s ease; }
+.exp-card:hover { border-color: rgba(201,168,76,.4); transform: translateY(-4px); }
+.exp-icon { width: 40px; height: 40px; margin: 0 auto 1.2rem; color: var(--gold); }
+.exp-card h3 { font-size: 1.5rem; color: var(--cream); margin-bottom: .5rem; }
+.exp-card p { font-size: .88rem; color: var(--cream-dim); }
+
+/* ─── Reservation form ─── */
+.reservation { background: linear-gradient(180deg, var(--espresso-2) 0%, var(--espresso) 100%); }
+.reservation-form { max-width: 660px; margin: 0 auto; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; }
+.form-group { margin-bottom: 1.3rem; }
+.form-group label {
+  display: block; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
+  color: var(--cream-dim); margin-bottom: .55rem; font-weight: 400;
+}
+.form-group input, .form-group select {
+  width: 100%;
+  padding: .9rem 1rem;
+  background: rgba(245,240,232,0.04);
+  border: 1px solid var(--line);
+  border-radius: 1px;
+  color: var(--cream);
+  font-family: 'Jost', sans-serif;
+  font-size: .92rem;
+  font-weight: 300;
+  transition: border-color .3s, background .3s;
   outline: none;
   -webkit-appearance: none;
   appearance: none;
 }
-
-.form-group input:focus,
-.form-group select:focus {
+.form-group input:focus, .form-group select:focus {
   border-color: var(--gold);
-  background: rgba(245, 240, 232, 0.08);
+  background: rgba(245,240,232,0.07);
 }
-
-.form-group input::placeholder {
-  color: rgba(245, 240, 232, 0.25);
-}
-
+.form-group input::placeholder { color: var(--cream-faint); }
 .form-group select {
   cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='%23c9a84c' d='M6 8L0 0h12z'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23c9a84c' stroke-width='1.4' d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 2.5rem;
 }
-
-.form-group select option {
-  background: var(--deep-dark);
-  color: var(--cream);
+.form-group select option { background: var(--espresso); color: var(--cream); }
+.form-group.invalid input, .form-group.invalid select { border-color: #d8694e; background: rgba(216,105,78,0.06); }
+.field-error {
+  display: block;
+  min-height: 0;
+  max-height: 0;
+  overflow: hidden;
+  font-size: .72rem;
+  letter-spacing: .03em;
+  color: #e0876f;
+  margin-top: .4rem;
+  opacity: 0;
+  transition: max-height .3s ease, opacity .3s ease, margin-top .3s ease;
 }
-
+.form-group.invalid .field-error { max-height: 40px; opacity: 1; }
 .submit-btn {
   width: 100%;
-  padding: 1rem;
+  padding: 1.05rem;
   background: var(--gold);
-  border: none;
-  color: var(--deep-dark);
-  font-family: 'Inter', sans-serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
+  border: 1px solid var(--gold);
+  color: var(--espresso);
+  font-family: 'Jost', sans-serif;
+  font-size: .76rem;
+  letter-spacing: .22em;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
   font-weight: 500;
-  border-radius: 2px;
-  margin-top: 0.5rem;
+  cursor: pointer;
+  border-radius: 1px;
+  margin-top: .4rem;
+  transition: background .3s, transform .3s, color .3s;
+  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
 }
-
-.submit-btn:hover {
-  background: var(--gold-light);
-  transform: translateY(-1px);
+.submit-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
+.submit-btn svg { width: 15px; height: 15px; }
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 3rem 2rem;
+  border: 1px solid rgba(201,168,76,0.3);
+  background: rgba(201,168,76,0.04);
 }
+.form-success.show { display: block; animation: fadeUp .6s ease forwards; }
+.form-success .check { width: 54px; height: 54px; margin: 0 auto 1.3rem; color: var(--gold); }
+.form-success h3 { font-size: 1.9rem; color: var(--cream); margin-bottom: .7rem; }
+.form-success p { color: var(--cream-dim); font-size: .95rem; }
+.form-success .again {
+  margin-top: 1.6rem; background: none; border: 1px solid var(--line); color: var(--gold);
+  padding: .7rem 1.6rem; font-family: 'Jost', sans-serif; font-size: .68rem; letter-spacing: .2em;
+  text-transform: uppercase; cursor: pointer; border-radius: 1px; transition: border-color .3s;
+}
+.form-success .again:hover { border-color: var(--gold); }
 
 /* ─── Testimonials ─── */
-.testimonials {
-  background: var(--deep-dark);
-  position: relative;
-  overflow: hidden;
-}
-
-.testimonials::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
-}
-
-.testimonial-slider {
-  max-width: 700px;
-  margin: 0 auto;
-  position: relative;
-  min-height: 250px;
-}
-
-.testimonial-slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.6s ease, transform 0.6s ease;
-  transform: translateY(10px);
+.testimonials { overflow: hidden; }
+.t-slider { max-width: 720px; margin: 0 auto; position: relative; min-height: 240px; }
+.t-slide {
+  position: absolute; inset: 0;
+  opacity: 0; transform: translateY(14px);
+  transition: opacity .6s ease, transform .6s ease;
   pointer-events: none;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  display: flex; flex-direction: column; align-items: center; text-align: center;
 }
-
-.testimonial-slide.active {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-  position: relative;
+.t-slide.active { opacity: 1; transform: translateY(0); pointer-events: auto; position: relative; }
+.t-stars { display: flex; gap: 5px; margin-bottom: 1.4rem; }
+.t-stars svg { width: 18px; height: 18px; color: var(--gold); }
+.t-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
+  font-style: italic; line-height: 1.5; color: var(--cream);
+  font-weight: 400; margin-bottom: 1.6rem;
 }
-
-.testimonial-quote {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.6rem;
-  font-style: italic;
-  line-height: 1.5;
-  color: var(--cream);
-  font-weight: 400;
-  margin-bottom: 1.5rem;
-  position: relative;
+.t-author { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--gold); }
+.t-role { font-size: .7rem; color: var(--cream-faint); letter-spacing: .16em; text-transform: uppercase; margin-top: .25rem; }
+.t-dots { display: flex; justify-content: center; gap: .6rem; margin-top: 2.2rem; }
+.t-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(201,168,76,0.22); border: none; cursor: pointer; padding: 0; transition: background .3s, transform .3s; }
+.t-dot.active { background: var(--gold); transform: scale(1.25); }
+.t-nav { display: flex; justify-content: center; gap: 1rem; margin-top: 1.4rem; }
+.t-nav-btn {
+  background: none; border: 1px solid var(--line); color: var(--gold);
+  width: 44px; height: 44px; cursor: pointer; border-radius: 1px;
+  display: flex; align-items: center; justify-content: center; transition: border-color .3s, background .3s;
 }
-
-.testimonial-quote::before {
-  content: '\201C';
-  display: block;
-  font-size: 4rem;
-  color: var(--gold);
-  opacity: 0.3;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  line-height: 1;
-  margin-bottom: 0.5rem;
-}
-
-.testimonial-author {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.1rem;
-  color: var(--gold);
-  font-weight: 500;
-}
-
-.testimonial-role {
-  font-size: 0.75rem;
-  color: rgba(245, 240, 232, 0.4);
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  margin-top: 0.25rem;
-  font-weight: 300;
-}
-
-.testimonial-stars {
-  margin-bottom: 1rem;
-  color: var(--gold);
-  font-size: 0.9rem;
-  letter-spacing: 4px;
-}
-
-.slider-dots {
-  display: flex;
-  justify-content: center;
-  gap: 0.6rem;
-  margin-top: 2rem;
-}
-
-.slider-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(201,168,76,0.2);
-  border: none;
-  cursor: pointer;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.slider-dot.active {
-  background: var(--gold);
-  transform: scale(1.2);
-}
-
-.slider-nav {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.slider-nav-btn {
-  background: transparent;
-  border: 1px solid rgba(201,168,76,0.3);
-  color: var(--gold);
-  width: 44px;
-  height: 44px;
-  cursor: pointer;
-  font-size: 1rem;
-  transition: all 0.3s;
-  border-radius: 2px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.slider-nav-btn:hover {
-  background: rgba(201,168,76,0.1);
-  border-color: var(--gold);
-}
-
-/* ─── Instagram Feed ─── */
-.instagram {
-  background: linear-gradient(180deg, var(--deep-dark) 0%, #0f0906 100%);
-  position: relative;
-}
-
-.instagram::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(201,168,76,0.15), transparent);
-}
-
-.instagram-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1rem;
-}
-
-.insta-item {
-  position: relative;
-  aspect-ratio: 1;
-  overflow: hidden;
-  cursor: pointer;
-  border: 1px solid rgba(201,168,76,0.06);
-}
-
-.insta-gradient {
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s ease, filter 0.4s ease;
-}
-
-.insta-item:hover .insta-gradient {
-  transform: scale(1.05);
-  filter: brightness(1.15);
-}
-
-.insta-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(26, 15, 10, 0);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.4s ease;
-  z-index: 1;
-}
-
-.insta-item:hover .insta-overlay {
-  background: rgba(26, 15, 10, 0.5);
-}
-
-.insta-icon {
-  color: var(--cream);
-  font-size: 1.5rem;
-  opacity: 0;
-  transform: scale(0.5);
-  transition: all 0.4s ease;
-}
-
-.insta-item:hover .insta-icon {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.insta-g1 { background: linear-gradient(135deg, #2a1a12 0%, #3a2a1a 50%, #1a0f0a 100%); }
-.insta-g2 { background: linear-gradient(135deg, #1a1510 0%, #2a1f10 50%, #1a0f0a 100%); }
-.insta-g3 { background: linear-gradient(135deg, #1f1210 0%, #2a1a1a 50%, #1a0f0a 100%); }
-.insta-g4 { background: linear-gradient(135deg, #201810 0%, #1a1a12 50%, #1a0f0a 100%); }
-.insta-g5 { background: linear-gradient(135deg, #141014 0%, #2a1a20 50%, #1a0f0a 100%); }
-.insta-g6 { background: linear-gradient(135deg, #1a1410 0%, #2a2218 50%, #1a0f0a 100%); }
-
-.insta-label {
-  text-align: center;
-  margin-top: 2.5rem;
-}
-
-.insta-label a {
-  color: var(--gold);
-  text-decoration: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  transition: opacity 0.3s;
-  font-weight: 400;
-}
-
-.insta-label a:hover {
-  opacity: 0.7;
-}
+.t-nav-btn:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+.t-nav-btn svg { width: 16px; height: 16px; }
 
 /* ─── Footer ─── */
-footer {
-  background: #0f0906;
-  padding: 4rem 2rem 2rem;
-  border-top: 1px solid rgba(201,168,76,0.06);
-}
-
-.footer-grid {
-  max-width: 1200px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr;
-  gap: 3rem;
-}
-
-.footer-brand .logo {
-  font-size: 1.5rem;
-}
-
-.footer-brand p {
-  margin-top: 1rem;
-  font-size: 0.85rem;
-  color: rgba(245, 240, 232, 0.4);
-  max-width: 280px;
-  line-height: 1.7;
-  font-weight: 300;
-}
-
-.footer-col h4 {
-  font-family: 'Inter', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 1.2rem;
-  font-weight: 500;
-}
-
-.footer-col ul {
-  list-style: none;
-}
-
-.footer-col ul li {
-  margin-bottom: 0.6rem;
-}
-
-.footer-col ul li a {
-  color: rgba(245, 240, 232, 0.5);
-  text-decoration: none;
-  font-size: 0.85rem;
-  transition: color 0.3s;
-  font-weight: 300;
-}
-
-.footer-col ul li a:hover {
-  color: var(--gold);
-}
-
+footer { background: var(--espresso-2); padding: 4.5rem clamp(1.4rem, 4vw, 2rem) 2rem; border-top: 1px solid var(--line); }
+.footer-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
+.footer-brand .logo { margin-bottom: 1.1rem; }
+.footer-brand p { font-size: .88rem; color: var(--cream-dim); max-width: 290px; }
+.footer-col h4 { font-family: 'Jost', sans-serif; font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 500; }
+.footer-col ul { list-style: none; }
+.footer-col ul li { margin-bottom: .6rem; font-size: .88rem; color: var(--cream-dim); }
+.footer-col ul li a { text-decoration: none; transition: color .3s; }
+.footer-col ul li a:hover { color: var(--gold); }
 .footer-bottom {
-  max-width: 1200px;
-  margin: 3rem auto 0;
-  padding-top: 1.5rem;
-  border-top: 1px solid rgba(201,168,76,0.06);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 0.75rem;
-  color: rgba(245, 240, 232, 0.3);
-  font-weight: 300;
+  max-width: 1180px; margin: 3rem auto 0; padding-top: 1.6rem; border-top: 1px solid var(--line);
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  font-size: .74rem; color: var(--cream-faint);
 }
-
-.footer-socials {
-  display: flex;
-  gap: 1.2rem;
+.footer-socials { display: flex; gap: 1rem; }
+.footer-socials button {
+  background: none; border: 1px solid var(--line); color: var(--cream-dim);
+  width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; transition: border-color .3s, color .3s;
 }
+.footer-socials button:hover { border-color: var(--gold); color: var(--gold); }
+.footer-socials svg { width: 16px; height: 16px; }
 
-.footer-socials a {
-  color: rgba(245, 240, 232, 0.3);
-  text-decoration: none;
-  transition: color 0.3s;
-  font-size: 0.85rem;
+/* ─── Reveal ─── */
+.reveal { opacity: 0; transform: translateY(38px); transition: opacity .9s ease, transform .9s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.rd-1 { transition-delay: .1s; } .rd-2 { transition-delay: .2s; } .rd-3 { transition-delay: .3s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+  .reveal { opacity: 1; transform: none; }
+  .hero-plate, .hero-est, .hero-rule, .hero-title, .hero-desc, .hero-actions, .hero-scroll { opacity: 1; animation: none; }
 }
-
-.footer-socials a:hover {
-  color: var(--gold);
-}
-
-/* ─── Scroll Animations ─── */
-.reveal {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
 
 /* ─── Responsive ─── */
 @media (max-width: 1024px) {
-  .menu-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-  .story-grid {
-    gap: 3rem;
-  }
+  .menu-grid { grid-template-columns: repeat(2, 1fr); }
 }
-
 @media (max-width: 768px) {
-  nav {
-    padding: 1.2rem 1.5rem;
-  }
-
-  .hamburger {
-    display: flex;
-  }
-
+  .hamburger { display: flex; }
   .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 70%;
-    max-width: 320px;
-    height: 100vh;
-    background: var(--dark-translucent);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    flex-direction: column;
-    justify-content: center;
-    gap: 2rem;
-    padding: 4rem 2rem;
-    transition: right 0.4s ease;
+    position: fixed; top: 0; right: -100%;
+    width: 78%; max-width: 340px; height: 100vh;
+    background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+    flex-direction: column; justify-content: center; gap: 2rem;
+    padding: 4rem 2rem; transition: right .45s cubic-bezier(.16,1,.3,1);
+    box-shadow: -20px 0 60px rgba(0,0,0,.5);
   }
-
-  .nav-links.open {
-    right: 0;
-  }
-
-  section {
-    padding: 4rem 1.5rem;
-  }
-
-  .story-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .story-image {
-    height: 300px;
-  }
-
-  .story-content h2 {
-    font-size: 1.8rem;
-  }
-
-  .menu-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .menu-item {
-    height: 300px;
-  }
-
-  .form-row {
-    grid-template-columns: 1fr;
-  }
-
-  .instagram-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-  }
-
-  .footer-bottom {
-    flex-direction: column;
-    gap: 1rem;
-    text-align: center;
-  }
-
-  .testimonial-quote {
-    font-size: 1.3rem;
-  }
-
-  .wine-details {
-    padding-left: 0 !important;
-  }
-
-  .wine-item.active .wine-details {
-    padding-left: 0 !important;
-  }
-
-  .wine-header-left {
-    flex-wrap: wrap;
-  }
+  .nav-links.open { right: 0; }
+  .nav-links a { font-size: .9rem; }
+  .story-grid { grid-template-columns: 1fr; }
+  .story-figure { aspect-ratio: 3 / 2; max-width: 460px; margin: 0 auto; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .menu-item { min-height: 300px; }
+  .menu-reveal { max-height: 140px !important; opacity: 1 !important; margin-top: .9rem !important; }
+  .exp-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .form-row { grid-template-columns: 1fr; gap: 0; }
+  .wine-panel-pad { padding-left: 0; }
+  .wine-trigger { grid-template-columns: 2.4rem 1fr auto; row-gap: .4rem; }
+  .wine-price { grid-column: 2 / 3; justify-self: start; }
+  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
+  .footer-bottom { flex-direction: column; text-align: center; }
 }
-
-@media (max-width: 480px) {
-  .instagram-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  .footer-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-title {
-    font-size: 2.5rem;
-  }
+@media (max-width: 420px) {
+  .footer-grid { grid-template-columns: 1fr; }
+  .nav-links { width: 84%; }
 }
 </style>
 </head>
 <body>
 
-<!-- ─── Navigation ─── -->
+<!-- ─── Nav ─── -->
 <nav id="navbar">
-  <a href="#" class="logo">La&thinsp;Maison&thinsp;Dorée</a>
+  <a href="#hero" class="logo" aria-label="GEM — home">
+    <svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="#c9a84c" stroke-width="1.6" stroke-linejoin="round">
+      <path d="M7 12h18l-9 14z"/><path d="M7 12l4-5h10l4 5"/><path d="M12 12l4 14 4-14"/>
+    </svg>
+    <span class="wordmark">Gem</span>
+  </a>
   <ul class="nav-links" id="navLinks">
-    <li><a href="#story">Our Story</a></li>
+    <li><a href="#story">Story</a></li>
     <li><a href="#menu">Menu</a></li>
-    <li><a href="#wine">Wine</a></li>
-    <li><a href="#testimonials">Reviews</a></li>
-    <li><a href="#instagram">Gallery</a></li>
+    <li><a href="#wine">Cellar</a></li>
+    <li><a href="#testimonials">Guests</a></li>
     <li><a href="#reservation" class="reserve-btn">Reserve</a></li>
   </ul>
-  <button class="hamburger" id="hamburger" aria-label="Menu">
+  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
     <span></span><span></span><span></span>
   </button>
 </nav>
 
 <!-- ─── Hero ─── -->
 <section class="hero" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-gradient"></div>
-  <div class="hero-overlay-top"></div>
+  <div class="hero-stage">
+    <div class="hero-glow"></div>
+    <div class="hero-plate" aria-hidden="true">
+      <svg viewBox="0 0 600 600" fill="none">
+        <g class="ring-rotate" stroke="#c9a84c" stroke-width="1">
+          <circle cx="300" cy="300" r="232" opacity="0.28"/>
+          <circle cx="300" cy="300" r="200" opacity="0.16" stroke-dasharray="2 10"/>
+        </g>
+        <circle cx="300" cy="300" r="168" stroke="#c9a84c" stroke-width="1.4" opacity="0.5"/>
+        <circle cx="300" cy="300" r="150" stroke="#e3c878" stroke-width="0.8" opacity="0.35"/>
+        <!-- plated composition: faceted gem + plated arcs -->
+        <g stroke="#c9a84c" stroke-width="1.6" stroke-linejoin="round" fill="none" opacity="0.85">
+          <path d="M255 268h90l-45 70z"/>
+          <path d="M255 268l20-26h50l20 26"/>
+          <path d="M283 268l17 70 17-70"/>
+        </g>
+        <g stroke="#e3c878" stroke-width="1" opacity="0.5" fill="none">
+          <path d="M210 360q90 44 180 0"/>
+          <path d="M232 386q68 30 136 0"/>
+        </g>
+        <g fill="#c9a84c" opacity="0.6">
+          <circle cx="232" cy="248" r="2.5"/><circle cx="368" cy="248" r="2.5"/>
+          <circle cx="300" cy="408" r="2.5"/><circle cx="252" cy="392" r="1.8"/><circle cx="348" cy="392" r="1.8"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <div class="hero-vignette"></div>
   <div class="hero-content">
-    <p class="hero-subtitle">Est. 1987</p>
-    <div class="hero-divider"></div>
-    <h1 class="hero-title">An Experience<br><em>in Every Bite</em></h1>
-    <p class="hero-desc">Where tradition meets innovation. An intimate journey through flavor, crafted with passion and served with grace.</p>
-    <a href="#reservation" class="hero-btn">Make a Reservation</a>
+    <p class="hero-est eyebrow">Est. 2012 · Tasting House</p>
+    <div class="hero-rule"></div>
+    <h1 class="hero-title">A Quiet<br><em>Brilliance</em></h1>
+    <p class="hero-desc">GEM is an intimate fine-dining room where seasonal cuisine, a rare cellar, and unhurried service meet in a single, considered evening.</p>
+    <div class="hero-actions">
+      <a href="#reservation" class="btn btn-solid">Reserve a Table</a>
+      <a href="#menu" class="btn btn-ghost">View the Menu</a>
+    </div>
   </div>
   <div class="hero-scroll">
-    <span class="scroll-text">Scroll</span>
-    <div class="scroll-line"></div>
+    <span>Scroll</span>
+    <div class="line"></div>
   </div>
 </section>
 
-<!-- ─── Chef's Story ─── -->
-<section id="story" class="story">
+<!-- ─── Story ─── -->
+<section id="story" class="story section-divider-top">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-tag">Our Heritage</p>
-      <h2 class="section-title">The Chef's Story</h2>
-      <div class="section-divider"></div>
+      <span class="eyebrow">The Kitchen</span>
+      <h2 class="section-title">A Single <em>Table</em>, A Single Vision</h2>
+      <div class="section-rule"></div>
     </div>
     <div class="story-grid">
-      <div class="story-image reveal reveal-delay-1">
-        <div class="pattern"></div>
-        <div class="accent-line"></div>
-        <div class="accent-line-bottom"></div>
-        <div class="corner tl"></div>
-        <div class="corner tr"></div>
-        <div class="corner bl"></div>
-        <div class="corner br"></div>
+      <div class="story-figure reveal rd-1" aria-hidden="true">
+        <svg viewBox="0 0 400 500" fill="none" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <radialGradient id="figGlow" cx="40%" cy="34%" r="60%">
+              <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.14"/>
+              <stop offset="100%" stop-color="#1a0f0a" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+          <rect width="400" height="500" fill="url(#figGlow)"/>
+          <g stroke="#c9a84c" stroke-width="1.2" fill="none" opacity="0.55">
+            <circle cx="200" cy="218" r="120"/>
+            <circle cx="200" cy="218" r="96" opacity="0.6"/>
+          </g>
+          <g stroke="#c9a84c" stroke-width="1.6" stroke-linejoin="round" fill="none" opacity="0.85">
+            <path d="M168 200h64l-32 50z"/>
+            <path d="M168 200l14-18h36l14 18"/>
+            <path d="M188 200l12 50 12-50"/>
+          </g>
+          <g stroke="#e3c878" stroke-width="1" opacity="0.45" fill="none">
+            <path d="M132 286q68 34 136 0"/>
+          </g>
+          <g stroke="#c9a84c" stroke-width="1" opacity="0.3">
+            <line x1="60" y1="360" x2="60" y2="430"/>
+            <path d="M52 360q8 12 0 24"/><path d="M68 360q-8 12 0 24"/>
+            <line x1="340" y1="360" x2="340" y2="430"/>
+            <ellipse cx="340" cy="356" rx="9" ry="5"/>
+          </g>
+        </svg>
+        <div class="story-frame"></div>
+        <div class="figcap">The Pass · 18 seats nightly</div>
       </div>
-      <div class="story-content reveal reveal-delay-2">
-        <h2>Where <em>Passion</em> Meets the Palate</h2>
-        <p>Chef Jean-Luc Moreau's journey began in the sun-drenched hills of Provence, where his grandmother's farmhouse kitchen first ignited a lifelong love affair with food. After training at Le Cordon Bleu and earning his stripes in Michelin-starred kitchens across Europe, he returned to his roots to create something truly his own.</p>
-        <p>At La Maison Dorée, every dish tells a story — of terroir, of tradition reimagined, of ingredients sourced from the finest purveyors who share our commitment to excellence. The menu changes with the seasons, a living document of Chef Moreau's unending curiosity and respect for the craft.</p>
-        <p>"Cooking is not about perfection," Chef reflects. "It is about connection — to the land, to the ingredient, to the guest seated at your table."</p>
-        <div class="story-signature">— Jean-Luc Moreau, Chef &amp; Founder</div>
+      <div class="story-content reveal rd-2">
+        <h2>Cooking as <em>Conversation</em></h2>
+        <p>GEM serves a single nightly tasting to eighteen guests. There is no à la carte, no second seating — only one room, one menu, and one rhythm that unfolds over the course of an evening.</p>
+        <p>Our kitchen is led by a chef who built this room around a simple idea: that a meal should feel like a conversation between the land, the season, and the people seated at the counter. Ingredients arrive each morning; the menu is written each afternoon.</p>
+        <p><span class="pull">"We don't chase perfection. We chase the moment a dish feels honest — then we send it out."</span></p>
+        <div class="story-sign">
+          <span class="sig">The Kitchen at GEM</span>
+          <span class="role">Chef &amp; Team</span>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ─── Menu ─── -->
-<section id="menu" class="menu">
+<section id="menu" class="menu section-divider-top">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-tag">Curated Flavors</p>
-      <h2 class="section-title">The Menu</h2>
-      <div class="section-divider"></div>
+      <span class="eyebrow">The Tasting</span>
+      <h2 class="section-title">Tonight's <em>Menu</em></h2>
+      <div class="section-rule"></div>
     </div>
     <div class="menu-grid">
-      <div class="menu-item menu-item-1 reveal reveal-delay-1">
-        <div class="menu-item-bg"></div>
-        <div class="menu-item-overlay"></div>
-        <span class="menu-item-accent">✦</span>
-        <div class="menu-item-content">
-          <span class="menu-item-category">Amuse‑Bouche</span>
-          <h3 class="menu-item-name">Foie Gras Terrine</h3>
-          <span class="menu-item-price">$32</span>
-          <div class="menu-item-desc">
-            <p>Sauternes-poached foie gras, fig compote, toasted brioche, black truffle shavings, micro-herb salad</p>
+
+      <article class="menu-item reveal rd-1" tabindex="0">
+        <div class="menu-item-art" aria-hidden="true">
+          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="360" fill="#1f120b"/>
+            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+            <path d="M118 150h64l-32 48z" fill="none" stroke="#c9a84c" stroke-width="1.4" opacity="0.7"/>
+            <path d="M118 150l14-18h36l14 18" fill="none" stroke="#c9a84c" stroke-width="1.4" opacity="0.7"/>
+            <path d="M110 200q40 22 80 0" stroke="#e3c878" stroke-width="1" opacity="0.4" fill="none"/>
+          </svg>
+        </div>
+        <div class="menu-item-veil"></div>
+        <span class="menu-item-no">01</span>
+        <div class="menu-item-body">
+          <span class="menu-cat">To Begin</span>
+          <div class="menu-head">
+            <h3 class="menu-name">Smoked Beet Tartare</h3>
+            <span class="menu-price">$28</span>
+          </div>
+          <div class="menu-reveal">
+            <div class="menu-rule"></div>
+            <p>Charcoal-smoked golden beet, cured yolk, toasted rye crumb, horseradish snow and a thread of dill oil.</p>
           </div>
         </div>
+      </article>
+
+      <article class="menu-item reveal rd-2" tabindex="0">
+        <div class="menu-item-art" aria-hidden="true">
+          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="360" fill="#231410"/>
+            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+            <g stroke="#e3c878" stroke-width="1.3" opacity="0.65" fill="none">
+              <path d="M120 140q14-14 30 0t30 0"/>
+              <path d="M120 162q14-14 30 0t30 0"/>
+            </g>
+            <circle cx="150" cy="150" r="40" stroke="#c9a84c" stroke-width="1" opacity="0.45" fill="none"/>
+          </svg>
+        </div>
+        <div class="menu-item-veil"></div>
+        <span class="menu-item-no">02</span>
+        <div class="menu-item-body">
+          <span class="menu-cat">From the Sea</span>
+          <div class="menu-head">
+            <h3 class="menu-name">Hand-Dived Scallop</h3>
+            <span class="menu-price">$36</span>
+          </div>
+          <div class="menu-reveal">
+            <div class="menu-rule"></div>
+            <p>Seared day-boat scallop, brown-butter cauliflower, crisp caper, preserved lemon and chervil.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item reveal rd-3" tabindex="0">
+        <div class="menu-item-art" aria-hidden="true">
+          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="360" fill="#1d150e"/>
+            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+            <g stroke="#c9a84c" stroke-width="1.2" opacity="0.6" fill="none">
+              <circle cx="150" cy="150" r="24"/>
+              <circle cx="150" cy="150" r="44"/>
+              <circle cx="150" cy="150" r="62"/>
+            </g>
+          </svg>
+        </div>
+        <div class="menu-item-veil"></div>
+        <span class="menu-item-no">03</span>
+        <div class="menu-item-body">
+          <span class="menu-cat">From the Soil</span>
+          <div class="menu-head">
+            <h3 class="menu-name">Wild Mushroom Risotto</h3>
+            <span class="menu-price">$32</span>
+          </div>
+          <div class="menu-reveal">
+            <div class="menu-rule"></div>
+            <p>Carnaroli rice, porcini and chanterelle, aged hard cheese, white-truffle oil and a parsley foam.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item reveal rd-1" tabindex="0">
+        <div class="menu-item-art" aria-hidden="true">
+          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="360" fill="#241409"/>
+            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+            <g stroke="#e3c878" stroke-width="1.4" opacity="0.6" fill="none">
+              <path d="M130 120v60M150 116v68M170 120v60"/>
+              <path d="M124 132h52"/>
+            </g>
+          </svg>
+        </div>
+        <div class="menu-item-veil"></div>
+        <span class="menu-item-no">04</span>
+        <div class="menu-item-body">
+          <span class="menu-cat">The Main</span>
+          <div class="menu-head">
+            <h3 class="menu-name">Herb-Crusted Lamb</h3>
+            <span class="menu-price">$52</span>
+          </div>
+          <div class="menu-reveal">
+            <div class="menu-rule"></div>
+            <p>Rosemary-thyme crusted rack, ratatouille, roast-garlic jus and a silken potato purée.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item reveal rd-2" tabindex="0">
+        <div class="menu-item-art" aria-hidden="true">
+          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="360" fill="#21130f"/>
+            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+            <g stroke="#c9a84c" stroke-width="1.3" opacity="0.6" fill="none">
+              <path d="M120 170q30-50 60 0"/>
+              <path d="M134 170q16-28 32 0"/>
+            </g>
+            <circle cx="150" cy="120" r="4" fill="#e3c878" opacity="0.7"/>
+          </svg>
+        </div>
+        <div class="menu-item-veil"></div>
+        <span class="menu-item-no">05</span>
+        <div class="menu-item-body">
+          <span class="menu-cat">The Main</span>
+          <div class="menu-head">
+            <h3 class="menu-name">Seared Duck Breast</h3>
+            <span class="menu-price">$46</span>
+          </div>
+          <div class="menu-reveal">
+            <div class="menu-rule"></div>
+            <p>Rendered duck breast, cherry gastrique, roast fennel, wilted greens and duck-fat potatoes.</p>
+          </div>
+        </div>
+      </article>
+
+      <article class="menu-item reveal rd-3" tabindex="0">
+        <div class="menu-item-art" aria-hidden="true">
+          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
+            <rect width="300" height="360" fill="#1a0f0a"/>
+            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
+            <g stroke="#e3c878" stroke-width="1.4" opacity="0.6" fill="none">
+              <path d="M126 178c0-26 48-26 48 0z"/>
+              <path d="M150 130v22"/>
+            </g>
+            <path d="M120 198q30 14 60 0" stroke="#c9a84c" stroke-width="1" opacity="0.4" fill="none"/>
+          </svg>
+        </div>
+        <div class="menu-item-veil"></div>
+        <span class="menu-item-no">06</span>
+        <div class="menu-item-body">
+          <span class="menu-cat">To Finish</span>
+          <div class="menu-head">
+            <h3 class="menu-name">Dark Chocolate Soufflé</h3>
+            <span class="menu-price">$22</span>
+          </div>
+          <div class="menu-reveal">
+            <div class="menu-rule"></div>
+            <p>Bitter-chocolate soufflé, vanilla-bean anglaise, salted caramel and a cocoa-nib tuile.</p>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── Experience strip ─── -->
+<section class="experience section-divider-top">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="eyebrow">The Evening</span>
+      <h2 class="section-title">How GEM <em>Works</em></h2>
+      <div class="section-rule"></div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card reveal rd-1">
+        <svg class="exp-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <circle cx="16" cy="16" r="12"/><path d="M16 9v7l4 3"/>
+        </svg>
+        <h3>One Seating</h3>
+        <p>A single nightly service. Doors at seven; the evening unfolds at its own unhurried pace.</p>
       </div>
-      <div class="menu-item menu-item-2 reveal reveal-delay-2">
-        <div class="menu-item-bg"></div>
-        <div class="menu-item-overlay"></div>
-        <span class="menu-item-accent">✦</span>
-        <div class="menu-item-content">
-          <span class="menu-item-category">Entrée</span>
-          <h3 class="menu-item-name">Seared Scallops</h3>
-          <span class="menu-item-price">$38</span>
-          <div class="menu-item-desc">
-            <p>Diver scallops, cauliflower purée, brown butter beurre noisette, crispy capers, lemon zest, chervil</p>
-          </div>
-        </div>
+      <div class="exp-card reveal rd-2">
+        <svg class="exp-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M9 4h14l-2 12a5 5 0 01-10 0z"/><path d="M16 16v8"/><path d="M11 28h10"/>
+        </svg>
+        <h3>Pairings</h3>
+        <p>An optional flight from our cellar, chosen by the sommelier to follow each course.</p>
       </div>
-      <div class="menu-item menu-item-3 reveal reveal-delay-3">
-        <div class="menu-item-bg"></div>
-        <div class="menu-item-overlay"></div>
-        <span class="menu-item-accent">✦</span>
-        <div class="menu-item-content">
-          <span class="menu-item-category">Entrée</span>
-          <h3 class="menu-item-name">Wild Mushroom Risotto</h3>
-          <span class="menu-item-price">$34</span>
-          <div class="menu-item-desc">
-            <p>Arborio carnaroli, porcini &amp; chanterelle medley, aged parmesan, white truffle oil, parsley foam</p>
-          </div>
-        </div>
-      </div>
-      <div class="menu-item menu-item-4 reveal reveal-delay-1">
-        <div class="menu-item-bg"></div>
-        <div class="menu-item-overlay"></div>
-        <span class="menu-item-accent">✦</span>
-        <div class="menu-item-content">
-          <span class="menu-item-category">Plat Principal</span>
-          <h3 class="menu-item-name">Herb‑Crusted Rack of Lamb</h3>
-          <span class="menu-item-price">$56</span>
-          <div class="menu-item-desc">
-            <p>New Zealand lamb, rosemary-thyme crust, ratatouille Provençale, roasted garlic jus, pomme purée</p>
-          </div>
-        </div>
-      </div>
-      <div class="menu-item menu-item-5 reveal reveal-delay-2">
-        <div class="menu-item-bg"></div>
-        <div class="menu-item-overlay"></div>
-        <span class="menu-item-accent">✦</span>
-        <div class="menu-item-content">
-          <span class="menu-item-category">Plat Principal</span>
-          <h3 class="menu-item-name">Pan‑Seared Duck Breast</h3>
-          <span class="menu-item-price">$48</span>
-          <div class="menu-item-desc">
-            <p>Liberty Farms duck, cherry gastrique, roasted fennel, wilted escarole, duck fat potatoes</p>
-          </div>
-        </div>
-      </div>
-      <div class="menu-item menu-item-6 reveal reveal-delay-3">
-        <div class="menu-item-bg"></div>
-        <div class="menu-item-overlay"></div>
-        <span class="menu-item-accent">✦</span>
-        <div class="menu-item-content">
-          <span class="menu-item-category">Dessert</span>
-          <h3 class="menu-item-name">Chocolate Soufflé</h3>
-          <span class="menu-item-price">$24</span>
-          <div class="menu-item-desc">
-            <p>Valrhona dark chocolate, vanilla bean crème anglaise, caramel fleur de sel, cocoa nib tuile</p>
-          </div>
-        </div>
+      <div class="exp-card reveal rd-3">
+        <svg class="exp-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M16 5l3 6 6 .8-4.4 4.3 1 6.1L16 25l-5.6 3.2 1-6.1L7 17.8 13 17z"/>
+        </svg>
+        <h3>Seasonal</h3>
+        <p>The menu is rewritten daily around the morning's market. No two evenings are quite the same.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── Wine List Accordion ─── -->
-<section id="wine" class="wine">
+<!-- ─── Wine accordion ─── -->
+<section id="wine" class="wine section-divider-top">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-tag">Cellar Selection</p>
-      <h2 class="section-title">The Wine List</h2>
-      <div class="section-divider"></div>
+      <span class="eyebrow">The Cellar</span>
+      <h2 class="section-title">A Considered <em>List</em></h2>
+      <div class="section-rule"></div>
     </div>
-    <div class="wine-list">
-      <div class="wine-item reveal">
-        <div class="wine-header">
-          <div class="wine-header-left">
-            <span class="wine-year">'18</span>
-            <span class="wine-name">Château Margaux</span>
-            <span class="wine-origin">Bordeaux, France</span>
-          </div>
-          <div style="display:flex;align-items:center;">
-            <span class="wine-price">$280</span>
-            <span class="wine-toggle">+</span>
-          </div>
-        </div>
-        <div class="wine-details">
-          <p>A masterful vintage from one of Bordeaux's premier estates. Deep ruby in color, with aromas of blackcurrant, violets, and cedar. Silky tannins lead to an extraordinarily long finish.</p>
-          <p class="pairing">Pairs beautifully with the Herb‑Crusted Rack of Lamb.</p>
-        </div>
-      </div>
-      <div class="wine-item reveal">
-        <div class="wine-header">
-          <div class="wine-header-left">
-            <span class="wine-year">'16</span>
-            <span class="wine-name">Opus One</span>
-            <span class="wine-origin">Napa Valley, California</span>
-          </div>
-          <div style="display:flex;align-items:center;">
-            <span class="wine-price">$350</span>
-            <span class="wine-toggle">+</span>
-          </div>
-        </div>
-        <div class="wine-details">
-          <p>A legendary Napa Cabernet Sauvignon blend. Layers of blackberry, cassis, and dark chocolate with hints of tobacco and vanilla. Full-bodied with polished, integrated tannins.</p>
-          <p class="pairing">Ideal alongside the Pan‑Seared Duck Breast.</p>
+    <div class="wine-list reveal rd-1">
+
+      <div class="wine-item">
+        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p1" id="wine-t1">
+          <span class="wine-year">’18</span>
+          <span class="wine-id">
+            <span class="wine-name">Estate Reserve Cabernet</span>
+            <span class="wine-origin">Highland Coast</span>
+          </span>
+          <span class="wine-price">$240</span>
+          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="wine-panel" id="wine-p1" role="region" aria-labelledby="wine-t1" hidden>
+          <div class="wine-panel-inner"><div class="wine-panel-pad">
+            <p>Deep ruby in the glass, with blackcurrant, violet and cedar. Fine, silken tannins carry an unusually long finish.</p>
+            <p class="wine-pair">Pairs with the Herb-Crusted Lamb.</p>
+          </div></div>
         </div>
       </div>
-      <div class="wine-item reveal">
-        <div class="wine-header">
-          <div class="wine-header-left">
-            <span class="wine-year">'19</span>
-            <span class="wine-name">Gaja Barbaresco</span>
-            <span class="wine-origin">Piedmont, Italy</span>
-          </div>
-          <div style="display:flex;align-items:center;">
-            <span class="wine-price">$220</span>
-            <span class="wine-toggle">+</span>
-          </div>
-        </div>
-        <div class="wine-details">
-          <p>Angelo Gaja's iconic Nebbiolo. A fragrant bouquet of rose, cherry, and spice with earthy undertones. Elegant structure with refined tannins and remarkable depth.</p>
-          <p class="pairing">A classic match for the Wild Mushroom Risotto.</p>
-        </div>
-      </div>
-      <div class="wine-item reveal">
-        <div class="wine-header">
-          <div class="wine-header-left">
-            <span class="wine-year">'20</span>
-            <span class="wine-name">Cloudy Bay Sauvignon Blanc</span>
-            <span class="wine-origin">Marlborough, New Zealand</span>
-          </div>
-          <div style="display:flex;align-items:center;">
-            <span class="wine-price">$95</span>
-            <span class="wine-toggle">+</span>
-          </div>
-        </div>
-        <div class="wine-details">
-          <p>The benchmark Marlborough Sauvignon Blanc. Vibrant notes of passionfruit, citrus, and fresh-cut herbs. Crisp acidity with a lingering mineral finish.</p>
-          <p class="pairing">Excellent with the Seared Scallops.</p>
+
+      <div class="wine-item">
+        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p2" id="wine-t2">
+          <span class="wine-year">’16</span>
+          <span class="wine-id">
+            <span class="wine-name">Ridgeline Red Blend</span>
+            <span class="wine-origin">Valley Floor</span>
+          </span>
+          <span class="wine-price">$300</span>
+          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="wine-panel" id="wine-p2" role="region" aria-labelledby="wine-t2" hidden>
+          <div class="wine-panel-inner"><div class="wine-panel-pad">
+            <p>Layers of blackberry, cassis and dark cocoa over tobacco and vanilla. Full-bodied, with polished, integrated tannins.</p>
+            <p class="wine-pair">Ideal alongside the Seared Duck Breast.</p>
+          </div></div>
         </div>
       </div>
-      <div class="wine-item reveal">
-        <div class="wine-header">
-          <div class="wine-header-left">
-            <span class="wine-year">'15</span>
-            <span class="wine-name">Dom Pérignon Rosé</span>
-            <span class="wine-origin">Champagne, France</span>
-          </div>
-          <div style="display:flex;align-items:center;">
-            <span class="wine-price">$320</span>
-            <span class="wine-toggle">+</span>
-          </div>
-        </div>
-        <div class="wine-details">
-          <p>An extraordinary rosé Champagne. Delicate notes of wild strawberry, pomegranate, and brioche with a persistent, creamy mousse. A wine of grace and power.</p>
-          <p class="pairing">A sublime pairing with the Foie Gras Terrine.</p>
+
+      <div class="wine-item">
+        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p3" id="wine-t3">
+          <span class="wine-year">’19</span>
+          <span class="wine-id">
+            <span class="wine-name">Old-Vine Nebbiolo</span>
+            <span class="wine-origin">Northern Hills</span>
+          </span>
+          <span class="wine-price">$200</span>
+          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="wine-panel" id="wine-p3" role="region" aria-labelledby="wine-t3" hidden>
+          <div class="wine-panel-inner"><div class="wine-panel-pad">
+            <p>A fragrant nose of rose, sour cherry and spice over an earthy base. Elegant structure with refined tannins and real depth.</p>
+            <p class="wine-pair">A classic match for the Wild Mushroom Risotto.</p>
+          </div></div>
         </div>
       </div>
+
+      <div class="wine-item">
+        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p4" id="wine-t4">
+          <span class="wine-year">’20</span>
+          <span class="wine-id">
+            <span class="wine-name">Coastal Sauvignon Blanc</span>
+            <span class="wine-origin">Maritime Slopes</span>
+          </span>
+          <span class="wine-price">$90</span>
+          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="wine-panel" id="wine-p4" role="region" aria-labelledby="wine-t4" hidden>
+          <div class="wine-panel-inner"><div class="wine-panel-pad">
+            <p>Vibrant passionfruit, citrus and fresh-cut herb. Crisp acidity with a lingering, mineral finish.</p>
+            <p class="wine-pair">Excellent with the Hand-Dived Scallop.</p>
+          </div></div>
+        </div>
+      </div>
+
+      <div class="wine-item">
+        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p5" id="wine-t5">
+          <span class="wine-year">’15</span>
+          <span class="wine-id">
+            <span class="wine-name">Vintage Rosé Champagne</span>
+            <span class="wine-origin">Chalk Country</span>
+          </span>
+          <span class="wine-price">$280</span>
+          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <div class="wine-panel" id="wine-p5" role="region" aria-labelledby="wine-t5" hidden>
+          <div class="wine-panel-inner"><div class="wine-panel-pad">
+            <p>Wild strawberry, pomegranate and brioche over a persistent, creamy mousse. Grace and power in equal measure.</p>
+            <p class="wine-pair">A sublime opener with the Smoked Beet Tartare.</p>
+          </div></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
 <!-- ─── Testimonials ─── -->
-<section id="testimonials" class="testimonials">
+<section id="testimonials" class="testimonials section-divider-top">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-tag">Guest Impressions</p>
-      <h2 class="section-title">What They Say</h2>
-      <div class="section-divider"></div>
+      <span class="eyebrow">In Their Words</span>
+      <h2 class="section-title">From Our <em>Guests</em></h2>
+      <div class="section-rule"></div>
     </div>
-    <div class="testimonial-slider" id="testimonialSlider">
-      <div class="testimonial-slide active">
-        <div class="testimonial-quote">An evening at La Maison Dorée is nothing short of transcendent. Every course was a revelation — the kind of meal that reminds you why dining is an art form.</div>
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-author">Eleanor Vance</div>
-        <div class="testimonial-role">The Gastronomic Chronicle</div>
-      </div>
-      <div class="testimonial-slide">
-        <div class="testimonial-quote">Chef Moreau has created something truly special. The wine pairing was impeccable, the service was flawless, and the flavors — absolutely unforgettable.</div>
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-author">Marcus Chen</div>
-        <div class="testimonial-role">Michelin Inspector (ret.)</div>
-      </div>
-      <div class="testimonial-slide">
-        <div class="testimonial-quote">This is dining at its finest. From the amuse-bouche to the petit fours, every detail is considered, every ingredient respected. A true gem of French cuisine.</div>
-        <div class="testimonial-stars">★★★★★</div>
-        <div class="testimonial-author">Sophie Bernard</div>
-        <div class="testimonial-role">Le Monde Culinaire</div>
-      </div>
-    </div>
-    <div class="slider-dots" id="sliderDots">
-      <button class="slider-dot active" data-index="0"></button>
-      <button class="slider-dot" data-index="1"></button>
-      <button class="slider-dot" data-index="2"></button>
-    </div>
-    <div class="slider-nav">
-      <button class="slider-nav-btn" id="prevTestimonial" aria-label="Previous">‹</button>
-      <button class="slider-nav-btn" id="nextTestimonial" aria-label="Next">›</button>
-    </div>
-  </div>
-</section>
+    <div class="t-slider" id="tSlider">
 
-<!-- ─── Instagram Feed ─── -->
-<section id="instagram" class="instagram">
-  <div class="container">
-    <div class="section-header reveal">
-      <p class="section-tag">Follow Us</p>
-      <h2 class="section-title">@lamaisondoree</h2>
-      <div class="section-divider"></div>
+      <div class="t-slide active">
+        <div class="t-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+        </div>
+        <p class="t-quote">An evening at GEM is unhurried in the best possible way. Each course arrived like a small idea, and by dessert it felt less like a dinner than a story we'd been told.</p>
+        <p class="t-author">A. Rivera</p>
+        <p class="t-role">Regular guest</p>
+      </div>
+
+      <div class="t-slide">
+        <div class="t-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+        </div>
+        <p class="t-quote">We came for an anniversary and barely spoke for the first three courses — we just kept looking at each other. The pairing was flawless, the room was warm, and nobody rushed us.</p>
+        <p class="t-author">M. &amp; J. Okafor</p>
+        <p class="t-role">Celebrated their tenth here</p>
+      </div>
+
+      <div class="t-slide">
+        <div class="t-stars" aria-label="5 out of 5 stars">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
+        </div>
+        <p class="t-quote">Sitting at the counter, you watch the whole thing happen — quiet hands, no shouting, every plate wiped clean before it leaves. It's the most relaxed kind of precision I've seen.</p>
+        <p class="t-author">D. Halloran</p>
+        <p class="t-role">Counter seat, twice a month</p>
+      </div>
+
     </div>
-    <div class="instagram-grid">
-      <div class="insta-item reveal reveal-delay-1">
-        <div class="insta-gradient insta-g1"></div>
-        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
-      </div>
-      <div class="insta-item reveal reveal-delay-2">
-        <div class="insta-gradient insta-g2"></div>
-        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
-      </div>
-      <div class="insta-item reveal reveal-delay-3">
-        <div class="insta-gradient insta-g3"></div>
-        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
-      </div>
-      <div class="insta-item reveal reveal-delay-1">
-        <div class="insta-gradient insta-g4"></div>
-        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
-      </div>
-      <div class="insta-item reveal reveal-delay-2">
-        <div class="insta-gradient insta-g5"></div>
-        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
-      </div>
-      <div class="insta-item reveal reveal-delay-3">
-        <div class="insta-gradient insta-g6"></div>
-        <div class="insta-overlay"><span class="insta-icon">📷</span></div>
-      </div>
+    <div class="t-dots reveal" id="tDots">
+      <button class="t-dot active" data-index="0" aria-label="Guest 1"></button>
+      <button class="t-dot" data-index="1" aria-label="Guest 2"></button>
+      <button class="t-dot" data-index="2" aria-label="Guest 3"></button>
     </div>
-    <div class="insta-label">
-      <a href="#" target="_blank">Follow on Instagram →</a>
+    <div class="t-nav">
+      <button class="t-nav-btn" id="tPrev" aria-label="Previous guest">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
+      </button>
+      <button class="t-nav-btn" id="tNext" aria-label="Next guest">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
+      </button>
     </div>
   </div>
 </section>
 
 <!-- ─── Reservation ─── -->
-<section id="reservation" class="reservation">
+<section id="reservation" class="reservation section-divider-top">
   <div class="container">
     <div class="section-header reveal">
-      <p class="section-tag">Join Us</p>
-      <h2 class="section-title">Make a Reservation</h2>
-      <div class="section-divider"></div>
+      <span class="eyebrow">Join Us</span>
+      <h2 class="section-title">Reserve a <em>Table</em></h2>
+      <div class="section-rule"></div>
     </div>
-    <form class="reservation-form reveal reveal-delay-1" id="reservationForm" novalidate>
+
+    <form class="reservation-form reveal rd-1" id="reservationForm" novalidate>
       <div class="form-row">
-        <div class="form-group">
+        <div class="form-group" data-field="date">
           <label for="date">Date</label>
-          <input type="date" id="date" required>
+          <input type="date" id="date" name="date" aria-describedby="err-date">
+          <span class="field-error" id="err-date" role="alert"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group" data-field="time">
           <label for="time">Time</label>
-          <select id="time" required>
+          <select id="time" name="time" aria-describedby="err-time">
             <option value="">Select time</option>
-            <option value="17:00">5:00 PM</option>
-            <option value="17:30">5:30 PM</option>
             <option value="18:00">6:00 PM</option>
             <option value="18:30">6:30 PM</option>
             <option value="19:00">7:00 PM</option>
             <option value="19:30">7:30 PM</option>
             <option value="20:00">8:00 PM</option>
             <option value="20:30">8:30 PM</option>
-            <option value="21:00">9:00 PM</option>
           </select>
+          <span class="field-error" id="err-time" role="alert"></span>
         </div>
       </div>
       <div class="form-row">
-        <div class="form-group">
+        <div class="form-group" data-field="party">
           <label for="party">Party Size</label>
-          <select id="party" required>
+          <select id="party" name="party" aria-describedby="err-party">
             <option value="">Number of guests</option>
             <option value="1">1 Guest</option>
             <option value="2">2 Guests</option>
@@ -1653,21 +1184,34 @@ footer {
             <option value="4">4 Guests</option>
             <option value="5">5 Guests</option>
             <option value="6">6 Guests</option>
-            <option value="7">7 Guests</option>
-            <option value="8">8 Guests</option>
           </select>
+          <span class="field-error" id="err-party" role="alert"></span>
         </div>
-        <div class="form-group">
+        <div class="form-group" data-field="name">
           <label for="name">Name</label>
-          <input type="text" id="name" placeholder="Full name" required>
+          <input type="text" id="name" name="name" placeholder="Full name" autocomplete="name" aria-describedby="err-name">
+          <span class="field-error" id="err-name" role="alert"></span>
         </div>
       </div>
-      <div class="form-group">
+      <div class="form-group" data-field="email">
         <label for="email">Email</label>
-        <input type="email" id="email" placeholder="you@example.com" required>
+        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" aria-describedby="err-email">
+        <span class="field-error" id="err-email" role="alert"></span>
       </div>
-      <button type="submit" class="submit-btn">Confirm Reservation</button>
+      <button type="submit" class="submit-btn">
+        Confirm Reservation
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </button>
     </form>
+
+    <div class="form-success reveal rd-1" id="formSuccess" role="status">
+      <svg class="check" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <circle cx="26" cy="26" r="23"/><path d="M16 27l7 7 14-15"/>
+      </svg>
+      <h3>Your Table Awaits</h3>
+      <p id="successDetail">We've noted your request. A confirmation will follow by email shortly.</p>
+      <button type="button" class="again" id="reserveAgain">Make Another</button>
+    </div>
   </div>
 </section>
 
@@ -1675,217 +1219,264 @@ footer {
 <footer>
   <div class="footer-grid">
     <div class="footer-brand">
-      <div class="logo">La&thinsp;Maison&thinsp;Dorée</div>
-      <p>An intimate fine dining experience in the heart of the city. Where every meal becomes a memory.</p>
+      <a href="#hero" class="logo" aria-label="GEM — home">
+        <svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="#c9a84c" stroke-width="1.6" stroke-linejoin="round">
+          <path d="M7 12h18l-9 14z"/><path d="M7 12l4-5h10l4 5"/><path d="M12 12l4 14 4-14"/>
+        </svg>
+        <span class="wordmark">Gem</span>
+      </a>
+      <p>An intimate tasting house. One room, one menu, one unhurried evening at a time.</p>
     </div>
     <div class="footer-col">
       <h4>Hours</h4>
       <ul>
-        <li><a href="#">Tue–Thu: 5pm – 10pm</a></li>
-        <li><a href="#">Fri–Sat: 5pm – 11pm</a></li>
-        <li><a href="#">Sun: 11am – 9pm</a></li>
-        <li><a href="#">Mon: Closed</a></li>
+        <li>Wed–Thu · One seating, 7pm</li>
+        <li>Fri–Sat · One seating, 7pm</li>
+        <li>Sun–Tue · Closed</li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Contact</h4>
+      <h4>Find Us</h4>
       <ul>
-        <li><a href="#">212 &amp; 34 Rue de Rivoli</a></li>
-        <li><a href="#">Paris, 75001</a></li>
-        <li><a href="#">+33 1 23 45 67 89</a></li>
-        <li><a href="#">reservations@lamaisondoree.fr</a></li>
+        <li>14 Lantern Court</li>
+        <li>Old Harbour District</li>
+        <li>By reservation only</li>
+        <li><a href="#reservation">reservations@gem.example</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Info</h4>
+      <h4>More</h4>
       <ul>
-        <li><a href="#">Private Dining</a></li>
-        <li><a href="#">Gift Cards</a></li>
-        <li><a href="#">Careers</a></li>
-        <li><a href="#">Press</a></li>
+        <li><a href="#story">Private Evenings</a></li>
+        <li><a href="#wine">The Cellar</a></li>
+        <li><a href="#menu">Gift Tastings</a></li>
+        <li><a href="#reservation">Press &amp; Careers</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>&copy; 2026 La Maison Dorée. All rights reserved.</span>
+    <span>© 2026 GEM. All rights reserved.</span>
     <div class="footer-socials">
-      <a href="#" aria-label="Instagram">IG</a>
-      <a href="#" aria-label="Facebook">FB</a>
-      <a href="#" aria-label="Twitter">X</a>
+      <button type="button" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+      </button>
+      <button type="button" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h-2a4 4 0 00-4 4v3H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 011-1h2z"/></svg>
+      </button>
+      <button type="button" aria-label="Email">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+      </button>
     </div>
   </div>
 </footer>
 
 <script>
-// ─── Nav scroll eﬀect ───
-const navbar = document.getElementById('navbar');
-let lastScroll = 0;
+(function () {
+  'use strict';
 
-window.addEventListener('scroll', () => {
-  const currentScroll = window.pageYOffset;
-  if (currentScroll > 80) {
-    navbar.classList.add('scrolled');
-  } else {
-    navbar.classList.remove('scrolled');
+  // ─── Nav scroll state ───
+  var navbar = document.getElementById('navbar');
+  function onScroll() {
+    if (window.pageYOffset > 70) navbar.classList.add('scrolled');
+    else navbar.classList.remove('scrolled');
   }
-  lastScroll = currentScroll;
-});
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 
-// ─── Mobile menu ───
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navLinks.classList.toggle('open');
-});
-
-// Close mobile menu on link click
-navLinks.querySelectorAll('a').forEach(link => {
-  link.addEventListener('click', () => {
+  // ─── Mobile menu ───
+  var hamburger = document.getElementById('hamburger');
+  var navLinks = document.getElementById('navLinks');
+  function closeMenu() {
     hamburger.classList.remove('active');
     navLinks.classList.remove('open');
+    hamburger.setAttribute('aria-expanded', 'false');
+  }
+  hamburger.addEventListener('click', function () {
+    var open = navLinks.classList.toggle('open');
+    hamburger.classList.toggle('active', open);
+    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
   });
-});
-
-// ─── Wine Accordion ───
-const wineItems = document.querySelectorAll('.wine-item');
-
-wineItems.forEach(item => {
-  const header = item.querySelector('.wine-header');
-  header.addEventListener('click', () => {
-    const isActive = item.classList.contains('active');
-
-    // Close all
-    wineItems.forEach(i => i.classList.remove('active'));
-
-    // Toggle clicked
-    if (!isActive) {
-      item.classList.add('active');
-    }
+  navLinks.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
   });
-});
 
-// ─── Reservation form ───
-const form = document.getElementById('reservationForm');
+  // ─── Smooth scroll for internal anchors ───
+  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+    anchor.addEventListener('click', function (e) {
+      var id = this.getAttribute('href');
+      if (id.length < 2) return;
+      var target = document.querySelector(id);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
 
-// Set min date to today
-const dateInput = document.getElementById('date');
-const today = new Date().toISOString().split('T')[0];
-dateInput.setAttribute('min', today);
-dateInput.value = today;
+  // ─── Wine accordion (accessible, keyboard-operable) ───
+  var triggers = Array.prototype.slice.call(document.querySelectorAll('.wine-trigger'));
+  triggers.forEach(function (trigger, i) {
+    var panel = document.getElementById(trigger.getAttribute('aria-controls'));
+    trigger.addEventListener('click', function () {
+      var isOpen = trigger.getAttribute('aria-expanded') === 'true';
+      // close others (single-open accordion)
+      triggers.forEach(function (t) {
+        if (t !== trigger) {
+          t.setAttribute('aria-expanded', 'false');
+          document.getElementById(t.getAttribute('aria-controls')).hidden = true;
+        }
+      });
+      trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+      panel.hidden = isOpen;
+    });
+    // Arrow-key navigation between triggers
+    trigger.addEventListener('keydown', function (e) {
+      var idx = null;
+      if (e.key === 'ArrowDown') idx = (i + 1) % triggers.length;
+      else if (e.key === 'ArrowUp') idx = (i - 1 + triggers.length) % triggers.length;
+      else if (e.key === 'Home') idx = 0;
+      else if (e.key === 'End') idx = triggers.length - 1;
+      if (idx !== null) { e.preventDefault(); triggers[idx].focus(); }
+    });
+  });
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault();
+  // ─── Reservation form: real client-side validation ───
+  var form = document.getElementById('reservationForm');
+  var success = document.getElementById('formSuccess');
+  var dateInput = document.getElementById('date');
+  var todayStr = new Date().toISOString().split('T')[0];
+  dateInput.setAttribute('min', todayStr);
 
-  const name = document.getElementById('name').value.trim();
-  const email = document.getElementById('email').value.trim();
-  const date = document.getElementById('date').value;
-  const time = document.getElementById('time').value;
-  const party = document.getElementById('party').value;
+  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
-  if (!name || !email || !date || !time || !party) {
-    alert('Please fill in all fields.');
-    return;
+  function setError(field, msg) {
+    var group = form.querySelector('[data-field="' + field + '"]');
+    group.classList.add('invalid');
+    group.querySelector('.field-error').textContent = msg;
+  }
+  function clearError(field) {
+    var group = form.querySelector('[data-field="' + field + '"]');
+    group.classList.remove('invalid');
+    group.querySelector('.field-error').textContent = '';
   }
 
-  if (!email.includes('@') || !email.includes('.')) {
-    alert('Please enter a valid email address.');
-    return;
+  function validateField(field) {
+    var v;
+    switch (field) {
+      case 'name':
+        v = document.getElementById('name').value.trim();
+        if (!v) { setError('name', 'Please tell us your name.'); return false; }
+        if (v.length < 2) { setError('name', 'That name looks too short.'); return false; }
+        clearError('name'); return true;
+      case 'email':
+        v = document.getElementById('email').value.trim();
+        if (!v) { setError('email', 'An email is required for confirmation.'); return false; }
+        if (!emailRe.test(v)) { setError('email', 'Please enter a valid email address.'); return false; }
+        clearError('email'); return true;
+      case 'date':
+        v = document.getElementById('date').value;
+        if (!v) { setError('date', 'Please choose a date.'); return false; }
+        if (v < todayStr) { setError('date', 'Please choose today or a future date.'); return false; }
+        clearError('date'); return true;
+      case 'time':
+        v = document.getElementById('time').value;
+        if (!v) { setError('time', 'Please select a seating time.'); return false; }
+        clearError('time'); return true;
+      case 'party':
+        v = document.getElementById('party').value;
+        if (!v) { setError('party', 'How many will be joining us?'); return false; }
+        clearError('party'); return true;
+    }
+    return true;
   }
 
-  // Simulate submission
-  const btn = form.querySelector('.submit-btn');
-  const original = btn.textContent;
-  btn.textContent = 'Reservation Confirmed ✓';
-  btn.style.background = '#2e5c3a';
-  btn.style.color = '#f5f0e8';
-  btn.disabled = true;
-
-  setTimeout(() => {
-    btn.textContent = original;
-    btn.style.background = '';
-    btn.style.color = '';
-    btn.disabled = false;
-    form.reset();
-    dateInput.value = today;
-  }, 3000);
-});
-
-// ─── Testimonial Slider ───
-const slides = document.querySelectorAll('.testimonial-slide');
-const dots = document.querySelectorAll('.slider-dot');
-const prevBtn = document.getElementById('prevTestimonial');
-const nextBtn = document.getElementById('nextTestimonial');
-let currentSlide = 0;
-
-function goToSlide(index) {
-  slides.forEach(s => s.classList.remove('active'));
-  dots.forEach(d => d.classList.remove('active'));
-  slides[index].classList.add('active');
-  dots[index].classList.add('active');
-  currentSlide = index;
-}
-
-function nextSlide() {
-  goToSlide((currentSlide + 1) % slides.length);
-}
-
-function prevSlide() {
-  goToSlide((currentSlide - 1 + slides.length) % slides.length);
-}
-
-nextBtn.addEventListener('click', nextSlide);
-prevBtn.addEventListener('click', prevSlide);
-
-dots.forEach(dot => {
-  dot.addEventListener('click', () => {
-    goToSlide(parseInt(dot.dataset.index));
+  var fields = ['name', 'email', 'date', 'time', 'party'];
+  fields.forEach(function (field) {
+    var el = document.getElementById(field);
+    el.addEventListener('blur', function () { validateField(field); });
+    el.addEventListener('input', function () {
+      if (form.querySelector('[data-field="' + field + '"]').classList.contains('invalid')) {
+        validateField(field);
+      }
+    });
+    el.addEventListener('change', function () { validateField(field); });
   });
-});
 
-// Auto-advance
-let slideInterval = setInterval(nextSlide, 5000);
-
-const sliderContainer = document.getElementById('testimonialSlider');
-sliderContainer.addEventListener('mouseenter', () => clearInterval(slideInterval));
-sliderContainer.addEventListener('mouseleave', () => {
-  slideInterval = setInterval(nextSlide, 5000);
-});
-
-// ─── Intersection Observer for scroll animations ───
-const revealElements = document.querySelectorAll('.reveal');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
-  });
-}, {
-  threshold: 0.12,
-  rootMargin: '0px 0px -40px 0px'
-});
-
-revealElements.forEach(el => observer.observe(el));
-
-// ─── Smooth scroll for anchor links ───
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    var ok = true, firstBad = null;
+    fields.forEach(function (field) {
+      if (!validateField(field)) { ok = false; if (!firstBad) firstBad = field; }
+    });
+    if (!ok) {
+      document.getElementById(firstBad).focus();
+      return;
     }
+    // Success state (no real submission in sandbox)
+    var name = document.getElementById('name').value.trim();
+    var party = document.getElementById('party').value;
+    var timeSel = document.getElementById('time');
+    var timeLabel = timeSel.options[timeSel.selectedIndex].text;
+    var dateVal = document.getElementById('date').value;
+    document.getElementById('successDetail').textContent =
+      'Thank you, ' + name + '. A table for ' + party + ' on ' + dateVal + ' at ' + timeLabel +
+      ' is held — a confirmation will follow by email shortly.';
+    form.style.display = 'none';
+    success.classList.add('show');
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
   });
-});
 
-// ─── Keyboard nav for slider ───
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'ArrowLeft') prevSlide();
-  if (e.key === 'ArrowRight') nextSlide();
-});
+  document.getElementById('reserveAgain').addEventListener('click', function () {
+    form.reset();
+    fields.forEach(clearError);
+    success.classList.remove('show');
+    form.style.display = '';
+  });
+
+  // ─── Testimonials slider ───
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.t-slide'));
+  var dots = Array.prototype.slice.call(document.querySelectorAll('.t-dot'));
+  var current = 0, timer = null;
+
+  function go(i) {
+    current = (i + slides.length) % slides.length;
+    slides.forEach(function (s, n) { s.classList.toggle('active', n === current); });
+    dots.forEach(function (d, n) { d.classList.toggle('active', n === current); });
+  }
+  function next() { go(current + 1); }
+  function prev() { go(current - 1); }
+
+  document.getElementById('tNext').addEventListener('click', function () { next(); restart(); });
+  document.getElementById('tPrev').addEventListener('click', function () { prev(); restart(); });
+  dots.forEach(function (d) {
+    d.addEventListener('click', function () { go(parseInt(d.dataset.index, 10)); restart(); });
+  });
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function start() { if (!reduceMotion) timer = setInterval(next, 6000); }
+  function restart() { clearInterval(timer); start(); }
+  start();
+
+  var sliderWrap = document.getElementById('tSlider');
+  sliderWrap.addEventListener('mouseenter', function () { clearInterval(timer); });
+  sliderWrap.addEventListener('mouseleave', start);
+
+  // ─── IntersectionObserver scroll reveals ───
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function (el) { io.observe(el); });
+  } else {
+    revealEls.forEach(function (el) { el.classList.add('visible'); });
+  }
+})();
 </script>
 </body>
 </html>

@@ -3,10 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Haven &amp; Brew | Artisan Coffee &amp; Pastry</title>
+<title>ROAST — Artisan Cafe</title>
+<meta name="description" content="ROAST — a warm, intimate artisan cafe. Slow-roasted single-origin coffee, hand-laminated pastries, and the coziest corner of the city.">
+
+<!-- Social meta -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="ROAST — Artisan Cafe">
+<meta property="og:description" content="Slow-roasted single-origin coffee, hand-laminated pastries, and the coziest corner of the city.">
+<meta property="og:image" content="https://images.example/roast-cafe-og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ROAST — Artisan Cafe">
+<meta name="twitter:description" content="Slow-roasted single-origin coffee, hand-laminated pastries, and the coziest corner of the city.">
+<meta name="twitter:image" content="https://images.example/roast-cafe-og.jpg">
+
+<!-- Inline SVG favicon: a coffee bean -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232c1810'/%3E%3Cellipse cx='16' cy='16' rx='8' ry='11' fill='none' stroke='%23d4a373' stroke-width='2'/%3E%3Cpath d='M16 6 C11 11 21 21 16 26' fill='none' stroke='%23d4a373' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
 <style>
 /* ===== RESET ===== */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -15,73 +30,72 @@ html { scroll-behavior: smooth; }
 /* ===== VARIABLES ===== */
 :root {
   --beige: #f5e6d3;
-  --charcoal: #2c1810;
+  --espresso: #2c1810;
   --brown: #8b6f47;
+  --caramel: #d4a373;
   --beige-light: #faf0e6;
   --beige-dark: #e8d5be;
   --brown-light: #a8895e;
   --brown-dark: #6d5537;
   --cream: #fff9f0;
   --shadow: rgba(44, 24, 16, 0.10);
-  --shadow-strong: rgba(44, 24, 16, 0.18);
+  --shadow-strong: rgba(44, 24, 16, 0.20);
 }
 
 /* ===== BASE ===== */
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   background: var(--beige);
-  color: var(--charcoal);
+  color: var(--espresso);
   line-height: 1.7;
   font-weight: 400;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-  font-weight: 700;
-  line-height: 1.2;
-  color: var(--charcoal);
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--espresso);
+  letter-spacing: -0.01em;
 }
 
 a { color: var(--brown); text-decoration: none; transition: color 0.3s ease; }
 a:hover { color: var(--brown-light); }
 
-img { max-width: 100%; height: auto; display: block; }
+img, svg { max-width: 100%; display: block; }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 24px;
-}
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 110px 0; position: relative; }
 
-.section {
-  padding: 100px 0;
-}
-
-.section-title {
-  font-size: 2.8rem;
-  text-align: center;
-  margin-bottom: 1.2rem;
-  letter-spacing: -0.01em;
-}
-
-.section-subtitle {
-  text-align: center;
-  font-size: 1.1rem;
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
   color: var(--brown);
-  font-weight: 400;
-  max-width: 600px;
-  margin: 0 auto 60px;
-  font-family: 'Inter', sans-serif;
-  line-height: 1.6;
 }
+.eyebrow svg { width: 16px; height: 16px; }
 
-.accent-line {
-  width: 50px;
-  height: 3px;
-  background: var(--brown);
-  margin: 0 auto 20px;
-  border-radius: 2px;
+.section-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
+.section-head .eyebrow { margin-bottom: 18px; }
+.section-title {
+  font-size: clamp(2.1rem, 4.6vw, 3.1rem);
+  margin-bottom: 0.6rem;
+}
+.section-title em { font-style: italic; color: var(--brown); font-weight: 500; }
+.section-subtitle {
+  font-size: 1.05rem;
+  color: rgba(44, 24, 16, 0.62);
+  font-weight: 400;
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.65;
 }
 
 /* ===== NAVBAR ===== */
@@ -89,604 +103,548 @@ img { max-width: 100%; height: auto; display: block; }
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  padding: 18px 0;
-  background: rgba(245, 230, 211, 0.88);
+  padding: 20px 0;
+  background: rgba(245, 230, 211, 0.82);
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgba(139, 111, 71, 0.12);
-  transition: padding 0.3s ease, background 0.3s ease;
+  border-bottom: 1px solid rgba(139, 111, 71, 0);
+  transition: padding 0.35s ease, background 0.35s ease, border-color 0.35s ease;
 }
-
-.navbar.scrolled { padding: 12px 0; background: rgba(245, 230, 211, 0.96); }
-
-.navbar .container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+.navbar.scrolled {
+  padding: 13px 0;
+  background: rgba(245, 230, 211, 0.95);
+  border-bottom-color: rgba(139, 111, 71, 0.14);
 }
+.navbar .container { display: flex; align-items: center; justify-content: space-between; }
 
 .nav-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.6rem;
-  font-weight: 700;
-  color: var(--charcoal);
-  letter-spacing: -0.02em;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Fraunces', serif;
+  font-size: 1.55rem;
+  font-weight: 900;
+  color: var(--espresso);
+  letter-spacing: 0.04em;
+  background: none; border: none; cursor: pointer; padding: 0;
 }
+.nav-logo svg { width: 30px; height: 30px; }
+.nav-logo .word { line-height: 1; }
 
-.nav-logo span { color: var(--brown); }
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 32px;
-}
-
+.nav-links { display: flex; list-style: none; gap: 34px; align-items: center; }
 .nav-links a {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: var(--charcoal);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--espresso);
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   position: relative;
   padding-bottom: 4px;
 }
-
 .nav-links a::after {
   content: '';
   position: absolute;
   bottom: 0; left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--brown);
+  width: 0; height: 2px;
+  background: var(--caramel);
   transition: width 0.3s ease;
   border-radius: 1px;
 }
-
 .nav-links a:hover::after { width: 100%; }
 
 .nav-toggle {
   display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 4px;
+  background: none; border: none; cursor: pointer; padding: 6px;
 }
-
 .nav-toggle span {
-  display: block;
-  width: 26px;
-  height: 2px;
-  background: var(--charcoal);
+  display: block; width: 26px; height: 2px;
+  background: var(--espresso);
   margin: 6px 0;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, opacity 0.3s ease;
   border-radius: 1px;
 }
+.nav-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle.active span:nth-child(2) { opacity: 0; }
+.nav-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
 /* ===== HERO ===== */
 .hero {
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
   position: relative;
   overflow: hidden;
-  padding: 120px 24px 80px;
+  padding: 140px 0 90px;
   background:
-    radial-gradient(ellipse 90% 60% at 20% 20%, rgba(139, 111, 71, 0.08) 0%, transparent 60%),
-    radial-gradient(ellipse 80% 50% at 80% 80%, rgba(139, 111, 71, 0.06) 0%, transparent 60%),
-    repeating-conic-gradient(
-      from 0deg at 50% 50%,
-      rgba(139, 111, 71, 0.04) 0deg 5deg,
-      rgba(139, 111, 71, 0.02) 5deg 7deg,
-      rgba(139, 111, 71, 0.06) 7deg 9deg,
-      transparent 9deg 11deg
-    ),
-    repeating-linear-gradient(
-      45deg,
-      transparent,
-      transparent 30px,
-      rgba(139, 111, 71, 0.015) 30px,
-      rgba(139, 111, 71, 0.015) 31px
-    ),
-    repeating-linear-gradient(
-      -45deg,
-      transparent,
-      transparent 30px,
-      rgba(139, 111, 71, 0.015) 30px,
-      rgba(139, 111, 71, 0.015) 31px
-    ),
-    radial-gradient(ellipse 120% 80% at 50% 50%, var(--beige) 0%, var(--beige-dark) 100%);
+    radial-gradient(ellipse 70% 55% at 78% 28%, rgba(212, 163, 115, 0.28) 0%, transparent 62%),
+    radial-gradient(ellipse 80% 70% at 12% 88%, rgba(139, 111, 71, 0.18) 0%, transparent 60%),
+    linear-gradient(165deg, var(--beige-light) 0%, var(--beige) 48%, var(--beige-dark) 100%);
 }
-
-.hero::before {
-  content: '';
+/* organic blob shapes */
+.hero-blob {
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle 300px at 25% 30%, rgba(139, 111, 71, 0.10) 0%, transparent 100%),
-    radial-gradient(circle 250px at 70% 60%, rgba(139, 111, 71, 0.07) 0%, transparent 100%),
-    radial-gradient(circle 180px at 50% 10%, rgba(139, 111, 71, 0.06) 0%, transparent 100%);
+  border-radius: 46% 54% 60% 40% / 52% 44% 56% 48%;
+  filter: blur(2px);
   pointer-events: none;
+  z-index: 0;
 }
-
-.hero-content { position: relative; z-index: 1; max-width: 820px; }
-
-.hero-badge {
-  display: inline-block;
-  font-size: 0.75rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.15em;
-  color: var(--brown);
-  border: 1px solid rgba(139, 111, 71, 0.25);
-  padding: 8px 20px;
-  border-radius: 100px;
-  margin-bottom: 32px;
-  font-family: 'Inter', sans-serif;
+.hero-blob.b1 {
+  width: 460px; height: 460px;
+  right: -90px; top: 6%;
+  background: radial-gradient(circle at 35% 35%, rgba(212, 163, 115, 0.55), rgba(139, 111, 71, 0.18));
+  opacity: 0.55;
+  animation: drift 18s ease-in-out infinite;
 }
-
+.hero-blob.b2 {
+  width: 300px; height: 300px;
+  left: -70px; bottom: -40px;
+  background: radial-gradient(circle at 50% 40%, rgba(139, 111, 71, 0.4), rgba(44, 24, 16, 0.06));
+  opacity: 0.45;
+  animation: drift 22s ease-in-out infinite reverse;
+}
+@keyframes drift {
+  0%, 100% { transform: translate(0,0) rotate(0deg); }
+  50% { transform: translate(-26px, 22px) rotate(8deg); }
+}
+/* grain overlay */
+.hero::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity: 0.06;
+  pointer-events: none;
+  z-index: 1;
+  mix-blend-mode: multiply;
+}
+.hero .container {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 48px;
+  align-items: center;
+}
+.hero-copy { max-width: 580px; }
+.hero-copy .eyebrow { margin-bottom: 24px; }
 .hero h1 {
-  font-size: 5rem;
-  font-weight: 800;
-  letter-spacing: -0.03em;
-  line-height: 1.05;
-  margin-bottom: 24px;
-  color: var(--charcoal);
+  font-size: clamp(3rem, 7.2vw, 5.6rem);
+  font-weight: 900;
+  line-height: 0.98;
+  margin-bottom: 26px;
+  letter-spacing: -0.02em;
 }
-
-.hero h1 .accent { color: var(--brown); font-style: italic; }
-
+.hero h1 .accent { color: var(--brown); font-style: italic; font-weight: 500; }
 .hero p {
-  font-size: 1.2rem;
-  color: rgba(44, 24, 16, 0.7);
-  max-width: 580px;
-  margin: 0 auto 40px;
-  font-weight: 300;
-  line-height: 1.7;
+  font-size: 1.18rem;
+  color: rgba(44, 24, 16, 0.72);
+  max-width: 480px;
+  margin-bottom: 38px;
+  line-height: 1.65;
 }
-
-.hero-actions {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
+.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
 
 .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 16px 36px;
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 15px 32px;
   border-radius: 100px;
-  font-family: 'Inter', sans-serif;
-  font-size: 0.9rem;
-  font-weight: 600;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.88rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
   border: none;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.03em;
 }
-
-.btn-primary {
-  background: var(--charcoal);
-  color: var(--beige);
-}
-
+.btn svg { width: 17px; height: 17px; }
+.btn-primary { background: var(--espresso); color: var(--beige); }
 .btn-primary:hover {
   background: var(--brown);
   color: var(--beige);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 24px rgba(139, 111, 71, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(139, 111, 71, 0.34);
 }
-
+.btn-primary:hover svg { transform: translateY(2px); }
+.btn-primary svg { transition: transform 0.3s ease; }
 .btn-secondary {
-  background: transparent;
-  color: var(--charcoal);
-  border: 1.5px solid var(--charcoal);
+  background: transparent; color: var(--espresso);
+  border: 1.5px solid rgba(44, 24, 16, 0.85);
+}
+.btn-secondary:hover {
+  background: var(--espresso); color: var(--beige);
+  transform: translateY(-3px);
+  border-color: var(--espresso);
 }
 
-.btn-secondary:hover {
-  background: var(--charcoal);
-  color: var(--beige);
-  transform: translateY(-2px);
+/* hero art: cup + steam */
+.hero-art {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hero-art .cup-frame {
+  width: min(420px, 88%);
+  filter: drop-shadow(0 26px 48px rgba(44, 24, 16, 0.22));
+}
+.steam-path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: steamFlow 3.4s ease-in-out infinite;
+}
+.steam-path.s2 { animation-delay: 0.7s; }
+.steam-path.s3 { animation-delay: 1.4s; }
+@keyframes steamFlow {
+  0% { stroke-dashoffset: 60; opacity: 0; }
+  35% { opacity: 0.85; }
+  100% { stroke-dashoffset: -60; opacity: 0; }
+}
+.hero-stats {
+  position: absolute;
+  bottom: 6%; left: -4%;
+  background: var(--cream);
+  border: 1px solid rgba(139, 111, 71, 0.16);
+  border-radius: 16px;
+  padding: 16px 22px;
+  box-shadow: 0 14px 36px var(--shadow);
+  display: flex;
+  gap: 22px;
+}
+.hero-stats .stat .num {
+  font-family: 'Fraunces', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--espresso);
+  line-height: 1;
+}
+.hero-stats .stat .lab {
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--brown);
+  font-weight: 700;
 }
 
 /* ===== MENU SECTION ===== */
 #menu { background: var(--cream); }
-
 .menu-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
+  gap: 28px;
 }
-
 .menu-category {
   background: var(--beige);
-  border-radius: 20px;
-  padding: 40px 32px;
+  border-radius: 22px;
+  padding: 34px 30px;
+  border: 1px solid rgba(139, 111, 71, 0.08);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
-
 .menu-category:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 48px var(--shadow);
+  transform: translateY(-7px);
+  box-shadow: 0 20px 50px var(--shadow);
 }
-
-.menu-category-icon {
-  width: 56px;
-  height: 56px;
-  background: var(--brown);
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
-  font-size: 1.6rem;
+.menu-illus {
+  width: 100%;
+  height: 150px;
+  border-radius: 16px;
+  margin-bottom: 22px;
+  overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
 }
-
-.menu-category h3 {
-  font-size: 1.6rem;
-  margin-bottom: 20px;
+.menu-illus svg { width: 100%; height: 100%; }
+.menu-cat-head {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 18px;
 }
+.menu-cat-head .ic {
+  width: 38px; height: 38px;
+  flex-shrink: 0;
+  background: var(--espresso);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+}
+.menu-cat-head .ic svg { width: 21px; height: 21px; stroke: var(--caramel); }
+.menu-category h3 { font-size: 1.5rem; }
 
 .menu-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  padding: 14px 0;
-  border-bottom: 1px solid rgba(139, 111, 71, 0.1);
+  display: flex; justify-content: space-between; align-items: baseline;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(139, 111, 71, 0.12);
 }
-
 .menu-item:last-child { border-bottom: none; }
-
-.menu-item-name {
-  font-weight: 500;
-  font-size: 0.95rem;
-}
-
+.menu-item-name { font-weight: 700; font-size: 0.95rem; }
 .menu-item-desc {
   display: block;
-  font-size: 0.82rem;
+  font-size: 0.8rem;
   color: rgba(44, 24, 16, 0.55);
   font-weight: 400;
-  margin-top: 3px;
+  margin-top: 2px;
+  line-height: 1.45;
 }
-
 .menu-item-price {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
+  font-family: 'Fraunces', serif;
+  font-size: 1.05rem;
   font-weight: 600;
   color: var(--brown);
   white-space: nowrap;
-  margin-left: 16px;
+  margin-left: 14px;
 }
 
 /* ===== DAILY SPECIALS ===== */
 #specials { background: var(--beige); }
-
 .specials-card {
-  max-width: 800px;
+  max-width: 880px;
   margin: 0 auto;
-  background: var(--charcoal);
-  border-radius: 24px;
+  background: var(--espresso);
+  border-radius: 28px;
   padding: 60px 56px;
-  text-align: center;
   position: relative;
   overflow: hidden;
 }
-
 .specials-card::before {
   content: '';
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background:
-    radial-gradient(circle 400px at 20% 30%, rgba(139, 111, 71, 0.12) 0%, transparent 100%),
-    radial-gradient(circle 300px at 80% 70%, rgba(139, 111, 71, 0.08) 0%, transparent 100%);
+    radial-gradient(circle 420px at 18% 22%, rgba(212, 163, 115, 0.18) 0%, transparent 70%),
+    radial-gradient(circle 320px at 86% 84%, rgba(139, 111, 71, 0.16) 0%, transparent 70%);
   pointer-events: none;
 }
-
 .specials-card > * { position: relative; z-index: 1; }
-
+.specials-card .section-head { margin-bottom: 44px; }
 .specials-card .section-title { color: var(--beige); }
+.specials-card .section-title em { color: var(--caramel); }
 .specials-card .section-subtitle { color: rgba(245, 230, 211, 0.6); }
+.specials-card .eyebrow { color: var(--caramel); }
 
 .special-item {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-  text-align: left;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(245, 230, 211, 0.08);
+  display: flex; align-items: center; gap: 22px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(245, 230, 211, 0.1);
 }
-
 .special-item:last-child { border-bottom: none; }
-
 .special-badge {
   flex-shrink: 0;
-  width: 52px;
-  height: 52px;
-  background: var(--brown);
-  color: var(--beige);
-  border-radius: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Playfair Display', serif;
-  font-weight: 700;
-  line-height: 1;
+  width: 54px; height: 54px;
+  background: rgba(212, 163, 115, 0.14);
+  border: 1px solid rgba(212, 163, 115, 0.35);
+  border-radius: 14px;
+  display: flex; align-items: center; justify-content: center;
 }
-
-.special-badge .day { font-size: 1.3rem; }
-.special-badge .month { font-size: 0.55rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 500; font-family: 'Inter', sans-serif; }
-
-.special-info h4 {
-  color: var(--beige);
-  font-size: 1.2rem;
-  margin-bottom: 4px;
+.special-badge svg { width: 28px; height: 28px; stroke: var(--caramel); }
+.special-info h4 { color: var(--beige); font-size: 1.18rem; margin-bottom: 3px; }
+.special-info .tag {
+  display: inline-block;
+  font-size: 0.66rem; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--caramel);
+  margin-bottom: 5px;
 }
-
-.special-info p {
-  color: rgba(245, 230, 211, 0.55);
-  font-size: 0.85rem;
-}
-
+.special-info p { color: rgba(245, 230, 211, 0.6); font-size: 0.85rem; }
 .special-price {
   margin-left: auto;
-  font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
   font-weight: 700;
-  color: var(--brown-light);
+  color: var(--caramel);
   flex-shrink: 0;
 }
 
 /* ===== GALLERY ===== */
 #gallery { background: var(--cream); }
-
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 18px;
 }
-
 .gallery-item {
-  border-radius: 16px;
+  border-radius: 18px;
   overflow: hidden;
   aspect-ratio: 3/4;
   position: relative;
   transition: transform 0.5s ease, box-shadow 0.5s ease;
+  cursor: pointer;
 }
-
 .gallery-item:hover {
-  transform: scale(1.03);
-  box-shadow: 0 16px 48px var(--shadow-strong);
+  transform: translateY(-6px);
+  box-shadow: 0 20px 52px var(--shadow-strong);
 }
-
-.gallery-placeholder {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
-  color: rgba(44, 24, 16, 0.4);
-  font-weight: 400;
-  transition: all 0.5s ease;
-  position: relative;
-}
-
-.gallery-placeholder .icon { font-size: 2.2rem; margin-bottom: 8px; opacity: 0.6; }
-.gallery-placeholder .label { opacity: 0.5; }
-
-.gallery-item:nth-child(1) .gallery-placeholder {
-  background: linear-gradient(145deg, #e8d5be, #d4bd9e);
-}
-
-.gallery-item:nth-child(2) .gallery-placeholder {
-  background: linear-gradient(145deg, #ddd0b8, #c8b594);
-}
-
-.gallery-item:nth-child(3) .gallery-placeholder {
-  background: linear-gradient(145deg, #dcc8ae, #c4ad8a);
-}
-
-.gallery-item:nth-child(4) .gallery-placeholder {
-  background: linear-gradient(145deg, #e2d0b8, #ceb898);
-}
-
-.gallery-item:nth-child(1) .gallery-placeholder::before,
-.gallery-item:nth-child(2) .gallery-placeholder::before,
-.gallery-item:nth-child(3) .gallery-placeholder::before,
-.gallery-item:nth-child(4) .gallery-placeholder::before {
-  content: '';
+.gallery-item svg { width: 100%; height: 100%; display: block; }
+.gallery-caption {
   position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle 100px at 30% 20%, rgba(255,255,255,0.15) 0%, transparent 100%),
-    radial-gradient(circle 80px at 70% 60%, rgba(255,255,255,0.08) 0%, transparent 100%);
-  pointer-events: none;
+  left: 0; right: 0; bottom: 0;
+  padding: 16px 18px;
+  background: linear-gradient(to top, rgba(44, 24, 16, 0.82), transparent);
+  color: var(--beige);
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1rem;
+  transform: translateY(6px);
+  opacity: 0.9;
+  transition: transform 0.4s ease, opacity 0.4s ease;
 }
+.gallery-item:hover .gallery-caption { transform: translateY(0); opacity: 1; }
 
-/* ===== STORY SECTION ===== */
-#story {
-  background: var(--beige);
-  position: relative;
-}
-
+/* ===== STORY ===== */
+#story { background: var(--beige); }
 .story-layout {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 70px;
   align-items: center;
 }
-
 .story-image {
-  border-radius: 20px;
+  border-radius: 22px;
   overflow: hidden;
-  aspect-ratio: 4/3;
-  background: linear-gradient(145deg, #d4bd9e, #c4ad8a);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
+  aspect-ratio: 4/5;
+  box-shadow: 0 24px 60px var(--shadow);
 }
-
-.story-image::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle 200px at 30% 20%, rgba(255,255,255,0.12) 0%, transparent 100%),
-    radial-gradient(circle 150px at 70% 70%, rgba(44,24,16,0.05) 0%, transparent 100%);
-  pointer-events: none;
-}
-
-.story-image .icon {
-  font-size: 3rem;
-  opacity: 0.3;
-}
-
-.story-text h2 {
-  font-size: 2.8rem;
-  margin-bottom: 24px;
-}
-
+.story-image svg { width: 100%; height: 100%; }
+.story-text .eyebrow { margin-bottom: 18px; }
+.story-text h2 { font-size: clamp(2rem, 4vw, 2.9rem); margin-bottom: 22px; }
+.story-text h2 em { font-style: italic; color: var(--brown); font-weight: 500; }
 .story-text p {
-  font-size: 1.05rem;
-  color: rgba(44, 24, 16, 0.7);
-  margin-bottom: 20px;
-  line-height: 1.8;
+  font-size: 1.04rem;
+  color: rgba(44, 24, 16, 0.72);
+  margin-bottom: 18px;
+  line-height: 1.78;
 }
-
 .story-text .signature {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Fraunces', serif;
   font-style: italic;
-  font-size: 1.15rem;
+  font-size: 1.18rem;
   color: var(--brown);
-  margin-top: 32px;
+  margin-top: 28px;
 }
 
-/* ===== LOCATION / HOURS ===== */
+/* ===== LOCATION ===== */
 #location { background: var(--cream); }
-
 .location-card {
-  max-width: 600px;
+  max-width: 640px;
   margin: 0 auto;
   background: var(--beige);
-  border-radius: 20px;
-  padding: 48px 48px;
-  box-shadow: 0 8px 32px var(--shadow);
-  border: 1px solid rgba(139, 111, 71, 0.08);
+  border-radius: 22px;
+  padding: 46px 46px;
+  box-shadow: 0 10px 40px var(--shadow);
+  border: 1px solid rgba(139, 111, 71, 0.1);
 }
-
 .location-detail {
-  display: flex;
-  gap: 16px;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(139, 111, 71, 0.1);
+  display: flex; gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid rgba(139, 111, 71, 0.12);
 }
-
 .location-detail:last-child { border-bottom: none; }
-
 .location-detail-icon {
   flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  background: var(--brown);
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  color: var(--beige);
+  width: 42px; height: 42px;
+  background: var(--espresso);
+  border-radius: 11px;
+  display: flex; align-items: center; justify-content: center;
 }
-
-.location-detail-content h4 {
-  font-size: 0.95rem;
-  margin-bottom: 4px;
-}
-
-.location-detail-content p {
-  font-size: 0.9rem;
-  color: rgba(44, 24, 16, 0.55);
-}
-
+.location-detail-icon svg { width: 21px; height: 21px; stroke: var(--caramel); }
+.location-detail-content h4 { font-size: 1rem; margin-bottom: 3px; }
+.location-detail-content p { font-size: 0.92rem; color: rgba(44, 24, 16, 0.62); }
 .hours-grid {
   display: grid;
   grid-template-columns: auto 1fr;
-  gap: 4px 20px;
+  gap: 5px 20px;
   margin-top: 8px;
 }
+.hours-grid .day { font-weight: 600; font-size: 0.9rem; }
+.hours-grid .time { color: rgba(44, 24, 16, 0.6); font-size: 0.9rem; text-align: right; }
+.hours-grid .hl .day, .hours-grid .hl .time { color: var(--brown); font-weight: 700; }
 
-.hours-grid .day { font-weight: 500; font-size: 0.9rem; }
-.hours-grid .time { color: rgba(44, 24, 16, 0.55); font-size: 0.9rem; text-align: right; }
-.hours-grid .highlight .day,
-.hours-grid .highlight .time { color: var(--brown); font-weight: 600; }
+/* newsletter form */
+.location-form {
+  max-width: 640px;
+  margin: 28px auto 0;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+.location-form input {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 20px;
+  border-radius: 100px;
+  border: 1.5px solid rgba(139, 111, 71, 0.3);
+  background: var(--beige);
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.92rem;
+  color: var(--espresso);
+}
+.location-form input:focus { outline: none; border-color: var(--brown); }
+.location-form button { flex-shrink: 0; }
+.form-feedback {
+  max-width: 640px;
+  margin: 12px auto 0;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--brown);
+  min-height: 1.2em;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.form-feedback.show { opacity: 1; }
 
 /* ===== FOOTER ===== */
 .footer {
-  background: var(--charcoal);
-  color: rgba(245, 230, 211, 0.6);
-  padding: 48px 0;
+  background: var(--espresso);
+  color: rgba(245, 230, 211, 0.62);
+  padding: 56px 0 40px;
   text-align: center;
 }
-
 .footer-logo {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
+  display: inline-flex; align-items: center; gap: 10px;
+  font-family: 'Fraunces', serif;
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: 0.05em;
   color: var(--beige);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
-
-.footer-logo span { color: var(--brown-light); }
-
+.footer-logo svg { width: 30px; height: 30px; }
 .footer p { font-size: 0.85rem; }
-.footer-socials { margin: 20px 0; display: flex; gap: 16px; justify-content: center; }
+.footer-socials { margin: 22px 0; display: flex; gap: 14px; justify-content: center; }
 .footer-socials a {
-  width: 40px;
-  height: 40px;
-  border: 1px solid rgba(245, 230, 211, 0.15);
+  width: 42px; height: 42px;
+  border: 1px solid rgba(245, 230, 211, 0.16);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(245, 230, 211, 0.5);
-  font-size: 0.9rem;
-  transition: all 0.3s ease;
+  display: flex; align-items: center; justify-content: center;
+  color: rgba(245, 230, 211, 0.55);
+  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
 }
-.footer-socials a:hover { border-color: var(--brown); color: var(--brown-light); }
+.footer-socials a svg { width: 18px; height: 18px; }
+.footer-socials a:hover { border-color: var(--caramel); color: var(--caramel); transform: translateY(-3px); }
 
 /* ===== SCROLL ANIMATIONS ===== */
-.fade-in {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
+.fade-in.visible { opacity: 1; transform: translateY(0); }
 .fade-in-delay-1 { transition-delay: 0.1s; }
 .fade-in-delay-2 { transition-delay: 0.2s; }
 .fade-in-delay-3 { transition-delay: 0.3s; }
-.fade-in-delay-4 { transition-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
+  .fade-in { opacity: 1; transform: none; }
+}
 
 /* ===== RESPONSIVE ===== */
 @media (max-width: 968px) {
-  .section { padding: 80px 0; }
-  .hero h1 { font-size: 3.6rem; }
-  .section-title { font-size: 2.2rem; }
+  .section { padding: 84px 0; }
+  .hero { padding: 130px 0 80px; }
+  .hero .container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+  .hero-copy { max-width: 620px; margin: 0 auto; }
+  .hero-copy .eyebrow, .hero-actions { justify-content: center; }
+  .hero p { margin-left: auto; margin-right: auto; }
+  .hero-art { order: -1; }
+  .hero-art .cup-frame { width: min(300px, 70%); }
+  .hero-stats { left: 0; }
   .menu-grid { grid-template-columns: 1fr 1fr; }
   .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .story-layout { grid-template-columns: 1fr; gap: 40px; }
-  .story-image { order: -1; }
+  .story-layout { grid-template-columns: 1fr; gap: 44px; }
+  .story-image { order: -1; max-width: 420px; margin: 0 auto; }
 }
-
-@media (max-width: 700px) {
+@media (max-width: 640px) {
   .nav-links {
     display: none;
     position: absolute;
@@ -694,32 +652,36 @@ img { max-width: 100%; height: auto; display: block; }
     background: rgba(245, 230, 211, 0.98);
     backdrop-filter: blur(16px);
     flex-direction: column;
-    padding: 24px;
-    gap: 20px;
-    border-bottom: 1px solid rgba(139, 111, 71, 0.12);
+    padding: 26px;
+    gap: 22px;
+    border-bottom: 1px solid rgba(139, 111, 71, 0.14);
   }
   .nav-links.open { display: flex; }
   .nav-toggle { display: block; }
-  .hero { min-height: 90vh; }
-  .hero h1 { font-size: 2.6rem; }
-  .section-title { font-size: 1.8rem; }
   .menu-grid { grid-template-columns: 1fr; }
-  .specials-card { padding: 36px 24px; }
-  .special-item { flex-wrap: wrap; gap: 12px; }
+  .specials-card { padding: 40px 26px; }
+  .special-item { flex-wrap: wrap; gap: 14px; }
   .special-price { margin-left: 0; }
   .gallery-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .location-card { padding: 32px 24px; }
-  .btn { padding: 14px 28px; font-size: 0.85rem; }
+  .location-card { padding: 34px 24px; }
+  .hero-stats { display: none; }
 }
 </style>
 </head>
 <body>
 
 <!-- ===== NAVBAR ===== -->
-<nav class="navbar" id="navbar" role="navigation">
+<nav class="navbar" id="navbar" role="navigation" aria-label="Primary">
   <div class="container">
-    <a href="#" class="nav-logo">Haven<span>&amp;</span>Brew</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+    <button class="nav-logo" id="navLogo" aria-label="ROAST home">
+      <svg viewBox="0 0 32 32" aria-hidden="true" fill="none">
+        <rect width="32" height="32" rx="7" fill="#2c1810"/>
+        <ellipse cx="16" cy="16" rx="8" ry="11" stroke="#d4a373" stroke-width="2"/>
+        <path d="M16 6 C11 11 21 21 16 26" stroke="#d4a373" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      <span class="word">ROAST</span>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links" id="navLinks">
@@ -734,13 +696,63 @@ img { max-width: 100%; height: auto; display: block; }
 
 <!-- ===== HERO ===== -->
 <section class="hero" id="home">
-  <div class="hero-content">
-    <div class="hero-badge">Est. 2024 &middot; Artisan Roastery</div>
-    <h1>Where every <span class="accent">cup</span><br>tells a story</h1>
-    <p>Slow-roasted single-origin beans, hand-crafted pastries, and the warmest corner of the city &mdash; welcome to your new favourite place.</p>
-    <div class="hero-actions">
-      <a href="#menu" class="btn btn-primary">Explore Menu &darr;</a>
-      <a href="#location" class="btn btn-secondary">Find Us</a>
+  <div class="hero-blob b1"></div>
+  <div class="hero-blob b2"></div>
+  <div class="container">
+    <div class="hero-copy">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <ellipse cx="12" cy="12" rx="5" ry="8"/><path d="M12 5c-3 3 3 11 0 14"/>
+        </svg>
+        Est. 2024 · Small-Batch Roastery
+      </span>
+      <h1>Every cup,<br><span class="accent">slowly</span> made.</h1>
+      <p>Single-origin beans roasted in-house, pastries laminated by hand, and the coziest corner of the city waiting for you.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-primary">
+          Explore the Menu
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
+        </a>
+        <a href="#location" class="btn btn-secondary">Find Us</a>
+      </div>
+    </div>
+    <div class="hero-art">
+      <!-- designed coffee cup + steam -->
+      <svg class="cup-frame" viewBox="0 0 320 320" fill="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="cupBody" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#fff9f0"/><stop offset="1" stop-color="#e8d5be"/>
+          </linearGradient>
+          <linearGradient id="coffee" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#6d5537"/><stop offset="1" stop-color="#2c1810"/>
+          </linearGradient>
+          <radialGradient id="saucerG" cx="0.5" cy="0.4" r="0.7">
+            <stop offset="0" stop-color="#faf0e6"/><stop offset="1" stop-color="#d4a373"/>
+          </radialGradient>
+        </defs>
+        <!-- steam -->
+        <path class="steam-path s1" d="M132 64 C120 50 144 40 132 24" stroke="#8b6f47" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+        <path class="steam-path s2" d="M160 60 C148 46 172 36 160 18" stroke="#8b6f47" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+        <path class="steam-path s3" d="M188 64 C176 50 200 40 188 24" stroke="#8b6f47" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
+        <!-- saucer -->
+        <ellipse cx="160" cy="276" rx="118" ry="26" fill="url(#saucerG)"/>
+        <ellipse cx="160" cy="270" rx="118" ry="24" fill="#f5e6d3"/>
+        <!-- cup body -->
+        <path d="M84 110 H236 L222 232 C220 250 200 262 160 262 C120 262 100 250 98 232 Z" fill="url(#cupBody)" stroke="#8b6f47" stroke-width="2.5"/>
+        <!-- coffee surface -->
+        <ellipse cx="160" cy="116" rx="74" ry="17" fill="url(#coffee)"/>
+        <ellipse cx="160" cy="116" rx="74" ry="17" fill="none" stroke="#8b6f47" stroke-width="2.5"/>
+        <!-- crema swirl -->
+        <path d="M126 116 C140 108 180 124 196 114" stroke="#d4a373" stroke-width="2.5" stroke-linecap="round" opacity="0.7" fill="none"/>
+        <ellipse cx="160" cy="116" rx="40" ry="9" fill="none" stroke="#d4a373" stroke-width="1.5" opacity="0.4"/>
+        <!-- handle -->
+        <path d="M236 138 C282 138 282 206 232 200" stroke="#8b6f47" stroke-width="11" fill="none" stroke-linecap="round"/>
+        <path d="M236 138 C282 138 282 206 232 200" stroke="#faf0e6" stroke-width="4" fill="none" stroke-linecap="round"/>
+      </svg>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">12</div><div class="lab">Origins</div></div>
+        <div class="stat"><div class="num">Daily</div><div class="lab">Fresh Bake</div></div>
+      </div>
     </div>
   </div>
 </section>
@@ -748,140 +760,86 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- ===== MENU ===== -->
 <section class="section" id="menu">
   <div class="container">
-    <div class="accent-line"></div>
-    <h2 class="section-title">Our Menu</h2>
-    <p class="section-subtitle">From carefully sourced espresso to buttery, flaky pastries &mdash; every item made in-house, daily.</p>
+    <div class="section-head">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 010 8h-1M6 8h12v9a4 4 0 01-4 4H10a4 4 0 01-4-4z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg>
+        On the Menu
+      </span>
+      <h2 class="section-title">Made <em>in-house</em>, daily</h2>
+      <p class="section-subtitle">From carefully sourced espresso to buttery, flaky pastries — every item crafted by hand each morning.</p>
+    </div>
 
     <div class="menu-grid">
+
       <!-- Coffee -->
       <div class="menu-category fade-in">
-        <div class="menu-category-icon" style="background:#6d5537;" aria-hidden="true">&#9749;</div>
-        <h3>Coffee</h3>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Espresso</span>
-            <span class="menu-item-desc">Single-origin, double shot</span>
-          </div>
-          <span class="menu-item-price">$3.50</span>
+        <div class="menu-illus" style="background:linear-gradient(150deg,#e8d5be,#d4a373);">
+          <svg viewBox="0 0 200 150" fill="none" aria-hidden="true">
+            <path class="steam-path s1" d="M86 44 C78 35 92 30 84 20" stroke="#6d5537" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+            <path class="steam-path s3" d="M112 44 C104 35 118 30 110 20" stroke="#6d5537" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+            <path d="M60 64 H132 L126 116 C125 124 116 128 96 128 C76 128 67 124 66 116 Z" fill="#fff9f0" stroke="#2c1810" stroke-width="2.5"/>
+            <ellipse cx="96" cy="66" rx="36" ry="9" fill="#2c1810"/>
+            <path d="M132 76 C158 76 158 108 128 104" stroke="#2c1810" stroke-width="7" fill="none" stroke-linecap="round"/>
+          </svg>
         </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Flat White</span>
-            <span class="menu-item-desc">Velvety microfoam over ristretto</span>
-          </div>
-          <span class="menu-item-price">$4.75</span>
+        <div class="menu-cat-head">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1M4 8h14v9a4 4 0 01-4 4H8a4 4 0 01-4-4z"/></svg></span>
+          <h3>Coffee</h3>
         </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Pour Over</span>
-            <span class="menu-item-desc">Hand-poured, rotating origins</span>
-          </div>
-          <span class="menu-item-price">$5.50</span>
-        </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Cold Brew</span>
-            <span class="menu-item-desc">24-hour steep, silky smooth</span>
-          </div>
-          <span class="menu-item-price">$5.00</span>
-        </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Latte</span>
-            <span class="menu-item-desc">Choice of oat, almond &amp; whole milk</span>
-          </div>
-          <span class="menu-item-price">$5.25</span>
-        </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Cortado</span>
-            <span class="menu-item-desc">Equal parts espresso &amp; steamed milk</span>
-          </div>
-          <span class="menu-item-price">$4.25</span>
-        </div>
+        <div class="menu-item"><div><span class="menu-item-name">Espresso</span><span class="menu-item-desc">Single-origin, double shot</span></div><span class="menu-item-price">$3.50</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Flat White</span><span class="menu-item-desc">Velvety microfoam over ristretto</span></div><span class="menu-item-price">$4.75</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Pour Over</span><span class="menu-item-desc">Hand-poured, rotating origins</span></div><span class="menu-item-price">$5.50</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Cold Brew</span><span class="menu-item-desc">24-hour steep, silky smooth</span></div><span class="menu-item-price">$5.00</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Oat Milk Latte</span><span class="menu-item-desc">Espresso, steamed oat milk</span></div><span class="menu-item-price">$5.25</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Cortado</span><span class="menu-item-desc">Equal parts espresso &amp; milk</span></div><span class="menu-item-price">$4.25</span></div>
       </div>
 
       <!-- Pastries -->
       <div class="menu-category fade-in fade-in-delay-1">
-        <div class="menu-category-icon" style="background:#8b6f47;" aria-hidden="true">&#9702;</div>
-        <h3>Pastries</h3>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Croissant</span>
-            <span class="menu-item-desc">Classic French butter, 72-hour lamination</span>
-          </div>
-          <span class="menu-item-price">$4.50</span>
+        <div class="menu-illus" style="background:linear-gradient(150deg,#f0dcc0,#d4a373);">
+          <svg viewBox="0 0 200 150" fill="none" aria-hidden="true">
+            <!-- croissant -->
+            <path d="M44 96 C54 70 86 56 120 60 C150 64 168 80 162 98 C158 110 140 112 130 104 C124 116 102 118 96 106 C90 118 66 116 60 104 C52 110 40 106 44 96 Z" fill="#fff9f0" stroke="#2c1810" stroke-width="2.5"/>
+            <path d="M70 92 C80 80 96 78 108 84" stroke="#8b6f47" stroke-width="2" stroke-linecap="round"/>
+            <path d="M104 96 C116 84 134 84 146 92" stroke="#8b6f47" stroke-width="2" stroke-linecap="round"/>
+            <path d="M60 102 C66 96 74 96 80 100" stroke="#8b6f47" stroke-width="2" stroke-linecap="round"/>
+          </svg>
         </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Almond Croissant</span>
-            <span class="menu-item-desc">Frangipane filling, flakey top</span>
-          </div>
-          <span class="menu-item-price">$5.50</span>
+        <div class="menu-cat-head">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-4 4-7 8-7s8 3 8 7c0 2-2 3-4 3H8c-2 0-4-1-4-3z"/><path d="M8 10v-1M12 9v-1M16 10v-1"/></svg></span>
+          <h3>Pastries</h3>
         </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Cinnamon Roll</span>
-            <span class="menu-item-desc">Brown butter glaze, house-made</span>
-          </div>
-          <span class="menu-item-price">$5.00</span>
-        </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Banana Bread</span>
-            <span class="menu-item-desc">Sourdough discard, dark chocolate</span>
-          </div>
-          <span class="menu-item-price">$4.25</span>
-        </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Morning Bun</span>
-            <span class="menu-item-desc">Orange zest &amp; cardamom sugar</span>
-          </div>
-          <span class="menu-item-price">$4.75</span>
-        </div>
+        <div class="menu-item"><div><span class="menu-item-name">Croissant</span><span class="menu-item-desc">72-hour lamination, French butter</span></div><span class="menu-item-price">$4.50</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Almond Croissant</span><span class="menu-item-desc">Frangipane filling, flaky top</span></div><span class="menu-item-price">$5.50</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Cinnamon Roll</span><span class="menu-item-desc">Brown-butter glaze, house-made</span></div><span class="menu-item-price">$5.00</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Banana Bread</span><span class="menu-item-desc">Sourdough discard, dark chocolate</span></div><span class="menu-item-price">$4.25</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Morning Bun</span><span class="menu-item-desc">Orange zest &amp; cardamom sugar</span></div><span class="menu-item-price">$4.75</span></div>
       </div>
 
-      <!-- Specialty Drinks -->
+      <!-- Specialty -->
       <div class="menu-category fade-in fade-in-delay-2">
-        <div class="menu-category-icon" style="background:#a8895e;" aria-hidden="true">&#10048;</div>
-        <h3>Specialty Drinks</h3>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Honey Lavender Latte</span>
-            <span class="menu-item-desc">Local honey, culinary lavender</span>
-          </div>
-          <span class="menu-item-price">$6.25</span>
+        <div class="menu-illus" style="background:linear-gradient(150deg,#e2d0b8,#c4ad8a);">
+          <svg viewBox="0 0 200 150" fill="none" aria-hidden="true">
+            <!-- tall glass iced -->
+            <path d="M78 40 H122 L116 122 C115 128 108 130 100 130 C92 130 85 128 84 122 Z" fill="#fff9f0" stroke="#2c1810" stroke-width="2.5"/>
+            <path d="M80 74 H120 L116 122 C115 128 108 130 100 130 C92 130 85 128 84 122 Z" fill="#8b6f47" opacity="0.85"/>
+            <rect x="88" y="84" width="9" height="9" rx="2" fill="#fff9f0" opacity="0.7"/>
+            <rect x="104" y="96" width="9" height="9" rx="2" fill="#fff9f0" opacity="0.6"/>
+            <rect x="94" y="106" width="9" height="9" rx="2" fill="#fff9f0" opacity="0.55"/>
+            <line x1="112" y1="30" x2="106" y2="78" stroke="#d4a373" stroke-width="4" stroke-linecap="round"/>
+          </svg>
         </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Brown Sugar Oatmilk Shaken</span>
-            <span class="menu-item-desc">Brown sugar syrup, oat milk, espresso</span>
-          </div>
-          <span class="menu-item-price">$6.50</span>
+        <div class="menu-cat-head">
+          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l1.5 9.5a2 2 0 002 1.7h7a2 2 0 002-1.7L19 3z"/><path d="M12 14v5M8 21h8"/></svg></span>
+          <h3>Specialty</h3>
         </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Matcha Latte</span>
-            <span class="menu-item-desc">Ceremonial grade, hand-whisked</span>
-          </div>
-          <span class="menu-item-price">$5.75</span>
-        </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Turmeric Golden</span>
-            <span class="menu-item-desc">Turmeric, ginger, black pepper, oat milk</span>
-          </div>
-          <span class="menu-item-price">$5.50</span>
-        </div>
-        <div class="menu-item">
-          <div>
-            <span class="menu-item-name">Smoked Maple Latte</span>
-            <span class="menu-item-desc">Smoked maple syrup, cinnamon</span>
-          </div>
-          <span class="menu-item-price">$6.25</span>
-        </div>
+        <div class="menu-item"><div><span class="menu-item-name">Honey Lavender Latte</span><span class="menu-item-desc">Local honey, culinary lavender</span></div><span class="menu-item-price">$6.25</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Brown Sugar Oat Milk Shaken</span><span class="menu-item-desc">Brown sugar syrup, oat milk, espresso</span></div><span class="menu-item-price">$6.50</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Matcha Latte</span><span class="menu-item-desc">Ceremonial grade, hand-whisked</span></div><span class="menu-item-price">$5.75</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Turmeric Golden</span><span class="menu-item-desc">Turmeric, ginger, pepper, oat milk</span></div><span class="menu-item-price">$5.50</span></div>
+        <div class="menu-item"><div><span class="menu-item-name">Smoked Maple Latte</span><span class="menu-item-desc">Smoked maple syrup, cinnamon</span></div><span class="menu-item-price">$6.25</span></div>
       </div>
+
     </div>
   </div>
 </section>
@@ -889,45 +847,55 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- ===== DAILY SPECIALS ===== -->
 <section class="section" id="specials">
   <div class="container">
-    <div class="specials-card">
-      <div class="accent-line" style="background: var(--brown-light);"></div>
-      <h2 class="section-title">Today&rsquo;s Specials</h2>
-      <p class="section-subtitle">Hand-picked by our baristas &mdash; limited quantities, made fresh.</p>
+    <div class="specials-card fade-in">
+      <div class="section-head">
+        <span class="eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+          Today's Board
+        </span>
+        <h2 class="section-title">Daily <em>specials</em></h2>
+        <p class="section-subtitle">Hand-picked by our baristas — limited quantities, made fresh.</p>
+      </div>
 
+      <!-- AM special -->
       <div class="special-item">
         <div class="special-badge">
-          <span class="day">22</span>
-          <span class="month">Jun</span>
+          <!-- sun -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
         </div>
         <div class="special-info">
+          <span class="tag">AM · Morning</span>
           <h4>Ethiopian Yirgacheffe Pour Over</h4>
-          <p>Bright floral notes &bull; bergamot &bull; honey finish</p>
+          <p>Bright floral notes · bergamot · honey finish</p>
         </div>
         <span class="special-price">$6.00</span>
       </div>
 
+      <!-- AM special -->
       <div class="special-item">
         <div class="special-badge">
-          <span class="day">22</span>
-          <span class="month">Jun</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
         </div>
         <div class="special-info">
-          <h4>Bourbon Vanilla Cold Brew</h4>
-          <p>24-hour steep &bull; Madagascar vanilla &bull; oat milk</p>
-        </div>
-        <span class="special-price">$6.50</span>
-      </div>
-
-      <div class="special-item">
-        <div class="special-badge">
-          <span class="day">22</span>
-          <span class="month">Jun</span>
-        </div>
-        <div class="special-info">
+          <span class="tag">AM · Bakery</span>
           <h4>Pistachio &amp; Rose Croissant</h4>
-          <p>House pistachio paste &bull; dried rose petals</p>
+          <p>House pistachio paste · dried rose petals</p>
         </div>
         <span class="special-price">$6.75</span>
+      </div>
+
+      <!-- PM special -->
+      <div class="special-item">
+        <div class="special-badge">
+          <!-- moon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>
+        </div>
+        <div class="special-info">
+          <span class="tag">PM · Evening</span>
+          <h4>Bourbon Vanilla Cold Brew</h4>
+          <p>24-hour steep · Madagascar vanilla · oat milk</p>
+        </div>
+        <span class="special-price">$6.50</span>
       </div>
     </div>
   </div>
@@ -936,34 +904,71 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- ===== GALLERY ===== -->
 <section class="section" id="gallery">
   <div class="container">
-    <div class="accent-line"></div>
-    <h2 class="section-title">The Atmosphere</h2>
-    <p class="section-subtitle">Warm light, soft music, and the quiet hum of conversation &mdash; find your corner.</p>
+    <div class="section-head">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20C7 20 4 17 4 13c0-5 7-9 7-9s7 4 7 9c0 4-3 7-7 7z"/><path d="M11 20v-7"/></svg>
+        Inside the Shop
+      </span>
+      <h2 class="section-title">The <em>atmosphere</em></h2>
+      <p class="section-subtitle">Warm light, soft music, and the quiet hum of conversation — find your corner.</p>
+    </div>
 
     <div class="gallery-grid">
+      <!-- Morning Light -->
       <div class="gallery-item fade-in">
-        <div class="gallery-placeholder">
-          <span class="icon">&#9728;</span>
-          <span class="label">Morning Light</span>
-        </div>
+        <svg viewBox="0 0 150 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="150" height="200" fill="#e8d5be"/>
+          <rect width="150" height="200" fill="#f5e6d3" opacity="0.4"/>
+          <circle cx="105" cy="48" r="30" fill="#d4a373" opacity="0.8"/>
+          <circle cx="105" cy="48" r="44" fill="#d4a373" opacity="0.25"/>
+          <rect x="20" y="90" width="110" height="80" rx="4" fill="#6d5537" opacity="0.18"/>
+          <line x1="75" y1="60" x2="75" y2="170" stroke="#6d5537" stroke-width="2" opacity="0.25"/>
+          <line x1="20" y1="120" x2="130" y2="120" stroke="#6d5537" stroke-width="2" opacity="0.25"/>
+          <path d="M40 150 q35 -40 70 0" stroke="#fff9f0" stroke-width="3" fill="none" opacity="0.5"/>
+        </svg>
+        <div class="gallery-caption">Morning Light</div>
       </div>
+      <!-- The Bar -->
       <div class="gallery-item fade-in fade-in-delay-1">
-        <div class="gallery-placeholder">
-          <span class="icon">&#9749;</span>
-          <span class="label">The Bar</span>
-        </div>
+        <svg viewBox="0 0 150 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="150" height="200" fill="#d4bd9e"/>
+          <rect x="0" y="130" width="150" height="70" fill="#6d5537"/>
+          <rect x="0" y="125" width="150" height="8" fill="#2c1810"/>
+          <rect x="30" y="60" width="40" height="60" rx="6" fill="#2c1810"/>
+          <rect x="38" y="70" width="24" height="20" rx="3" fill="#d4a373"/>
+          <circle cx="100" cy="100" r="14" fill="#fff9f0"/>
+          <path d="M114 95 q12 0 12 10 t-12 6" stroke="#fff9f0" stroke-width="4" fill="none"/>
+          <path class="steam-path s1" d="M48 50 q-6 -8 0 -16" stroke="#fff9f0" stroke-width="2.5" fill="none" opacity="0.6"/>
+        </svg>
+        <div class="gallery-caption">The Bar</div>
       </div>
+      <!-- Evening Corner -->
       <div class="gallery-item fade-in fade-in-delay-2">
-        <div class="gallery-placeholder">
-          <span class="icon">&#9789;</span>
-          <span class="label">Evening Corner</span>
-        </div>
+        <svg viewBox="0 0 150 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="150" height="200" fill="#6d5537"/>
+          <rect width="150" height="200" fill="#2c1810" opacity="0.35"/>
+          <path d="M118 38a20 20 0 10 6 24 16 16 0 01-6 -24z" fill="#d4a373" opacity="0.85"/>
+          <circle cx="40" cy="120" r="10" fill="#d4a373" opacity="0.5"/>
+          <rect x="24" y="130" width="32" height="50" rx="4" fill="#2c1810" opacity="0.5"/>
+          <rect x="80" y="150" width="50" height="30" rx="6" fill="#f5e6d3" opacity="0.25"/>
+          <circle cx="40" cy="118" r="22" fill="#d4a373" opacity="0.18"/>
+        </svg>
+        <div class="gallery-caption">Evening Corner</div>
       </div>
+      <!-- Reading Nook -->
       <div class="gallery-item fade-in fade-in-delay-3">
-        <div class="gallery-placeholder">
-          <span class="icon">&#9733;</span>
-          <span class="label">Reading Nook</span>
-        </div>
+        <svg viewBox="0 0 150 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="150" height="200" fill="#e2d0b8"/>
+          <rect x="22" y="40" width="106" height="120" rx="6" fill="#8b6f47" opacity="0.2"/>
+          <rect x="34" y="54" width="38" height="12" rx="2" fill="#6d5537" opacity="0.7"/>
+          <rect x="34" y="72" width="38" height="12" rx="2" fill="#d4a373" opacity="0.8"/>
+          <rect x="34" y="90" width="38" height="12" rx="2" fill="#2c1810" opacity="0.6"/>
+          <rect x="80" y="54" width="38" height="12" rx="2" fill="#d4a373" opacity="0.6"/>
+          <rect x="80" y="72" width="38" height="12" rx="2" fill="#6d5537" opacity="0.7"/>
+          <path d="M55 150 l40 0 0 26 -40 0 z" fill="#fff9f0" opacity="0.6"/>
+          <line x1="75" y1="150" x2="75" y2="176" stroke="#8b6f47" stroke-width="2" opacity="0.6"/>
+        </svg>
+        <div class="gallery-caption">Reading Nook</div>
       </div>
     </div>
   </div>
@@ -974,15 +979,42 @@ img { max-width: 100%; height: auto; display: block; }
   <div class="container">
     <div class="story-layout">
       <div class="story-image fade-in">
-        <span class="icon">&#10048;</span>
+        <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="400" height="500" fill="#d4bd9e"/>
+          <rect width="400" height="500" fill="#8b6f47" opacity="0.12"/>
+          <!-- window light -->
+          <rect x="40" y="40" width="150" height="200" rx="8" fill="#faf0e6" opacity="0.45"/>
+          <line x1="115" y1="40" x2="115" y2="240" stroke="#8b6f47" stroke-width="3" opacity="0.3"/>
+          <line x1="40" y1="140" x2="190" y2="140" stroke="#8b6f47" stroke-width="3" opacity="0.3"/>
+          <!-- counter -->
+          <rect x="0" y="330" width="400" height="170" fill="#6d5537"/>
+          <rect x="0" y="320" width="400" height="14" fill="#2c1810"/>
+          <!-- roaster machine -->
+          <circle cx="290" cy="200" r="60" fill="#2c1810"/>
+          <circle cx="290" cy="200" r="38" fill="#6d5537"/>
+          <circle cx="290" cy="200" r="20" fill="#d4a373"/>
+          <rect x="280" y="60" width="20" height="80" rx="6" fill="#2c1810"/>
+          <!-- cup on counter -->
+          <path d="M120 360 H180 L174 410 C173 418 160 420 150 420 C140 420 127 418 126 410 Z" fill="#faf0e6" stroke="#2c1810" stroke-width="3"/>
+          <ellipse cx="150" cy="362" rx="30" ry="7" fill="#2c1810"/>
+          <path class="steam-path s1" d="M140 340 q-8 -12 0 -24" stroke="#f5e6d3" stroke-width="3" fill="none" opacity="0.7"/>
+          <path class="steam-path s3" d="M162 340 q-8 -12 0 -24" stroke="#f5e6d3" stroke-width="3" fill="none" opacity="0.7"/>
+          <!-- beans -->
+          <ellipse cx="230" cy="380" rx="9" ry="13" fill="#2c1810" transform="rotate(20 230 380)"/>
+          <ellipse cx="255" cy="392" rx="9" ry="13" fill="#3d2415" transform="rotate(-15 255 392)"/>
+          <ellipse cx="242" cy="402" rx="9" ry="13" fill="#2c1810" transform="rotate(35 242 402)"/>
+        </svg>
       </div>
-      <div class="story-text fade-in fade-in-delay-1">
-        <div class="accent-line" style="margin:0 0 20px 0;"></div>
-        <h2>Our Story</h2>
-        <p>Haven &amp; Brew was born from a simple belief &mdash; that a great cup of coffee can change your day. Founded in the heart of the city by two friends who traded corporate desks for espresso machines, we&rsquo;ve spent years perfecting our craft.</p>
-        <p>Every bean we roast is ethically sourced from small-batch farms in Ethiopia, Colombia, and Guatemala. Every pastry is laminated, folded, and baked in-house by hand. We believe in slow food, slow coffee, and genuine connection.</p>
-        <p>Whether you&rsquo;re here for a morning pour-over, an afternoon pastry, or an evening corner to read, you&rsquo;re family. Pull up a chair and stay awhile.</p>
-        <div class="signature">&mdash; Elena &amp; Marcus, Founders</div>
+      <div class="story-text">
+        <span class="eyebrow fade-in">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="5" ry="8"/><path d="M12 5c-3 3 3 11 0 14"/></svg>
+          Our Story
+        </span>
+        <h2 class="fade-in fade-in-delay-1">A small room, a <em>big</em> obsession</h2>
+        <p class="fade-in fade-in-delay-1">ROAST began with a single drum roaster in a borrowed back room and a stubborn belief that a great cup of coffee can quietly change your whole day.</p>
+        <p class="fade-in fade-in-delay-2">Every bean is ethically sourced in small batches from Ethiopia, Colombia, and Guatemala, then roasted here on the bench. Every pastry is laminated, folded, and baked in-house by hand.</p>
+        <p class="fade-in fade-in-delay-3">Whether you're here for a morning pour over, an afternoon pastry, or a quiet evening corner to read — pull up a chair and stay awhile.</p>
+        <div class="signature fade-in fade-in-delay-3">— Elena &amp; Marcus, founders</div>
       </div>
     </div>
   </div>
@@ -991,13 +1023,18 @@ img { max-width: 100%; height: auto; display: block; }
 <!-- ===== LOCATION / HOURS ===== -->
 <section class="section" id="location">
   <div class="container">
-    <div class="accent-line"></div>
-    <h2 class="section-title">Visit Us</h2>
-    <p class="section-subtitle">Come find your new favourite spot.</p>
+    <div class="section-head">
+      <span class="eyebrow">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Come Say Hi
+      </span>
+      <h2 class="section-title">Visit <em>ROAST</em></h2>
+      <p class="section-subtitle">Find your new favourite spot — and join the list for weekly bean drops.</p>
+    </div>
 
     <div class="location-card fade-in">
       <div class="location-detail">
-        <div class="location-detail-icon" aria-hidden="true">&#9906;</div>
+        <div class="location-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
         <div class="location-detail-content">
           <h4>Address</h4>
           <p>247 Grindstone Avenue, Portland, OR 97201</p>
@@ -1005,41 +1042,51 @@ img { max-width: 100%; height: auto; display: block; }
       </div>
 
       <div class="location-detail">
-        <div class="location-detail-icon" aria-hidden="true">&#9993;</div>
+        <div class="location-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
         <div class="location-detail-content">
           <h4>Contact</h4>
-          <p>hello@havenandbrew.com &bull; (503) 555-0147</p>
+          <p>hello@roast.cafe · (555) 000-0000</p>
         </div>
       </div>
 
       <div class="location-detail">
-        <div class="location-detail-icon" aria-hidden="true">&#9200;</div>
+        <div class="location-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
         <div class="location-detail-content">
           <h4>Hours</h4>
           <div class="hours-grid">
-            <span class="day">Monday &ndash; Friday</span>
-            <span class="time">6:30 AM &ndash; 7:00 PM</span>
-            <span class="day">Saturday</span>
-            <span class="time">7:00 AM &ndash; 8:00 PM</span>
-            <span class="day highlight">Sunday</span>
-            <span class="time highlight">8:00 AM &ndash; 5:00 PM</span>
+            <span class="day">Monday – Friday</span><span class="time">6:30 AM – 7:00 PM</span>
+            <span class="day">Saturday</span><span class="time">7:00 AM – 8:00 PM</span>
+            <div class="hl" style="display:contents;"><span class="day">Sunday</span><span class="time">8:00 AM – 5:00 PM</span></div>
           </div>
         </div>
       </div>
     </div>
+
+    <form class="location-form fade-in" id="newsletterForm" novalidate>
+      <input type="email" id="emailInput" placeholder="your@email.com" aria-label="Email address" required>
+      <button type="submit" class="btn btn-primary">Join the List</button>
+    </form>
+    <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
   </div>
 </section>
 
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-logo">Haven<span>&amp;</span>Brew</div>
-    <div class="footer-socials">
-      <a href="#" aria-label="Instagram">&#9901;</a>
-      <a href="#" aria-label="Twitter/X">&#120143;</a>
-      <a href="#" aria-label="Facebook">&#102;</a>
+    <div class="footer-logo">
+      <svg viewBox="0 0 32 32" aria-hidden="true" fill="none">
+        <rect width="32" height="32" rx="7" fill="#3d2415"/>
+        <ellipse cx="16" cy="16" rx="8" ry="11" stroke="#d4a373" stroke-width="2"/>
+        <path d="M16 6 C11 11 21 21 16 26" stroke="#d4a373" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+      ROAST
     </div>
-    <p>&copy; 2024 Haven &amp; Brew. Crafted with care, daily.</p>
+    <div class="footer-socials">
+      <a href="#home" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
+      <a href="#home" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
+      <a href="#home" aria-label="Map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
+    </div>
+    <p>© 2024 ROAST Artisan Cafe. Crafted with care, daily.</p>
   </div>
 </footer>
 
@@ -1048,42 +1095,48 @@ img { max-width: 100%; height: auto; display: block; }
 (function() {
   'use strict';
 
-  // --- Mobile Nav Toggle ---
+  // --- Mobile nav toggle ---
   var toggle = document.getElementById('navToggle');
   var links = document.getElementById('navLinks');
   if (toggle && links) {
     toggle.addEventListener('click', function() {
-      links.classList.toggle('open');
+      var open = links.classList.toggle('open');
+      toggle.classList.toggle('active', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
     });
-    // Close nav on link click (mobile)
-    var navAnchors = links.querySelectorAll('a');
-    for (var i = 0; i < navAnchors.length; i++) {
-      navAnchors[i].addEventListener('click', function() {
+    links.querySelectorAll('a').forEach(function(a) {
+      a.addEventListener('click', function() {
         links.classList.remove('open');
+        toggle.classList.remove('active');
+        toggle.setAttribute('aria-expanded', 'false');
       });
-    }
+    });
+  }
+
+  // --- Logo scrolls to top ---
+  var logo = document.getElementById('navLogo');
+  if (logo) {
+    logo.addEventListener('click', function() {
+      document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+    });
   }
 
   // --- Navbar shrink on scroll ---
   var navbar = document.getElementById('navbar');
-  var didScroll = false;
+  var ticking = false;
   window.addEventListener('scroll', function() {
-    if (!didScroll) {
+    if (!ticking) {
       window.requestAnimationFrame(function() {
-        if (window.scrollY > 60) {
-          navbar.classList.add('scrolled');
-        } else {
-          navbar.classList.remove('scrolled');
-        }
-        didScroll = false;
+        navbar.classList.toggle('scrolled', window.scrollY > 50);
+        ticking = false;
       });
-      didScroll = true;
+      ticking = true;
     }
   });
 
-  // --- Scroll-triggered fade-in animations ---
+  // --- Scroll reveal ---
   var fadeEls = document.querySelectorAll('.fade-in');
-  if (fadeEls.length > 0) {
+  if ('IntersectionObserver' in window && fadeEls.length) {
     var observer = new IntersectionObserver(function(entries) {
       entries.forEach(function(entry) {
         if (entry.isIntersecting) {
@@ -1092,10 +1145,30 @@ img { max-width: 100%; height: auto; display: block; }
         }
       });
     }, { threshold: 0.15 });
+    fadeEls.forEach(function(el) { observer.observe(el); });
+  } else {
+    fadeEls.forEach(function(el) { el.classList.add('visible'); });
+  }
 
-    for (var j = 0; j < fadeEls.length; j++) {
-      observer.observe(fadeEls[j]);
-    }
+  // --- Newsletter form (sandbox-safe) ---
+  var form = document.getElementById('newsletterForm');
+  var feedback = document.getElementById('formFeedback');
+  var emailInput = document.getElementById('emailInput');
+  if (form) {
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      var val = (emailInput.value || '').trim();
+      var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
+      if (valid) {
+        feedback.textContent = 'Thanks! Watch your inbox for this week’s bean drop.';
+        feedback.style.color = 'var(--brown)';
+        form.reset();
+      } else {
+        feedback.textContent = 'Please enter a valid email address.';
+        feedback.style.color = '#a4452f';
+      }
+      feedback.classList.add('show');
+    });
   }
 })();
 </script>
