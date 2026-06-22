@@ -121,7 +121,7 @@ footer{padding:48px 32px 32px;border-top:1px solid var(--border);transition:bord
 <!-- Hero -->
 <section class="hero">
   <div class="hero-bg">
-    <img src="https://picsum.photos/seed/outfit-hero/1600/900" alt="" loading="lazy">
+    <img src="https://images.unsplash.com/photo-1771919328088-3476e8fe65b0?w=1600&h=900&fit=crop" alt="" loading="lazy">
   </div>
   <div class="hero-content">
     <h1 id="heroHeadline">
@@ -216,6 +216,20 @@ const products = [
   { id:13, name:'Command + K', price:15.00, cat:'Apparel', front:'outfit-command-k-front', back:'outfit-command-k-back' }
 ];
 
+// Unsplash image URLs for product/cart images
+const unsplashImgs = [
+  'https://images.unsplash.com/photo-1771919328088-3476e8fe65b0?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1771920373490-2bf2f1f64b66?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1732299164330-5e9f0f933e05?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1771919374230-7e7aa59b3d86?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1771919374215-f6995c8ce42b?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1581044777550-4c0edbb5e1cf?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&h=600&fit=crop'
+];
+
 // Theme system
 const themes = ['dark','light','red'];
 let currentTheme = localStorage.getItem('outfit-theme') || 'dark';
@@ -236,14 +250,14 @@ document.querySelectorAll('.nav-themes button').forEach(btn => {
 
 // Render products
 const grid = document.getElementById('productGrid');
-products.forEach(p => {
+products.forEach((p, i) => {
   const card = document.createElement('a');
   card.className = 'product-card';
   card.href = '#';
   card.innerHTML = `
     <div class="img-wrap">
-      <img class="img-front" src="https://picsum.photos/seed/${p.front}/600/750" alt="${p.name}" loading="lazy">
-      <img class="img-back" src="https://picsum.photos/seed/${p.back}/600/750" alt="${p.name}" loading="lazy">
+      <img class="img-front" src="${unsplashImgs[i % 10]}" alt="${p.name}" loading="lazy">
+      <img class="img-back" src="${unsplashImgs[(i + 5) % 10]}" alt="${p.name}" loading="lazy">
     </div>
     <div class="product-tag">${p.cat}</div>
     <div class="product-info">
@@ -304,7 +318,7 @@ function renderCartItems() {
     total += item.price * item.qty;
     html += `
       <div class="cart-item">
-        <img class="cart-item-img" src="https://picsum.photos/seed/${item.front}/120/150" alt="${item.name}" loading="lazy">
+        <img class="cart-item-img" src="${unsplashImgs[(item.id - 1) % 10]}" alt="${item.name}" loading="lazy">
         <div class="cart-item-info">
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-price">$${item.price.toFixed(2)}</div>

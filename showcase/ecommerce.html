@@ -451,6 +451,19 @@ const moreItems = [
   { id:'M_006', name:'Stool', img:'monolith-stool2' }
 ];
 
+const unsplashUrls = [
+  'https://images.unsplash.com/photo-1758957701419-2c6e266f7988?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1778731525495-c225978fe442?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1741851376964-1a1ec9a14e68?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1771888703723-01d85da1dae1?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1721903832111-2798f5d2911d?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&h=600&fit=crop',
+  'https://images.unsplash.com/photo-1616048056617-93b5a3408a49?w=800&h=600&fit=crop'
+];
+
 // ===== DOM REFS =====
 const timeDisplay = document.getElementById('timeDisplay');
 const scrollPercent = document.getElementById('scrollPercent');
@@ -527,7 +540,7 @@ function buildGallery(){
         <div class="gallery-inner" style="grid-template-columns:${even?'1fr 1fr':'1fr 1fr'}">
           ${even?`
           <div class="gallery-img">
-            <img src="https://picsum.photos/seed/${p.img}/800/1000" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%">
+            <img src="${unsplashUrls[i]}" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%">
           </div>
           <div class="gallery-info">
             <div class="gallery-number">${p.no}</div>
@@ -542,7 +555,7 @@ function buildGallery(){
             <div class="gallery-price">${p.price}</div>
           </div>
           <div class="gallery-img">
-            <img src="https://picsum.photos/seed/${p.img}/800/1000" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%">
+            <img src="${unsplashUrls[i]}" alt="${p.name}" loading="${i<2?'eager':'lazy'}" style="height:100%">
           </div>`}
         </div>
         <span class="gallery-col-num">${String(i+1).padStart(3,'0')}</span>
@@ -559,7 +572,7 @@ function buildMore(){
     html+=`
       <div class="more-item reveal reveal-delay-${Math.min(i%5+1,2)}">
         <div class="more-img-wrap">
-          <img src="https://picsum.photos/seed/${item.img}/600/600" alt="${item.name}" loading="lazy">
+          <img src="${unsplashUrls[Math.min(6 + i, 9)]}" alt="${item.name}" loading="lazy">
         </div>
         <div class="more-label">
           <span class="more-cat">${num} / ${item.id}</span>
