@@ -3,1480 +3,1044 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEM — Fine Dining</title>
-<meta name="description" content="GEM is an upscale fine-dining restaurant. A cinematic tasting experience of seasonal cuisine, rare wines, and quiet luxury.">
-
-<!-- Social meta -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="GEM — Fine Dining">
-<meta property="og:description" content="An intimate tasting experience. Seasonal cuisine, a curated cellar, and quiet luxury — reservations now open.">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GEM — Fine Dining">
-<meta name="twitter:description" content="An intimate tasting experience. Seasonal cuisine, a curated cellar, and quiet luxury.">
-
-<!-- Inline SVG favicon: faceted gem in gold -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%231a0f0a'/%3E%3Cg fill='none' stroke='%23c9a84c' stroke-width='1.6' stroke-linejoin='round'%3E%3Cpath d='M9 12h14l-7 11z'/%3E%3Cpath d='M9 12l3-4h8l3 4'/%3E%3Cpath d='M13 12l3 11 3-11'/%3E%3C/g%3E%3C/svg%3E">
-
+<title>CRAV | Artisan Smashed Burgers</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --espresso: #1a0f0a;
-  --espresso-2: #160c07;
-  --coffee: #3d2b1f;
-  --gold: #c9a84c;
-  --gold-light: #e3c878;
-  --gold-deep: #a8862f;
-  --cream: #f5f0e8;
-  --cream-dim: rgba(245, 240, 232, 0.62);
-  --cream-faint: rgba(245, 240, 232, 0.34);
-  --line: rgba(201, 168, 76, 0.16);
-  --nav-bg: rgba(20, 11, 6, 0.82);
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#f5e3cd;
+  --red:#f91814;
+  --black:#1b1b1b;
+  --white:#ffffff;
+  --beige:#f5e3cd;
+  --mustard:#e8b84b;
+}
+html{
+  scroll-behavior:smooth;
+  background:var(--bg);
+}
+body{
+  font-family:'Inter',sans-serif;
+  background:var(--bg);
+  color:var(--black);
+  overflow-x:hidden;
+  min-height:100vh;
+}
+h1,h2,h3,h4,h5,h6{
+  font-family:'Bangers',cursive;
+  letter-spacing:-.025em;
+  text-transform:uppercase;
+  line-height:.95;
 }
 
-html { scroll-behavior: smooth; }
+/* ---- LOADER ---- */
+#loader{
+  position:fixed;inset:0;z-index:9999;
+  background:var(--bg);
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  transition:opacity .8s ease,visibility .8s ease;
+}
+#loader.hidden{opacity:0;visibility:hidden;pointer-events:none}
+#loader .stack{
+  position:relative;width:320px;height:180px;
+  margin-bottom:2rem;
+}
+#loader .stack img{
+  position:absolute;left:50%;transform:translateX(-50%);
+  width:260px;height:auto;border-radius:20px;
+  opacity:.3;transition:all .5s ease;
+}
+#loader .stack img:nth-child(1){top:0;transform:translateX(-50%) rotate(-8deg);opacity:.5}
+#loader .stack img:nth-child(2){top:10px;transform:translateX(-50%) rotate(4deg);opacity:.7}
+#loader .stack img:nth-child(3){top:20px;transform:translateX(-50%) rotate(-2deg);opacity:1}
+#loader h2{
+  font-family:'Bangers',cursive;
+  font-size:clamp(2.5rem,8vw,5rem);
+  color:var(--red);letter-spacing:-.025em;
+  margin-bottom:.5rem;
+}
+#loader .progress-wrap{
+  width:200px;height:6px;
+  background:rgba(0,0,0,.08);border-radius:3px;
+  overflow:hidden;margin-top:1rem;
+}
+#loader .progress-bar{
+  height:100%;width:0%;
+  background:var(--red);
+  border-radius:3px;
+  transition:width .3s ease;
+}
+#loader .btn-ready{
+  margin-top:2rem;
+  font-family:'Bangers',cursive;
+  font-size:clamp(1rem,2.5vw,1.4rem);
+  letter-spacing:.1em;
+  color:var(--white);background:var(--red);
+  border:none;border-radius:50px;
+  padding:.8rem 2.5rem;
+  cursor:pointer;
+  opacity:0;transform:translateY(20px);
+  transition:all .5s ease .3s;
+}
+#loader .btn-ready.show{opacity:1;transform:translateY(0)}
+#loader .btn-ready:hover{background:var(--black);transform:scale(1.05)}
 
-body {
-  font-family: 'Jost', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--espresso);
-  color: var(--cream);
-  line-height: 1.7;
-  font-weight: 300;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
+/* ---- NAV ---- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 2rem;
+  transition:background .3s ease;
 }
+nav.scrolled{background:rgba(245,227,205,.92);backdrop-filter:blur(10px)}
+nav .logo{
+  font-family:'Bangers',cursive;
+  font-size:clamp(1.8rem,3vw,2.8rem);
+  letter-spacing:-.025em;
+  color:var(--red);text-decoration:none;
+  transform:rotate(-2deg);display:inline-block;
+}
+nav .logo:hover{transform:rotate(-2deg) scale(1.08)}
+nav .nav-links{
+  display:flex;align-items:center;gap:2rem;
+  list-style:none;
+}
+nav .nav-links a{
+  font-family:'Bangers',cursive;
+  font-size:clamp(.9rem,1.3vw,1.2rem);
+  letter-spacing:.05em;
+  text-decoration:none;color:var(--black);
+  text-transform:uppercase;
+  transition:color .3s;
+  position:relative;
+}
+nav .nav-links a::after{
+  content:'';position:absolute;bottom:-4px;left:0;
+  width:0;height:2px;background:var(--red);
+  transition:width .3s;
+}
+nav .nav-links a:hover::after{width:100%}
+nav .nav-links a:hover{color:var(--red)}
+.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:5px}
+.nav-toggle span{width:28px;height:3px;background:var(--black);border-radius:2px;transition:all .3s}
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-weight: 500;
-  letter-spacing: 0.01em;
-}
+/* ---- SECTIONS ---- */
+section{padding:4rem 2rem;position:relative}
+.section-inner{max-width:1280px;margin:0 auto;position:relative}
 
-::selection { background: var(--gold); color: var(--espresso); }
+/* ---- HERO ---- */
+.hero{
+  min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding-top:6rem;overflow:hidden;
+  position:relative;
+}
+.hero .section-inner{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:2rem;align-items:center;
+}
+.hero-left{position:relative;z-index:2}
+.hero-left h1{
+  font-size:clamp(4rem,12vw,10rem);
+  color:var(--black);line-height:.85;
+  position:relative;
+}
+.hero-left h1 .line{display:block}
+.hero-left h1 .line-red{color:var(--red)}
+.hero-left .sticker{
+  font-family:'Bangers',cursive;
+  font-size:clamp(1rem,2vw,1.6rem);
+  letter-spacing:-.025em;
+  display:inline-block;
+  padding:.3rem 1.2rem;
+  border-radius:8px;
+  position:absolute;
+  white-space:nowrap;
+}
+.hero-left .sticker-1{
+  background:var(--red);color:var(--white);
+  transform:rotate(-6deg);
+  top:-10px;right:10%;
+  font-size:clamp(.9rem,1.8vw,1.4rem);
+}
+.hero-left .sticker-2{
+  background:var(--black);color:var(--white);
+  transform:rotate(4deg);
+  bottom:15%;left:-20px;
+  font-size:clamp(.9rem,1.8vw,1.4rem);
+}
+.hero-left p{
+  font-size:clamp(.9rem,1.1vw,1.1rem);
+  line-height:1.6;
+  color:rgba(27,27,27,.7);
+  margin-top:1.5rem;
+  max-width:380px;
+}
+.hero-right{
+  position:relative;z-index:1;
+  display:flex;justify-content:center;align-items:center;
+}
+.hero-right .burger-img{
+  width:100%;max-width:500px;height:auto;
+  border-radius:50%;
+  object-fit:cover;
+  aspect-ratio:1/1;
+  box-shadow:0 20px 60px rgba(0,0,0,.15);
+  transform:rotate(3deg);
+  transition:transform .5s ease;
+}
+.hero-right .burger-img:hover{transform:rotate(0deg) scale(1.02)}
+.hero-decal{
+  position:absolute;
+  font-family:'Bangers',cursive;
+  font-size:clamp(4rem,16vw,12rem);
+  color:rgba(249,24,20,.06);
+  pointer-events:none;
+  z-index:0;
+  letter-spacing:-.025em;
+  line-height:1;
+  user-select:none;
+  transition:transform .15s ease-out;
+}
+.hero-decal.d1{top:-2%;left:-5%;transform:rotate(-15deg)}
+.hero-decal.d2{bottom:-5%;right:-8%;transform:rotate(10deg)}
+.hero-decal.d3{top:40%;right:-5%;transform:rotate(-8deg);font-size:clamp(3rem,10vw,8rem)}
 
-a { color: inherit; }
+/* ---- SCROLL INDICATOR ---- */
+.scroll-indicator{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.5rem;
+  animation:bounce 2s infinite;
+}
+.scroll-indicator span{
+  font-family:'Bangers',cursive;
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  color:rgba(27,27,27,.4);
+}
+.scroll-indicator .arrow{width:20px;height:20px;border-right:2px solid rgba(27,27,27,.3);border-bottom:2px solid rgba(27,27,27,.3);transform:rotate(45deg)}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(10px)}}
 
-.container { max-width: 1180px; margin: 0 auto; }
+/* ---- SECTION TITLES ---- */
+.section-label{
+  font-family:'Bangers',cursive;
+  font-size:clamp(.7rem,1vw,.85rem);
+  letter-spacing:.3em;
+  text-transform:uppercase;
+  color:var(--red);
+  margin-bottom:.5rem;
+}
+.section-title{
+  font-size:clamp(2.5rem,8vw,6rem);
+  color:var(--black);
+  margin-bottom:1rem;
+}
+.section-title .highlight{color:var(--red)}
 
-.eyebrow {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.68rem;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 400;
+/* ---- ABOUT / TOP CLASSIC ---- */
+.about-section{position:relative}
+.about-section .content-wrap{
+  display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;
 }
+.about-section .text-side p{
+  font-size:clamp(.9rem,1.1vw,1.1rem);
+  line-height:1.7;color:rgba(27,27,27,.7);
+  margin-bottom:1.5rem;
+}
+.btn-order{
+  display:inline-flex;align-items:center;gap:.5rem;
+  font-family:'Bangers',cursive;
+  font-size:clamp(1rem,1.5vw,1.3rem);
+  letter-spacing:.05em;
+  color:var(--white);background:var(--red);
+  text-decoration:none;
+  padding:.8rem 2rem;border-radius:50px;
+  transition:all .3s ease;
+  border:2px solid var(--red);
+}
+.btn-order:hover{background:var(--black);border-color:var(--black);transform:translateY(-3px);box-shadow:0 8px 25px rgba(249,24,20,.3)}
+.about-section .image-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1rem;
+}
+.about-section .image-grid img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;
+  border-radius:20px;
+  transition:all .4s ease;
+}
+.about-section .image-grid img:nth-child(1){transform:rotate(-3deg)}
+.about-section .image-grid img:nth-child(2){transform:rotate(3deg);margin-top:2rem}
+.about-section .image-grid img:nth-child(3){transform:rotate(2deg);margin-top:-1rem}
+.about-section .image-grid img:nth-child(4){transform:rotate(-2deg)}
+.about-section .image-grid img:hover{transform:rotate(0deg) scale(1.03);z-index:5}
 
-/* ─── Nav ─── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 1000;
-  padding: 1.6rem clamp(1.4rem, 4vw, 3.2rem);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: padding .4s ease, background .4s ease, box-shadow .4s ease;
-  background: transparent;
+/* ---- EXPERIENCE SECTION ---- */
+.experience-section{
+  background:var(--black);
+  color:var(--white);
+  position:relative;overflow:hidden;
 }
-nav.scrolled {
-  background: var(--nav-bg);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  padding-top: .95rem;
-  padding-bottom: .95rem;
-  box-shadow: 0 1px 0 var(--line), 0 18px 40px rgba(0,0,0,.45);
+.experience-section .section-title{color:var(--white)}
+.experience-section .section-label{color:var(--mustard)}
+.exp-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:3rem;align-items:center;
 }
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: .6rem;
-  text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
+.exp-grid .exp-img{
+  width:100%;max-width:500px;height:auto;
+  border-radius:30px;
+  transform:rotate(-2deg);
+  box-shadow:0 20px 50px rgba(0,0,0,.3);
+  aspect-ratio:1/1;object-fit:cover;
 }
-.logo svg { width: 26px; height: 26px; display: block; }
-.logo .wordmark {
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.7rem;
-  color: var(--cream);
-  letter-spacing: 0.42em;
-  font-weight: 600;
-  text-transform: uppercase;
-  padding-left: .2em;
+.exp-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;gap:2rem;
+  margin-top:2rem;
 }
-
-.nav-links {
-  display: flex;
-  gap: 2.4rem;
-  list-style: none;
-  align-items: center;
+.exp-stat{
+  text-align:center;
 }
-.nav-links a {
-  color: var(--cream);
-  text-decoration: none;
-  font-size: 0.74rem;
-  font-weight: 400;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  transition: color .3s;
-  position: relative;
+.exp-stat .num{
+  font-family:'Bangers',cursive;
+  font-size:clamp(1.5rem,3vw,2.5rem);
+  color:var(--mustard);
+  letter-spacing:-.025em;
 }
-.nav-links a:not(.reserve-btn)::after {
-  content: '';
-  position: absolute;
-  bottom: -5px; left: 0;
-  width: 0; height: 1px;
-  background: var(--gold);
-  transition: width .35s ease;
-}
-.nav-links a:not(.reserve-btn):hover { color: var(--gold); }
-.nav-links a:not(.reserve-btn):hover::after { width: 100%; }
-
-.reserve-btn {
-  border: 1px solid var(--gold);
-  color: var(--gold);
-  padding: .55rem 1.5rem;
-  border-radius: 1px;
-  transition: background .35s ease, color .35s ease;
-}
-.reserve-btn:hover { background: var(--gold); color: var(--espresso); }
-
-.hamburger {
-  display: none;
-  flex-direction: column;
-  gap: 6px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  padding: 6px;
-  z-index: 1100;
-}
-.hamburger span {
-  display: block;
-  width: 26px; height: 1.5px;
-  background: var(--cream);
-  transition: transform .35s ease, opacity .25s ease;
-}
-.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); background: var(--gold); }
-.hamburger.active span:nth-child(2) { opacity: 0; }
-.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -6px); background: var(--gold); }
-
-/* ─── Hero ─── */
-.hero {
-  position: relative;
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  overflow: hidden;
-  background: var(--espresso);
-  padding: 6rem 1.5rem 4rem;
-}
-.hero-stage { position: absolute; inset: 0; overflow: hidden; }
-.hero-glow {
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 70% 55% at 50% 38%, rgba(201,168,76,0.13) 0%, transparent 62%),
-    radial-gradient(ellipse 90% 90% at 50% 50%, #2a1812 0%, var(--espresso) 68%);
-}
-.hero-vignette {
-  position: absolute; inset: 0;
-  background:
-    linear-gradient(to bottom, rgba(20,11,6,.6) 0%, transparent 22%, transparent 62%, var(--espresso) 100%);
-  z-index: 3;
-}
-/* designed SVG plating illustration as hero centerpiece */
-.hero-plate {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -54%);
-  width: min(78vmin, 620px);
-  height: min(78vmin, 620px);
-  z-index: 1;
-  opacity: 0;
-  animation: plateIn 1.8s cubic-bezier(.16,1,.3,1) .2s forwards;
-}
-.hero-plate svg { width: 100%; height: 100%; }
-.ring-rotate { transform-origin: 300px 300px; animation: slowSpin 60s linear infinite; }
-@keyframes slowSpin { to { transform: rotate(360deg); } }
-@keyframes plateIn { from { opacity: 0; transform: translate(-50%, -50%) scale(.92); } to { opacity: 1; transform: translate(-50%, -54%) scale(1); } }
-
-.hero-content { position: relative; z-index: 4; max-width: 880px; }
-.hero-est {
-  margin-bottom: 1.5rem;
-  opacity: 0;
-  animation: fadeUp 1.1s ease .35s forwards;
-}
-.hero-rule {
-  width: 64px; height: 1px;
-  background: linear-gradient(to right, transparent, var(--gold), transparent);
-  margin: 0 auto 2rem;
-  opacity: 0;
-  animation: fadeUp 1s ease .55s forwards;
-}
-.hero-title {
-  font-size: clamp(3.4rem, 11vw, 8rem);
-  font-weight: 400;
-  line-height: .96;
-  letter-spacing: 0.02em;
-  color: var(--cream);
-  margin-bottom: 1.6rem;
-  opacity: 0;
-  animation: fadeUp 1.2s ease .5s forwards;
-}
-.hero-title em { font-style: italic; color: var(--gold); }
-.hero-desc {
-  font-size: 1.05rem;
-  color: var(--cream-dim);
-  max-width: 520px;
-  margin: 0 auto 2.6rem;
-  opacity: 0;
-  animation: fadeUp 1.2s ease .8s forwards;
-}
-.hero-actions {
-  display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeUp 1.2s ease 1.05s forwards;
-}
-
-.btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .65rem;
-  padding: .95rem 2.4rem;
-  font-family: 'Jost', sans-serif;
-  font-size: 0.74rem;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  font-weight: 400;
-  text-decoration: none;
-  cursor: pointer;
-  border-radius: 1px;
-  transition: background .4s ease, color .4s ease, border-color .4s ease, transform .3s ease;
-  background: transparent;
-}
-.btn-solid { background: var(--gold); color: var(--espresso); border: 1px solid var(--gold); }
-.btn-solid:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-2px); }
-.btn-ghost { border: 1px solid var(--line); color: var(--cream); }
-.btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-.btn svg { width: 14px; height: 14px; }
-
-.hero-scroll {
-  position: absolute;
-  bottom: 2rem; left: 50%;
-  transform: translateX(-50%);
-  z-index: 4;
-  display: flex; flex-direction: column; align-items: center; gap: 9px;
-  opacity: 0;
-  animation: fadeUp 1.2s ease 1.4s forwards;
-}
-.hero-scroll span {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.6rem; letter-spacing: 0.28em; text-transform: uppercase;
-  color: var(--cream-faint);
-}
-.hero-scroll .line {
-  width: 1px; height: 34px;
-  background: linear-gradient(to bottom, var(--gold), transparent);
-  animation: scrollPulse 2.2s ease infinite;
-}
-@keyframes scrollPulse { 0%,100% { opacity: .25; } 50% { opacity: .9; } }
-@keyframes fadeUp { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: translateY(0); } }
-
-/* ─── Section shared ─── */
-section { padding: clamp(4.5rem, 9vw, 8rem) clamp(1.4rem, 4vw, 2rem); position: relative; }
-.section-divider-top::before {
-  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
-  background: linear-gradient(to right, transparent, var(--line), transparent);
-}
-.section-header { text-align: center; margin-bottom: 4rem; }
-.section-header .eyebrow { display: block; margin-bottom: .9rem; }
-.section-title {
-  font-size: clamp(2.2rem, 5vw, 3.6rem);
-  font-weight: 400;
-  color: var(--cream);
-  line-height: 1.1;
-}
-.section-title em { font-style: italic; color: var(--gold); }
-.section-rule { width: 54px; height: 1px; background: var(--gold); margin: 1.1rem auto 0; }
-
-/* ─── Story ─── */
-.story-grid {
-  display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: clamp(2.5rem, 6vw, 5rem);
-  align-items: center;
-}
-.story-figure {
-  position: relative;
-  aspect-ratio: 4 / 5;
-  border: 1px solid var(--line);
-  background:
-    radial-gradient(ellipse at 38% 32%, rgba(201,168,76,0.08) 0%, transparent 60%),
-    linear-gradient(150deg, #2a1812 0%, var(--espresso) 70%);
-  overflow: hidden;
-}
-.story-figure svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-.story-frame {
-  position: absolute; inset: 1.4rem;
-  border: 1px solid rgba(201,168,76,0.2);
-  pointer-events: none;
-}
-.story-figure .figcap {
-  position: absolute; bottom: 1.6rem; left: 0; right: 0; text-align: center;
-  font-family: 'Cormorant Garamond', serif; font-style: italic;
-  color: var(--gold); font-size: 1.05rem; letter-spacing: .04em;
-}
-.story-content h2 { font-size: clamp(1.9rem, 3.6vw, 2.8rem); line-height: 1.16; margin-bottom: 1.5rem; }
-.story-content h2 em { color: var(--gold); font-style: italic; }
-.story-content p { color: var(--cream-dim); margin-bottom: 1.15rem; font-size: 0.98rem; }
-.story-content p .pull { color: var(--cream); font-style: italic; font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; }
-.story-sign {
-  margin-top: 1.8rem;
-  display: flex; align-items: center; gap: 1rem;
-}
-.story-sign .sig {
-  font-family: 'Cormorant Garamond', serif; font-style: italic;
-  font-size: 1.5rem; color: var(--gold);
-}
-.story-sign .role { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--cream-faint); }
-
-/* ─── Menu (hover-reveal) ─── */
-.menu { background: linear-gradient(180deg, var(--espresso) 0%, var(--espresso-2) 100%); }
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.4rem;
-}
-.menu-item {
-  position: relative;
-  min-height: 360px;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  cursor: pointer;
-  transition: border-color .45s ease, transform .45s ease, box-shadow .45s ease;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding: 1.9rem;
-}
-.menu-item:hover, .menu-item:focus-within {
-  border-color: rgba(201,168,76,0.45);
-  transform: translateY(-4px);
-  box-shadow: 0 24px 48px rgba(0,0,0,.4);
-}
-.menu-item-art { position: absolute; inset: 0; transition: transform .7s cubic-bezier(.16,1,.3,1); }
-.menu-item-art svg { width: 100%; height: 100%; }
-.menu-item:hover .menu-item-art, .menu-item:focus-within .menu-item-art { transform: scale(1.06); }
-.menu-item-veil {
-  position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(20,11,6,.94) 8%, rgba(20,11,6,.55) 45%, rgba(20,11,6,.12) 80%);
-}
-.menu-item-no {
-  position: absolute; top: 1.5rem; left: 1.9rem;
-  font-family: 'Cormorant Garamond', serif; font-size: .9rem; color: var(--gold);
-  letter-spacing: .25em; opacity: .7;
-}
-.menu-item-body { position: relative; z-index: 2; }
-.menu-cat {
-  font-family: 'Jost', sans-serif; font-size: .62rem; letter-spacing: .26em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: .5rem; display: block;
-}
-.menu-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
-.menu-name { font-family: 'Cormorant Garamond', serif; font-size: 1.55rem; color: var(--cream); font-weight: 500; line-height: 1.1; }
-.menu-price { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; color: var(--gold); white-space: nowrap; }
-.menu-reveal {
-  max-height: 0; opacity: 0; overflow: hidden;
-  transition: max-height .55s cubic-bezier(.16,1,.3,1), opacity .45s ease, margin-top .5s ease;
-  margin-top: 0;
-}
-.menu-item:hover .menu-reveal, .menu-item:focus-within .menu-reveal {
-  max-height: 140px; opacity: 1; margin-top: .9rem;
-}
-.menu-reveal p { font-size: .86rem; color: var(--cream-dim); line-height: 1.6; }
-.menu-reveal .menu-rule { width: 34px; height: 1px; background: var(--gold); margin-bottom: .7rem; }
-
-/* ─── Wine accordion ─── */
-.wine-list { max-width: 840px; margin: 0 auto; }
-.wine-item { border-bottom: 1px solid var(--line); }
-.wine-item:first-child { border-top: 1px solid var(--line); }
-.wine-trigger {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 3rem 1fr auto auto;
-  align-items: center;
-  gap: 1rem;
-  padding: 1.4rem 0;
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  color: var(--cream);
-  font-family: inherit;
-  transition: color .3s;
-}
-.wine-trigger:hover, .wine-trigger:focus-visible { color: var(--gold); outline: none; }
-.wine-trigger:focus-visible .wine-name { text-decoration: underline; text-underline-offset: 4px; }
-.wine-year { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--gold); }
-.wine-id { min-width: 0; }
-.wine-name { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 500; }
-.wine-origin { display: block; font-size: .72rem; color: var(--cream-faint); letter-spacing: .08em; text-transform: uppercase; margin-top: .15rem; }
-.wine-price { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.1rem; color: var(--gold); }
-.wine-icon { width: 18px; height: 18px; color: var(--gold); transition: transform .4s ease; flex-shrink: 0; }
-.wine-trigger[aria-expanded="true"] .wine-icon { transform: rotate(135deg); }
-.wine-panel {
-  display: grid;
-  grid-template-rows: 0fr;
-  transition: grid-template-rows .45s cubic-bezier(.16,1,.3,1);
-}
-.wine-panel[hidden] { display: grid; }
-.wine-trigger[aria-expanded="true"] + .wine-panel { grid-template-rows: 1fr; }
-.wine-panel-inner { overflow: hidden; }
-.wine-panel-pad { padding: 0 0 1.5rem 4rem; }
-.wine-panel-pad p { font-size: .9rem; color: var(--cream-dim); line-height: 1.7; }
-.wine-pair { margin-top: .7rem; font-size: .82rem; font-style: italic; color: var(--gold); font-family: 'Cormorant Garamond', serif; }
-
-/* ─── Tasting / experience strip ─── */
-.experience { background: var(--espresso-2); }
-.exp-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; max-width: 1000px; margin: 0 auto; }
-.exp-card { text-align: center; padding: 2.2rem 1.4rem; border: 1px solid var(--line); transition: border-color .4s ease, transform .4s ease; }
-.exp-card:hover { border-color: rgba(201,168,76,.4); transform: translateY(-4px); }
-.exp-icon { width: 40px; height: 40px; margin: 0 auto 1.2rem; color: var(--gold); }
-.exp-card h3 { font-size: 1.5rem; color: var(--cream); margin-bottom: .5rem; }
-.exp-card p { font-size: .88rem; color: var(--cream-dim); }
-
-/* ─── Reservation form ─── */
-.reservation { background: linear-gradient(180deg, var(--espresso-2) 0%, var(--espresso) 100%); }
-.reservation-form { max-width: 660px; margin: 0 auto; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.3rem; }
-.form-group { margin-bottom: 1.3rem; }
-.form-group label {
-  display: block; font-size: .68rem; letter-spacing: .16em; text-transform: uppercase;
-  color: var(--cream-dim); margin-bottom: .55rem; font-weight: 400;
-}
-.form-group input, .form-group select {
-  width: 100%;
-  padding: .9rem 1rem;
-  background: rgba(245,240,232,0.04);
-  border: 1px solid var(--line);
-  border-radius: 1px;
-  color: var(--cream);
-  font-family: 'Jost', sans-serif;
-  font-size: .92rem;
-  font-weight: 300;
-  transition: border-color .3s, background .3s;
-  outline: none;
-  -webkit-appearance: none;
-  appearance: none;
-}
-.form-group input:focus, .form-group select:focus {
-  border-color: var(--gold);
-  background: rgba(245,240,232,0.07);
-}
-.form-group input::placeholder { color: var(--cream-faint); }
-.form-group select {
-  cursor: pointer;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath fill='none' stroke='%23c9a84c' stroke-width='1.4' d='M1 1.5l5 5 5-5'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  padding-right: 2.5rem;
-}
-.form-group select option { background: var(--espresso); color: var(--cream); }
-.form-group.invalid input, .form-group.invalid select { border-color: #d8694e; background: rgba(216,105,78,0.06); }
-.field-error {
-  display: block;
-  min-height: 0;
-  max-height: 0;
-  overflow: hidden;
-  font-size: .72rem;
-  letter-spacing: .03em;
-  color: #e0876f;
-  margin-top: .4rem;
-  opacity: 0;
-  transition: max-height .3s ease, opacity .3s ease, margin-top .3s ease;
-}
-.form-group.invalid .field-error { max-height: 40px; opacity: 1; }
-.submit-btn {
-  width: 100%;
-  padding: 1.05rem;
-  background: var(--gold);
-  border: 1px solid var(--gold);
-  color: var(--espresso);
-  font-family: 'Jost', sans-serif;
-  font-size: .76rem;
-  letter-spacing: .22em;
-  text-transform: uppercase;
-  font-weight: 500;
-  cursor: pointer;
-  border-radius: 1px;
-  margin-top: .4rem;
-  transition: background .3s, transform .3s, color .3s;
-  display: inline-flex; align-items: center; justify-content: center; gap: .6rem;
-}
-.submit-btn:hover { background: var(--gold-light); transform: translateY(-2px); }
-.submit-btn svg { width: 15px; height: 15px; }
-.form-success {
-  display: none;
-  text-align: center;
-  padding: 3rem 2rem;
-  border: 1px solid rgba(201,168,76,0.3);
-  background: rgba(201,168,76,0.04);
-}
-.form-success.show { display: block; animation: fadeUp .6s ease forwards; }
-.form-success .check { width: 54px; height: 54px; margin: 0 auto 1.3rem; color: var(--gold); }
-.form-success h3 { font-size: 1.9rem; color: var(--cream); margin-bottom: .7rem; }
-.form-success p { color: var(--cream-dim); font-size: .95rem; }
-.form-success .again {
-  margin-top: 1.6rem; background: none; border: 1px solid var(--line); color: var(--gold);
-  padding: .7rem 1.6rem; font-family: 'Jost', sans-serif; font-size: .68rem; letter-spacing: .2em;
-  text-transform: uppercase; cursor: pointer; border-radius: 1px; transition: border-color .3s;
-}
-.form-success .again:hover { border-color: var(--gold); }
-
-/* ─── Testimonials ─── */
-.testimonials { overflow: hidden; }
-.t-slider { max-width: 720px; margin: 0 auto; position: relative; min-height: 240px; }
-.t-slide {
-  position: absolute; inset: 0;
-  opacity: 0; transform: translateY(14px);
-  transition: opacity .6s ease, transform .6s ease;
-  pointer-events: none;
-  display: flex; flex-direction: column; align-items: center; text-align: center;
-}
-.t-slide.active { opacity: 1; transform: translateY(0); pointer-events: auto; position: relative; }
-.t-stars { display: flex; gap: 5px; margin-bottom: 1.4rem; }
-.t-stars svg { width: 18px; height: 18px; color: var(--gold); }
-.t-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(1.3rem, 2.6vw, 1.75rem);
-  font-style: italic; line-height: 1.5; color: var(--cream);
-  font-weight: 400; margin-bottom: 1.6rem;
-}
-.t-author { font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--gold); }
-.t-role { font-size: .7rem; color: var(--cream-faint); letter-spacing: .16em; text-transform: uppercase; margin-top: .25rem; }
-.t-dots { display: flex; justify-content: center; gap: .6rem; margin-top: 2.2rem; }
-.t-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(201,168,76,0.22); border: none; cursor: pointer; padding: 0; transition: background .3s, transform .3s; }
-.t-dot.active { background: var(--gold); transform: scale(1.25); }
-.t-nav { display: flex; justify-content: center; gap: 1rem; margin-top: 1.4rem; }
-.t-nav-btn {
-  background: none; border: 1px solid var(--line); color: var(--gold);
-  width: 44px; height: 44px; cursor: pointer; border-radius: 1px;
-  display: flex; align-items: center; justify-content: center; transition: border-color .3s, background .3s;
-}
-.t-nav-btn:hover { border-color: var(--gold); background: rgba(201,168,76,0.08); }
-.t-nav-btn svg { width: 16px; height: 16px; }
-
-/* ─── Footer ─── */
-footer { background: var(--espresso-2); padding: 4.5rem clamp(1.4rem, 4vw, 2rem) 2rem; border-top: 1px solid var(--line); }
-.footer-grid { max-width: 1180px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-.footer-brand .logo { margin-bottom: 1.1rem; }
-.footer-brand p { font-size: .88rem; color: var(--cream-dim); max-width: 290px; }
-.footer-col h4 { font-family: 'Jost', sans-serif; font-size: .66rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: 1.2rem; font-weight: 500; }
-.footer-col ul { list-style: none; }
-.footer-col ul li { margin-bottom: .6rem; font-size: .88rem; color: var(--cream-dim); }
-.footer-col ul li a { text-decoration: none; transition: color .3s; }
-.footer-col ul li a:hover { color: var(--gold); }
-.footer-bottom {
-  max-width: 1180px; margin: 3rem auto 0; padding-top: 1.6rem; border-top: 1px solid var(--line);
-  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
-  font-size: .74rem; color: var(--cream-faint);
-}
-.footer-socials { display: flex; gap: 1rem; }
-.footer-socials button {
-  background: none; border: 1px solid var(--line); color: var(--cream-dim);
-  width: 38px; height: 38px; border-radius: 50%; cursor: pointer;
-  display: flex; align-items: center; justify-content: center; transition: border-color .3s, color .3s;
-}
-.footer-socials button:hover { border-color: var(--gold); color: var(--gold); }
-.footer-socials svg { width: 16px; height: 16px; }
-
-/* ─── Reveal ─── */
-.reveal { opacity: 0; transform: translateY(38px); transition: opacity .9s ease, transform .9s ease; }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-.rd-1 { transition-delay: .1s; } .rd-2 { transition-delay: .2s; } .rd-3 { transition-delay: .3s; }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
-  .reveal { opacity: 1; transform: none; }
-  .hero-plate, .hero-est, .hero-rule, .hero-title, .hero-desc, .hero-actions, .hero-scroll { opacity: 1; animation: none; }
+.exp-stat .label{
+  font-size:clamp(.7rem,.9vw,.85rem);
+  color:rgba(255,255,255,.6);
+  text-transform:uppercase;
+  letter-spacing:.1em;
 }
 
-/* ─── Responsive ─── */
-@media (max-width: 1024px) {
-  .menu-grid { grid-template-columns: repeat(2, 1fr); }
+/* ---- MENU SECTION ---- */
+.menu-section{position:relative;overflow:hidden}
+.menu-header{text-align:center;margin-bottom:3rem}
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:2rem;
 }
-@media (max-width: 768px) {
-  .hamburger { display: flex; }
-  .nav-links {
-    position: fixed; top: 0; right: -100%;
-    width: 78%; max-width: 340px; height: 100vh;
-    background: var(--nav-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
-    flex-direction: column; justify-content: center; gap: 2rem;
-    padding: 4rem 2rem; transition: right .45s cubic-bezier(.16,1,.3,1);
-    box-shadow: -20px 0 60px rgba(0,0,0,.5);
+.menu-card{
+  background:var(--white);
+  border-radius:24px;
+  overflow:hidden;
+  transition:all .5s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+  box-shadow:0 5px 25px rgba(0,0,0,.06);
+}
+.menu-card:nth-child(1){transform:rotate(-2deg) translateY(0)}
+.menu-card:nth-child(2){transform:rotate(1deg) translateY(20px)}
+.menu-card:nth-child(3){transform:rotate(-1deg) translateY(10px)}
+.menu-card:nth-child(4){transform:rotate(2deg) translateY(0)}
+.menu-card:nth-child(5){transform:rotate(-1.5deg) translateY(20px)}
+.menu-card:nth-child(6){transform:rotate(1.5deg) translateY(10px)}
+.menu-card:hover{transform:rotate(0deg) translateY(-10px)!important;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.menu-card .card-img{
+  width:100%;aspect-ratio:1/1;object-fit:cover;
+  display:block;transition:transform .5s ease;
+}
+.menu-card:hover .card-img{transform:scale(1.05)}
+.menu-card .card-body{
+  padding:1.5rem;
+}
+.menu-card .card-title{
+  font-family:'Bangers',cursive;
+  font-size:clamp(1.2rem,2vw,1.6rem);
+  letter-spacing:-.025em;
+  color:var(--black);
+  margin-bottom:.3rem;
+}
+.menu-card .card-price{
+  font-family:'Bangers',cursive;
+  font-size:clamp(1.5rem,2.5vw,2rem);
+  color:var(--red);
+  letter-spacing:-.025em;
+}
+.menu-card .card-ingredients{
+  font-size:clamp(.75rem,.9vw,.85rem);
+  color:rgba(27,27,27,.6);
+  margin:.5rem 0;
+  line-height:1.5;
+}
+.menu-card .card-meta{
+  display:flex;justify-content:space-between;
+  font-size:clamp(.65rem,.8vw,.75rem);
+  color:rgba(27,27,27,.4);
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  margin-top:.5rem;padding-top:.5rem;
+  border-top:1px solid rgba(0,0,0,.06);
+}
+
+/* ---- INGREDIENT DECALS ---- */
+.ingredient-decal{
+  position:absolute;
+  width:80px;height:80px;
+  border-radius:50%;
+  object-fit:cover;
+  pointer-events:none;
+  z-index:1;
+  opacity:.6;
+  transition:transform .1s ease-out;
+}
+.ingredient-decal.d1{top:10%;left:3%;width:60px;height:60px}
+.ingredient-decal.d2{top:30%;right:2%;width:70px;height:70px}
+.ingredient-decal.d3{bottom:20%;left:5%;width:90px;height:90px}
+.ingredient-decal.d4{bottom:10%;right:5%;width:55px;height:55px}
+
+/* ---- QUALITY SECTION ---- */
+.quality-section{position:relative;overflow:hidden}
+.quality-section .bg-decal{
+  position:absolute;inset:0;
+  font-family:'Bangers',cursive;
+  font-size:clamp(8rem,30vw,25rem);
+  color:rgba(249,24,20,.04);
+  display:flex;align-items:center;justify-content:center;
+  letter-spacing:-.025em;
+  pointer-events:none;
+}
+.quality-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;
+  position:relative;z-index:2;
+}
+.quality-item{
+  text-align:center;padding:2rem 1rem;
+}
+.quality-item img{
+  width:120px;height:120px;border-radius:50%;
+  object-fit:cover;
+  margin-bottom:1rem;
+  box-shadow:0 10px 30px rgba(0,0,0,.08);
+}
+.quality-item:nth-child(1) img{transform:rotate(-8deg)}
+.quality-item:nth-child(2) img{transform:rotate(5deg)}
+.quality-item:nth-child(3) img{transform:rotate(-4deg)}
+.quality-item:nth-child(4) img{transform:rotate(7deg)}
+.quality-item h3{
+  font-family:'Bangers',cursive;
+  font-size:clamp(1rem,1.5vw,1.4rem);
+  letter-spacing:-.025em;
+  color:var(--black);
+}
+
+/* ---- GLOBAL / LOCATIONS ---- */
+.locations-section{background:var(--black);color:var(--white);position:relative;overflow:hidden}
+.locations-section .section-title{color:var(--white)}
+.locations-section .section-label{color:var(--mustard)}
+.global-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:1.5rem;margin:2rem 0;
+}
+.location-card{
+  text-align:center;
+  padding:1.5rem 1rem;
+  background:rgba(255,255,255,.05);
+  border-radius:16px;
+  transition:all .3s ease;
+  cursor:pointer;
+}
+.location-card:hover{background:rgba(255,255,255,.1);transform:translateY(-5px)}
+.location-card .city{
+  font-family:'Bangers',cursive;
+  font-size:clamp(1rem,1.5vw,1.4rem);
+  letter-spacing:-.025em;
+  color:var(--white);
+}
+.location-card .time{
+  font-size:clamp(.65rem,.8vw,.75rem);
+  color:rgba(255,255,255,.4);
+  margin-top:.3rem;
+}
+.location-card img{
+  width:60px;height:60px;border-radius:50%;
+  object-fit:cover;margin-bottom:.8rem;
+}
+.locations-section .hours-wrap{
+  text-align:center;
+  margin-top:3rem;
+  padding:2rem;
+  border-top:1px solid rgba(255,255,255,.1);
+}
+.locations-section .hours-wrap h3{
+  font-family:'Bangers',cursive;
+  font-size:clamp(1.2rem,2vw,1.8rem);
+  letter-spacing:-.025em;
+  color:var(--mustard);
+  margin-bottom:.5rem;
+}
+.locations-section .hours-wrap p{
+  font-size:clamp(.8rem,1vw,.95rem);
+  color:rgba(255,255,255,.6);
+  line-height:1.8;
+}
+
+/* ---- CTA SECTION ---- */
+.cta-section{
+  position:relative;overflow:hidden;
+  text-align:center;
+  padding:6rem 2rem;
+}
+.cta-section h2{
+  font-size:clamp(3rem,10vw,7rem);
+  margin-bottom:1rem;
+}
+.cta-section p{
+  font-size:clamp(.9rem,1.2vw,1.1rem);
+  color:rgba(27,27,27,.6);
+  margin-bottom:2rem;
+  max-width:500px;margin-left:auto;margin-right:auto;
+}
+
+/* ---- FOOTER ---- */
+footer{
+  background:var(--black);
+  color:var(--white);
+  padding:4rem 2rem 2rem;
+}
+.footer-inner{
+  max-width:1280px;margin:0 auto;
+}
+.footer-top{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:2rem;margin-bottom:3rem;
+}
+.footer-brand .footer-logo{
+  font-family:'Bangers',cursive;
+  font-size:clamp(2rem,4vw,3.5rem);
+  letter-spacing:-.025em;
+  color:var(--red);
+  margin-bottom:.5rem;
+  transform:rotate(-2deg);display:inline-block;
+}
+.footer-brand p{
+  font-size:clamp(.75rem,.9vw,.85rem);
+  color:rgba(255,255,255,.5);
+  line-height:1.6;
+}
+.footer-col h4{
+  font-family:'Bangers',cursive;
+  font-size:clamp(.9rem,1.2vw,1.1rem);
+  letter-spacing:-.025em;
+  color:var(--mustard);
+  margin-bottom:1rem;
+}
+.footer-col ul{list-style:none}
+.footer-col ul li{margin-bottom:.6rem}
+.footer-col ul a{
+  font-size:clamp(.75rem,.9vw,.85rem);
+  color:rgba(255,255,255,.6);
+  text-decoration:none;transition:color .3s;
+}
+.footer-col ul a:hover{color:var(--white)}
+.footer-social{
+  display:flex;gap:1rem;margin-top:1rem;
+}
+.footer-social a{
+  width:40px;height:40px;
+  border-radius:50%;
+  background:rgba(255,255,255,.1);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--white);
+  text-decoration:none;
+  font-size:1.1rem;
+  transition:all .3s;
+}
+.footer-social a:hover{background:var(--red);transform:translateY(-3px)}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.1);
+  padding-top:2rem;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:1rem;
+}
+.footer-bottom p{
+  font-size:clamp(.7rem,.8vw,.8rem);
+  color:rgba(255,255,255,.4);
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width:1024px){
+  .hero .section-inner{grid-template-columns:1fr;text-align:center}
+  .hero-left p{margin-left:auto;margin-right:auto}
+  .hero-left .sticker-1{right:auto;left:10%}
+  .hero-left .sticker-2{bottom:auto;top:20%;left:auto;right:10%}
+  .hero-right .burger-img{max-width:350px}
+  .about-section .content-wrap{grid-template-columns:1fr;gap:2rem}
+  .exp-grid{grid-template-columns:1fr;gap:2rem}
+  .exp-grid .exp-img{max-width:400px;margin:0 auto}
+  .menu-grid{grid-template-columns:repeat(2,1fr)}
+  .quality-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-top{grid-template-columns:1fr 1fr}
+}
+@media (max-width:768px){
+  nav{padding:.8rem 1.2rem}
+  .nav-links{display:none}
+  .nav-toggle{display:flex}
+  .nav-links.open{
+    display:flex;flex-direction:column;
+    position:absolute;top:100%;left:0;right:0;
+    background:rgba(245,227,205,.98);backdrop-filter:blur(10px);
+    padding:1.5rem;gap:1.2rem;
+    align-items:center;
   }
-  .nav-links.open { right: 0; }
-  .nav-links a { font-size: .9rem; }
-  .story-grid { grid-template-columns: 1fr; }
-  .story-figure { aspect-ratio: 3 / 2; max-width: 460px; margin: 0 auto; }
-  .menu-grid { grid-template-columns: 1fr; }
-  .menu-item { min-height: 300px; }
-  .menu-reveal { max-height: 140px !important; opacity: 1 !important; margin-top: .9rem !important; }
-  .exp-grid { grid-template-columns: 1fr; gap: 1.2rem; }
-  .form-row { grid-template-columns: 1fr; gap: 0; }
-  .wine-panel-pad { padding-left: 0; }
-  .wine-trigger { grid-template-columns: 2.4rem 1fr auto; row-gap: .4rem; }
-  .wine-price { grid-column: 2 / 3; justify-self: start; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 2rem; }
-  .footer-bottom { flex-direction: column; text-align: center; }
+  section{padding:3rem 1.2rem}
+  .hero{padding-top:5rem}
+  .hero-left h1{font-size:clamp(3rem,15vw,5rem)}
+  .hero-right .burger-img{max-width:280px}
+  .menu-grid{grid-template-columns:1fr}
+  .menu-card:nth-child(n){transform:rotate(0deg) translateY(0)!important}
+  .quality-grid{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr;text-align:center}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .footer-social{justify-content:center}
+  .exp-stats{grid-template-columns:1fr 1fr}
 }
-@media (max-width: 420px) {
-  .footer-grid { grid-template-columns: 1fr; }
-  .nav-links { width: 84%; }
+@media (max-width:480px){
+  .hero-left .sticker-1,.hero-left .sticker-2{position:relative;top:auto;left:auto;right:auto;bottom:auto;margin:.3rem}
+  .global-grid{grid-template-columns:1fr 1fr}
 }
 </style>
 </head>
 <body>
 
-<!-- ─── Nav ─── -->
+<!-- ====== LOADER ====== -->
+<div id="loader">
+  <div class="stack">
+    <img src="https://picsum.photos/seed/burger-load1/400/400" alt="" loading="lazy">
+    <img src="https://picsum.photos/seed/burger-load2/400/400" alt="" loading="lazy">
+    <img src="https://picsum.photos/seed/burger-load3/400/400" alt="" loading="lazy">
+  </div>
+  <h2>Craving...</h2>
+  <div class="progress-wrap"><div class="progress-bar" id="progressBar"></div></div>
+  <button class="btn-ready" id="btnReady">READY TO CRAV!</button>
+</div>
+
+<!-- ====== NAV ====== -->
 <nav id="navbar">
-  <a href="#hero" class="logo" aria-label="GEM — home">
-    <svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="#c9a84c" stroke-width="1.6" stroke-linejoin="round">
-      <path d="M7 12h18l-9 14z"/><path d="M7 12l4-5h10l4 5"/><path d="M12 12l4 14 4-14"/>
-    </svg>
-    <span class="wordmark">Gem</span>
-  </a>
-  <ul class="nav-links" id="navLinks">
-    <li><a href="#story">Story</a></li>
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#wine">Cellar</a></li>
-    <li><a href="#testimonials">Guests</a></li>
-    <li><a href="#reservation" class="reserve-btn">Reserve</a></li>
-  </ul>
-  <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+  <a href="#" class="logo">CRAV</a>
+  <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
     <span></span><span></span><span></span>
   </button>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#hero">Home</a></li>
+    <li><a href="#menu">Burgers</a></li>
+    <li><a href="#locations">Locations</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
 </nav>
 
-<!-- ─── Hero ─── -->
+<!-- ====== HERO ====== -->
 <section class="hero" id="hero">
-  <div class="hero-stage">
-    <div class="hero-glow"></div>
-    <div class="hero-plate" aria-hidden="true">
-      <svg viewBox="0 0 600 600" fill="none">
-        <g class="ring-rotate" stroke="#c9a84c" stroke-width="1">
-          <circle cx="300" cy="300" r="232" opacity="0.28"/>
-          <circle cx="300" cy="300" r="200" opacity="0.16" stroke-dasharray="2 10"/>
-        </g>
-        <circle cx="300" cy="300" r="168" stroke="#c9a84c" stroke-width="1.4" opacity="0.5"/>
-        <circle cx="300" cy="300" r="150" stroke="#e3c878" stroke-width="0.8" opacity="0.35"/>
-        <!-- plated composition: faceted gem + plated arcs -->
-        <g stroke="#c9a84c" stroke-width="1.6" stroke-linejoin="round" fill="none" opacity="0.85">
-          <path d="M255 268h90l-45 70z"/>
-          <path d="M255 268l20-26h50l20 26"/>
-          <path d="M283 268l17 70 17-70"/>
-        </g>
-        <g stroke="#e3c878" stroke-width="1" opacity="0.5" fill="none">
-          <path d="M210 360q90 44 180 0"/>
-          <path d="M232 386q68 30 136 0"/>
-        </g>
-        <g fill="#c9a84c" opacity="0.6">
-          <circle cx="232" cy="248" r="2.5"/><circle cx="368" cy="248" r="2.5"/>
-          <circle cx="300" cy="408" r="2.5"/><circle cx="252" cy="392" r="1.8"/><circle cx="348" cy="392" r="1.8"/>
-        </g>
-      </svg>
+  <div class="hero-decal d1">BURGER</div>
+  <div class="hero-decal d2">CRAV</div>
+  <div class="hero-decal d3">SMASH</div>
+  <div class="section-inner">
+    <div class="hero-left">
+      <div class="sticker sticker-1">SMASHED FRESH</div>
+      <h1>
+        <span class="line">THE</span>
+        <span class="line line-red">BURGER</span>
+      </h1>
+      <div class="sticker sticker-2">BOLD FLAVOR</div>
+      <p>Smashed hot on the flat top, our prime patties lock in ultimate juiciness under a caramelized crust. Topped with melted cheddar and our signature chili honey glaze.</p>
+      <a href="#menu" class="btn-order" style="margin-top:1.5rem">Order Now →</a>
+    </div>
+    <div class="hero-right">
+      <img class="burger-img" src="https://picsum.photos/seed/burger-hero/500/500" alt="CRAV Artisan Smashed Burger with fresh ingredients">
     </div>
   </div>
-  <div class="hero-vignette"></div>
-  <div class="hero-content">
-    <p class="hero-est eyebrow">Est. 2012 · Tasting House</p>
-    <div class="hero-rule"></div>
-    <h1 class="hero-title">A Quiet<br><em>Brilliance</em></h1>
-    <p class="hero-desc">GEM is an intimate fine-dining room where seasonal cuisine, a rare cellar, and unhurried service meet in a single, considered evening.</p>
-    <div class="hero-actions">
-      <a href="#reservation" class="btn btn-solid">Reserve a Table</a>
-      <a href="#menu" class="btn btn-ghost">View the Menu</a>
-    </div>
-  </div>
-  <div class="hero-scroll">
+  <div class="scroll-indicator">
     <span>Scroll</span>
-    <div class="line"></div>
+    <div class="arrow"></div>
   </div>
 </section>
 
-<!-- ─── Story ─── -->
-<section id="story" class="story section-divider-top">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow">The Kitchen</span>
-      <h2 class="section-title">A Single <em>Table</em>, A Single Vision</h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="story-grid">
-      <div class="story-figure reveal rd-1" aria-hidden="true">
-        <svg viewBox="0 0 400 500" fill="none" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <radialGradient id="figGlow" cx="40%" cy="34%" r="60%">
-              <stop offset="0%" stop-color="#c9a84c" stop-opacity="0.14"/>
-              <stop offset="100%" stop-color="#1a0f0a" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-          <rect width="400" height="500" fill="url(#figGlow)"/>
-          <g stroke="#c9a84c" stroke-width="1.2" fill="none" opacity="0.55">
-            <circle cx="200" cy="218" r="120"/>
-            <circle cx="200" cy="218" r="96" opacity="0.6"/>
-          </g>
-          <g stroke="#c9a84c" stroke-width="1.6" stroke-linejoin="round" fill="none" opacity="0.85">
-            <path d="M168 200h64l-32 50z"/>
-            <path d="M168 200l14-18h36l14 18"/>
-            <path d="M188 200l12 50 12-50"/>
-          </g>
-          <g stroke="#e3c878" stroke-width="1" opacity="0.45" fill="none">
-            <path d="M132 286q68 34 136 0"/>
-          </g>
-          <g stroke="#c9a84c" stroke-width="1" opacity="0.3">
-            <line x1="60" y1="360" x2="60" y2="430"/>
-            <path d="M52 360q8 12 0 24"/><path d="M68 360q-8 12 0 24"/>
-            <line x1="340" y1="360" x2="340" y2="430"/>
-            <ellipse cx="340" cy="356" rx="9" ry="5"/>
-          </g>
-        </svg>
-        <div class="story-frame"></div>
-        <div class="figcap">The Pass · 18 seats nightly</div>
+<!-- ====== ABOUT / TOP CLASSIC ====== -->
+<section class="about-section" id="about">
+  <div class="section-inner">
+    <span class="section-label">TOP CLASSIC</span>
+    <div class="content-wrap">
+      <div class="text-side">
+        <h2 class="section-title">juicy <span class="highlight">cheesy</span><br>fully Loaded</h2>
+        <p>CRAV is back and bolder than ever. Honoring our rich roots, we bring you the ultimate smashed experience — fully loaded, hot, and crafted fresh with premium ingredients sourced from local farms.</p>
+        <p>Every bite delivers the perfect harmony of crispy caramelized edges, juicy prime beef, and melted artisanal cheese that defines the CRAV signature.</p>
+        <a href="#menu" class="btn-order">Order Now →</a>
       </div>
-      <div class="story-content reveal rd-2">
-        <h2>Cooking as <em>Conversation</em></h2>
-        <p>GEM serves a single nightly tasting to eighteen guests. There is no à la carte, no second seating — only one room, one menu, and one rhythm that unfolds over the course of an evening.</p>
-        <p>Our kitchen is led by a chef who built this room around a simple idea: that a meal should feel like a conversation between the land, the season, and the people seated at the counter. Ingredients arrive each morning; the menu is written each afternoon.</p>
-        <p><span class="pull">"We don't chase perfection. We chase the moment a dish feels honest — then we send it out."</span></p>
-        <div class="story-sign">
-          <span class="sig">The Kitchen at GEM</span>
-          <span class="role">Chef &amp; Team</span>
+      <div class="image-grid">
+        <img src="https://picsum.photos/seed/burger-chef/300/300" alt="Chef preparing a fresh smashed burger" loading="lazy">
+        <img src="https://picsum.photos/seed/burger-cheese/300/300" alt="Close-up of melted cheese on a burger patty" loading="lazy">
+        <img src="https://picsum.photos/seed/burger-kitchen/300/300" alt="CRAV restaurant kitchen" loading="lazy">
+        <img src="https://picsum.photos/seed/burger-grilling/300/300" alt="Burger grilling on flat top" loading="lazy">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ====== EXPERIENCE ====== -->
+<section class="experience-section" id="experience">
+  <div class="section-inner">
+    <span class="section-label">EXPERIENCE</span>
+    <h2 class="section-title">food that<br><span style="color:var(--mustard)">feels good</span></h2>
+    <div class="exp-grid">
+      <div>
+        <img class="exp-img" src="https://picsum.photos/seed/burger-hands/500/500" alt="Burger held in hands" loading="lazy">
+      </div>
+      <div>
+        <p style="font-size:clamp(.85rem,1.05vw,1rem);color:rgba(255,255,255,.7);line-height:1.7;margin-bottom:1.5rem">
+          Every CRAV burger is crafted with intention — from the toasted brioche bun to the caramelized smashed patty and the final drizzle of our signature sauce. Taste the difference that passion makes.
+        </p>
+        <div class="exp-stats">
+          <div class="exp-stat">
+            <div class="num">450 kcal</div>
+            <div class="label">Per Serving</div>
+          </div>
+          <div class="exp-stat">
+            <div class="num">32g</div>
+            <div class="label">High Protein</div>
+          </div>
+          <div class="exp-stat">
+            <div class="num">100%</div>
+            <div class="label">Organic</div>
+          </div>
+          <div class="exp-stat">
+            <div class="num">0</div>
+            <div class="label">Zero Guilt</div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── Menu ─── -->
-<section id="menu" class="menu section-divider-top">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow">The Tasting</span>
-      <h2 class="section-title">Tonight's <em>Menu</em></h2>
-      <div class="section-rule"></div>
+<!-- ====== MENU ====== -->
+<section class="menu-section" id="menu">
+  <img class="ingredient-decal d1" src="https://picsum.photos/seed/lettuce-decal/120/120" alt="" loading="lazy">
+  <img class="ingredient-decal d2" src="https://picsum.photos/seed/tomato-decal/120/120" alt="" loading="lazy">
+  <img class="ingredient-decal d3" src="https://picsum.photos/seed/cheese-decal/120/120" alt="" loading="lazy">
+  <img class="ingredient-decal d4" src="https://picsum.photos/seed/patty-decal/120/120" alt="" loading="lazy">
+  <div class="section-inner">
+    <div class="menu-header">
+      <span class="section-label">The best</span>
+      <h2 class="section-title">Our Finest<br><span class="highlight">Burger Picks</span></h2>
+      <p style="font-size:clamp(.85rem,1vw,.95rem);color:rgba(27,27,27,.5)">6 items · smashed & served fresh</p>
     </div>
     <div class="menu-grid">
-
-      <article class="menu-item reveal rd-1" tabindex="0">
-        <div class="menu-item-art" aria-hidden="true">
-          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
-            <rect width="300" height="360" fill="#1f120b"/>
-            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
-            <path d="M118 150h64l-32 48z" fill="none" stroke="#c9a84c" stroke-width="1.4" opacity="0.7"/>
-            <path d="M118 150l14-18h36l14 18" fill="none" stroke="#c9a84c" stroke-width="1.4" opacity="0.7"/>
-            <path d="M110 200q40 22 80 0" stroke="#e3c878" stroke-width="1" opacity="0.4" fill="none"/>
-          </svg>
-        </div>
-        <div class="menu-item-veil"></div>
-        <span class="menu-item-no">01</span>
-        <div class="menu-item-body">
-          <span class="menu-cat">To Begin</span>
-          <div class="menu-head">
-            <h3 class="menu-name">Smoked Beet Tartare</h3>
-            <span class="menu-price">$28</span>
+      <!-- Card 1 -->
+      <div class="menu-card">
+        <img class="card-img" src="https://picsum.photos/seed/burger-classic/400/400" alt="Classic Burger" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Classic Burger</div>
+          <div class="card-ingredients">Brioche bun · Prime beef patty · Lettuce · Tomato · Cheddar · Secret sauce</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem">
+            <span class="card-price">$16</span>
           </div>
-          <div class="menu-reveal">
-            <div class="menu-rule"></div>
-            <p>Charcoal-smoked golden beet, cured yolk, toasted rye crumb, horseradish snow and a thread of dill oil.</p>
-          </div>
+          <div class="card-meta"><span>Bun: Brioche</span><span>Spice: Mild</span><span>10–12 min</span></div>
         </div>
-      </article>
-
-      <article class="menu-item reveal rd-2" tabindex="0">
-        <div class="menu-item-art" aria-hidden="true">
-          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
-            <rect width="300" height="360" fill="#231410"/>
-            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
-            <g stroke="#e3c878" stroke-width="1.3" opacity="0.65" fill="none">
-              <path d="M120 140q14-14 30 0t30 0"/>
-              <path d="M120 162q14-14 30 0t30 0"/>
-            </g>
-            <circle cx="150" cy="150" r="40" stroke="#c9a84c" stroke-width="1" opacity="0.45" fill="none"/>
-          </svg>
-        </div>
-        <div class="menu-item-veil"></div>
-        <span class="menu-item-no">02</span>
-        <div class="menu-item-body">
-          <span class="menu-cat">From the Sea</span>
-          <div class="menu-head">
-            <h3 class="menu-name">Hand-Dived Scallop</h3>
-            <span class="menu-price">$36</span>
-          </div>
-          <div class="menu-reveal">
-            <div class="menu-rule"></div>
-            <p>Seared day-boat scallop, brown-butter cauliflower, crisp caper, preserved lemon and chervil.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="menu-item reveal rd-3" tabindex="0">
-        <div class="menu-item-art" aria-hidden="true">
-          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
-            <rect width="300" height="360" fill="#1d150e"/>
-            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
-            <g stroke="#c9a84c" stroke-width="1.2" opacity="0.6" fill="none">
-              <circle cx="150" cy="150" r="24"/>
-              <circle cx="150" cy="150" r="44"/>
-              <circle cx="150" cy="150" r="62"/>
-            </g>
-          </svg>
-        </div>
-        <div class="menu-item-veil"></div>
-        <span class="menu-item-no">03</span>
-        <div class="menu-item-body">
-          <span class="menu-cat">From the Soil</span>
-          <div class="menu-head">
-            <h3 class="menu-name">Wild Mushroom Risotto</h3>
-            <span class="menu-price">$32</span>
-          </div>
-          <div class="menu-reveal">
-            <div class="menu-rule"></div>
-            <p>Carnaroli rice, porcini and chanterelle, aged hard cheese, white-truffle oil and a parsley foam.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="menu-item reveal rd-1" tabindex="0">
-        <div class="menu-item-art" aria-hidden="true">
-          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
-            <rect width="300" height="360" fill="#241409"/>
-            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
-            <g stroke="#e3c878" stroke-width="1.4" opacity="0.6" fill="none">
-              <path d="M130 120v60M150 116v68M170 120v60"/>
-              <path d="M124 132h52"/>
-            </g>
-          </svg>
-        </div>
-        <div class="menu-item-veil"></div>
-        <span class="menu-item-no">04</span>
-        <div class="menu-item-body">
-          <span class="menu-cat">The Main</span>
-          <div class="menu-head">
-            <h3 class="menu-name">Herb-Crusted Lamb</h3>
-            <span class="menu-price">$52</span>
-          </div>
-          <div class="menu-reveal">
-            <div class="menu-rule"></div>
-            <p>Rosemary-thyme crusted rack, ratatouille, roast-garlic jus and a silken potato purée.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="menu-item reveal rd-2" tabindex="0">
-        <div class="menu-item-art" aria-hidden="true">
-          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
-            <rect width="300" height="360" fill="#21130f"/>
-            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
-            <g stroke="#c9a84c" stroke-width="1.3" opacity="0.6" fill="none">
-              <path d="M120 170q30-50 60 0"/>
-              <path d="M134 170q16-28 32 0"/>
-            </g>
-            <circle cx="150" cy="120" r="4" fill="#e3c878" opacity="0.7"/>
-          </svg>
-        </div>
-        <div class="menu-item-veil"></div>
-        <span class="menu-item-no">05</span>
-        <div class="menu-item-body">
-          <span class="menu-cat">The Main</span>
-          <div class="menu-head">
-            <h3 class="menu-name">Seared Duck Breast</h3>
-            <span class="menu-price">$46</span>
-          </div>
-          <div class="menu-reveal">
-            <div class="menu-rule"></div>
-            <p>Rendered duck breast, cherry gastrique, roast fennel, wilted greens and duck-fat potatoes.</p>
-          </div>
-        </div>
-      </article>
-
-      <article class="menu-item reveal rd-3" tabindex="0">
-        <div class="menu-item-art" aria-hidden="true">
-          <svg viewBox="0 0 300 360" fill="none" preserveAspectRatio="xMidYMid slice">
-            <rect width="300" height="360" fill="#1a0f0a"/>
-            <circle cx="150" cy="150" r="78" fill="none" stroke="#c9a84c" stroke-width="1" opacity="0.4"/>
-            <g stroke="#e3c878" stroke-width="1.4" opacity="0.6" fill="none">
-              <path d="M126 178c0-26 48-26 48 0z"/>
-              <path d="M150 130v22"/>
-            </g>
-            <path d="M120 198q30 14 60 0" stroke="#c9a84c" stroke-width="1" opacity="0.4" fill="none"/>
-          </svg>
-        </div>
-        <div class="menu-item-veil"></div>
-        <span class="menu-item-no">06</span>
-        <div class="menu-item-body">
-          <span class="menu-cat">To Finish</span>
-          <div class="menu-head">
-            <h3 class="menu-name">Dark Chocolate Soufflé</h3>
-            <span class="menu-price">$22</span>
-          </div>
-          <div class="menu-reveal">
-            <div class="menu-rule"></div>
-            <p>Bitter-chocolate soufflé, vanilla-bean anglaise, salted caramel and a cocoa-nib tuile.</p>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ─── Experience strip ─── -->
-<section class="experience section-divider-top">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow">The Evening</span>
-      <h2 class="section-title">How GEM <em>Works</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="exp-grid">
-      <div class="exp-card reveal rd-1">
-        <svg class="exp-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <circle cx="16" cy="16" r="12"/><path d="M16 9v7l4 3"/>
-        </svg>
-        <h3>One Seating</h3>
-        <p>A single nightly service. Doors at seven; the evening unfolds at its own unhurried pace.</p>
       </div>
-      <div class="exp-card reveal rd-2">
-        <svg class="exp-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M9 4h14l-2 12a5 5 0 01-10 0z"/><path d="M16 16v8"/><path d="M11 28h10"/>
-        </svg>
-        <h3>Pairings</h3>
-        <p>An optional flight from our cellar, chosen by the sommelier to follow each course.</p>
+      <!-- Card 2 -->
+      <div class="menu-card">
+        <img class="card-img" src="https://picsum.photos/seed/burger-spicy/400/400" alt="Spicy Jalapeño Burger" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Spicy Jalapeño</div>
+          <div class="card-ingredients">Brioche bun · Beef patty · Jalapeños · Pepper jack · Chipotle mayo · Sriracha</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem">
+            <span class="card-price">$18</span>
+          </div>
+          <div class="card-meta"><span>Bun: Brioche</span><span>Spice: Hot</span><span>12–14 min</span></div>
+        </div>
       </div>
-      <div class="exp-card reveal rd-3">
-        <svg class="exp-icon" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <path d="M16 5l3 6 6 .8-4.4 4.3 1 6.1L16 25l-5.6 3.2 1-6.1L7 17.8 13 17z"/>
-        </svg>
-        <h3>Seasonal</h3>
-        <p>The menu is rewritten daily around the morning's market. No two evenings are quite the same.</p>
+      <!-- Card 3 -->
+      <div class="menu-card">
+        <img class="card-img" src="https://picsum.photos/seed/burger-bacon/400/400" alt="Bacon Cheese Burger" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Bacon Cheese</div>
+          <div class="card-ingredients">Brioche bun · Beef patty · Smoked bacon · Cheddar · Onion rings · BBQ sauce</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem">
+            <span class="card-price">$21</span>
+          </div>
+          <div class="card-meta"><span>Bun: Brioche</span><span>Spice: Mild</span><span>12–15 min</span></div>
+        </div>
+      </div>
+      <!-- Card 4 -->
+      <div class="menu-card">
+        <img class="card-img" src="https://picsum.photos/seed/burger-veggie/400/400" alt="Veggie Delight Burger" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Veggie Delight</div>
+          <div class="card-ingredients">Sesame bun · House-made veggie patty · Avocado · Sprouts · Herb aioli</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem">
+            <span class="card-price">$15</span>
+          </div>
+          <div class="card-meta"><span>Bun: Sesame</span><span>Spice: Mild</span><span>10–12 min</span></div>
+        </div>
+      </div>
+      <!-- Card 5 -->
+      <div class="menu-card">
+        <img class="card-img" src="https://picsum.photos/seed/burger-bbq/400/400" alt="BBQ Ranch Burger" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">BBQ Ranch</div>
+          <div class="card-ingredients">Brioche bun · Beef patty · Crispy onions · Cheddar · Ranch dressing · Smoky BBQ</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem">
+            <span class="card-price">$19</span>
+          </div>
+          <div class="card-meta"><span>Bun: Brioche</span><span>Spice: Medium</span><span>12–14 min</span></div>
+        </div>
+      </div>
+      <!-- Card 6 -->
+      <div class="menu-card">
+        <img class="card-img" src="https://picsum.photos/seed/burger-mushroom/400/400" alt="Mushroom Swiss Burger" loading="lazy">
+        <div class="card-body">
+          <div class="card-title">Mushroom Swiss</div>
+          <div class="card-ingredients">Brioche bun · Beef patty · Sautéed mushrooms · Swiss · Truffle aioli · Arugula</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.5rem">
+            <span class="card-price">$20</span>
+          </div>
+          <div class="card-meta"><span>Bun: Brioche</span><span>Spice: Mild</span><span>12–14 min</span></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ─── Wine accordion ─── -->
-<section id="wine" class="wine section-divider-top">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow">The Cellar</span>
-      <h2 class="section-title">A Considered <em>List</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="wine-list reveal rd-1">
-
-      <div class="wine-item">
-        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p1" id="wine-t1">
-          <span class="wine-year">’18</span>
-          <span class="wine-id">
-            <span class="wine-name">Estate Reserve Cabernet</span>
-            <span class="wine-origin">Highland Coast</span>
-          </span>
-          <span class="wine-price">$240</span>
-          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-        </button>
-        <div class="wine-panel" id="wine-p1" role="region" aria-labelledby="wine-t1" hidden>
-          <div class="wine-panel-inner"><div class="wine-panel-pad">
-            <p>Deep ruby in the glass, with blackcurrant, violet and cedar. Fine, silken tannins carry an unusually long finish.</p>
-            <p class="wine-pair">Pairs with the Herb-Crusted Lamb.</p>
-          </div></div>
-        </div>
+<!-- ====== QUALITY ====== -->
+<section class="quality-section" id="quality">
+  <div class="bg-decal">QUALITY</div>
+  <div class="section-inner">
+    <span class="section-label">Pure quality</span>
+    <h2 class="section-title">Every Layer <span class="highlight">Packed</span><br>With <span class="highlight">Signature</span> Flavor</h2>
+    <div class="quality-grid">
+      <div class="quality-item">
+        <img src="https://picsum.photos/seed/burger-lettuce/200/200" alt="Crispy garden lettuce leaf" loading="lazy">
+        <h3>Crisp Lettuce</h3>
       </div>
-
-      <div class="wine-item">
-        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p2" id="wine-t2">
-          <span class="wine-year">’16</span>
-          <span class="wine-id">
-            <span class="wine-name">Ridgeline Red Blend</span>
-            <span class="wine-origin">Valley Floor</span>
-          </span>
-          <span class="wine-price">$300</span>
-          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-        </button>
-        <div class="wine-panel" id="wine-p2" role="region" aria-labelledby="wine-t2" hidden>
-          <div class="wine-panel-inner"><div class="wine-panel-pad">
-            <p>Layers of blackberry, cassis and dark cocoa over tobacco and vanilla. Full-bodied, with polished, integrated tannins.</p>
-            <p class="wine-pair">Ideal alongside the Seared Duck Breast.</p>
-          </div></div>
-        </div>
+      <div class="quality-item">
+        <img src="https://picsum.photos/seed/burger-tomato-fresh/200/200" alt="Fresh organic tomato slice" loading="lazy">
+        <h3>Organic Tomato</h3>
       </div>
-
-      <div class="wine-item">
-        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p3" id="wine-t3">
-          <span class="wine-year">’19</span>
-          <span class="wine-id">
-            <span class="wine-name">Old-Vine Nebbiolo</span>
-            <span class="wine-origin">Northern Hills</span>
-          </span>
-          <span class="wine-price">$200</span>
-          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-        </button>
-        <div class="wine-panel" id="wine-p3" role="region" aria-labelledby="wine-t3" hidden>
-          <div class="wine-panel-inner"><div class="wine-panel-pad">
-            <p>A fragrant nose of rose, sour cherry and spice over an earthy base. Elegant structure with refined tannins and real depth.</p>
-            <p class="wine-pair">A classic match for the Wild Mushroom Risotto.</p>
-          </div></div>
-        </div>
+      <div class="quality-item">
+        <img src="https://picsum.photos/seed/burger-cheese-slice/200/200" alt="Premium cheddar cheese slice" loading="lazy">
+        <h3>Artisan Cheese</h3>
       </div>
-
-      <div class="wine-item">
-        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p4" id="wine-t4">
-          <span class="wine-year">’20</span>
-          <span class="wine-id">
-            <span class="wine-name">Coastal Sauvignon Blanc</span>
-            <span class="wine-origin">Maritime Slopes</span>
-          </span>
-          <span class="wine-price">$90</span>
-          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-        </button>
-        <div class="wine-panel" id="wine-p4" role="region" aria-labelledby="wine-t4" hidden>
-          <div class="wine-panel-inner"><div class="wine-panel-pad">
-            <p>Vibrant passionfruit, citrus and fresh-cut herb. Crisp acidity with a lingering, mineral finish.</p>
-            <p class="wine-pair">Excellent with the Hand-Dived Scallop.</p>
-          </div></div>
-        </div>
+      <div class="quality-item">
+        <img src="https://picsum.photos/seed/burger-beef-patty/200/200" alt="Smashed artisan beef patty" loading="lazy">
+        <h3>Prime Beef</h3>
       </div>
-
-      <div class="wine-item">
-        <button class="wine-trigger" aria-expanded="false" aria-controls="wine-p5" id="wine-t5">
-          <span class="wine-year">’15</span>
-          <span class="wine-id">
-            <span class="wine-name">Vintage Rosé Champagne</span>
-            <span class="wine-origin">Chalk Country</span>
-          </span>
-          <span class="wine-price">$280</span>
-          <svg class="wine-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
-        </button>
-        <div class="wine-panel" id="wine-p5" role="region" aria-labelledby="wine-t5" hidden>
-          <div class="wine-panel-inner"><div class="wine-panel-pad">
-            <p>Wild strawberry, pomegranate and brioche over a persistent, creamy mousse. Grace and power in equal measure.</p>
-            <p class="wine-pair">A sublime opener with the Smoked Beet Tartare.</p>
-          </div></div>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
 
-<!-- ─── Testimonials ─── -->
-<section id="testimonials" class="testimonials section-divider-top">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow">In Their Words</span>
-      <h2 class="section-title">From Our <em>Guests</em></h2>
-      <div class="section-rule"></div>
-    </div>
-    <div class="t-slider" id="tSlider">
-
-      <div class="t-slide active">
-        <div class="t-stars" aria-label="5 out of 5 stars">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-        </div>
-        <p class="t-quote">An evening at GEM is unhurried in the best possible way. Each course arrived like a small idea, and by dessert it felt less like a dinner than a story we'd been told.</p>
-        <p class="t-author">A. Rivera</p>
-        <p class="t-role">Regular guest</p>
+<!-- ====== LOCATIONS ====== -->
+<section class="locations-section" id="locations">
+  <div class="section-inner">
+    <span class="section-label">TAKE AWAY</span>
+    <h2 class="section-title">QUALITY THAT<br><span style="color:var(--mustard)">TRAVELS WITH YOU</span></h2>
+    <p style="font-size:clamp(.85rem,1.05vw,1rem);color:rgba(255,255,255,.6);max-width:550px;margin-bottom:2rem">
+      Freshly packed smash burgers, ready to go wherever you crave. From our flat-top to any corner of the globe.
+    </p>
+    <div class="global-grid">
+      <div class="location-card">
+        <img src="https://picsum.photos/seed/burger-berlin/120/120" alt="" loading="lazy">
+        <div class="city">BERLIN</div>
+        <div class="time">Friedrichshain</div>
       </div>
-
-      <div class="t-slide">
-        <div class="t-stars" aria-label="5 out of 5 stars">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-        </div>
-        <p class="t-quote">We came for an anniversary and barely spoke for the first three courses — we just kept looking at each other. The pairing was flawless, the room was warm, and nobody rushed us.</p>
-        <p class="t-author">M. &amp; J. Okafor</p>
-        <p class="t-role">Celebrated their tenth here</p>
+      <div class="location-card">
+        <img src="https://picsum.photos/seed/burger-london/120/120" alt="" loading="lazy">
+        <div class="city">LONDON</div>
+        <div class="time">Shoreditch</div>
       </div>
-
-      <div class="t-slide">
-        <div class="t-stars" aria-label="5 out of 5 stars">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l3 6.5 7 .9-5.1 4.8 1.3 7L12 18l-6.5 3.2 1.3-7L1.7 9.4l7-.9z"/></svg>
-        </div>
-        <p class="t-quote">Sitting at the counter, you watch the whole thing happen — quiet hands, no shouting, every plate wiped clean before it leaves. It's the most relaxed kind of precision I've seen.</p>
-        <p class="t-author">D. Halloran</p>
-        <p class="t-role">Counter seat, twice a month</p>
+      <div class="location-card">
+        <img src="https://picsum.photos/seed/burger-newyork/120/120" alt="" loading="lazy">
+        <div class="city">NEW YORK</div>
+        <div class="time">Brooklyn</div>
       </div>
-
+      <div class="location-card">
+        <img src="https://picsum.photos/seed/burger-sydney/120/120" alt="" loading="lazy">
+        <div class="city">SYDNEY</div>
+        <div class="time">Surry Hills</div>
+      </div>
+      <div class="location-card">
+        <img src="https://picsum.photos/seed/burger-tokyo/120/120" alt="" loading="lazy">
+        <div class="city">TOKYO</div>
+        <div class="time">Shibuya</div>
+      </div>
     </div>
-    <div class="t-dots reveal" id="tDots">
-      <button class="t-dot active" data-index="0" aria-label="Guest 1"></button>
-      <button class="t-dot" data-index="1" aria-label="Guest 2"></button>
-      <button class="t-dot" data-index="2" aria-label="Guest 3"></button>
-    </div>
-    <div class="t-nav">
-      <button class="t-nav-btn" id="tPrev" aria-label="Previous guest">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>
-      </button>
-      <button class="t-nav-btn" id="tNext" aria-label="Next guest">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg>
-      </button>
+    <div class="hours-wrap">
+      <h3>🍔 Hours & Contact</h3>
+      <p>
+        Mon–Fri: 11:00 AM – 10:00 PM<br>
+        Sat–Sun: 10:00 AM – 11:00 PM<br>
+        📞 (555) 123-4567 · 📧 hello@cravburgers.com<br>
+        Est. 1997 — Navarra, España
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ─── Reservation ─── -->
-<section id="reservation" class="reservation section-divider-top">
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="eyebrow">Join Us</span>
-      <h2 class="section-title">Reserve a <em>Table</em></h2>
-      <div class="section-rule"></div>
-    </div>
-
-    <form class="reservation-form reveal rd-1" id="reservationForm" novalidate>
-      <div class="form-row">
-        <div class="form-group" data-field="date">
-          <label for="date">Date</label>
-          <input type="date" id="date" name="date" aria-describedby="err-date">
-          <span class="field-error" id="err-date" role="alert"></span>
-        </div>
-        <div class="form-group" data-field="time">
-          <label for="time">Time</label>
-          <select id="time" name="time" aria-describedby="err-time">
-            <option value="">Select time</option>
-            <option value="18:00">6:00 PM</option>
-            <option value="18:30">6:30 PM</option>
-            <option value="19:00">7:00 PM</option>
-            <option value="19:30">7:30 PM</option>
-            <option value="20:00">8:00 PM</option>
-            <option value="20:30">8:30 PM</option>
-          </select>
-          <span class="field-error" id="err-time" role="alert"></span>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-group" data-field="party">
-          <label for="party">Party Size</label>
-          <select id="party" name="party" aria-describedby="err-party">
-            <option value="">Number of guests</option>
-            <option value="1">1 Guest</option>
-            <option value="2">2 Guests</option>
-            <option value="3">3 Guests</option>
-            <option value="4">4 Guests</option>
-            <option value="5">5 Guests</option>
-            <option value="6">6 Guests</option>
-          </select>
-          <span class="field-error" id="err-party" role="alert"></span>
-        </div>
-        <div class="form-group" data-field="name">
-          <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Full name" autocomplete="name" aria-describedby="err-name">
-          <span class="field-error" id="err-name" role="alert"></span>
-        </div>
-      </div>
-      <div class="form-group" data-field="email">
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" aria-describedby="err-email">
-        <span class="field-error" id="err-email" role="alert"></span>
-      </div>
-      <button type="submit" class="submit-btn">
-        Confirm Reservation
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-      </button>
-    </form>
-
-    <div class="form-success reveal rd-1" id="formSuccess" role="status">
-      <svg class="check" viewBox="0 0 52 52" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <circle cx="26" cy="26" r="23"/><path d="M16 27l7 7 14-15"/>
-      </svg>
-      <h3>Your Table Awaits</h3>
-      <p id="successDetail">We've noted your request. A confirmation will follow by email shortly.</p>
-      <button type="button" class="again" id="reserveAgain">Make Another</button>
-    </div>
+<!-- ====== CTA ====== -->
+<section class="cta-section" id="contact">
+  <div class="section-inner">
+    <span class="section-label">FEEL IT</span>
+    <h2>feel the<br><span class="highlight">Change</span></h2>
+    <p>Smashed for the bold, built for the hungry. Dive into a legendary craft experience where every crispy edge and juicy layer rules.</p>
+    <a href="#menu" class="btn-order">Order Now →</a>
   </div>
 </section>
 
-<!-- ─── Footer ─── -->
-<footer>
-  <div class="footer-grid">
-    <div class="footer-brand">
-      <a href="#hero" class="logo" aria-label="GEM — home">
-        <svg viewBox="0 0 32 32" aria-hidden="true" fill="none" stroke="#c9a84c" stroke-width="1.6" stroke-linejoin="round">
-          <path d="M7 12h18l-9 14z"/><path d="M7 12l4-5h10l4 5"/><path d="M12 12l4 14 4-14"/>
-        </svg>
-        <span class="wordmark">Gem</span>
-      </a>
-      <p>An intimate tasting house. One room, one menu, one unhurried evening at a time.</p>
+<!-- ====== FOOTER ====== -->
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <div class="footer-logo">CRAV</div>
+        <p>Smashed patties · toasted buns · est. 1997<br>From our flat-top to your plate.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Twitter/X">X</a>
+          <a href="#" aria-label="TikTok">TT</a>
+          <a href="#" aria-label="YouTube">YT</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#menu">Burgers</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#locations">Locations</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Info</h4>
+        <ul>
+          <li><a href="#">Our Spices</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+          <li><a href="mailto:hello@cravburgers.com">hello@cravburgers.com</a></li>
+          <li><a href="#">Navarra, España</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-col">
-      <h4>Hours</h4>
-      <ul>
-        <li>Wed–Thu · One seating, 7pm</li>
-        <li>Fri–Sat · One seating, 7pm</li>
-        <li>Sun–Tue · Closed</li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Find Us</h4>
-      <ul>
-        <li>14 Lantern Court</li>
-        <li>Old Harbour District</li>
-        <li>By reservation only</li>
-        <li><a href="#reservation">reservations@gem.example</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>More</h4>
-      <ul>
-        <li><a href="#story">Private Evenings</a></li>
-        <li><a href="#wine">The Cellar</a></li>
-        <li><a href="#menu">Gift Tastings</a></li>
-        <li><a href="#reservation">Press &amp; Careers</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <span>© 2026 GEM. All rights reserved.</span>
-    <div class="footer-socials">
-      <button type="button" aria-label="Instagram">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-      </button>
-      <button type="button" aria-label="Facebook">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 3h-2a4 4 0 00-4 4v3H6v4h3v7h4v-7h3l1-4h-4V7a1 1 0 011-1h2z"/></svg>
-      </button>
-      <button type="button" aria-label="Email">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
-      </button>
+    <div class="footer-bottom">
+      <p>© 2026 CRAV — All rights reserved</p>
+      <p>Smashed patties · toasted buns · est. 1997</p>
     </div>
   </div>
 </footer>
 
 <script>
-(function () {
-  'use strict';
+// ---- LOADER ----
+(function(){
+  const loader = document.getElementById('loader');
+  const bar = document.getElementById('progressBar');
+  const btn = document.getElementById('btnReady');
+  let progress = 0;
+  const interval = setInterval(()=>{
+    progress += Math.random() * 15 + 5;
+    if(progress >= 100){progress = 100;clearInterval(interval);btn.classList.add('show')}
+    bar.style.width = progress + '%';
+  }, 200);
 
-  // ─── Nav scroll state ───
-  var navbar = document.getElementById('navbar');
-  function onScroll() {
-    if (window.pageYOffset > 70) navbar.classList.add('scrolled');
-    else navbar.classList.remove('scrolled');
-  }
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-
-  // ─── Mobile menu ───
-  var hamburger = document.getElementById('hamburger');
-  var navLinks = document.getElementById('navLinks');
-  function closeMenu() {
-    hamburger.classList.remove('active');
-    navLinks.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', 'false');
-  }
-  hamburger.addEventListener('click', function () {
-    var open = navLinks.classList.toggle('open');
-    hamburger.classList.toggle('active', open);
-    hamburger.setAttribute('aria-expanded', open ? 'true' : 'false');
+  btn.addEventListener('click', function(e){
+    bar.style.width = '100%';
+    clearInterval(interval);
+    setTimeout(()=>{
+      loader.classList.add('hidden');
+      document.body.style.overflow = '';
+    }, 400);
   });
-  navLinks.querySelectorAll('a').forEach(function (a) {
-    a.addEventListener('click', closeMenu);
-  });
-
-  // ─── Smooth scroll for internal anchors ───
-  document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
-    anchor.addEventListener('click', function (e) {
-      var id = this.getAttribute('href');
-      if (id.length < 2) return;
-      var target = document.querySelector(id);
-      if (target) {
-        e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    });
-  });
-
-  // ─── Wine accordion (accessible, keyboard-operable) ───
-  var triggers = Array.prototype.slice.call(document.querySelectorAll('.wine-trigger'));
-  triggers.forEach(function (trigger, i) {
-    var panel = document.getElementById(trigger.getAttribute('aria-controls'));
-    trigger.addEventListener('click', function () {
-      var isOpen = trigger.getAttribute('aria-expanded') === 'true';
-      // close others (single-open accordion)
-      triggers.forEach(function (t) {
-        if (t !== trigger) {
-          t.setAttribute('aria-expanded', 'false');
-          document.getElementById(t.getAttribute('aria-controls')).hidden = true;
-        }
-      });
-      trigger.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
-      panel.hidden = isOpen;
-    });
-    // Arrow-key navigation between triggers
-    trigger.addEventListener('keydown', function (e) {
-      var idx = null;
-      if (e.key === 'ArrowDown') idx = (i + 1) % triggers.length;
-      else if (e.key === 'ArrowUp') idx = (i - 1 + triggers.length) % triggers.length;
-      else if (e.key === 'Home') idx = 0;
-      else if (e.key === 'End') idx = triggers.length - 1;
-      if (idx !== null) { e.preventDefault(); triggers[idx].focus(); }
-    });
-  });
-
-  // ─── Reservation form: real client-side validation ───
-  var form = document.getElementById('reservationForm');
-  var success = document.getElementById('formSuccess');
-  var dateInput = document.getElementById('date');
-  var todayStr = new Date().toISOString().split('T')[0];
-  dateInput.setAttribute('min', todayStr);
-
-  var emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-  function setError(field, msg) {
-    var group = form.querySelector('[data-field="' + field + '"]');
-    group.classList.add('invalid');
-    group.querySelector('.field-error').textContent = msg;
-  }
-  function clearError(field) {
-    var group = form.querySelector('[data-field="' + field + '"]');
-    group.classList.remove('invalid');
-    group.querySelector('.field-error').textContent = '';
-  }
-
-  function validateField(field) {
-    var v;
-    switch (field) {
-      case 'name':
-        v = document.getElementById('name').value.trim();
-        if (!v) { setError('name', 'Please tell us your name.'); return false; }
-        if (v.length < 2) { setError('name', 'That name looks too short.'); return false; }
-        clearError('name'); return true;
-      case 'email':
-        v = document.getElementById('email').value.trim();
-        if (!v) { setError('email', 'An email is required for confirmation.'); return false; }
-        if (!emailRe.test(v)) { setError('email', 'Please enter a valid email address.'); return false; }
-        clearError('email'); return true;
-      case 'date':
-        v = document.getElementById('date').value;
-        if (!v) { setError('date', 'Please choose a date.'); return false; }
-        if (v < todayStr) { setError('date', 'Please choose today or a future date.'); return false; }
-        clearError('date'); return true;
-      case 'time':
-        v = document.getElementById('time').value;
-        if (!v) { setError('time', 'Please select a seating time.'); return false; }
-        clearError('time'); return true;
-      case 'party':
-        v = document.getElementById('party').value;
-        if (!v) { setError('party', 'How many will be joining us?'); return false; }
-        clearError('party'); return true;
-    }
-    return true;
-  }
-
-  var fields = ['name', 'email', 'date', 'time', 'party'];
-  fields.forEach(function (field) {
-    var el = document.getElementById(field);
-    el.addEventListener('blur', function () { validateField(field); });
-    el.addEventListener('input', function () {
-      if (form.querySelector('[data-field="' + field + '"]').classList.contains('invalid')) {
-        validateField(field);
-      }
-    });
-    el.addEventListener('change', function () { validateField(field); });
-  });
-
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var ok = true, firstBad = null;
-    fields.forEach(function (field) {
-      if (!validateField(field)) { ok = false; if (!firstBad) firstBad = field; }
-    });
-    if (!ok) {
-      document.getElementById(firstBad).focus();
-      return;
-    }
-    // Success state (no real submission in sandbox)
-    var name = document.getElementById('name').value.trim();
-    var party = document.getElementById('party').value;
-    var timeSel = document.getElementById('time');
-    var timeLabel = timeSel.options[timeSel.selectedIndex].text;
-    var dateVal = document.getElementById('date').value;
-    document.getElementById('successDetail').textContent =
-      'Thank you, ' + name + '. A table for ' + party + ' on ' + dateVal + ' at ' + timeLabel +
-      ' is held — a confirmation will follow by email shortly.';
-    form.style.display = 'none';
-    success.classList.add('show');
-    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  });
-
-  document.getElementById('reserveAgain').addEventListener('click', function () {
-    form.reset();
-    fields.forEach(clearError);
-    success.classList.remove('show');
-    form.style.display = '';
-  });
-
-  // ─── Testimonials slider ───
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.t-slide'));
-  var dots = Array.prototype.slice.call(document.querySelectorAll('.t-dot'));
-  var current = 0, timer = null;
-
-  function go(i) {
-    current = (i + slides.length) % slides.length;
-    slides.forEach(function (s, n) { s.classList.toggle('active', n === current); });
-    dots.forEach(function (d, n) { d.classList.toggle('active', n === current); });
-  }
-  function next() { go(current + 1); }
-  function prev() { go(current - 1); }
-
-  document.getElementById('tNext').addEventListener('click', function () { next(); restart(); });
-  document.getElementById('tPrev').addEventListener('click', function () { prev(); restart(); });
-  dots.forEach(function (d) {
-    d.addEventListener('click', function () { go(parseInt(d.dataset.index, 10)); restart(); });
-  });
-
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  function start() { if (!reduceMotion) timer = setInterval(next, 6000); }
-  function restart() { clearInterval(timer); start(); }
-  start();
-
-  var sliderWrap = document.getElementById('tSlider');
-  sliderWrap.addEventListener('mouseenter', function () { clearInterval(timer); });
-  sliderWrap.addEventListener('mouseleave', start);
-
-  // ─── IntersectionObserver scroll reveals ───
-  var revealEls = document.querySelectorAll('.reveal');
-  if ('IntersectionObserver' in window) {
-    var io = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          io.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-    revealEls.forEach(function (el) { io.observe(el); });
-  } else {
-    revealEls.forEach(function (el) { el.classList.add('visible'); });
-  }
 })();
+
+// ---- NAV SCROLL EFFECT ----
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', ()=>{
+  if(window.scrollY > 80) navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+});
+
+// ---- MOBILE NAV TOGGLE ----
+const navToggle = document.getElementById('navToggle');
+const navLinks = document.getElementById('navLinks');
+navToggle.addEventListener('click', ()=>{
+  navLinks.classList.toggle('open');
+  const spans = navToggle.querySelectorAll('span');
+  if(navLinks.classList.contains('open')){
+    spans[0].style.transform = 'rotate(45deg) translate(6px,6px)';
+    spans[1].style.opacity = '0';
+    spans[2].style.transform = 'rotate(-45deg) translate(6px,-6px)';
+  } else {
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+  }
+});
+document.querySelectorAll('#navLinks a').forEach(a=>{
+  a.addEventListener('click', ()=>{
+    navLinks.classList.remove('open');
+    const spans = navToggle.querySelectorAll('span');
+    spans[0].style.transform = '';
+    spans[1].style.opacity = '';
+    spans[2].style.transform = '';
+  });
+});
+
+// ---- MOUSE PARALLAX DECALS ----
+const decals = document.querySelectorAll('.hero-decal, .ingredient-decal');
+function handleMouseMove(e){
+  const xFactor = (e.clientX / window.innerWidth - 0.5) * 2;
+  const yFactor = (e.clientY / window.innerHeight - 0.5) * 2;
+  decals.forEach((el, i)=>{
+    const speed = 8 + (i * 2);
+    const x = xFactor * speed;
+    const y = yFactor * speed;
+    const rot = parseFloat(getComputedStyle(el).transform.replace(/[^-\d.]/g,'') || 0) || 0;
+    el.style.transform = `translate(${x}px, ${y}px) rotate(${rot}deg)`;
+  });
+}
+document.addEventListener('mousemove', handleMouseMove);
+
+// ---- SCROLL ANIMATIONS ----
+const observerOptions = {threshold:0.15,rootMargin:'0px 0px -50px 0px'};
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0) rotate(0deg)';
+    }
+  });
+}, observerOptions);
+
+document.querySelectorAll('.menu-card, .quality-item, .location-card, .about-section .image-grid img, .exp-grid .exp-img').forEach(el=>{
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(30px)';
+  el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+  observer.observe(el);
+});
+
+// ---- SMOOTH SCROLL ----
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click', e=>{
+    e.preventDefault();
+    const target = document.querySelector(a.getAttribute('href'));
+    if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+  });
+});
+
+console.log('%c🍔 CRAV | Artisan Smashed Burgers','font-size:20px;font-weight:bold;color:#f91814');
+console.log('%c Built with ♥ inspired by Crav Burgers','font-size:12px;color:#888');
 </script>
 </body>
 </html>

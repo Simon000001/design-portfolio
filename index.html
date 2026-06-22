@@ -238,32 +238,32 @@ body::after{
 
   // ========== DESIGN DATA ==========
   const designs = [
-    {id:'business',path:'showcase/business.html',title:'NOVA // SaaS Platform',category:'Business / Startup',
-     desc:'A modern SaaS landing page with gradient mesh hero, metrics strip, pricing grid, and testimonial carousel. Navy base with electric blue accents.',
-     accent:'#4f6ef7'},
-    {id:'ecommerce',path:'showcase/ecommerce.html',title:'MØNA // Product Store',category:'E-Commerce',
-     desc:'Minimal product showcase with grid layout, color swatches, quick-add hover effects, and newsletter signup. Clean white base with warm coral accent.',
-     accent:'#f05a4d'},
-    {id:'store',path:'showcase/store.html',title:'ATELIER // Retail Boutique',category:'Store / Retail',
-     desc:'Physical retail concept with horizontal-scroll categories, shop-the-look grid, and sustainability values. Cream base with sage green & terracotta.',
-     accent:'#7a9b7a'},
-    {id:'cafe',path:'showcase/cafe.html',title:'ROAST // Artisan Cafe',category:'Cafe / Coffee',
-     desc:'Warm, intimate coffee shop design with menu grid, daily specials, cozy gallery, and location card. Beige and charcoal with warm brown accents.',
-     accent:'#b07a45'},
-    {id:'restaurant',path:'showcase/restaurant.html',title:'GEM // Fine Dining',category:'Restaurant',
-     desc:'Upscale dining site with fullscreen hero, hover-reveal menu, reservation form, wine accordion, and chef story. Deep warm tones with gold accents.',
-     accent:'#c9a84c'},
-    {id:'corporate',path:'showcase/corporate.html',title:'MERIDIAN // Corporate',category:'Corporate / B2B',
-     desc:'Professional corporate site with services grid, case studies, leadership team, contact forms, and metrics strip. Navy, silver, and trust blue.',
-     accent:'#2d6bff'}
+    {id:'business',path:'showcase/business.html',title:'Fauna Robotics',category:'SaaS / Startup',
+     desc:'Awwwards SOTD Jun 2026. Minimal two-color palette, Matter typography, scroll animations, and product-focused hero section.',
+     accent:'#180102'},
+    {id:'ecommerce',path:'showcase/ecommerce.html',title:'Monolith',category:'E-Commerce',
+     desc:'Awwwards SOTD Dec 2024. Gallery-style furniture e-commerce with numbered catalog, cream/near-black palette, and GSAP animations.',
+     accent:'#28282A'},
+    {id:'store',path:'showcase/store.html',title:'Outfit',category:'Store / Retail',
+     desc:'Awwwards SOTD May 2026. Three-theme product store with image-swap hover, scroll word-splitting, and cart drawer.',
+     accent:'#000000'},
+    {id:'cafe',path:'showcase/cafe.html',title:'Escape Coffee',category:'Cafe / Coffee',
+     desc:'Awwwards SOTD May 2024. Immersive coffee roaster with split-text scroll animations, product spec tables, and bilingual EN/FR toggle.',
+     accent:'#151515'},
+    {id:'restaurant',path:'showcase/restaurant.html',title:'Crav Burgers',category:'Restaurant',
+     desc:'Awwwards SOTD Jun 2026. Playful burger brand with sticker/decal aesthetic, angled cards, mouse parallax, and horizontal scroll.',
+     accent:'#f91814'},
+    {id:'corporate',path:'showcase/corporate.html',title:'Tresmares Capital',category:'Corporate / B2B',
+     desc:'Awwwards SOTD Jun 2026. Investment firm with letter-by-letter text reveal, animated stat counters, European map, and EN/ES toggle.',
+     accent:'#D81413'}
   ];
 
   // ========== MINI MOCKUPS (real CSS-constructed previews per design style) ==========
   function mock(d){
     const a=d.accent;
     switch(d.id){
-      case 'business': // dark SaaS hero: nav + heading + CTA + metrics
-        return `<div class="mock" style="background:linear-gradient(150deg,#0a0e27,#16213e)">
+      case 'business': // Fauna Robotics light gray + blue
+        return `<div class="mock" style="background:linear-gradient(150deg,#EFEFEF,#D1E3FF)">
           <div style="position:absolute;inset:0;padding:14px 16px;display:flex;flex-direction:column;gap:10px">
             <div style="display:flex;align-items:center;justify-content:space-between">
               <div style="width:34px;height:6px;border-radius:3px;background:${a}"></div>
@@ -273,8 +273,8 @@ body::after{
             <div style="width:42px;height:13px;border-radius:6px;background:${a};margin-top:4px"></div>
             <div style="display:flex;gap:8px;margin-top:auto"><div style="flex:1;height:24px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)"></div><div style="flex:1;height:24px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)"></div><div style="flex:1;height:24px;border-radius:6px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08)"></div></div>
           </div></div>`;
-      case 'ecommerce': // clean white product grid + coral
-        return `<div class="mock" style="background:#fafafa">
+      case 'ecommerce': // Monolith cream/near-black
+        return `<div class="mock" style="background:#ECEAE5">
           <div style="position:absolute;inset:0;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
             <div style="display:flex;align-items:center;justify-content:space-between"><div style="width:40px;height:7px;border-radius:2px;background:#1a1a1a"></div><div style="width:14px;height:14px;border-radius:50%;border:2px solid ${a}"></div></div>
             <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px;flex:1">
@@ -283,11 +283,11 @@ body::after{
               <div style="background:#f0eeec;border-radius:6px;position:relative"><span style="position:absolute;bottom:6px;left:6px;width:55%;height:4px;border-radius:2px;background:#ccc"></span></div>
               <div style="background:#f0eeec;border-radius:6px;position:relative"><span style="position:absolute;bottom:6px;left:6px;width:45%;height:4px;border-radius:2px;background:#ccc"></span><span style="position:absolute;top:6px;right:6px;width:10px;height:10px;border-radius:50%;background:#1a1a1a"></span></div>
             </div>
-          </div></div>`;
-      case 'store': // cream lookbook: big editorial blocks, sage/terracotta
-        return `<div class="mock" style="background:#faf8f5">
-          <div style="position:absolute;inset:0;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
-            <div style="width:50px;height:7px;border-radius:2px;background:#2c3e2c;letter-spacing:2px"></div>
+          // Outfit white bg + black accent
+                case 'store':
+                  return `<div class="mock" style="background:#ffffff">
+                    <div style="position:absolute;inset:0;padding:14px 16px;display:flex;flex-direction:column;gap:8px">
+                      <div style="width:50px;height:7px;border-radius:2px;background:#1a1a1a;letter-spacing:2px"></div>
             <div style="display:flex;gap:8px;flex:1;margin-top:4px">
               <div style="flex:1.4;background:#7a9b7a;border-radius:4px;position:relative"><span style="position:absolute;bottom:8px;left:8px;width:50%;height:5px;border-radius:2px;background:rgba(255,255,255,.7)"></span></div>
               <div style="flex:1;display:flex;flex-direction:column;gap:8px"><div style="flex:1;background:#c9684e;border-radius:4px"></div><div style="flex:1;background:#e8e0d6;border-radius:4px"></div></div>

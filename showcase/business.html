@@ -3,800 +3,961 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOVA — SaaS Platform</title>
-<meta name="description" content="NOVA is the modern operations platform that unifies your workflows, automates the busywork, and gives every team real-time insight. Ship faster, scale calmer.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="NOVA — SaaS Platform">
-<meta property="og:description" content="Unify your workflows, automate the busywork, and give every team real-time insight. Ship faster, scale calmer with NOVA.">
-<meta property="og:image" content="https://nova.example.com/og-image.png">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="NOVA — SaaS Platform">
-<meta name="twitter:description" content="Unify your workflows, automate the busywork, and give every team real-time insight.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%230a0e27'/%3E%3Cpath d='M9 23V9l14 14V9' fill='none' stroke='%234f6ef7' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>Fauna Robotics | Capable, Safe, Fun Robots for Everyone</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --navy:#0a0e27;
-  --panel:#16213e;
-  --panel-2:#1c2a52;
-  --blue:#4f6ef7;
-  --blue-soft:rgba(79,110,247,.18);
-  --teal:#00d4aa;
-  --teal-soft:rgba(0,212,170,.16);
-  --white:#f4f6ff;
-  --gray:#9aa3c7;
-  --gray-dim:#6b7299;
-  --line:rgba(132,148,200,.14);
-  --radius:14px;
-  --radius-lg:22px;
-  --ease:cubic-bezier(.22,1,.36,1);
-}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:var(--navy);color:var(--white);line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-h1,h2,h3,h4,.font-display{font-family:'Space Grotesk','Inter',sans-serif;font-weight:600;line-height:1.08;letter-spacing:-.02em}
-a{color:inherit}
-img,svg{display:block}
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.section{padding:120px 0;position:relative}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'Space Grotesk',sans-serif;font-size:.78rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal);margin-bottom:18px}
-.eyebrow::before{content:"";width:24px;height:1px;background:var(--teal);opacity:.6}
-.section-head{max-width:640px;margin:0 auto 64px;text-align:center}
-.section-head h2{font-size:clamp(1.9rem,4vw,3rem)}
-.section-head p{color:var(--gray);margin-top:16px;font-size:1.05rem}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:.95rem;padding:14px 28px;border-radius:100px;border:1px solid transparent;cursor:pointer;text-decoration:none;transition:transform .35s var(--ease),box-shadow .35s var(--ease),background .25s,border-color .25s,color .25s;white-space:nowrap}
-.btn-primary{background:var(--blue);color:#fff;box-shadow:0 10px 30px rgba(79,110,247,.35)}
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 44px rgba(79,110,247,.5)}
-.btn-ghost{background:rgba(255,255,255,.04);color:var(--white);border-color:var(--line)}
-.btn-ghost:hover{transform:translateY(-3px);background:rgba(255,255,255,.08);border-color:rgba(132,148,200,.35)}
-.btn svg{width:18px;height:18px}
+body{
+  font-family:'Libre Franklin',Arial,sans-serif;
+  background:#EFEFEF;
+  color:#180102;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale
+}
+img{max-width:100%;height:auto;display:block}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
 
-/* -- Nav -- */
-header{position:fixed;top:0;left:0;width:100%;z-index:1000;transition:background .3s,border-color .3s,box-shadow .3s;border-bottom:1px solid transparent}
-header.scrolled{background:rgba(10,14,39,.82);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom-color:var(--line);box-shadow:0 6px 30px rgba(0,0,0,.35)}
-nav{display:flex;align-items:center;justify-content:space-between;height:74px;max-width:1200px;margin:0 auto;padding:0 24px}
-.logo{display:flex;align-items:center;gap:10px;font-family:'Space Grotesk',sans-serif;font-size:1.35rem;font-weight:700;letter-spacing:-.01em;text-decoration:none;color:var(--white)}
-.logo .logo-mark{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,var(--blue),var(--teal));display:grid;place-items:center;flex:none}
-.logo .logo-mark svg{width:18px;height:18px;stroke:#fff}
-.nav-links{display:flex;gap:34px;align-items:center}
-.nav-links a{color:var(--gray);text-decoration:none;font-size:.92rem;font-weight:500;transition:color .2s;position:relative}
-.nav-links a::after{content:"";position:absolute;left:0;bottom:-6px;height:2px;width:0;background:var(--teal);transition:width .3s var(--ease)}
-.nav-links a:hover{color:var(--white)}
-.nav-links a:hover::after{width:100%}
-.nav-actions{display:flex;align-items:center;gap:18px}
-.nav-actions .login{font-size:.92rem;font-weight:500;color:var(--gray);text-decoration:none;transition:color .2s}
-.nav-actions .login:hover{color:var(--white)}
-.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;width:42px;height:42px;background:rgba(255,255,255,.04);border:1px solid var(--line);border-radius:10px;cursor:pointer;padding:0}
-.hamburger span{display:block;width:18px;height:2px;background:var(--white);margin:0 auto;border-radius:2px;transition:transform .3s var(--ease),opacity .2s}
-.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.hamburger.open span:nth-child(2){opacity:0}
-.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mobile-panel{position:fixed;inset:74px 0 auto 0;background:rgba(10,14,39,.97);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:24px;display:flex;flex-direction:column;gap:6px;transform:translateY(-120%);transition:transform .4s var(--ease);z-index:999}
-.mobile-panel.open{transform:translateY(0)}
-.mobile-panel a{padding:14px 8px;color:var(--gray);text-decoration:none;font-size:1.05rem;font-weight:500;border-bottom:1px solid var(--line)}
-.mobile-panel a:last-of-type{border-bottom:none}
-.mobile-panel .btn{margin-top:14px}
+/* Container */
+.container{
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 32px
+}
+@media(max-width:768px){
+  .container{padding:0 20px}
+}
 
-/* -- Hero -- */
-.hero{position:relative;padding:150px 0 90px;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none}
-.hero-bg .glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.55}
-.hero-bg .g1{width:560px;height:560px;background:radial-gradient(circle,rgba(79,110,247,.55),transparent 70%);top:-180px;left:-120px}
-.hero-bg .g2{width:480px;height:480px;background:radial-gradient(circle,rgba(0,212,170,.4),transparent 70%);top:40px;right:-140px}
-.hero-bg .g3{width:420px;height:420px;background:radial-gradient(circle,rgba(79,110,247,.3),transparent 70%);bottom:-200px;left:35%}
-.grid-overlay{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(132,148,200,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(132,148,200,.06) 1px,transparent 1px);background-size:54px 54px;mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000 40%,transparent 100%);-webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 30%,#000 40%,transparent 100%)}
-.hero-inner{position:relative;z-index:2;text-align:center;max-width:860px;margin:0 auto}
-.badge{display:inline-flex;align-items:center;gap:9px;padding:7px 16px 7px 8px;border-radius:100px;background:rgba(255,255,255,.04);border:1px solid var(--line);font-size:.82rem;color:var(--gray);margin-bottom:30px}
-.badge .pill{font-size:.7rem;font-weight:700;letter-spacing:.05em;background:var(--teal-soft);color:var(--teal);padding:3px 9px;border-radius:100px}
-.hero h1{font-size:clamp(2.6rem,6.5vw,4.7rem);font-weight:700}
-.hero h1 .grad{background:linear-gradient(110deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.hero p.sub{color:var(--gray);font-size:clamp(1.05rem,2vw,1.25rem);max-width:580px;margin:26px auto 38px}
-.hero-cta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
-.hero-trust{margin-top:42px;display:flex;align-items:center;justify-content:center;gap:10px;color:var(--gray-dim);font-size:.85rem;flex-wrap:wrap}
-.hero-trust .avatars{display:flex}
-.hero-trust .avatars span{width:30px;height:30px;border-radius:50%;border:2px solid var(--navy);margin-left:-9px;background:linear-gradient(135deg,var(--blue),var(--teal))}
-.hero-trust .avatars span:first-child{margin-left:0}
-.hero-trust .avatars span:nth-child(2){background:linear-gradient(135deg,var(--teal),#3ad)}
-.hero-trust .avatars span:nth-child(3){background:linear-gradient(135deg,#7d8cff,var(--blue))}
-.hero-trust .avatars span:nth-child(4){background:linear-gradient(135deg,#00d4aa,#4f6ef7)}
+/* Navigation */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  background:#EFEFEF;
+  border-bottom:1px solid rgba(24,1,2,0.05)
+}
+.nav-inner{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  height:80px;
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 32px
+}
+.nav-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-weight:500;
+  font-size:18px;
+  color:#180102
+}
+.nav-logo-img{
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  object-fit:cover
+}
+.nav-links{
+  display:flex;
+  align-items:center;
+  gap:32px
+}
+.nav-links a{
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:#180102;
+  transition:opacity .2s
+}
+.nav-links a:hover{opacity:.6}
+.nav-cta{
+  display:inline-flex;
+  align-items:center;
+  padding:16px 28px;
+  background:#180102;
+  color:#fff;
+  border-radius:24px;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:opacity .2s;
+  white-space:nowrap
+}
+.nav-cta:hover{opacity:.85}
+.nav-toggle{
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  background:none;
+  border:none;
+  padding:8px
+}
+.nav-toggle span{
+  display:block;
+  width:24px;
+  height:2px;
+  background:#180102;
+  border-radius:2px;
+  transition:transform .3s,opacity .3s
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .nav-cta{display:none}
+  .nav-toggle{display:flex}
+  .nav-links.open{
+    display:flex;
+    flex-direction:column;
+    position:absolute;
+    top:80px;
+    left:0;
+    right:0;
+    background:#EFEFEF;
+    padding:24px 32px;
+    gap:20px;
+    border-bottom:1px solid rgba(24,1,2,0.05)
+  }
+  .nav-links.open + .nav-cta{display:flex;margin:0 32px 24px}
+}
 
-/* -- Product mock -- */
-.mock-wrap{position:relative;z-index:2;max-width:980px;margin:70px auto 0;perspective:1600px}
-.mock{background:linear-gradient(180deg,rgba(28,42,82,.9),rgba(22,33,62,.95));border:1px solid var(--line);border-radius:18px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.7),0 0 0 1px rgba(79,110,247,.08);transform:rotateX(8deg);transform-origin:center top}
-.mock-bar{display:flex;align-items:center;gap:14px;padding:14px 20px;border-bottom:1px solid var(--line);background:rgba(10,14,39,.5)}
-.mock-bar .dots{display:flex;gap:7px}
-.mock-bar .dots i{width:11px;height:11px;border-radius:50%;background:rgba(132,148,200,.35)}
-.mock-bar .url{flex:1;max-width:300px;height:22px;border-radius:6px;background:rgba(132,148,200,.1);display:flex;align-items:center;padding:0 12px;font-size:.7rem;color:var(--gray-dim);font-family:'Space Grotesk',sans-serif}
-.mock-body{display:grid;grid-template-columns:180px 1fr;min-height:330px}
-.mock-side{border-right:1px solid var(--line);padding:20px 16px;display:flex;flex-direction:column;gap:10px;background:rgba(10,14,39,.3)}
-.mock-side .s-item{height:34px;border-radius:8px;display:flex;align-items:center;gap:10px;padding:0 12px;color:var(--gray);font-size:.8rem;font-weight:500}
-.mock-side .s-item.active{background:var(--blue-soft);color:#fff}
-.mock-side .s-item span{width:14px;height:14px;border-radius:4px;background:currentColor;opacity:.7;flex:none}
-.mock-main{padding:24px}
-.mock-main .m-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
-.mock-main .m-title{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.05rem}
-.mock-main .m-tag{font-size:.7rem;color:var(--teal);background:var(--teal-soft);padding:4px 10px;border-radius:100px;font-weight:600}
-.stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
-.stat-card{background:rgba(10,14,39,.4);border:1px solid var(--line);border-radius:12px;padding:14px}
-.stat-card .lbl{font-size:.68rem;color:var(--gray-dim);text-transform:uppercase;letter-spacing:.08em}
-.stat-card .val{font-family:'Space Grotesk',sans-serif;font-size:1.5rem;font-weight:700;margin-top:6px}
-.stat-card .val.t{color:var(--teal)}
-.stat-card .val.b{color:var(--blue)}
-.chart{height:130px;background:rgba(10,14,39,.4);border:1px solid var(--line);border-radius:12px;padding:16px;position:relative;overflow:hidden}
-.chart svg{width:100%;height:100%}
+/* Sections */
+section{padding:80px 0}
+@media(max-width:768px){section{padding:60px 0}}
 
-/* -- Logos -- */
-.logos{padding:50px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.logos p{text-align:center;color:var(--gray-dim);font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;margin-bottom:28px}
-.logo-row{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:44px}
-.logo-row .brand{display:flex;align-items:center;gap:9px;color:var(--gray);opacity:.6;transition:opacity .3s;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.1rem;letter-spacing:-.01em}
-.logo-row .brand:hover{opacity:1}
-.logo-row .brand svg{width:22px;height:22px;stroke:currentColor}
+/* Hero */
+.hero{
+  padding-top:160px;
+  padding-bottom:0;
+  overflow:hidden
+}
+.hero-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+  gap:48px
+}
+.hero h1{
+  font-size:64px;
+  font-weight:500;
+  color:#180102;
+  letter-spacing:-2px;
+  line-height:1.1;
+  max-width:800px
+}
+.hero h1 br{display:block}
+.hero-image-wrap{
+  width:100%;
+  max-width:1100px;
+  border-radius:24px;
+  overflow:hidden;
+  aspect-ratio:16/9
+}
+.hero-image-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+@media(max-width:768px){
+  .hero h1{font-size:36px;letter-spacing:-1px}
+  .hero-inner{gap:32px}
+}
+@media(max-width:480px){
+  .hero h1{font-size:28px}
+}
 
-/* -- Metrics -- */
-.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
-.metric{text-align:center;padding:36px 20px;border:1px solid var(--line);border-radius:var(--radius);background:linear-gradient(180deg,rgba(28,42,82,.5),rgba(22,33,62,.2));transition:transform .4s var(--ease),border-color .3s}
-.metric:hover{transform:translateY(-6px);border-color:rgba(79,110,247,.4)}
-.metric .num{font-family:'Space Grotesk',sans-serif;font-size:clamp(2.2rem,4vw,3.1rem);font-weight:700;background:linear-gradient(120deg,var(--blue),var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;line-height:1}
-.metric .lbl{color:var(--gray);font-size:.95rem;margin-top:12px}
+/* Trusted By */
+.trusted{
+  padding:40px 0 80px
+}
+.trusted-label{
+  text-align:center;
+  font-size:12px;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(24,1,2,.4);
+  margin-bottom:24px
+}
+.trusted-carousel{
+  overflow:hidden;
+  position:relative
+}
+.trusted-track{
+  display:flex;
+  gap:60px;
+  animation:scroll 30s linear infinite;
+  width:fit-content
+}
+.trusted-track img{
+  height:40px;
+  width:auto;
+  opacity:.5;
+  transition:opacity .3s;
+  flex-shrink:0
+}
+.trusted-track img:hover{opacity:.8}
+@keyframes scroll{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.trusted-gradient{
+  position:absolute;
+  top:0;bottom:0;left:0;
+  width:100px;
+  background:linear-gradient(90deg,#EFEFEF 0%,transparent 100%);
+  z-index:2;
+  pointer-events:none
+}
+.trusted-gradient.is-right{
+  left:auto;right:0;
+  background:linear-gradient(270deg,#EFEFEF 0%,transparent 100%)
+}
 
-/* -- Features -- */
-.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.feature{padding:34px 30px;border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(180deg,rgba(28,42,82,.4),rgba(22,33,62,.15));transition:transform .4s var(--ease),border-color .3s,box-shadow .4s;position:relative;overflow:hidden}
-.feature::before{content:"";position:absolute;inset:0;background:radial-gradient(400px circle at top right,var(--blue-soft),transparent 60%);opacity:0;transition:opacity .4s}
-.feature:hover{transform:translateY(-8px);border-color:rgba(79,110,247,.4);box-shadow:0 24px 50px -20px rgba(0,0,0,.6)}
-.feature:hover::before{opacity:1}
-.feature .icon{width:54px;height:54px;border-radius:14px;display:grid;place-items:center;background:var(--blue-soft);border:1px solid rgba(79,110,247,.3);margin-bottom:22px;position:relative}
-.feature:nth-child(2n) .icon{background:var(--teal-soft);border-color:rgba(0,212,170,.3)}
-.feature .icon svg{width:26px;height:26px;fill:none;stroke:var(--blue);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.feature:nth-child(2n) .icon svg{stroke:var(--teal)}
-.feature h3{font-size:1.25rem;margin-bottom:10px}
-.feature p{color:var(--gray);font-size:.96rem}
+/* Section titles */
+.section-title{
+  text-align:center;
+  margin-bottom:64px
+}
+.section-title h2{
+  font-size:52px;
+  font-weight:400;
+  letter-spacing:-1.5px;
+  line-height:1.1;
+  color:#180102
+}
+.section-title h2 br{display:block}
+@media(max-width:768px){
+  .section-title h2{font-size:32px}
+}
 
-/* -- How it works -- */
-.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:30px;position:relative}
-.steps::before{content:"";position:absolute;top:32px;left:16%;right:16%;height:2px;background:linear-gradient(90deg,var(--blue),var(--teal));opacity:.25}
-.step{position:relative;text-align:center;padding:0 12px}
-.step .badge-num{width:64px;height:64px;border-radius:50%;display:grid;place-items:center;margin:0 auto 24px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.4rem;background:var(--navy);border:2px solid var(--blue);color:var(--white);position:relative;z-index:1}
-.step:nth-child(2) .badge-num{border-color:var(--teal);color:var(--teal)}
-.step:nth-child(3) .badge-num{border-color:var(--teal);color:var(--teal)}
-.step h3{font-size:1.2rem;margin-bottom:10px}
-.step p{color:var(--gray);font-size:.95rem;max-width:300px;margin:0 auto}
+/* Features 3-col (Developers, Enterprises, Researchers) */
+.features-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:24px
+}
+.feature-card{
+  background:rgba(255,255,255,.5);
+  border-radius:20px;
+  padding:40px 32px;
+  transition:transform .3s,box-shadow .3s
+}
+.feature-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 12px 40px rgba(24,1,2,.06)
+}
+.feature-icon{
+  width:48px;
+  height:48px;
+  border-radius:12px;
+  background:#D1E3FF;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:20px;
+  font-size:22px
+}
+.feature-card h3{
+  font-size:20px;
+  font-weight:500;
+  margin-bottom:12px;
+  color:#180102
+}
+.feature-card p{
+  font-size:15px;
+  line-height:1.6;
+  color:rgba(24,1,2,.7)
+}
+@media(max-width:768px){
+  .features-grid{grid-template-columns:1fr}
+}
 
-/* -- Pricing -- */
-.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;align-items:stretch}
-.plan{display:flex;flex-direction:column;padding:36px 32px;border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(180deg,rgba(28,42,82,.4),rgba(22,33,62,.15));transition:transform .4s var(--ease),border-color .3s}
-.plan:hover{transform:translateY(-6px)}
-.plan.featured{border-color:var(--blue);background:linear-gradient(180deg,rgba(79,110,247,.16),rgba(22,33,62,.3));box-shadow:0 30px 70px -30px rgba(79,110,247,.6);position:relative;transform:scale(1.03)}
-.plan.featured:hover{transform:scale(1.03) translateY(-6px)}
-.plan .tag{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:linear-gradient(120deg,var(--blue),var(--teal));color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:6px 16px;border-radius:100px;text-transform:uppercase}
-.plan .plan-name{font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:1.05rem;color:var(--gray)}
-.plan .price{margin:18px 0 6px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:3rem;line-height:1}
-.plan .price span{font-size:1rem;font-weight:500;color:var(--gray-dim)}
-.plan .desc{color:var(--gray);font-size:.92rem;margin-bottom:26px;min-height:42px}
-.plan ul{list-style:none;display:flex;flex-direction:column;gap:13px;margin-bottom:30px;flex:1}
-.plan li{display:flex;align-items:flex-start;gap:11px;font-size:.94rem;color:var(--gray)}
-.plan li svg{width:18px;height:18px;flex:none;margin-top:2px;stroke:var(--teal);stroke-width:2.5;fill:none}
-.plan .btn{width:100%}
+/* Demo / Video section */
+.demo{padding:0 0 80px}
+.demo-inner{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:40px
+}
+.demo-placeholder{
+  width:100%;
+  max-width:900px;
+  aspect-ratio:16/9;
+  border-radius:20px;
+  overflow:hidden;
+  position:relative;
+  cursor:pointer
+}
+.demo-placeholder img{
+  width:100%;
+  height:100%;
+  object-fit:cover
+}
+.demo-play{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:rgba(0,0,0,.2);
+  transition:background .3s
+}
+.demo-play:hover{background:rgba(0,0,0,.35)}
+.demo-play-btn{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  background:rgba(255,255,255,.9);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:24px;
+  color:#180102;
+  transition:transform .3s
+}
+.demo-play:hover .demo-play-btn{transform:scale(1.1)}
 
-/* -- Testimonials -- */
-.tcards{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.tcard{padding:30px;border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(180deg,rgba(28,42,82,.4),rgba(22,33,62,.15));display:flex;flex-direction:column;transition:transform .4s var(--ease),border-color .3s}
-.tcard:hover{transform:translateY(-6px);border-color:rgba(0,212,170,.35)}
-.stars{display:flex;gap:3px;margin-bottom:16px}
-.stars svg{width:17px;height:17px;fill:var(--teal)}
-.stars svg.empty{fill:rgba(132,148,200,.25)}
-.tcard blockquote{font-size:1rem;color:var(--white);line-height:1.6;flex:1;margin-bottom:22px}
-.tcard .who{display:flex;align-items:center;gap:13px}
-.tcard .who .ava{width:44px;height:44px;border-radius:50%;flex:none;display:grid;place-items:center;font-family:'Space Grotesk',sans-serif;font-weight:700;color:#fff;font-size:.95rem}
-.tcard .who .name{font-weight:600;font-size:.95rem}
-.tcard .who .role{font-size:.82rem;color:var(--gray-dim)}
+/* Platform features grid (bento) */
+.bento-grid{
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:20px
+}
+.bento-item{
+  background:rgba(255,255,255,.5);
+  border-radius:20px;
+  overflow:hidden;
+  position:relative
+}
+.bento-item.full{grid-column:1/-1}
+.bento-item img{width:100%;height:100%;object-fit:cover}
+.bento-item .bento-content{
+  padding:32px;
+  position:relative;
+  z-index:2
+}
+.bento-item .bento-content h3{
+  font-size:18px;
+  font-weight:500;
+  margin-bottom:8px
+}
+.bento-item .bento-content p{
+  font-size:14px;
+  color:rgba(24,1,2,.7);
+  line-height:1.6
+}
+.platform-tag{
+  display:inline-flex;
+  align-items:center;
+  gap:6px;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(24,1,2,.5);
+  margin-top:auto;
+  padding-top:12px
+}
+.platform-tag::before{
+  content:'';
+  width:16px;
+  height:2px;
+  background:rgba(24,1,2,.3)
+}
+@media(max-width:768px){
+  .bento-grid{grid-template-columns:1fr}
+  .platform-card-img{height:200px}
+}
 
-/* -- CTA -- */
-.cta-band{position:relative;overflow:hidden;border-radius:28px;padding:74px 40px;text-align:center;background:linear-gradient(135deg,var(--panel),var(--panel-2));border:1px solid rgba(79,110,247,.25)}
-.cta-band .glow{position:absolute;border-radius:50%;filter:blur(80px);opacity:.5;pointer-events:none}
-.cta-band .cg1{width:380px;height:380px;background:radial-gradient(circle,rgba(79,110,247,.6),transparent 70%);top:-160px;left:-80px}
-.cta-band .cg2{width:340px;height:340px;background:radial-gradient(circle,rgba(0,212,170,.5),transparent 70%);bottom:-160px;right:-60px}
-.cta-band-inner{position:relative;z-index:2;max-width:600px;margin:0 auto}
-.cta-band h2{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:18px}
-.cta-band p{color:var(--gray);font-size:1.08rem;margin-bottom:34px}
-.cta-form{display:flex;gap:12px;max-width:480px;margin:0 auto;flex-wrap:wrap;justify-content:center}
-.cta-form input{flex:1;min-width:220px;padding:14px 20px;border-radius:100px;border:1px solid var(--line);background:rgba(10,14,39,.6);color:var(--white);font-family:inherit;font-size:.95rem;outline:none;transition:border-color .25s}
-.cta-form input:focus{border-color:var(--blue)}
-.cta-form input::placeholder{color:var(--gray-dim)}
-.form-msg{margin-top:18px;font-size:.92rem;color:var(--teal);min-height:22px;opacity:0;transition:opacity .3s}
-.form-msg.show{opacity:1}
-
-/* -- Footer -- */
-footer{border-top:1px solid var(--line);padding:70px 0 36px;margin-top:30px}
-.foot-grid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:40px;margin-bottom:54px}
-.foot-brand p{color:var(--gray);font-size:.92rem;margin-top:18px;max-width:280px}
-.foot-social{display:flex;gap:12px;margin-top:22px}
-.foot-social a{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);display:grid;place-items:center;transition:border-color .25s,transform .25s,background .25s}
-.foot-social a:hover{border-color:rgba(79,110,247,.4);transform:translateY(-2px);background:var(--blue-soft)}
-.foot-social svg{width:18px;height:18px;stroke:var(--gray);fill:none;stroke-width:2}
-.foot-social a:hover svg{stroke:var(--white)}
-.foot-col h4{font-family:'Space Grotesk',sans-serif;font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--gray-dim);margin-bottom:18px}
-.foot-col a{display:block;color:var(--gray);text-decoration:none;font-size:.93rem;margin-bottom:12px;transition:color .2s}
-.foot-col a:hover{color:var(--white)}
-.foot-bottom{border-top:1px solid var(--line);padding-top:28px;display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;color:var(--gray-dim);font-size:.85rem}
-
-/* -- Reveal -- */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
-.reveal.in{opacity:1;transform:none}
-.reveal-d1{transition-delay:.08s}
-.reveal-d2{transition-delay:.16s}
-.reveal-d3{transition-delay:.24s}
-
+/* Use Cases Grid */
+.use-cases{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:16px
+}
+.use-case{
+  background:rgba(255,255,255,.5);
+  border-radius:20px;
+  padding:40px 24px;
+  text-align:center;
+  transition:transform .3s,background .3s;
+  cursor:default
+}
+.use-case:hover{
+  transform:translateY(-4px);
+  background:#D1E3FF
+}
+.use-case-icon{
+  font-size:48px;
+  margin-bottom:16px;
+  line-height:1
+}
+.use-case h3{
+  font-size:18px;
+  font-weight:500;
+  color:#180102
+}
+.use-case p{
+  font-size:13px;
+  color:rgba(24,1,2,.6);
+  margin-top:8px;
+  line-height:1.5
+}
 @media(max-width:900px){
-  .nav-links,.nav-actions .login,.nav-actions .btn{display:none}
-  .hamburger{display:flex}
-  .features-grid,.pricing-grid,.tcards,.steps,.metrics-grid{grid-template-columns:1fr}
-  .metrics-grid{grid-template-columns:1fr 1fr}
-  .plan.featured{transform:none}
-  .plan.featured:hover{transform:translateY(-6px)}
-  .steps::before{display:none}
-  .foot-grid{grid-template-columns:1fr 1fr}
-  .mock{transform:none}
-  .mock-body{grid-template-columns:1fr}
-  .mock-side{display:none}
+  .use-cases{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:560px){
-  .section{padding:84px 0}
-  .metrics-grid{grid-template-columns:1fr}
-  .foot-grid{grid-template-columns:1fr}
-  .stat-row{grid-template-columns:1fr}
-  .hero{padding:120px 0 70px}
+@media(max-width:480px){
+  .use-cases{grid-template-columns:1fr}
 }
-@media(prefers-reduced-motion:reduce){
-  .reveal{opacity:1;transform:none;transition:none}
-  html{scroll-behavior:auto}
+
+/* About section */
+.about-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:40px;
+  align-items:start
+}
+.about-card{
+  background:rgba(255,255,255,.5);
+  border-radius:20px;
+  padding:48px 40px;
+  text-align:center
+}
+.about-card img{
+  width:64px;
+  height:64px;
+  border-radius:50%;
+  margin:0 auto 24px;
+  object-fit:cover
+}
+.about-card h3{
+  font-size:18px;
+  font-weight:500;
+  margin-bottom:16px;
+  line-height:1.3
+}
+.about-link{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  margin-top:24px;
+  font-size:13px;
+  font-weight:500;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:#180102;
+  transition:gap .3s
+}
+.about-link:hover{gap:14px}
+.about-link::after{
+  content:'→';
+  font-size:16px
+}
+@media(max-width:768px){
+  .about-grid{grid-template-columns:1fr}
+  .about-card{padding:32px 24px}
+}
+
+/* Real Robots carousel */
+.fun-carousel{
+  overflow:hidden;
+  position:relative;
+  padding:0
+}
+.fun-track{
+  display:flex;
+  gap:16px;
+  animation:scrollFun 40s linear infinite;
+  width:fit-content
+}
+.fun-track img{
+  width:280px;
+  height:420px;
+  border-radius:16px;
+  object-fit:cover;
+  flex-shrink:0
+}
+@keyframes scrollFun{
+  0%{transform:translateX(0)}
+  100%{transform:translateX(-50%)}
+}
+.fun-gradient{
+  position:absolute;
+  top:0;bottom:0;left:0;
+  width:120px;
+  background:linear-gradient(90deg,#EFEFEF 0%,transparent 100%);
+  z-index:2;
+  pointer-events:none
+}
+.fun-gradient.is-right{
+  left:auto;right:0;
+  background:linear-gradient(270deg,#EFEFEF 0%,transparent 100%)
+}
+
+/* CTA */
+.cta-section{
+  padding:80px 0;
+  text-align:center
+}
+.cta-inner{
+  max-width:700px;
+  margin:0 auto
+}
+.cta-section h2{
+  font-size:52px;
+  font-weight:400;
+  letter-spacing:-1.5px;
+  line-height:1.1;
+  margin-bottom:24px;
+  color:#180102
+}
+.cta-info{
+  margin-bottom:32px
+}
+.cta-pill{
+  display:inline-block;
+  padding:10px 20px;
+  background:rgba(255,255,255,.6);
+  border-radius:100px;
+  font-size:13px;
+  color:rgba(24,1,2,.7);
+  margin-bottom:24px
+}
+.cta-btn{
+  display:inline-flex;
+  align-items:center;
+  padding:16px 32px;
+  background:#180102;
+  color:#fff;
+  border-radius:24px;
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  transition:opacity .2s,transform .2s
+}
+.cta-btn:hover{opacity:.85;transform:translateY(-2px)}
+@media(max-width:768px){
+  .cta-section h2{font-size:32px}
+}
+
+/* Footer */
+footer{
+  background:#180102;
+  color:rgba(255,255,255,.8);
+  padding:80px 0 40px
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:40px;
+  margin-bottom:60px
+}
+.footer-brand h3{
+  font-size:16px;
+  font-weight:500;
+  color:#fff;
+  line-height:1.4;
+  max-width:320px;
+  margin-bottom:12px
+}
+.footer-brand p{
+  font-size:13px;
+  color:rgba(255,255,255,.5)
+}
+.footer-col h4{
+  font-size:11px;
+  font-weight:500;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.5);
+  margin-bottom:20px
+}
+.footer-col ul li{margin-bottom:12px}
+.footer-col ul li a{
+  font-size:14px;
+  color:rgba(255,255,255,.7);
+  transition:color .3s
+}
+.footer-col ul li a:hover{color:#fff}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:32px;
+  border-top:1px solid rgba(255,255,255,.1);
+  font-size:12px;
+  color:rgba(255,255,255,.4)
+}
+.footer-bottom-links{
+  display:flex;
+  gap:24px
+}
+.footer-bottom-links a{
+  color:rgba(255,255,255,.4);
+  transition:color .3s
+}
+.footer-bottom-links a:hover{color:#fff}
+@media(max-width:768px){
+  .footer-grid{grid-template-columns:1fr 1fr;gap:32px}
+  .footer-brand{grid-column:1/-1}
+  .footer-bottom{flex-direction:column;gap:16px;text-align:center}
+}
+
+/* Mobile adjustments */
+@media(max-width:375px){
+  .nav-inner{padding:0 16px;height:64px}
+  .hero h1{font-size:24px;letter-spacing:-.5px}
+  .container{padding:0 16px}
+  section{padding:40px 0}
+  .section-title h2,.cta-section h2{font-size:28px}
+  .feature-card{padding:28px 20px}
+  .platform-card{padding:24px 20px}
+  .use-case{padding:28px 16px}
+  .footer-grid{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
 
-<header id="top">
-  <nav>
-    <a href="#top" class="logo">
-      <span class="logo-mark">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18V6l12 12V6"/></svg>
-      </span>
-      NOVA
+<!-- Navigation -->
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">
+      <img src="https://picsum.photos/seed/robot-logo/40/40" alt="Fauna Robotics" class="nav-logo-img" loading="eager">
+      Fauna
     </a>
+    <button class="nav-toggle" aria-label="Toggle menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links">
-      <a href="#features">Features</a>
-      <a href="#how">How it works</a>
-      <a href="#pricing">Pricing</a>
-      <a href="#testimonials">Customers</a>
+      <a href="#">Home</a>
+      <a href="#">Product</a>
+      <a href="#">Company</a>
+      <a href="#">Careers</a>
+      <a href="#">News</a>
     </div>
-    <div class="nav-actions">
-      <a href="#top" class="login">Sign in</a>
-      <a href="#get-started" class="btn btn-primary">Start free</a>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-  <div class="mobile-panel" id="mobilePanel">
-    <a href="#features">Features</a>
-    <a href="#how">How it works</a>
-    <a href="#pricing">Pricing</a>
-    <a href="#testimonials">Customers</a>
-    <a href="#get-started" class="btn btn-primary">Start free</a>
+    <a href="#" class="nav-cta">Request Robot</a>
   </div>
-</header>
+</nav>
 
-<!-- -- Hero -- -->
+<!-- Hero -->
 <section class="hero">
-  <div class="hero-bg">
-    <div class="glow g1"></div>
-    <div class="glow g2"></div>
-    <div class="glow g3"></div>
-  </div>
-  <div class="grid-overlay"></div>
   <div class="container">
-    <div class="hero-inner reveal">
-      <span class="badge"><span class="pill">NEW</span> Automations 2.0 — build flows in minutes</span>
-      <h1>Run your whole company on <span class="grad">one calm platform</span></h1>
-      <p class="sub">NOVA unifies your workflows, automates the busywork, and gives every team real-time insight — so you ship faster and scale calmer.</p>
-      <div class="hero-cta">
-        <a href="#get-started" class="btn btn-primary">Start free
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </a>
-        <a href="#how" class="btn btn-ghost">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M10 9l5 3-5 3z" fill="currentColor" stroke="none"/></svg>
-          See how it works
-        </a>
-      </div>
-      <div class="hero-trust">
-        <div class="avatars"><span></span><span></span><span></span><span></span></div>
-        Trusted by 14,000+ teams shipping faster every day
+    <div class="hero-inner">
+      <h1>Capable, safe, fun.<br>Robots for everyone.</h1>
+      <div class="hero-image-wrap">
+        <img src="https://picsum.photos/seed/robot-hero/1100/620" alt="Fauna humanoid robot" loading="eager">
       </div>
     </div>
+  </div>
+</section>
 
-    <!-- Product UI mock -->
-    <div class="mock-wrap reveal reveal-d1">
-      <div class="mock">
-        <div class="mock-bar">
-          <div class="dots"><i></i><i></i><i></i></div>
-          <div class="url">app.nova.io / dashboard</div>
-        </div>
-        <div class="mock-body">
-          <aside class="mock-side">
-            <div class="s-item active"><span></span>Overview</div>
-            <div class="s-item"><span></span>Workflows</div>
-            <div class="s-item"><span></span>Automations</div>
-            <div class="s-item"><span></span>Insights</div>
-            <div class="s-item"><span></span>Team</div>
-          </aside>
-          <div class="mock-main">
-            <div class="m-head">
-              <div class="m-title">Operations Overview</div>
-              <div class="m-tag">Live • last 30 days</div>
-            </div>
-            <div class="stat-row">
-              <div class="stat-card"><div class="lbl">Active flows</div><div class="val b">248</div></div>
-              <div class="stat-card"><div class="lbl">Tasks automated</div><div class="val t">19.4k</div></div>
-              <div class="stat-card"><div class="lbl">Hours saved</div><div class="val">1,820</div></div>
-            </div>
-            <div class="chart">
-              <svg viewBox="0 0 320 110" preserveAspectRatio="none">
-                <defs>
-                  <linearGradient id="cArea" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0" stop-color="#4f6ef7" stop-opacity=".4"/>
-                    <stop offset="1" stop-color="#4f6ef7" stop-opacity="0"/>
-                  </linearGradient>
-                </defs>
-                <path d="M0,90 L40,72 L80,80 L120,52 L160,60 L200,34 L240,44 L280,20 L320,28 L320,110 L0,110 Z" fill="url(#cArea)"/>
-                <path d="M0,90 L40,72 L80,80 L120,52 L160,60 L200,34 L240,44 L280,20 L320,28" fill="none" stroke="#4f6ef7" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M0,98 L40,92 L80,88 L120,84 L160,76 L200,70 L240,62 L280,58 L320,50" fill="none" stroke="#00d4aa" stroke-width="2" stroke-dasharray="5 5" stroke-linecap="round"/>
-              </svg>
-            </div>
-          </div>
+<!-- Trusted By -->
+<section class="trusted">
+  <div class="container">
+    <div class="trusted-label">Trusted by</div>
+  </div>
+  <div class="trusted-carousel">
+    <div class="trusted-gradient"></div>
+    <div class="trusted-track" id="trustedTrack">
+      <img src="https://picsum.photos/seed/robot-brand1/160/40" alt="Partner logo" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-brand2/160/40" alt="Partner logo" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-brand3/100/40" alt="Partner logo" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-brand4/140/40" alt="Partner logo" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-brand5/160/40" alt="Partner logo" loading="lazy">
+      <!-- Duplicate for seamless loop -->
+      <img src="https://picsum.photos/seed/robot-brand1/160/40" alt="Partner logo" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-brand2/160/40" alt="Partner logo" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-brand3/100/40" alt="Partner logo" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-brand4/140/40" alt="Partner logo" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-brand5/160/40" alt="Partner logo" loading="lazy">
+    </div>
+    <div class="trusted-gradient is-right"></div>
+  </div>
+</section>
+
+<!-- Demo / Video Section -->
+<section class="demo" id="demo">
+  <div class="container">
+    <div class="demo-inner">
+      <div class="section-title">
+        <h2>Create new experiences.<br>Shipping today.</h2>
+      </div>
+      <div class="demo-placeholder" onclick="alert('Video would play here')">
+        <img src="https://picsum.photos/seed/robot-demo/900/506" alt="Fauna robot demo" loading="lazy">
+        <div class="demo-play">
+          <div class="demo-play-btn">▶</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- -- Logos -- -->
-<div class="logos">
-  <div class="container reveal">
-    <p>Powering operations at fast-moving teams</p>
-    <div class="logo-row">
-      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12l9-9 9 9-9 9z"/></svg>Vantyx</span>
-      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 3v18M3 12h18"/></svg>Loopwise</span>
-      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="4"/><path d="M9 12l2 2 4-4"/></svg>Driftlabs</span>
-      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>Northwind</span>
-      <span class="brand"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 18V6a2 2 0 012-2h7l5 5v9a2 2 0 01-2 2H6a2 2 0 01-2-2z"/></svg>Quanta</span>
-    </div>
-  </div>
-</div>
-
-<!-- -- Metrics -- -->
-<section class="section" id="metrics">
+<!-- Feature cards (Developers, Enterprises, Researchers) -->
+<section>
   <div class="container">
-    <div class="metrics-grid">
-      <div class="metric reveal" data-count="99.99" data-suffix="%" data-decimals="2">
-        <div class="num">0</div><div class="lbl">Uptime SLA</div>
-      </div>
-      <div class="metric reveal reveal-d1" data-count="14000" data-suffix="+">
-        <div class="num">0</div><div class="lbl">Active teams</div>
-      </div>
-      <div class="metric reveal reveal-d2" data-count="62" data-suffix="%">
-        <div class="num">0</div><div class="lbl">Less manual work</div>
-      </div>
-      <div class="metric reveal reveal-d3" data-count="2.4" data-suffix="M" data-decimals="1">
-        <div class="num">0</div><div class="lbl">Tasks automated daily</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- -- Features -- -->
-<section class="section" id="features">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Platform</span>
-      <h2>Everything your team needs, none of the sprawl</h2>
-      <p>One connected workspace replaces a dozen disconnected tools. Built for speed, secured by default.</p>
-    </div>
     <div class="features-grid">
-      <div class="feature reveal">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></div>
-        <h3>Instant automations</h3>
-        <p>Chain triggers, conditions and actions with a visual builder. Ship a working flow before your coffee gets cold.</p>
+      <div class="feature-card">
+        <div class="feature-icon">⚙️</div>
+        <h3>For developers</h3>
+        <p>Build and test your own applications on easy-to-use hardware with full SDK access.</p>
       </div>
-      <div class="feature reveal reveal-d1">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-3 8.5-7 10-4-1.5-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Security by default</h3>
-        <p>SOC 2 Type II, SSO, granular roles and full audit logs. Enterprise-grade controls without the enterprise overhead.</p>
+      <div class="feature-card">
+        <div class="feature-icon">🏢</div>
+        <h3>For enterprises</h3>
+        <p>Create next-generation AI applications that solve real business problems and deploy safely in human environments.</p>
       </div>
-      <div class="feature reveal reveal-d2">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M4 19h16M7 16V9M12 16V5M17 16v-4"/><path d="M5 11l4-4 4 3 5-6"/></svg></div>
-        <h3>Real-time insights</h3>
-        <p>Live dashboards turn raw activity into decisions. Track throughput, spot bottlenecks and forecast in one glance.</p>
-      </div>
-      <div class="feature reveal">
-        <div class="icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 4 5.8 4 9s-1.5 6.4-4 9c-2.5-2.6-4-5.8-4-9s1.5-6.4 4-9z"/></svg></div>
-        <h3>Global by design</h3>
-        <p>Multi-region data residency, 12 languages and sub-100ms edge delivery. Scale across borders without friction.</p>
-      </div>
-      <div class="feature reveal reveal-d1">
-        <div class="icon"><svg viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3"/><rect x="9" y="9" width="6" height="6" rx="1"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/></svg></div>
-        <h3>AI copilot</h3>
-        <p>Describe what you want in plain language and NOVA drafts the workflow, the report, or the summary for you.</p>
-      </div>
-      <div class="feature reveal reveal-d2">
-        <div class="icon"><svg viewBox="0 0 24 24"><path d="M14.7 6.3a4 4 0 00-5.4 5.4l-6 6 2 2 6-6a4 4 0 005.4-5.4l-2.6 2.6-2-2z"/></svg></div>
-        <h3>700+ integrations</h3>
-        <p>Connect the stack you already run. Native apps, webhooks and a clean REST API keep your data flowing both ways.</p>
+      <div class="feature-card">
+        <div class="feature-icon">🔬</div>
+        <h3>For researchers</h3>
+        <p>Study locomotion, manipulation, autonomy, and human-robot interaction on a versatile humanoid platform.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- -- How it works -- -->
-<section class="section" id="how">
+<!-- Platform features (bento grid) -->
+<section>
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">How it works</span>
-      <h2>From signup to shipping in three steps</h2>
-      <p>No long onboarding, no consultants. Most teams run their first automation on day one.</p>
+    <div class="section-title">
+      <h2>A modern platform<br>for robotics development</h2>
     </div>
-    <div class="steps">
-      <div class="step reveal">
-        <div class="badge-num">1</div>
-        <h3>Connect your tools</h3>
-        <p>Link your apps in a couple of clicks. NOVA maps your data and surfaces what matters automatically.</p>
+    <div class="bento-grid">
+      <!-- Modular autonomy - large left card -->
+      <div class="bento-item" style="grid-row:span 2;display:flex;flex-direction:column">
+        <div class="bento-content" style="padding-bottom:0">
+          <h3>Modular autonomy</h3>
+          <p>Run your code on flexible compute with modular sensor and actuator support. Swap between onboard and edge AI processing seamlessly.</p>
+        </div>
+        <div class="platform-card-img" style="padding:0 16px">
+          <img src="https://picsum.photos/seed/robot-autonomy/560/340" alt="Modular autonomy" loading="lazy" style="border-radius:12px;aspect-ratio:560/340;object-fit:cover;width:100%">
+        </div>
+        <div class="platform-tag" style="padding:12px 24px 24px">Ready for developers</div>
       </div>
-      <div class="step reveal reveal-d1">
-        <div class="badge-num">2</div>
-        <h3>Build your flows</h3>
-        <p>Drag triggers and actions onto the canvas, or ask the AI copilot to draft a flow you can refine.</p>
+
+      <!-- Compliant locomotion -->
+      <div class="bento-item" style="display:flex;flex-direction:column">
+        <div class="platform-card-img" style="padding:12px 12px 0">
+          <img src="https://picsum.photos/seed/robot-locomotion/400/240" alt="Compliant locomotion" loading="lazy" style="border-radius:12px;aspect-ratio:400/240;object-fit:cover;width:100%">
+        </div>
+        <div class="bento-content" style="padding:16px 24px 24px">
+          <h3>Compliant, capable locomotion</h3>
+          <p>Navigate any terrain with dynamic walking, running, and stair climbing.</p>
+        </div>
       </div>
-      <div class="step reveal reveal-d2">
-        <div class="badge-num">3</div>
-        <h3>Scale with insight</h3>
-        <p>Go live, watch the dashboards, and let NOVA flag what to optimize next as you grow.</p>
+
+      <!-- Safety-first design -->
+      <div class="bento-item" style="display:flex;flex-direction:column">
+        <div class="bento-content">
+          <h3>Safety-first design</h3>
+          <p>Designed for safer human interaction with lightweight materials, a soft exterior, minimized pinch points, onboard safety sensing, and compliant motor control that yields to external forces.</p>
+        </div>
+      </div>
+
+      <!-- Whole-body teleoperation - full width bottom -->
+      <div class="bento-item" style="grid-column:1/-1;display:flex;flex-direction:row;align-items:center;flex-wrap:wrap">
+        <div class="bento-content" style="flex:1;min-width:240px;padding:32px 24px 32px 32px">
+          <h3>Whole-body teleoperation</h3>
+          <p>Control every joint in real time with low-latency whole-body teleoperation. Fine-grained manipulation meets full-body awareness.</p>
+        </div>
+        <div style="flex:1;min-width:240px;padding:12px">
+          <img src="https://picsum.photos/seed/robot-teleop/500/300" alt="Whole-body teleoperation" loading="lazy" style="border-radius:12px;aspect-ratio:500/300;object-fit:cover;width:100%">
+        </div>
+        <div class="platform-tag" style="padding:12px 24px 24px;margin-left:auto">Socially engaging</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- -- Pricing -- -->
-<section class="section" id="pricing">
+<!-- Use Cases Grid -->
+<section>
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Pricing</span>
-      <h2>Simple plans that scale with you</h2>
-      <p>Start free, upgrade when you're ready. No hidden fees, cancel anytime.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="plan reveal">
-        <div class="plan-name">Starter</div>
-        <div class="price">$0<span>/mo</span></div>
-        <div class="desc">For individuals and small projects getting off the ground.</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Up to 3 workflows</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>1,000 tasks / month</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Community support</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Core integrations</li>
-        </ul>
-        <a href="#get-started" class="btn btn-ghost">Get started</a>
+    <div class="use-cases">
+      <div class="use-case">
+        <div class="use-case-icon">🏪</div>
+        <h3>Retail &amp; hospitality</h3>
+        <p>Welcome guests, showcase products, and guide customers through immersive experiences.</p>
       </div>
-      <div class="plan featured reveal reveal-d1">
-        <div class="tag">Most popular</div>
-        <div class="plan-name">Growth</div>
-        <div class="price">$49<span>/mo</span></div>
-        <div class="desc">For growing teams that need automation and insight at scale.</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Unlimited workflows</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>50,000 tasks / month</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>AI copilot included</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Advanced dashboards</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Priority support</li>
-        </ul>
-        <a href="#get-started" class="btn btn-primary">Start free trial</a>
+      <div class="use-case">
+        <div class="use-case-icon">🏠</div>
+        <h3>Consumer &amp; home</h3>
+        <p>Assist with daily tasks, entertain, and connect family members with intuitive interaction.</p>
       </div>
-      <div class="plan reveal reveal-d2">
-        <div class="plan-name">Enterprise</div>
-        <div class="price">Custom</div>
-        <div class="desc">For organizations with advanced security and scale needs.</div>
-        <ul>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Everything in Growth</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>SSO &amp; SCIM provisioning</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Dedicated success manager</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>99.99% uptime SLA</li>
-          <li><svg viewBox="0 0 24 24"><path d="M5 12l5 5L20 7"/></svg>Custom data residency</li>
-        </ul>
-        <a href="#get-started" class="btn btn-ghost">Contact sales</a>
+      <div class="use-case">
+        <div class="use-case-icon">📚</div>
+        <h3>Research &amp; education</h3>
+        <p>Advance robotics research and inspire the next generation of engineers and scientists.</p>
+      </div>
+      <div class="use-case">
+        <div class="use-case-icon">🎭</div>
+        <h3>Entertainment &amp; experiences</h3>
+        <p>Create memorable moments with interactive performances, exhibits, and brand activations.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- -- Testimonials -- -->
-<section class="section" id="testimonials">
+<!-- About / Designed in NYC -->
+<section>
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Customers</span>
-      <h2>Loved by teams who hate busywork</h2>
-      <p>Real stories from operators, founders and engineers who switched to NOVA.</p>
+    <div class="section-title" style="margin-bottom:48px">
+      <h2>Building a world where robots<br>operate everywhere people do</h2>
     </div>
-    <div class="tcards">
-      <div class="tcard reveal">
-        <div class="stars" aria-label="5 out of 5 stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-        </div>
-        <blockquote>"We replaced four separate tools with NOVA in a single sprint. Our ops team got back roughly two days a week almost overnight."</blockquote>
-        <div class="who">
-          <div class="ava" style="background:linear-gradient(135deg,#4f6ef7,#00d4aa)">PM</div>
-          <div><div class="name">Priya Menon</div><div class="role">Head of Operations, Loopwise</div></div>
-        </div>
+    <div class="about-grid">
+      <div class="about-card">
+        <img src="https://picsum.photos/seed/robot-nyc/64/64" alt="Designed in NYC" loading="lazy">
+        <h3>Designed in NYC<br>Assembled in America</h3>
+        <p style="font-size:14px;color:rgba(24,1,2,.6);line-height:1.6">Our robots are designed in New York City and assembled in the United States, combining world-class design with American manufacturing.</p>
+        <a href="#" class="about-link">More about us</a>
       </div>
-
-      <div class="tcard reveal reveal-d1">
-        <div class="stars" aria-label="5 out of 5 stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-        </div>
-        <blockquote>"The AI copilot writes the first draft of every workflow now. What used to take an afternoon takes me about five minutes."</blockquote>
-        <div class="who">
-          <div class="ava" style="background:linear-gradient(135deg,#00d4aa,#3ad)">DO</div>
-          <div><div class="name">Daniel Okafor</div><div class="role">Staff Engineer, Driftlabs</div></div>
-        </div>
-      </div>
-
-      <div class="tcard reveal reveal-d2">
-        <div class="stars" aria-label="4 out of 5 stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg class="empty" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-        </div>
-        <blockquote>"Onboarding was genuinely painless. We connected our stack on a Monday and had three live automations by Wednesday."</blockquote>
-        <div class="who">
-          <div class="ava" style="background:linear-gradient(135deg,#7d8cff,#4f6ef7)">SR</div>
-          <div><div class="name">Sofia Reyes</div><div class="role">Founder, Cadence Studio</div></div>
-        </div>
-      </div>
-
-      <div class="tcard reveal">
-        <div class="stars" aria-label="5 out of 5 stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-        </div>
-        <blockquote>"The audit logs and SSO support cleared our security review on the first pass. That never happens with a tool this easy to use."</blockquote>
-        <div class="who">
-          <div class="ava" style="background:linear-gradient(135deg,#4f6ef7,#7d8cff)">MA</div>
-          <div><div class="name">Marcus Albright</div><div class="role">VP Security, Northwind Group</div></div>
-        </div>
-      </div>
-
-      <div class="tcard reveal reveal-d1">
-        <div class="stars" aria-label="4 out of 5 stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg class="empty" viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-        </div>
-        <blockquote>"Our support queue dropped 40% after we automated triage in NOVA. The dashboards finally tell us where the real friction is."</blockquote>
-        <div class="who">
-          <div class="ava" style="background:linear-gradient(135deg,#00d4aa,#4f6ef7)">LC</div>
-          <div><div class="name">Lena Castellanos</div><div class="role">Director of CX, Vantyx</div></div>
-        </div>
-      </div>
-
-      <div class="tcard reveal reveal-d2">
-        <div class="stars" aria-label="5 out of 5 stars">
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-          <svg viewBox="0 0 24 24"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></svg>
-        </div>
-        <blockquote>"As a finance lead, the real-time forecasting alone paid for the whole platform. I close the books a full week earlier now."</blockquote>
-        <div class="who">
-          <div class="ava" style="background:linear-gradient(135deg,#3ad,#00d4aa)">TI</div>
-          <div><div class="name">Theo Iversen</div><div class="role">CFO, Quanta Robotics</div></div>
-        </div>
+      <div class="about-card" style="background:#D1E3FF">
+        <img src="https://picsum.photos/seed/robot-community/64/64" alt="Community" loading="lazy">
+        <h3>Join our community<br>of builders</h3>
+        <p style="font-size:14px;color:rgba(24,1,2,.6);line-height:1.6">Connect with developers, researchers, and enthusiasts building the future of robotics on the Fauna platform.</p>
+        <a href="#" class="about-link">Get involved</a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- -- Final CTA -- -->
-<section class="section" id="get-started">
+<!-- Real Robots Carousel -->
+<section style="padding-bottom:40px">
   <div class="container">
-    <div class="cta-band reveal">
-      <div class="glow cg1"></div>
-      <div class="glow cg2"></div>
-      <div class="cta-band-inner">
-        <span class="eyebrow" style="justify-content:center">Get started</span>
-        <h2>Ready to run calmer?</h2>
-        <p>Start free in under two minutes. No credit card, no sales call — just you and your first automation.</p>
-        <form class="cta-form" id="ctaForm" novalidate>
-          <input type="email" id="ctaEmail" placeholder="you@company.com" aria-label="Work email" required>
-          <button type="submit" class="btn btn-primary">Start free</button>
-        </form>
-        <div class="form-msg" id="formMsg" role="status" aria-live="polite"></div>
+    <div class="section-title">
+      <h2 style="font-size:40px;font-weight:400">Real robots,<br>real fun</h2>
+    </div>
+  </div>
+  <div class="fun-carousel">
+    <div class="fun-gradient"></div>
+    <div class="fun-track" id="funTrack">
+      <img src="https://picsum.photos/seed/robot-ugc1/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc2/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc3/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc4/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc5/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc6/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc7/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc8/280/420" alt="Robot in action" loading="lazy">
+      <!-- Duplicate for seamless loop -->
+      <img src="https://picsum.photos/seed/robot-ugc1/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc2/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc3/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc4/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc5/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc6/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc7/280/420" alt="Robot in action" loading="lazy">
+      <img src="https://picsum.photos/seed/robot-ugc8/280/420" alt="Robot in action" loading="lazy">
+    </div>
+    <div class="fun-gradient is-right"></div>
+  </div>
+</section>
+
+<!-- Make it yours CTA -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner">
+      <h2>Make it yours</h2>
+      <div class="cta-info">
+        <div class="cta-pill">Battery, grippers, and software included</div>
       </div>
+      <a href="#" class="cta-btn">Request Robot</a>
     </div>
   </div>
 </section>
 
-<!-- -- Footer -- -->
+<!-- Footer -->
 <footer>
   <div class="container">
-    <div class="foot-grid">
-      <div class="foot-brand">
-        <a href="#top" class="logo">
-          <span class="logo-mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M6 18V6l12 12V6"/></svg></span>
-          NOVA
-        </a>
-        <p>The calm operations platform for teams that want to move fast without the sprawl.</p>
-        <div class="foot-social">
-          <a href="#top" aria-label="Twitter / X"><svg viewBox="0 0 24 24" stroke="none" fill="currentColor"><path d="M18.9 2H22l-7.5 8.6L23 22h-6.8l-5.3-7-6.1 7H1.7l8-9.2L1 2h7l4.8 6.4L18.9 2zm-2.4 18h1.9L7.6 4H5.6l10.9 16z"/></svg></a>
-          <a href="#top" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v6M8 7v.01M12 17v-4a2 2 0 014 0v4"/></svg></a>
-          <a href="#top" aria-label="GitHub"><svg viewBox="0 0 24 24"><path d="M9 19c-4 1.5-4-2.5-6-3m12 5v-3.5a3 3 0 00-.9-2.5c3-.3 6-1.5 6-6.5a5 5 0 00-1.4-3.5 4.6 4.6 0 00-.1-3.5s-1.1-.3-3.6 1.3a12.5 12.5 0 00-6.5 0C6.5 1 5.4 1.3 5.4 1.3a4.6 4.6 0 00-.1 3.5A5 5 0 004 8.3c0 5 3 6.2 6 6.5a3 3 0 00-.9 2.3V21"/></svg></a>
-        </div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Fauna Robotics, building a world where robots operate everywhere people do.</h3>
+        <p>Designed in New York City. Assembled in America.</p>
       </div>
-      <div class="foot-col">
-        <h4>Product</h4>
-        <a href="#features">Features</a>
-        <a href="#how">How it works</a>
-        <a href="#pricing">Pricing</a>
-        <a href="#testimonials">Customers</a>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#">Product</a></li>
+          <li><a href="#">Technical specifications</a></li>
+          <li><a href="#">Technical report</a></li>
+          <li><a href="#">Press kit</a></li>
+        </ul>
       </div>
-      <div class="foot-col">
-        <h4>Company</h4>
-        <a href="#top">About</a>
-        <a href="#top">Careers</a>
-        <a href="#top">Blog</a>
-        <a href="#top">Contact</a>
+      <div class="footer-col">
+        <h4>About</h4>
+        <ul>
+          <li><a href="#">Company</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">News</a></li>
+        </ul>
       </div>
-      <div class="foot-col">
-        <h4>Resources</h4>
-        <a href="#top">Docs</a>
-        <a href="#top">API reference</a>
-        <a href="#top">Status</a>
-        <a href="#top">Security</a>
+      <div class="footer-col">
+        <h4>Social</h4>
+        <ul>
+          <li><a href="#">YouTube</a></li>
+          <li><a href="#">X (Twitter)</a></li>
+          <li><a href="#">LinkedIn</a></li>
+          <li><a href="#">Instagram</a></li>
+        </ul>
       </div>
     </div>
-    <div class="foot-bottom">
-      <span>© 2026 NOVA, Inc. All rights reserved.</span>
-      <span>Built for teams who'd rather be shipping.</span>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Fauna Robotics Inc</span>
+      <div class="footer-bottom-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Data Processing Addendum</a>
+        <a href="mailto:sales@faunarobotics.com">Contact us</a>
+      </div>
     </div>
   </div>
 </footer>
 
 <script>
-(function(){
-  "use strict";
-
-  // Sticky nav background
-  var header = document.getElementById('top');
-  function onScroll(){
-    if(window.scrollY > 20){ header.classList.add('scrolled'); }
-    else { header.classList.remove('scrolled'); }
-  }
-  window.addEventListener('scroll', onScroll, {passive:true});
-  onScroll();
-
-  // Mobile menu
-  var burger = document.getElementById('hamburger');
-  var panel = document.getElementById('mobilePanel');
-  function closeMenu(){ burger.classList.remove('open'); panel.classList.remove('open'); burger.setAttribute('aria-expanded','false'); }
-  burger.addEventListener('click', function(){
-    var open = panel.classList.toggle('open');
-    burger.classList.toggle('open', open);
-    burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-  });
-  panel.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', closeMenu); });
-
-  // Reveal on scroll
-  var reveals = document.querySelectorAll('.reveal');
-  if('IntersectionObserver' in window){
-    var io = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){
-          e.target.classList.add('in');
-          io.unobserve(e.target);
-          if(e.target.classList.contains('metrics-grid') || e.target.querySelector){}
-        }
-      });
-    }, {threshold:0.15, rootMargin:'0px 0px -40px 0px'});
-    reveals.forEach(function(el){ io.observe(el); });
-  } else {
-    reveals.forEach(function(el){ el.classList.add('in'); });
-  }
-
-  // Count-up metrics
-  var counters = document.querySelectorAll('.metric[data-count]');
-  function animateCount(el){
-    var target = parseFloat(el.getAttribute('data-count'));
-    var suffix = el.getAttribute('data-suffix') || '';
-    var decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
-    var numEl = el.querySelector('.num');
-    var dur = 1600, start = null;
-    function fmt(v){
-      var out;
-      if(decimals > 0){ out = v.toFixed(decimals); }
-      else if(target >= 1000){ out = Math.round(v).toLocaleString('en-US'); }
-      else { out = Math.round(v).toString(); }
-      return out + suffix;
-    }
-    function tick(ts){
-      if(start === null) start = ts;
-      var p = Math.min((ts - start) / dur, 1);
-      var eased = 1 - Math.pow(1 - p, 3);
-      numEl.textContent = fmt(target * eased);
-      if(p < 1) requestAnimationFrame(tick);
-      else numEl.textContent = fmt(target);
-    }
-    requestAnimationFrame(tick);
-  }
-  if('IntersectionObserver' in window){
-    var cio = new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(e.isIntersecting){ animateCount(e.target); cio.unobserve(e.target); }
-      });
-    }, {threshold:0.5});
-    counters.forEach(function(c){ cio.observe(c); });
-  } else {
-    counters.forEach(animateCount);
-  }
-
-  // Form (sandbox-safe, no real submission)
-  var form = document.getElementById('ctaForm');
-  var msg = document.getElementById('formMsg');
-  var emailInput = document.getElementById('ctaEmail');
-  form.addEventListener('submit', function(ev){
-    ev.preventDefault();
-    var val = (emailInput.value || '').trim();
-    var ok = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-    if(!ok){
-      msg.textContent = 'Please enter a valid work email.';
-      msg.style.color = '#ff7d8a';
-      msg.classList.add('show');
-      return;
-    }
-    msg.textContent = "You're in! Check " + val + " for your setup link.";
-    msg.style.color = 'var(--teal)';
-    msg.classList.add('show');
-    form.reset();
+document.addEventListener('DOMContentLoaded', function(){
+  // Close mobile menu on link click
+  document.querySelectorAll('.nav-links a').forEach(function(link){
+    link.addEventListener('click', function(){
+      document.querySelector('.nav-links').classList.remove('open');
+    });
   });
 
-  // Smooth-scroll for in-page anchors (accounts for fixed header)
-  document.querySelectorAll('a[href^="#"]').forEach(function(a){
-    a.addEventListener('click', function(ev){
-      var id = a.getAttribute('href');
-      if(id.length < 2) return;
-      var target = document.querySelector(id);
+  // Pause carousels on hover for accessibility
+  var trustedTrack = document.getElementById('trustedTrack');
+  if(trustedTrack){
+    trustedTrack.addEventListener('mouseenter', function(){ this.style.animationPlayState = 'paused'; });
+    trustedTrack.addEventListener('mouseleave', function(){ this.style.animationPlayState = 'running'; });
+  }
+  var funTrack = document.getElementById('funTrack');
+  if(funTrack){
+    funTrack.addEventListener('mouseenter', function(){ this.style.animationPlayState = 'paused'; });
+    funTrack.addEventListener('mouseleave', function(){ this.style.animationPlayState = 'running'; });
+  }
+
+  // Smooth scroll offset for fixed nav
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor){
+    anchor.addEventListener('click', function(e){
+      var target = document.querySelector(this.getAttribute('href'));
       if(target){
-        ev.preventDefault();
-        var y = target.getBoundingClientRect().top + window.scrollY - 80;
-        window.scrollTo({top: Math.max(y,0), behavior:'smooth'});
+        e.preventDefault();
+        var offset = 100;
+        var top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: top, behavior: 'smooth' });
       }
     });
   });
-})();
+});
 </script>
 </body>
 </html>

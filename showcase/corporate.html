@@ -1,339 +1,317 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MERIDIAN — Corporate</title>
-<meta name="description" content="MERIDIAN is a B2B consultancy that partners with executives to turn complexity into competitive advantage — strategy, transformation, risk, and M&A advisory.">
-<meta property="og:type" content="website">
-<meta property="og:title" content="MERIDIAN — Corporate">
-<meta property="og:description" content="A B2B consultancy partnering with executives to turn complexity into competitive advantage — strategy, transformation, risk, and M&A advisory.">
-<meta property="og:image" content="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1200' height='630'%3E%3Crect width='1200' height='630' fill='%230a1628'/%3E%3Ctext x='80' y='340' fill='%23ffffff' font-family='sans-serif' font-size='96' font-weight='700'%3EMERIDIAN%3C/text%3E%3C/svg%3E">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="MERIDIAN — Corporate">
-<meta name="twitter:description" content="A B2B consultancy partnering with executives to turn complexity into competitive advantage.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230a1628'/%3E%3Cpath d='M8 22V10l8 7 8-7v12' fill='none' stroke='%232d6bff' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<title>Tresmares Capital — Alternative Investment Firm</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
-/* ===== TOKENS ===== */
-:root{
-  --navy:#0a1628;--navy-2:#0d1c34;--slate:#1e3a5f;--blue:#2d6bff;--blue-d:#1a52e0;
-  --silver:#c0c8d4;--ink:#e8ecf1;--muted:#8a96a8;--muted-2:#6a7689;
-  --line:rgba(192,200,212,.10);--line-2:rgba(192,200,212,.16);
-  --card:rgba(255,255,255,.025);--ok:#33c98a;--err:#ff5d6c;
-  --head:'Space Grotesk',-apple-system,sans-serif;--body:'Inter',-apple-system,sans-serif;
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{font-family:var(--body);background:var(--navy);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
-a{text-decoration:none;color:inherit}
-ul{list-style:none}
-button{font-family:inherit}
-::selection{background:var(--blue);color:#fff}
-
-/* ===== UTILITIES ===== */
-.container{max-width:1200px;margin:0 auto;padding:0 24px}
-.section{padding:110px 0}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--head);font-size:12px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--blue);margin-bottom:16px}
-.eyebrow::before{content:'';width:24px;height:1px;background:var(--blue)}
-.s-title{font-family:var(--head);font-size:clamp(28px,4vw,42px);font-weight:600;line-height:1.12;letter-spacing:-1px;color:#fff;margin-bottom:18px}
-.s-sub{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7}
-.s-head{margin-bottom:64px}
-.s-head.center{text-align:center}
-.s-head.center .eyebrow{justify-content:center}
-.s-head.center .s-sub{margin:0 auto}
-
-/* ===== NAV ===== */
-.nav{position:fixed;inset:0 0 auto 0;z-index:1000;background:rgba(10,22,40,.72);backdrop-filter:blur(18px) saturate(140%);-webkit-backdrop-filter:blur(18px) saturate(140%);border-bottom:1px solid transparent;transition:border-color .3s,background .3s}
-.nav.scrolled{background:rgba(10,22,40,.92);border-bottom-color:var(--line)}
-.nav-inner{display:flex;align-items:center;justify-content:space-between;height:74px}
-.logo{display:flex;align-items:center;gap:11px;font-family:var(--head);font-size:21px;font-weight:700;color:#fff;letter-spacing:.5px;cursor:pointer;background:none;border:none}
-.logo svg{flex-shrink:0}
-.nav-links{display:flex;align-items:center;gap:6px}
-.nav-link{padding:9px 16px;font-size:14.5px;font-weight:500;color:var(--silver);border-radius:8px;transition:color .2s,background .2s;cursor:pointer;background:none;border:none}
-.nav-link:hover{color:#fff;background:rgba(45,107,255,.10)}
-.nav-cta{background:var(--blue);color:#fff;padding:10px 22px;border-radius:8px;font-size:14.5px;font-weight:600;transition:transform .2s,box-shadow .2s,background .2s;border:none;cursor:pointer}
-.nav-cta:hover{background:var(--blue-d);transform:translateY(-1px);box-shadow:0 8px 24px rgba(45,107,255,.32)}
-.nav-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
-.nav-toggle span{display:block;width:24px;height:2px;background:var(--silver);border-radius:2px;transition:transform .3s,opacity .3s}
-.nav-toggle.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
-.nav-toggle.open span:nth-child(2){opacity:0}
-.nav-toggle.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-
-/* ===== HERO ===== */
-.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding-top:74px;overflow:hidden}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(45,107,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(45,107,255,.045) 1px,transparent 1px);background-size:64px 64px;-webkit-mask-image:radial-gradient(ellipse 80% 70% at 70% 25%,#000 30%,transparent 75%);mask-image:radial-gradient(ellipse 80% 70% at 70% 25%,#000 30%,transparent 75%)}
-.hero-glow{position:absolute;top:-25%;right:-15%;width:680px;height:680px;border-radius:50%;background:radial-gradient(circle,rgba(45,107,255,.16),transparent 68%);filter:blur(8px)}
-.hero-glow2{position:absolute;bottom:-30%;left:-12%;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(30,58,95,.5),transparent 70%)}
-.hero-inner{position:relative;z-index:1;display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center;width:100%}
-.hero-copy{max-width:620px}
-.badge{display:inline-flex;align-items:center;gap:9px;background:rgba(45,107,255,.10);border:1px solid rgba(45,107,255,.22);padding:7px 16px 7px 8px;border-radius:100px;font-size:13px;font-weight:500;color:#9cc0ff;margin-bottom:30px}
-.badge-dot{width:7px;height:7px;border-radius:50%;background:var(--blue);box-shadow:0 0 0 3px rgba(45,107,255,.25);animation:pulse 2.4s infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(45,107,255,.25)}50%{box-shadow:0 0 0 6px rgba(45,107,255,.05)}}
-.hero h1{font-family:var(--head);font-size:clamp(38px,5.6vw,66px);font-weight:600;line-height:1.04;letter-spacing:-2px;color:#fff;margin-bottom:24px}
-.hero h1 em{font-style:normal;color:transparent;background:linear-gradient(120deg,#2d6bff,#7fa9ff);-webkit-background-clip:text;background-clip:text}
-.hero p{font-size:18px;color:var(--muted);max-width:520px;line-height:1.72;margin-bottom:38px}
-.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:9px;padding:15px 30px;border-radius:9px;font-size:15px;font-weight:600;cursor:pointer;transition:transform .25s,box-shadow .25s,background .25s,border-color .25s,color .25s;border:1px solid transparent}
-.btn svg{transition:transform .25s}
-.btn-primary{background:var(--blue);color:#fff}
-.btn-primary:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 12px 34px rgba(45,107,255,.34)}
-.btn-primary:hover svg{transform:translateX(4px)}
-.btn-ghost{background:transparent;color:var(--silver);border-color:var(--line-2)}
-.btn-ghost:hover{border-color:var(--blue);color:#fff;transform:translateY(-2px)}
-
-/* hero dashboard mock */
-.hero-viz{position:relative}
-.dash{background:linear-gradient(160deg,rgba(20,38,66,.92),rgba(12,24,44,.92));border:1px solid var(--line-2);border-radius:18px;padding:22px;box-shadow:0 40px 90px rgba(0,0,0,.5);backdrop-filter:blur(6px)}
-.dash-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.dash-dots{display:flex;gap:7px}
-.dash-dots i{width:10px;height:10px;border-radius:50%;background:rgba(192,200,212,.18)}
-.dash-tag{font-family:var(--head);font-size:11px;letter-spacing:1.5px;color:var(--muted-2);text-transform:uppercase}
-.dash-kpis{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px}
-.kpi{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:11px;padding:14px 16px}
-.kpi .lab{font-size:11px;color:var(--muted-2);letter-spacing:.4px;margin-bottom:6px}
-.kpi .num{font-family:var(--head);font-size:23px;font-weight:600;color:#fff;letter-spacing:-.5px}
-.kpi .num b{color:var(--blue);font-weight:600;font-size:14px}
-.chart{background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:11px;padding:16px 16px 8px}
-.chart-h{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
-.chart-h span{font-size:12px;color:var(--muted)}
-.chart-h b{font-family:var(--head);font-size:13px;color:var(--ok);font-weight:600}
-.bars{display:flex;align-items:flex-end;gap:9px;height:84px}
-.bars i{flex:1;background:linear-gradient(180deg,var(--blue),rgba(45,107,255,.25));border-radius:4px 4px 0 0;animation:grow 1.1s cubic-bezier(.2,.8,.2,1) backwards}
-.bars i:nth-child(1){animation-delay:.1s}.bars i:nth-child(2){animation-delay:.18s}.bars i:nth-child(3){animation-delay:.26s}.bars i:nth-child(4){animation-delay:.34s}.bars i:nth-child(5){animation-delay:.42s}.bars i:nth-child(6){animation-delay:.5s}.bars i:nth-child(7){animation-delay:.58s}
-.bars i:last-child{background:linear-gradient(180deg,var(--ok),rgba(51,201,138,.3))}
-@keyframes grow{from{height:0;opacity:0}to{opacity:1}}
-.float-chip{position:absolute;display:flex;align-items:center;gap:9px;background:rgba(13,28,52,.95);border:1px solid var(--line-2);border-radius:11px;padding:11px 15px;box-shadow:0 16px 40px rgba(0,0,0,.45);font-size:13px;font-weight:500;color:#fff}
-.float-chip svg{color:var(--ok)}
-.fc-1{top:-18px;left:-26px;animation:bob 4s ease-in-out infinite}
-.fc-2{bottom:24px;right:-30px;animation:bob 4s ease-in-out infinite .8s}
-@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-
-/* ===== TRUSTED ===== */
-.trusted{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:38px 0;background:rgba(0,0,0,.16)}
-.trusted-lead{text-align:center;font-size:12.5px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted-2);margin-bottom:26px;font-family:var(--head);font-weight:500}
-.logos{display:flex;align-items:center;justify-content:center;gap:48px;flex-wrap:wrap}
-.wordmark{display:flex;align-items:center;gap:9px;color:var(--silver);opacity:.62;transition:opacity .3s,color .3s;font-family:var(--head);font-weight:600;font-size:17px;letter-spacing:.3px}
-.wordmark:hover{opacity:1;color:#fff}
-.wordmark svg{flex-shrink:0;opacity:.85}
-
-/* ===== METRICS ===== */
-.metrics{background:linear-gradient(135deg,rgba(45,107,255,.07),transparent 60%);border-bottom:1px solid var(--line)}
-.metrics-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:28px;text-align:center}
-.metric .v{font-family:var(--head);font-size:clamp(36px,5vw,52px);font-weight:600;color:#fff;letter-spacing:-1.5px;line-height:1}
-.metric .v b{color:var(--blue);font-weight:600}
-.metric .l{font-size:13.5px;color:var(--muted);margin-top:10px;letter-spacing:.4px}
-
-/* ===== SERVICES ===== */
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.svc{position:relative;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:34px 30px;transition:transform .4s,border-color .4s,background .4s;overflow:hidden}
-.svc::after{content:'';position:absolute;inset:0;border-radius:18px;padding:1px;background:linear-gradient(135deg,rgba(45,107,255,.5),transparent 40%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:0;transition:opacity .4s;pointer-events:none}
-.svc:hover{transform:translateY(-6px);background:rgba(45,107,255,.045);border-color:transparent}
-.svc:hover::after{opacity:1}
-.svc-ic{width:54px;height:54px;border-radius:13px;background:rgba(45,107,255,.10);border:1px solid rgba(45,107,255,.18);display:flex;align-items:center;justify-content:center;color:var(--blue);margin-bottom:22px;transition:transform .4s,background .4s}
-.svc:hover .svc-ic{transform:scale(1.06) rotate(-3deg);background:rgba(45,107,255,.18)}
-.svc h3{font-family:var(--head);font-size:19px;font-weight:600;color:#fff;margin-bottom:11px;letter-spacing:-.3px}
-.svc p{font-size:14.5px;color:var(--muted);line-height:1.68}
-.svc .more{display:inline-flex;align-items:center;gap:7px;margin-top:20px;font-size:13.5px;font-weight:600;color:var(--blue)}
-.svc .more svg{transition:transform .3s}
-.svc:hover .more svg{transform:translateX(4px)}
-
-/* ===== CASE STUDIES ===== */
-.cases{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.case{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:transform .4s,border-color .4s}
-.case:hover{transform:translateY(-6px);border-color:rgba(45,107,255,.28)}
-.case-thumb{height:188px;position:relative;overflow:hidden;background:linear-gradient(160deg,#102544,#0a1628)}
-.case-thumb svg{position:absolute;inset:0;width:100%;height:100%}
-.case-body{padding:26px}
-.case-tag{display:inline-block;font-family:var(--head);font-size:11px;font-weight:600;letter-spacing:1.2px;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
-.case-body h3{font-family:var(--head);font-size:18px;font-weight:600;color:#fff;margin-bottom:9px;line-height:1.28;letter-spacing:-.3px}
-.case-body p{font-size:14px;color:var(--muted);line-height:1.62;margin-bottom:22px}
-.case-metrics{display:flex;gap:22px;padding-top:18px;border-top:1px solid var(--line)}
-.cm .cmv{font-family:var(--head);font-size:19px;font-weight:600;color:#fff}
-.cm .cmv b{color:var(--blue);font-weight:600}
-.cm .cml{font-size:11.5px;color:var(--muted-2);margin-top:3px}
-
-/* ===== LEADERSHIP ===== */
-.team{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
-.leader{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:30px 24px;text-align:center;transition:transform .4s,border-color .4s}
-.leader:hover{transform:translateY(-6px);border-color:rgba(45,107,255,.28)}
-.avatar{width:92px;height:92px;border-radius:50%;margin:0 auto 18px;display:flex;align-items:center;justify-content:center;font-family:var(--head);font-size:30px;font-weight:600;color:#fff;letter-spacing:.5px;position:relative;border:1px solid var(--line-2)}
-.avatar::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(45,107,255,.22);transition:transform .4s}
-.leader:hover .avatar::after{transform:scale(1.08)}
-.av-a{background:linear-gradient(135deg,#2d6bff,#1e3a5f)}
-.av-b{background:linear-gradient(135deg,#1e3a5f,#0d1c34)}
-.av-c{background:linear-gradient(135deg,#3a6fbf,#2d6bff)}
-.av-d{background:linear-gradient(135deg,#16335c,#2d6bff)}
-.leader h4{font-family:var(--head);font-size:17px;font-weight:600;color:#fff;margin-bottom:4px}
-.leader .role{font-size:13px;color:var(--blue);font-weight:500;margin-bottom:12px}
-.leader .bio{font-size:12.5px;color:var(--muted-2);line-height:1.55}
-.leader-soc{display:flex;justify-content:center;gap:9px;margin-top:16px}
-.leader-soc button{width:34px;height:34px;border-radius:9px;border:1px solid var(--line);background:none;display:flex;align-items:center;justify-content:center;color:var(--muted-2);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
-.leader-soc button:hover{background:var(--blue);border-color:var(--blue);color:#fff}
-
-/* ===== CONTACT ===== */
-.contact-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:44px;align-items:start}
-.form-wrap{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:38px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.fg{margin-bottom:20px}
-.fg label{display:block;font-size:13px;font-weight:600;color:var(--silver);margin-bottom:7px;letter-spacing:.2px}
-.fg label .req{color:var(--blue)}
-.fg input,.fg textarea,.fg select{width:100%;padding:13px 15px;background:rgba(255,255,255,.035);border:1px solid var(--line-2);border-radius:9px;color:#fff;font-family:var(--body);font-size:14px;transition:border-color .2s,box-shadow .2s;outline:none}
-.fg input::placeholder,.fg textarea::placeholder{color:#5d6878}
-.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(45,107,255,.14)}
-.fg textarea{resize:vertical;min-height:120px}
-.fg select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='none' stroke='%238a96a8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 6l4 4 4-4'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 15px center;padding-right:40px;cursor:pointer}
-.fg select option{background:var(--navy);color:#fff}
-.fg.invalid input,.fg.invalid textarea{border-color:var(--err);box-shadow:0 0 0 3px rgba(255,93,108,.12)}
-.err-msg{display:none;align-items:center;gap:6px;font-size:12.5px;color:var(--err);margin-top:7px}
-.err-msg svg{flex-shrink:0}
-.fg.invalid .err-msg{display:flex}
-.btn-submit{width:100%;padding:15px;background:var(--blue);color:#fff;border:none;border-radius:9px;font-size:15px;font-weight:600;cursor:pointer;transition:background .25s,transform .25s,box-shadow .25s;display:flex;align-items:center;justify-content:center;gap:9px}
-.btn-submit:hover{background:var(--blue-d);transform:translateY(-2px);box-shadow:0 12px 32px rgba(45,107,255,.32)}
-.form-success{display:none;text-align:center;padding:34px 20px;animation:fadeUp .5s ease}
-.form-success.show{display:block}
-.form-success .ok-ic{width:64px;height:64px;border-radius:50%;background:rgba(51,201,138,.12);border:1px solid rgba(51,201,138,.35);display:flex;align-items:center;justify-content:center;color:var(--ok);margin:0 auto 20px}
-.form-success h3{font-family:var(--head);font-size:21px;color:#fff;margin-bottom:8px}
-.form-success p{font-size:14.5px;color:var(--muted)}
-@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-
-.cinfo{display:flex;flex-direction:column;gap:20px}
-.cinfo-card{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:28px}
-.cinfo-card h3{font-family:var(--head);font-size:17px;font-weight:600;color:#fff;margin-bottom:18px}
-.detail{display:flex;align-items:flex-start;gap:14px;padding:13px 0;border-bottom:1px solid var(--line)}
-.detail:last-child{border-bottom:none;padding-bottom:0}
-.detail:first-of-type{padding-top:0}
-.detail-ic{width:42px;height:42px;border-radius:11px;background:rgba(45,107,255,.10);border:1px solid rgba(45,107,255,.16);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--blue)}
-.detail-tx strong{display:block;font-size:14px;color:#fff;margin-bottom:3px;font-weight:600}
-.detail-tx span{font-size:13px;color:var(--muted);line-height:1.5}
-
-/* ===== FOOTER ===== */
-.footer{background:rgba(0,0,0,.28);border-top:1px solid var(--line);padding:70px 0 0}
-.footer-grid{display:grid;grid-template-columns:2.2fr 1fr 1fr 1fr;gap:40px}
-.footer-brand p{font-size:14px;color:var(--muted-2);line-height:1.7;margin-top:18px;max-width:320px}
-.footer-soc{display:flex;gap:10px;margin-top:22px}
-.footer-soc button{width:38px;height:38px;border-radius:9px;border:1px solid var(--line);background:none;display:flex;align-items:center;justify-content:center;color:var(--muted-2);cursor:pointer;transition:background .2s,border-color .2s,color .2s}
-.footer-soc button:hover{background:var(--blue);border-color:var(--blue);color:#fff}
-.footer-col h4{font-family:var(--head);font-size:13px;font-weight:600;color:#fff;margin-bottom:18px;letter-spacing:1px;text-transform:uppercase}
-.footer-col li{margin-bottom:11px}
-.footer-col a{font-size:14px;color:var(--muted-2);transition:color .2s;cursor:pointer}
-.footer-col a:hover{color:#fff}
-.footer-bottom{border-top:1px solid var(--line);padding:24px 0;margin-top:54px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px}
-.footer-bottom p{font-size:13px;color:var(--muted-2)}
-.fb-links{display:flex;gap:22px}
-.fb-links a{font-size:13px;color:var(--muted-2);transition:color .2s;cursor:pointer}
-.fb-links a:hover{color:var(--silver)}
-
-/* ===== REVEAL ===== */
-.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
-.reveal.visible{opacity:1;transform:none}
-.stagger>*{opacity:0;transform:translateY(28px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1)}
-.stagger.visible>*{opacity:1;transform:none}
-.stagger.visible>*:nth-child(2){transition-delay:.08s}
-.stagger.visible>*:nth-child(3){transition-delay:.16s}
-.stagger.visible>*:nth-child(4){transition-delay:.24s}
-.stagger.visible>*:nth-child(5){transition-delay:.32s}
-.stagger.visible>*:nth-child(6){transition-delay:.4s}
-
-/* ===== RESPONSIVE ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--red:#D81413;--white:#ffffff;--dark:#1a1a1a;--gray:#f5f5f5;--gray-dark:#888;--transition:all 0.4s cubic-bezier(0.25,0.46,0.45,0.94)}
+html{scroll-behavior:smooth;scrollbar-width:thin}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--dark);overflow-x:hidden;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+/* NAV */
+nav{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1.2rem 4rem;display:flex;align-items:center;justify-content:space-between;transition:var(--transition);background:transparent}
+nav.scrolled{background:rgba(255,255,255,0.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);box-shadow:0 1px 20px rgba(0,0,0,0.06)}
+.nav-logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.3rem;color:var(--white);transition:var(--transition)}
+nav.scrolled .nav-logo{color:var(--dark)}
+.nav-logo .logo-dot{width:10px;height:10px;background:var(--red);border-radius:50%;display:inline-block}
+.nav-links{display:flex;align-items:center;gap:2.5rem;list-style:none}
+.nav-links > li{position:relative}
+.nav-links > li > a{font-size:0.85rem;font-weight:500;letter-spacing:0.02em;color:rgba(255,255,255,0.85);transition:var(--transition);padding:0.5rem 0;position:relative}
+nav.scrolled .nav-links > li > a{color:rgba(26,26,26,0.8)}
+.nav-links > li > a:hover{color:var(--red)}
+.nav-links > li > a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:var(--red);transition:var(--transition)}
+.nav-links > li > a:hover::after{width:100%}
+/* Dropdown */
+.dropdown-menu{position:absolute;top:100%;left:50%;transform:translateX(-50%) translateY(10px);background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);min-width:240px;border-radius:12px;padding:0.8rem;opacity:0;visibility:hidden;transition:all 0.3s ease;box-shadow:0 20px 60px rgba(0,0,0,0.12);pointer-events:none}
+.nav-links > li:hover .dropdown-menu{opacity:1;visibility:visible;transform:translateX(-50%) translateY(0);pointer-events:auto}
+.dropdown-menu a{display:flex;align-items:center;gap:12px;padding:0.75rem 1rem;border-radius:8px;color:var(--dark);font-size:0.85rem;font-weight:500;transition:var(--transition)}
+.dropdown-menu a:hover{background:#f8f8f8;color:var(--red)}
+.dropdown-menu .dd-dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex-shrink:0}
+/* Nav actions */
+.nav-actions{display:flex;align-items:center;gap:1.5rem}
+.lang-toggle{display:flex;gap:0.3rem;font-size:0.8rem;font-weight:600}
+.lang-toggle a{padding:0.25rem 0.5rem;border-radius:4px;color:rgba(255,255,255,0.7);transition:var(--transition)}
+nav.scrolled .lang-toggle a{color:rgba(26,26,26,0.6)}
+.lang-toggle a.active{color:var(--red);background:rgba(216,20,19,0.1)}
+.lang-toggle a:hover{color:var(--red)}
+.btn-portal{font-size:0.78rem;font-weight:600;padding:0.6rem 1.4rem;border:1.5px solid rgba(255,255,255,0.3);border-radius:50px;color:var(--white);transition:var(--transition);letter-spacing:0.02em}
+nav.scrolled .btn-portal{border-color:rgba(26,26,26,0.2);color:var(--dark)}
+.btn-portal:hover{background:var(--red);border-color:var(--red);color:var(--white)!important}
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;cursor:pointer;gap:5px;z-index:1001}
+.hamburger span{width:24px;height:2px;background:var(--white);transition:var(--transition);border-radius:2px}
+nav.scrolled .hamburger span{background:var(--dark)}
+.hamburger.active span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.active span:nth-child(2){opacity:0}
+.hamburger.active span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+/* SECTION BASE */
+section{min-height:100vh;position:relative;overflow:hidden}
+.section-inner{max-width:1400px;margin:0 auto;padding:6rem 4rem;position:relative;z-index:2}
+/* HERO */
+#hero{height:100vh;display:flex;align-items:center;background:var(--dark);position:relative}
+#hero .hero-bg{position:absolute;inset:0;background:linear-gradient(135deg,#1a1a1a 0%,#2a2a2a 50%,#1a1a1a 100%);z-index:0}
+#hero .hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(216,20,19,0.08) 0%,transparent 70%);z-index:0}
+.hero-grid{position:absolute;inset:0;z-index:0;opacity:0.03;background-image:linear-gradient(rgba(255,255,255,0.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.1) 1px,transparent 1px);background-size:60px 60px}
+#hero .section-inner{display:flex;flex-direction:column;justify-content:center;min-height:100vh}
+.hero-content{max-width:900px}
+.hero-subtitle{font-size:0.85rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:2rem;opacity:0;animation:fadeUp 0.8s ease forwards 0.3s}
+.hero-title{font-size:clamp(3.5rem,8vw,7rem);font-weight:800;line-height:1.05;margin-bottom:1.5rem;color:var(--white);min-height:1.2em}
+.hero-title .char{display:inline-block;opacity:0;transform:translateY(60px) rotateX(-40deg);transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)}
+.hero-title .char.revealed{opacity:1;transform:translateY(0) rotateX(0)}
+.hero-desc{font-size:clamp(1rem,1.3vw,1.25rem);font-weight:300;color:rgba(255,255,255,0.6);max-width:600px;margin-bottom:3rem;line-height:1.8;opacity:0;animation:fadeUp 0.8s ease forwards 0.8s}
+.btn-primary{display:inline-flex;align-items:center;gap:12px;padding:1rem 2.4rem;background:var(--red);color:var(--white);font-weight:600;font-size:0.9rem;border-radius:50px;border:none;cursor:pointer;transition:var(--transition);letter-spacing:0.02em}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 15px 40px rgba(216,20,19,0.3)}
+.btn-primary .arrow{transition:transform 0.3s ease;display:inline-block}
+.btn-primary:hover .arrow{transform:translateX(6px)}
+.scroll-indicator{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.8rem;color:rgba(255,255,255,0.3);font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;animation:fadeUp 0.8s ease forwards 1.2s;opacity:0}
+.scroll-line{width:1px;height:60px;background:linear-gradient(to bottom,var(--red),transparent);animation:scrollPulse 2s ease infinite}
+/* ABOUT */
+#about{background:var(--white);position:relative}
+#about .section-inner{display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:center;min-height:100vh}
+.about-label{font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1.5rem}
+.about-text .word{display:inline-block;opacity:0;transform:translateY(30px);transition:all 0.6s cubic-bezier(0.25,0.46,0.45,0.94)}
+.about-text .word.revealed{opacity:1;transform:translateY(0)}
+.about-text p{font-size:clamp(1.1rem,1.5vw,1.4rem);font-weight:300;color:var(--dark);line-height:1.8}
+.about-text strong{color:var(--red);font-weight:600}
+.about-details p{font-size:0.95rem;color:#666;line-height:1.8;margin-bottom:2rem}
+.btn-outline{display:inline-flex;align-items:center;gap:10px;padding:0.85rem 2rem;border:1.5px solid var(--dark);border-radius:50px;font-weight:600;font-size:0.85rem;transition:var(--transition);background:transparent}
+.btn-outline:hover{background:var(--red);border-color:var(--red);color:var(--white)}
+/* STATS */
+#stats{background:var(--gray);padding:5rem 0;position:relative}
+#stats .section-inner{padding:3rem 4rem;min-height:auto}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem}
+.stats-row-2{display:grid;grid-template-columns:repeat(3,1fr);gap:3rem;margin-top:3rem;padding-top:3rem;border-top:1px solid rgba(0,0,0,0.06)}
+.stat-item{text-align:center}
+.stat-number{font-size:clamp(2rem,3vw,3.2rem);font-weight:800;color:var(--red);line-height:1.1;margin-bottom:0.3rem}
+.stat-label{font-size:0.85rem;color:#888;font-weight:400}
+/* SOLUTIONS */
+#solutions{background:var(--white);position:relative}
+#solutions .section-inner{padding:8rem 4rem;min-height:100vh}
+.solutions-header{text-align:center;margin-bottom:5rem}
+.solutions-header .sec-label{font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
+.solutions-header h2{font-size:clamp(2rem,3vw,3rem);font-weight:700;color:var(--dark);max-width:600px;margin:0 auto}
+.solutions-header .sec-desc{font-size:1rem;color:#888;max-width:500px;margin:1rem auto 0;line-height:1.7}
+.solutions-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1.5rem}
+.solution-card{background:var(--gray);border-radius:20px;padding:2.5rem 2rem;cursor:pointer;transition:var(--transition);position:relative;overflow:hidden;border:1px solid transparent}
+.solution-card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,0.08);border-color:rgba(216,20,19,0.15);background:var(--white)}
+.solution-card .card-accent{position:absolute;top:0;left:0;width:100%;height:4px;background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform 0.5s ease}
+.solution-card:hover .card-accent{transform:scaleX(1)}
+.solution-card .card-icon{width:48px;height:48px;border-radius:12px;background:rgba(216,20,19,0.08);display:flex;align-items:center;justify-content:center;margin-bottom:1.5rem;font-size:1.4rem;color:var(--red)}
+.solution-card h3{font-size:1.3rem;font-weight:700;margin-bottom:0.8rem;color:var(--dark)}
+.solution-card .card-desc{font-size:0.85rem;color:#888;line-height:1.7;margin-bottom:1.5rem}
+.solution-card .card-cta{font-size:0.8rem;font-weight:600;color:var(--red);display:flex;align-items:center;gap:6px;transition:var(--transition)}
+.solution-card:hover .card-cta{gap:12px}
+.card-metrics{display:grid;grid-template-columns:1fr 1fr;gap:0.8rem;margin-top:1.5rem;padding-top:1.5rem;border-top:1px solid rgba(0,0,0,0.06)}
+.card-metric .metric-val{font-size:1.1rem;font-weight:700;color:var(--dark)}
+.card-metric .metric-lbl{font-size:0.7rem;color:#999;text-transform:uppercase;letter-spacing:0.05em}
+.card-metric.full{grid-column:1/-1}
+/* MAP */
+#map{background:var(--dark);color:var(--white);position:relative}
+#map .section-inner{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;min-height:100vh}
+.map-content .sec-label{font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
+.map-content h2{font-size:clamp(1.8rem,2.5vw,2.5rem);font-weight:700;margin-bottom:1.5rem;color:var(--white)}
+.map-content .sec-desc{font-size:0.95rem;color:rgba(255,255,255,0.5);line-height:1.8;margin-bottom:2rem}
+.map-visual{position:relative;display:flex;justify-content:center;align-items:center}
+.map-svg{width:100%;max-width:550px;height:auto}
+.map-svg svg{width:100%;height:auto}
+.map-svg .country{fill:rgba(255,255,255,0.06);stroke:rgba(255,255,255,0.12);stroke-width:0.5;transition:fill 0.4s ease}
+.map-svg .country:hover{fill:rgba(216,20,19,0.15)}
+.map-pin{position:absolute;width:16px;height:16px;cursor:pointer;z-index:5}
+.map-pin::before{content:'';position:absolute;width:16px;height:16px;background:var(--red);border-radius:50%;border:3px solid var(--white);box-shadow:0 0 20px rgba(216,20,19,0.4);animation:pinPulse 2s ease infinite}
+.map-pin::after{content:attr(data-label);position:absolute;top:24px;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(0,0,0,0.8);backdrop-filter:blur(10px);color:var(--white);padding:0.3rem 0.8rem;border-radius:6px;font-size:0.7rem;font-weight:500;opacity:0;transition:var(--transition);pointer-events:none}
+.map-pin:hover::after{opacity:1}
+.office-list{display:grid;gap:1rem;margin-top:2rem}
+.office-item{display:flex;gap:1rem;align-items:flex-start;padding:1rem;border-radius:12px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);transition:var(--transition)}
+.office-item:hover{background:rgba(255,255,255,0.06)}
+.office-dot{width:10px;height:10px;border-radius:50%;background:var(--red);margin-top:6px;flex-shrink:0}
+.office-info h4{font-size:0.9rem;font-weight:600;margin-bottom:0.2rem}
+.office-info p{font-size:0.8rem;color:rgba(255,255,255,0.4)}
+/* TEAM */
+#team{background:var(--gray);position:relative}
+#team .section-inner{padding:8rem 4rem;min-height:100vh}
+.team-header{text-align:center;margin-bottom:4rem}
+.team-header .sec-label{font-size:0.75rem;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--red);margin-bottom:1rem}
+.team-header h2{font-size:clamp(1.8rem,2.5vw,2.5rem);font-weight:700;max-width:600px;margin:0 auto}
+.team-header .sec-desc{font-size:1rem;color:#888;max-width:550px;margin:1rem auto 0;line-height:1.7}
+.team-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:2rem}
+.team-card{background:var(--white);border-radius:16px;overflow:hidden;transition:var(--transition);cursor:pointer;box-shadow:0 2px 20px rgba(0,0,0,0.04)}
+.team-card:hover{transform:translateY(-5px);box-shadow:0 15px 40px rgba(0,0,0,0.08)}
+.team-card .team-img{width:100%;height:220px;object-fit:cover;background:var(--gray)}
+.team-card .team-info{padding:1.5rem}
+.team-card .team-role{font-size:0.7rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--red);margin-bottom:0.3rem}
+.team-card .team-name{font-size:1.1rem;font-weight:700;color:var(--dark)}
+.team-card .team-linkedin{display:inline-flex;align-items:center;gap:6px;margin-top:0.8rem;font-size:0.8rem;color:#888;transition:var(--transition)}
+.team-card .team-linkedin:hover{color:var(--red)}
+/* CONTACT / FOOTER */
+#contact{background:var(--dark);color:var(--white);position:relative}
+#contact .section-inner{padding:6rem 4rem 3rem}
+.contact-cta{text-align:center;max-width:700px;margin:0 auto 4rem}
+.contact-cta h2{font-size:clamp(2rem,3vw,3rem);font-weight:700;margin-bottom:1.5rem;line-height:1.2}
+.contact-cta .btn-primary{margin-top:1rem}
+.footer-divider{height:1px;background:rgba(255,255,255,0.08);margin-bottom:2rem}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem;margin-bottom:3rem}
+.footer-brand .logo-dot{width:10px;height:10px;background:var(--red);border-radius:50%;display:inline-block;margin-right:8px}
+.footer-brand h3{font-size:1.2rem;font-weight:700;margin-bottom:1rem}
+.footer-brand p{font-size:0.85rem;color:rgba(255,255,255,0.4);line-height:1.7;max-width:300px}
+.footer-col h4{font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.3);margin-bottom:1.2rem}
+.footer-col a{display:block;font-size:0.85rem;color:rgba(255,255,255,0.5);margin-bottom:0.7rem;transition:var(--transition)}
+.footer-col a:hover{color:var(--red)}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:2rem;border-top:1px solid rgba(255,255,255,0.06)}
+.footer-bottom p{font-size:0.75rem;color:rgba(255,255,255,0.25)}
+.footer-social{display:flex;gap:1rem}
+.footer-social a{width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,0.1);display:flex;align-items:center;justify-content:center;transition:var(--transition);font-size:0.9rem;color:rgba(255,255,255,0.4)}
+.footer-social a:hover{background:var(--red);border-color:var(--red);color:var(--white)}
+/* ANIMATIONS */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes scrollPulse{0%,100%{opacity:0.3;transform:scaleY(1)}50%{opacity:1;transform:scaleY(1.2)}}
+@keyframes pinPulse{0%,100%{box-shadow:0 0 0 0 rgba(216,20,19,0.6)}50%{box-shadow:0 0 0 12px rgba(216,20,19,0)}}
+/* RESPONSIVE */
 @media(max-width:1024px){
-  .hero-inner{grid-template-columns:1fr;gap:48px}
-  .hero-viz{max-width:520px}
-  .grid-3,.cases{grid-template-columns:repeat(2,1fr)}
-  .team{grid-template-columns:repeat(2,1fr)}
-  .footer-grid{grid-template-columns:1fr 1fr}
-  .float-chip{display:none}
+  nav{padding:1rem 2rem}
+  .section-inner{padding:4rem 2rem!important}
+  #about .section-inner{grid-template-columns:1fr;gap:3rem}
+  #map .section-inner{grid-template-columns:1fr;gap:3rem}
+  .solutions-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-grid,.stats-row-2{grid-template-columns:repeat(3,1fr);gap:1.5rem}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
 }
 @media(max-width:768px){
-  .section{padding:72px 0}
-  .nav-links{position:fixed;top:74px;left:0;right:0;flex-direction:column;align-items:stretch;gap:4px;padding:16px 24px 24px;background:rgba(10,22,40,.98);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line);transform:translateY(-12px);opacity:0;pointer-events:none;transition:transform .3s,opacity .3s}
-  .nav-links.open{transform:none;opacity:1;pointer-events:auto}
-  .nav-link{padding:14px 16px;text-align:left}
-  .nav-cta{text-align:center;margin-top:6px}
-  .nav-toggle{display:flex}
-  .metrics-grid{grid-template-columns:1fr 1fr;gap:32px 20px}
-  .grid-3,.cases,.team{grid-template-columns:1fr}
-  .contact-grid{grid-template-columns:1fr;gap:28px}
-  .form-row{grid-template-columns:1fr}
-  .form-wrap{padding:28px 22px}
-  .footer-grid{grid-template-columns:1fr;gap:32px}
-  .footer-bottom{flex-direction:column;text-align:center}
-  .logos{gap:30px}
+  nav{padding:0.8rem 1.5rem}
+  .nav-links{display:none}
+  .nav-actions .btn-portal{display:none}
+  .hamburger{display:flex}
+  .nav-links.open{display:flex;flex-direction:column;position:fixed;top:0;left:0;width:100%;height:100vh;background:rgba(255,255,255,0.98);backdrop-filter:blur(20px);justify-content:center;align-items:center;gap:2rem;z-index:999}
+  .nav-links.open > li > a{color:var(--dark)!important;font-size:1.2rem}
+  .dropdown-menu{position:static;transform:none;opacity:1;visibility:visible;background:transparent;box-shadow:none;padding:0.5rem 0 0.5rem 1rem;pointer-events:auto;min-width:auto}
+  .nav-links.open .nav-actions-mobile{display:flex;flex-direction:column;align-items:center;gap:1rem;margin-top:1rem}
+  .nav-actions-mobile .btn-portal{display:inline-flex;color:var(--dark)!important;border-color:var(--dark)}
+  .hero-title{font-size:clamp(2.5rem,12vw,4rem)}
+  .solutions-grid{grid-template-columns:1fr}
+  .stats-grid,.stats-row-2{grid-template-columns:1fr;gap:2rem}
+  .team-grid{grid-template-columns:repeat(2,1fr)}
+  .footer-grid{grid-template-columns:1fr}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
 }
-@media(prefers-reduced-motion:reduce){
-  *{animation-duration:.001s!important;transition-duration:.001s!important}
-  .reveal,.stagger>*{opacity:1;transform:none}
-}
+/* Parallax layers */
+.parallax-layer{position:absolute;pointer-events:none;z-index:0}
+.parallax-bg{position:absolute;inset:0;z-index:0}
+/* Reveal animations */
+.reveal{opacity:0;transform:translateY(40px);transition:all 0.8s cubic-bezier(0.25,0.46,0.45,0.94)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+/* Counter */
+.counter{display:inline-block}
 </style>
 </head>
 <body>
 
-<!-- ===== NAV ===== -->
-<nav class="nav" id="nav">
-  <div class="container">
-    <div class="nav-inner">
-      <button class="logo" data-scroll="hero" aria-label="MERIDIAN home">
-        <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="7" fill="rgba(45,107,255,.12)"/><path d="M8 22V10l8 7 8-7v12" stroke="#2d6bff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        MERIDIAN
-      </button>
-      <div class="nav-links" id="navLinks">
-        <button class="nav-link" data-scroll="services">Services</button>
-        <button class="nav-link" data-scroll="work">Work</button>
-        <button class="nav-link" data-scroll="leadership">Team</button>
-        <button class="nav-link" data-scroll="contact">Contact</button>
-        <button class="nav-cta" data-scroll="contact">Get in touch</button>
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <span class="logo-dot"></span>
+    <span data-en="Tresmares" data-es="Tresmares">Tresmares</span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" data-en="About Us" data-es="Nosotros">About Us</a></li>
+    <li>
+      <a href="#solutions" data-en="Solutions" data-es="Soluciones">Solutions</a>
+      <div class="dropdown-menu">
+        <a href="#solutions"><span class="dd-dot"></span> <span>Private Equity</span></a>
+        <a href="#solutions"><span class="dd-dot"></span> <span>Direct Lending</span></a>
+        <a href="#solutions"><span class="dd-dot"></span> <span>Fund of Funds</span></a>
+        <a href="#solutions"><span class="dd-dot"></span> <span>Fund Financing</span></a>
       </div>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
+    </li>
+    <li><a href="#map" data-en="Portfolio" data-es="Portfolio">Portfolio</a></li>
+    <li><a href="#team" data-en="Team" data-es="Equipo">Team</a></li>
+    <li><a href="#contact" data-en="Contact" data-es="Contacto">Contact</a></li>
+    <li class="nav-actions-mobile" style="display:none">
+      <div class="lang-toggle">
+        <a href="#" class="active" data-lang="en">EN</a>
+        <a href="#" data-lang="es">ES</a>
+      </div>
+      <a href="#" class="btn-portal" data-en="Investor Portal" data-es="Portal Inversores">Investor Portal</a>
+    </li>
+  </ul>
+  <div class="nav-actions">
+    <div class="lang-toggle">
+      <a href="#" class="active" data-lang="en">EN</a>
+      <a href="#" data-lang="es">ES</a>
+    </div>
+    <a href="#" class="btn-portal" data-en="Investor Portal" data-es="Portal Inversores">Investor Portal</a>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
     </div>
   </div>
 </nav>
 
-<!-- ===== HERO ===== -->
-<section class="hero" id="hero">
-  <div class="hero-bg">
-    <div class="hero-grid"></div>
-    <div class="hero-glow"></div>
-    <div class="hero-glow2"></div>
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="section-inner">
+    <div class="hero-content">
+      <div class="hero-subtitle" data-en="Alternative Investment Firm" data-es="Firma de Inversión Alternativa">Alternative Investment Firm</div>
+      <h1 class="hero-title" id="heroTitle" data-en="Drive to grow" data-es="Impulso para crecer"></h1>
+      <p class="hero-desc" data-en="Tailored financing for high-growth SMEs and private equity managers across Europe." data-es="Financiación a medida para pymes de elevado crecimiento y gestoras de private equity.">Tailored financing for high-growth SMEs and private equity managers across Europe.</p>
+      <a href="#solutions" class="btn-primary" data-en="Explore Solutions" data-es="Soluciones financieras">
+        <span data-en="Explore Solutions" data-es="Soluciones financieras">Explore Solutions</span>
+        <span class="arrow">→</span>
+      </a>
+    </div>
+    <div class="scroll-indicator">
+      <span data-en="Scroll" data-es="Scroll">Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
   </div>
-  <div class="container">
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <div class="badge"><span class="badge-dot"></span> Trusted by leaders across 40+ markets</div>
-        <h1>Navigate complexity.<br>Deliver <em>lasting impact</em>.</h1>
-        <p>MERIDIAN partners with executive teams to solve the defining challenges of modern enterprise — pairing sharp strategic insight with disciplined operational delivery.</p>
-        <div class="hero-actions">
-          <button class="btn btn-primary" data-scroll="contact">Start a conversation
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-          <button class="btn btn-ghost" data-scroll="services">Explore services</button>
-        </div>
-      </div>
-      <div class="hero-viz">
-        <div class="float-chip fc-1">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
-          On-time delivery, every engagement
-        </div>
-        <div class="float-chip fc-2">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v6h-6"/></svg>
-          +23% avg. revenue uplift
-        </div>
-        <div class="dash">
-          <div class="dash-top">
-            <div class="dash-dots"><i></i><i></i><i></i></div>
-            <div class="dash-tag">Impact Overview</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="parallax-bg" style="background:linear-gradient(135deg,#fafafa 0%,#fff 100%)"></div>
+  <div class="section-inner">
+    <div class="about-text reveal">
+      <div class="about-label" data-en="About Tresmares" data-es="Sobre Tresmares">About Tresmares</div>
+      <p id="aboutPara" data-en="A pan-European alternative investment firm focused on driving growth in SMEs. Founded in 2014, we have a team of over 60 professionals across our offices in Madrid, London, and Frankfurt, with the capacity to operate across Europe." data-es="Una firma paneuropea de inversión alternativa enfocada en impulsar el crecimiento de PYMEs. Fundada en 2014, actualmente cuenta con un equipo de más de 60 personas en sus tres oficinas de Madrid, Londres y Frankfurt, desde donde tiene la capacidad de hacer operaciones en toda Europa.">
+      </p>
+      <a href="#team" class="btn-outline" style="margin-top:2rem">
+        <span data-en="Meet our team" data-es="Conoce nuestra historia">Meet our team</span>
+        <span>→</span>
+      </a>
+    </div>
+    <div class="about-details reveal">
+      <div id="stats">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number"><span class="counter" data-target="2014">0</span></div>
+            <div class="stat-label" data-en="Year founded" data-es="Año de fundación">Year founded</div>
           </div>
-          <div class="dash-kpis">
-            <div class="kpi"><div class="lab">Client retention</div><div class="num">98<b>%</b></div></div>
-            <div class="kpi"><div class="lab">Avg. ROI delivered</div><div class="num">4.2<b>x</b></div></div>
+          <div class="stat-item">
+            <div class="stat-number">€<span class="counter" data-target="3500">0</span>m+</div>
+            <div class="stat-label" data-en="Committed capital" data-es="Millones de € comprometidos">Committed capital</div>
           </div>
-          <div class="chart">
-            <div class="chart-h"><span>Quarterly value created</span><b>▲ 31% YoY</b></div>
-            <div class="bars"><i style="height:42%"></i><i style="height:55%"></i><i style="height:48%"></i><i style="height:68%"></i><i style="height:62%"></i><i style="height:80%"></i><i style="height:96%"></i></div>
+          <div class="stat-item">
+            <div class="stat-number">€<span class="counter" data-target="2000">0</span>m+</div>
+            <div class="stat-label" data-en="Capital invested" data-es="Millones de € invertidos">Capital invested</div>
+          </div>
+        </div>
+        <div class="stats-row-2">
+          <div class="stat-item">
+            <div class="stat-number">€4m – €75m</div>
+            <div class="stat-label" data-en="Per company" data-es="Millones de € invertidos por compañía">Per company</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">+<span class="counter" data-target="100">0</span></div>
+            <div class="stat-label" data-en="Companies in 5 countries" data-es="Compañías en 5 países">Companies in 5 countries</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">+<span class="counter" data-target="60">0</span></div>
+            <div class="stat-label" data-en="Employees" data-es="Empleados">Employees</div>
           </div>
         </div>
       </div>
@@ -341,469 +319,500 @@ button{font-family:inherit}
   </div>
 </section>
 
-<!-- ===== TRUSTED ===== -->
-<section class="trusted">
-  <div class="container">
-    <p class="trusted-lead">Partnering with category leaders worldwide</p>
-    <div class="logos">
-      <span class="wordmark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="4"/><path d="M8 12h8"/></svg>NORTHWIND</span>
-      <span class="wordmark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/></svg>HELIOSTAT</span>
-      <span class="wordmark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2l9 5v10l-9 5-9-5V7z"/></svg>VANTAGE</span>
-      <span class="wordmark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 18V6l8 6 8-6v12"/></svg>AXIOM CAP</span>
-      <span class="wordmark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="7" cy="12" r="4"/><circle cx="17" cy="12" r="4"/></svg>QUORUM</span>
-      <span class="wordmark"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12h7l2-5 3 10 2-5h4"/></svg>LUMENGRID</span>
+<!-- SOLUTIONS -->
+<section id="solutions">
+  <div class="section-inner">
+    <div class="solutions-header reveal">
+      <div class="sec-label" data-en="Financial Solutions" data-es="Soluciones financieras">Financial Solutions</div>
+      <h2 data-en="Four strategies designed to offer tailored financing across the capital structure" data-es="Nuestras cuatro estrategias tienen vocación de servicio para ofrecer soluciones de financiación a medida en toda la estructura de capital">
+        Four strategies designed to offer tailored financing across the capital structure
+      </h2>
     </div>
-  </div>
-</section>
-
-<!-- ===== METRICS ===== -->
-<section class="section metrics" style="padding:64px 0">
-  <div class="container">
-    <div class="metrics-grid stagger reveal">
-      <div class="metric"><div class="v" data-count="500" data-suffix="+">0</div><div class="l">Engagements delivered</div></div>
-      <div class="metric"><div class="v" data-count="25" data-suffix="+">0</div><div class="l">Years of practice</div></div>
-      <div class="metric"><div class="v" data-count="98" data-suffix="%">0</div><div class="l">Client retention</div></div>
-      <div class="metric"><div class="v" data-count="40" data-suffix="+">0</div><div class="l">Markets served</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== SERVICES ===== -->
-<section class="section" id="services">
-  <div class="container">
-    <div class="s-head reveal">
-      <span class="eyebrow">What we do</span>
-      <h2 class="s-title">Advisory built for scale</h2>
-      <p class="s-sub">From boardroom strategy to ground-level execution, our multidisciplinary teams deliver outcomes you can measure.</p>
-    </div>
-    <div class="grid-3 stagger reveal">
-      <div class="svc">
-        <div class="svc-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></div>
-        <h3>Corporate Strategy</h3>
-        <p>Market entry, growth strategy, portfolio optimisation, and operating-model design aligned to your long-term vision.</p>
-        <span class="more">Learn more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="6" width="12" height="12" rx="2"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M1 9h3M1 15h3M20 9h3M20 15h3"/><rect x="10" y="10" width="4" height="4" rx="1"/></svg></div>
-        <h3>Digital Transformation</h3>
-        <p>End-to-end digital strategy, AI integration, platform modernisation, and data-driven operating models.</p>
-        <span class="more">Learn more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l8 4v5c0 5-3.4 8.5-8 11-4.6-2.5-8-6-8-11V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Risk & Compliance</h3>
-        <p>Enterprise risk frameworks, regulatory readiness, cyber resilience, and ESG strategy and reporting.</p>
-        <span class="more">Learn more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 14l3-4 3 3 5-7"/><path d="M18 6h3v3"/></svg></div>
-        <h3>M&A Advisory</h3>
-        <p>Target identification, due diligence, valuation, integration planning, and post-merger value capture.</p>
-        <span class="more">Learn more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 00-5.4 5.4L3 18v3h3l6.3-6.3a4 4 0 005.4-5.4l-2.6 2.6-2.4-.4-.4-2.4 2.4-2.4z"/></svg></div>
-        <h3>Operational Excellence</h3>
-        <p>Supply-chain optimisation, cost transformation, process improvement, and performance management.</p>
-        <span class="more">Learn more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-      <div class="svc">
-        <div class="svc-ic"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18M12 3a14 14 0 000 18"/></svg></div>
-        <h3>Talent & Leadership</h3>
-        <p>Executive search, leadership development, culture transformation, and workforce strategy for the future.</p>
-        <span class="more">Learn more <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== CASE STUDIES ===== -->
-<section class="section" id="work" style="background:rgba(0,0,0,.16)">
-  <div class="container">
-    <div class="s-head reveal">
-      <span class="eyebrow">Selected work</span>
-      <h2 class="s-title">Results that speak for themselves</h2>
-      <p class="s-sub">Real engagements, real outcomes — measured in growth, efficiency, and durable market leadership.</p>
-    </div>
-    <div class="cases stagger reveal">
-      <div class="case">
-        <div class="case-thumb">
-          <svg viewBox="0 0 320 188" preserveAspectRatio="none" fill="none" aria-hidden="true">
-            <defs><linearGradient id="g1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2d6bff" stop-opacity=".35"/><stop offset="1" stop-color="#2d6bff" stop-opacity="0"/></linearGradient></defs>
-            <path d="M0 150 L46 130 L92 138 L138 96 L184 110 L230 64 L276 78 L320 40 L320 188 L0 188 Z" fill="url(#g1)"/>
-            <path d="M0 150 L46 130 L92 138 L138 96 L184 110 L230 64 L276 78 L320 40" stroke="#2d6bff" stroke-width="2.5" stroke-linecap="round"/>
-            <g stroke="rgba(192,200,212,.12)" stroke-width="1"><line x1="0" y1="47" x2="320" y2="47"/><line x1="0" y1="94" x2="320" y2="94"/><line x1="0" y1="141" x2="320" y2="141"/></g>
-            <circle cx="230" cy="64" r="4" fill="#fff"/><circle cx="320" cy="40" r="4" fill="#33c98a"/>
-          </svg>
-        </div>
-        <div class="case-body">
-          <span class="case-tag">Financial Services</span>
-          <h3>Digital-first banking overhaul</h3>
-          <p>Led a top-20 global bank through a full-stack digital transformation, modernising core systems and customer experience.</p>
-          <div class="case-metrics">
-            <div class="cm"><div class="cmv">3.2<b>x</b></div><div class="cml">Digital adoption</div></div>
-            <div class="cm"><div class="cmv">$420<b>M</b></div><div class="cml">Cost savings</div></div>
-            <div class="cm"><div class="cmv">18<b>mo</b></div><div class="cml">To market</div></div>
-          </div>
+    <div class="solutions-grid">
+      <!-- Card 1: Private Equity -->
+      <div class="solution-card reveal">
+        <div class="card-accent"></div>
+        <div class="card-icon">📊</div>
+        <h3>Private Equity</h3>
+        <p class="card-desc" data-en="Minority stakes in SMEs, providing strategic capital to support professionalization and accelerate growth." data-es="Participaciones minoritarias en PYMEs, con vocación de convertirnos en capital estratégico para apoyar en su profesionalización y acelerar su crecimiento.">
+          Minority stakes in SMEs, providing strategic capital to support professionalization and accelerate growth.
+        </p>
+        <a href="#" class="card-cta"><span data-en="Learn more" data-es="Más información">Learn more</span> <span>→</span></a>
+        <div class="card-metrics">
+          <div class="card-metric"><div class="metric-val" data-en="AuMs €550m+" data-es="AuMs €550m+">AuMs €550m+</div><div class="metric-lbl">AuMs</div></div>
+          <div class="card-metric"><div class="metric-val">€1m – €25m</div><div class="metric-lbl">EBITDA</div></div>
+          <div class="card-metric"><div class="metric-val">€5m – €35m</div><div class="metric-lbl">Ticket</div></div>
+          <div class="card-metric"><div class="metric-val">10+</div><div class="metric-lbl">Employees</div></div>
         </div>
       </div>
-      <div class="case">
-        <div class="case-thumb">
-          <svg viewBox="0 0 320 188" preserveAspectRatio="none" fill="none" aria-hidden="true">
-            <g transform="translate(160 94)">
-              <circle r="58" fill="none" stroke="rgba(192,200,212,.12)" stroke-width="14"/>
-              <circle r="58" fill="none" stroke="#2d6bff" stroke-width="14" stroke-dasharray="343" stroke-dashoffset="48" stroke-linecap="round" transform="rotate(-90)"/>
-              <circle r="34" fill="none" stroke="rgba(192,200,212,.10)" stroke-width="10"/>
-              <circle r="34" fill="none" stroke="#33c98a" stroke-width="10" stroke-dasharray="214" stroke-dashoffset="34" stroke-linecap="round" transform="rotate(-90)"/>
-            </g>
-          </svg>
-        </div>
-        <div class="case-body">
-          <span class="case-tag">Healthcare</span>
-          <h3>Supply-chain resilience program</h3>
-          <p>Designed a resilient pharmaceutical supply chain for a national health system covering 50M+ patients.</p>
-          <div class="case-metrics">
-            <div class="cm"><div class="cmv">94<b>%</b></div><div class="cml">On-time</div></div>
-            <div class="cm"><div class="cmv">$1.2<b>B</b></div><div class="cml">Saved</div></div>
-            <div class="cm"><div class="cmv">2<b>yr</b></div><div class="cml">Rollout</div></div>
-          </div>
+      <!-- Card 2: Direct Lending -->
+      <div class="solution-card reveal">
+        <div class="card-accent"></div>
+        <div class="card-icon">🏦</div>
+        <h3>Direct Lending</h3>
+        <p class="card-desc" data-en="Tailored financing combining amortizing (TLA) and bullet (TLB) tranches for acquisitions, capex, M&A, dividends, and more." data-es="Financiación a medida que puede combinar tramos amortizables (TLA) y tramos sin amortización hasta el vencimiento / bullet (TLB) para financiar diferentes usos.">
+          Tailored financing combining amortizing (TLA) and bullet (TLB) tranches for acquisitions, capex, M&A, dividends, and more.
+        </p>
+        <a href="#" class="card-cta"><span data-en="Learn more" data-es="Más información">Learn more</span> <span>→</span></a>
+        <div class="card-metrics">
+          <div class="card-metric"><div class="metric-val" data-en="AuMs €2.3bn+" data-es="AuMs €2.3bn+">AuMs €2.3bn+</div><div class="metric-lbl">AuMs</div></div>
+          <div class="card-metric"><div class="metric-val">€2m – €25m</div><div class="metric-lbl">EBITDA</div></div>
+          <div class="card-metric"><div class="metric-val">€5m – €75m</div><div class="metric-lbl">Ticket</div></div>
+          <div class="card-metric"><div class="metric-val">25+</div><div class="metric-lbl">Employees</div></div>
         </div>
       </div>
-      <div class="case">
-        <div class="case-thumb">
-          <svg viewBox="0 0 320 188" preserveAspectRatio="none" fill="none" aria-hidden="true">
-            <g stroke="#2d6bff" stroke-width="1.6"><line x1="160" y1="40" x2="80" y2="94"/><line x1="160" y1="40" x2="240" y2="94"/><line x1="80" y1="94" x2="160" y2="148"/><line x1="240" y1="94" x2="160" y2="148"/><line x1="80" y1="94" x2="240" y2="94"/><line x1="160" y1="40" x2="160" y2="148"/></g>
-            <g fill="#0a1628" stroke="#2d6bff" stroke-width="2"><circle cx="160" cy="40" r="10"/><circle cx="80" cy="94" r="10"/><circle cx="240" cy="94" r="10"/><circle cx="160" cy="148" r="10"/></g>
-            <circle cx="160" cy="40" r="4" fill="#33c98a"/><circle cx="160" cy="148" r="4" fill="#fff"/>
-          </svg>
+      <!-- Card 3: Fund of Funds -->
+      <div class="solution-card reveal">
+        <div class="card-accent"></div>
+        <div class="card-icon">🔷</div>
+        <h3>Fund of Funds</h3>
+        <p class="card-desc" data-en="Investing in leading Buyout and Growth strategies through a selective portfolio of private capital funds, backing experienced managers with consistent top-quartile performance." data-es="Invertimos en estrategias líderes de Buyout y Growth a través de una cartera selectiva de fondos de capital privado.">
+          Investing in leading Buyout and Growth strategies through a selective portfolio of private capital funds.
+        </p>
+        <a href="#" class="card-cta"><span data-en="Learn more" data-es="Más información">Learn more</span> <span>→</span></a>
+        <div class="card-metrics">
+          <div class="card-metric"><div class="metric-val">AuMs €600m</div><div class="metric-lbl">AuMs</div></div>
+          <div class="card-metric"><div class="metric-val">Retail</div><div class="metric-lbl">Target Segment</div></div>
+          <div class="card-metric"><div class="metric-val">PE FoF & Secondaries</div><div class="metric-lbl">Strategy</div></div>
+          <div class="card-metric"><div class="metric-val">5+</div><div class="metric-lbl">Employees</div></div>
         </div>
-        <div class="case-body">
-          <span class="case-tag">Technology</span>
-          <h3>Global M&A integration playbook</h3>
-          <p>Advised on 14 acquisitions over three years, building a repeatable framework that accelerated value capture.</p>
-          <div class="case-metrics">
-            <div class="cm"><div class="cmv">$8.4<b>B</b></div><div class="cml">Value created</div></div>
-            <div class="cm"><div class="cmv">60<b>%</b></div><div class="cml">Faster</div></div>
-            <div class="cm"><div class="cmv">14</div><div class="cml">Deals closed</div></div>
-          </div>
+      </div>
+      <!-- Card 4: Fund Financing -->
+      <div class="solution-card reveal">
+        <div class="card-accent"></div>
+        <div class="card-icon">💼</div>
+        <h3>Fund Financing</h3>
+        <p class="card-desc" data-en="Tailored financing to cover liquidity needs of Private Equity managers, providing operational flexibility." data-es="Financiación a medida para cubrir necesidades de liquidez de gestoras de Private Equity y dar flexibilidad a nivel operacional.">
+          Tailored financing to cover liquidity needs of Private Equity managers, providing operational flexibility.
+        </p>
+        <a href="#" class="card-cta"><span data-en="Learn more" data-es="Más información">Learn more</span> <span>→</span></a>
+        <div class="card-metrics">
+          <div class="card-metric"><div class="metric-val">AuMs €150m</div><div class="metric-lbl">AuMs</div></div>
+          <div class="card-metric"><div class="metric-val">€5m – €50m</div><div class="metric-lbl">Ticket</div></div>
+          <div class="card-metric"><div class="metric-val">15+</div><div class="metric-lbl">Transactions</div></div>
+          <div class="card-metric"><div class="metric-val">2+</div><div class="metric-lbl">Employees</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== LEADERSHIP ===== -->
-<section class="section" id="leadership">
-  <div class="container">
-    <div class="s-head reveal">
-      <span class="eyebrow">Leadership</span>
-      <h2 class="s-title">Experience that earns trust</h2>
-      <p class="s-sub">Our partners bring decades of advisory and operating experience. (Profiles shown are illustrative.)</p>
+<!-- MAP SECTION -->
+<section id="map">
+  <div class="section-inner">
+    <div class="map-content reveal">
+      <div class="sec-label" data-en="Our Presence" data-es="Nuestra expansión">Our Presence</div>
+      <h2 data-en="Pan-European reach from our offices in Madrid, London &amp; Frankfurt" data-es="Unimos fuerzas con el Banco Santander para llegar más lejos">Pan-European reach from our offices in Madrid, London &amp; Frankfurt</h2>
+      <p class="sec-desc" data-en="Thanks to our international reach and independent management, we serve the whole of continental Europe from our offices in Madrid, London and Frankfurt." data-es="Gracias al respaldo internacional del Banco Santander a nuestra gestion independiente, damos servicio a toda Europa continental desde nuestras oficinas de Madrid, Londres y Frankfurt.">
+        Thanks to our international reach and independent management, we serve the whole of continental Europe from our offices in Madrid, London and Frankfurt.
+      </p>
+      <div class="office-list">
+        <div class="office-item">
+          <div class="office-dot"></div>
+          <div class="office-info">
+            <h4>London</h4>
+            <p>11 Albemarle – 2nd floor, W1S 4HH, London</p>
+          </div>
+        </div>
+        <div class="office-item">
+          <div class="office-dot"></div>
+          <div class="office-info">
+            <h4>Madrid</h4>
+            <p>C/ Serrano 37, 4a planta, 28001 Madrid</p>
+          </div>
+        </div>
+        <div class="office-item">
+          <div class="office-dot"></div>
+          <div class="office-info">
+            <h4>Frankfurt</h4>
+            <p>Rathenaupl. 1A – 3rd Floor, 60313 Frankfurt am Main</p>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="team stagger reveal">
-      <div class="leader">
-        <div class="avatar av-a">EV</div>
-        <h4>Elena Voss</h4>
-        <div class="role">Managing Partner</div>
-        <div class="bio">25+ years across corporate strategy and large-scale transformation programs.</div>
-        <div class="leader-soc">
-          <button aria-label="Profile"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-3-1.82-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></button>
-          <button aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button>
+    <div class="map-visual reveal">
+      <div class="map-svg">
+        <svg viewBox="0 0 500 500" xmlns="http://www.w3.org/2000/svg" style="background:transparent;border-radius:20px">
+          <!-- Simplified Europe outline -->
+          <path class="country" d="M180 80 Q200 70 220 80 Q250 65 280 75 Q300 70 310 80 L330 85 Q350 90 360 100 Q370 110 365 120 Q375 130 370 140 Q380 150 375 160 Q380 170 370 175 Q375 185 365 190 Q370 200 360 205 Q350 215 340 210 Q330 220 320 215 Q310 225 300 220 Q290 230 280 225 Q270 235 260 230 Q250 240 240 235 Q230 245 220 240 Q210 250 200 245 Q190 255 180 250 Q170 260 165 250 Q155 255 150 245 Q140 250 135 240 Q125 245 120 235 Q110 240 105 230 Q95 235 90 225 Q80 230 75 220 Q65 225 60 215 Q55 205 60 195 Q50 185 55 175 Q45 165 50 155 Q40 145 45 135 Q35 125 40 115 Q30 105 40 95 Q35 85 45 80 Q40 70 50 65 Q60 60 70 65 Q80 55 90 60 Q100 55 110 60 Q120 50 130 55 Q140 45 150 55 Q160 50 170 60 Q175 55 180 65 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.15)" stroke-width="0.8"/>
+          <!-- UK / Ireland -->
+          <path class="country" d="M80 130 Q85 125 90 130 Q95 120 100 125 Q105 115 110 120 Q105 130 100 135 Q95 140 90 135 Q85 140 80 135 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+          <path class="country" d="M60 140 Q65 135 70 140 Q75 130 80 135 Q75 145 70 150 Q65 145 60 150 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+          <!-- Scandinavia -->
+          <path class="country" d="M120 55 Q130 50 140 55 Q145 45 150 50 Q155 40 160 45 Q165 35 170 40 Q175 30 180 35 Q175 45 170 50 Q165 55 160 55 Q155 60 150 60 Q145 65 140 60 Q135 65 130 60 Q125 65 120 60 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+          <!-- Italy -->
+          <path class="country" d="M190 200 Q200 195 205 200 Q210 195 215 200 Q220 195 225 200 Q220 210 215 215 Q210 220 205 215 Q200 220 195 215 Q190 220 185 215 Q190 210 190 205 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+          <!-- Iberia -->
+          <path class="country" d="M110 210 Q120 205 130 210 Q140 205 145 210 Q150 205 155 210 Q160 205 165 210 Q160 220 155 225 Q150 230 145 225 Q140 230 135 225 Q130 230 125 225 Q120 230 115 225 Q110 220 110 215 Z" fill="rgba(255,255,255,0.06)" stroke="rgba(255,255,255,0.12)" stroke-width="0.5"/>
+          <!-- Dots for office locations -->
+          <circle cx="88" cy="138" r="4" fill="#D81413" stroke="#fff" stroke-width="1.5">
+            <title>London</title>
+          </circle>
+          <circle cx="128" cy="218" r="4" fill="#D81413" stroke="#fff" stroke-width="1.5">
+            <title>Madrid</title>
+          </circle>
+          <circle cx="200" cy="175" r="4" fill="#D81413" stroke="#fff" stroke-width="1.5">
+            <title>Frankfurt</title>
+          </circle>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section id="team">
+  <div class="section-inner">
+    <div class="team-header reveal">
+      <div class="sec-label" data-en="Our Team" data-es="Nuestro Equipo">Our Team</div>
+      <h2 data-en="A team of over 60 professionals with extensive experience in private capital and SME investment." data-es="Somos un equipo de más de 60 profesionales con una amplia trayectoria en capital privado y en la inversión en PYMEs.">
+        A team of over 60 professionals with extensive experience in private capital and SME investment.
+      </h2>
+      <p class="sec-desc" data-en="Our diverse team brings together expertise from leading financial institutions across Europe." data-es="Nuestro diverso equipo reúne experiencia de las principales instituciones financieras de toda Europa.">
+        Our diverse team brings together expertise from leading financial institutions across Europe.
+      </p>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <img class="team-img" src="https://picsum.photos/seed/corporate-team1/400/300" alt="Team member" loading="lazy">
+        <div class="team-info">
+          <div class="team-role" data-en="Partner" data-es="Socio">Partner</div>
+          <div class="team-name">Rene Hartert</div>
+          <a href="#" class="team-linkedin">LinkedIn →</a>
         </div>
       </div>
-      <div class="leader">
-        <div class="avatar av-b">DC</div>
-        <h4>David Chen</h4>
-        <div class="role">Partner, M&A Advisory</div>
-        <div class="bio">Led $40B+ in transactions across technology and industrials sectors.</div>
-        <div class="leader-soc">
-          <button aria-label="Profile"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-3-1.82-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></button>
-          <button aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button>
+      <div class="team-card reveal">
+        <img class="team-img" src="https://picsum.photos/seed/corporate-team2/400/300" alt="Team member" loading="lazy">
+        <div class="team-info">
+          <div class="team-role" data-en="Fund Manager" data-es="Fund Manager">Fund Manager</div>
+          <div class="team-name">Cristina Oñate</div>
+          <a href="#" class="team-linkedin">LinkedIn →</a>
         </div>
       </div>
-      <div class="leader">
-        <div class="avatar av-c">SO</div>
-        <h4>Sarah Okonkwo</h4>
-        <div class="role">Partner, Risk & Compliance</div>
-        <div class="bio">Specialises in regulatory strategy for global financial institutions.</div>
-        <div class="leader-soc">
-          <button aria-label="Profile"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-3-1.82-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></button>
-          <button aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button>
+      <div class="team-card reveal">
+        <img class="team-img" src="https://picsum.photos/seed/corporate-team3/400/300" alt="Team member" loading="lazy">
+        <div class="team-info">
+          <div class="team-role" data-en="Analyst" data-es="Analista">Analyst</div>
+          <div class="team-name">Vasil Peres</div>
+          <a href="#" class="team-linkedin">LinkedIn →</a>
         </div>
       </div>
-      <div class="leader">
-        <div class="avatar av-d">MR</div>
-        <h4>Marcus Rivera</h4>
-        <div class="role">Partner, Digital Practice</div>
-        <div class="bio">Drives AI-first transformations for large, complex enterprises.</div>
-        <div class="leader-soc">
-          <button aria-label="Profile"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-3-1.82-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></button>
-          <button aria-label="Email"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></button>
+      <div class="team-card reveal">
+        <img class="team-img" src="https://picsum.photos/seed/corporate-team4/400/300" alt="Team member" loading="lazy">
+        <div class="team-info">
+          <div class="team-role" data-en="Investor Relations" data-es="Responsable de Relación con Inversores">Investor Relations</div>
+          <div class="team-name">Eva Lozano</div>
+          <a href="#" class="team-linkedin">LinkedIn →</a>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===== CONTACT ===== -->
-<section class="section" id="contact" style="background:rgba(0,0,0,.16)">
-  <div class="container">
-    <div class="s-head center reveal">
-      <span class="eyebrow">Contact</span>
-      <h2 class="s-title">Let's build something together</h2>
-      <p class="s-sub">Tell us about your challenge and we'll connect you with the right team within one business day.</p>
+<!-- CONTACT / FOOTER -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-cta reveal">
+      <h2 data-en="The opportunity to create, grow, and look forward." data-es="La oportunidad para crear, crecer y mirar hacia delante.">
+        The opportunity to create, grow, and look forward.
+      </h2>
+      <a href="mailto:info@tresmarescapital.com" class="btn-primary">
+        <span data-en="Contact us" data-es="Contáctanos">Contact us</span>
+        <span class="arrow">→</span>
+      </a>
     </div>
-    <div class="contact-grid">
-      <div class="form-wrap reveal">
-        <form id="contactForm" novalidate>
-          <div class="form-row">
-            <div class="fg">
-              <label for="name">Full name <span class="req">*</span></label>
-              <input type="text" id="name" name="name" placeholder="Jane Doe" autocomplete="name">
-              <div class="err-msg" data-for="name"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>Please enter your name.</span></div>
-            </div>
-            <div class="fg">
-              <label for="company">Company <span class="req">*</span></label>
-              <input type="text" id="company" name="company" placeholder="Acme Corp" autocomplete="organization">
-              <div class="err-msg" data-for="company"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>Please enter your company.</span></div>
-            </div>
-          </div>
-          <div class="fg">
-            <label for="email">Work email <span class="req">*</span></label>
-            <input type="email" id="email" name="email" placeholder="jane.doe@company.com" autocomplete="email">
-            <div class="err-msg" data-for="email"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>Please enter a valid work email address.</span></div>
-          </div>
-          <div class="fg">
-            <label for="interest">Area of interest</label>
-            <select id="interest" name="interest">
-              <option>Corporate Strategy</option>
-              <option>Digital Transformation</option>
-              <option>Risk &amp; Compliance</option>
-              <option>M&amp;A Advisory</option>
-              <option>Operational Excellence</option>
-              <option>Talent &amp; Leadership</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="fg">
-            <label for="message">How can we help? <span class="req">*</span></label>
-            <textarea id="message" name="message" placeholder="Tell us about your project or question (at least 10 characters)..."></textarea>
-            <div class="err-msg" data-for="message"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M12 8v5M12 16h.01"/></svg><span>Please share a few details (10+ characters).</span></div>
-          </div>
-          <button type="submit" class="btn-submit">Send message
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </button>
-        </form>
-        <div class="form-success" id="formSuccess">
-          <div class="ok-ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
-          <h3>Message sent</h3>
-          <p>Thank you — a member of our team will be in touch within one business day.</p>
-        </div>
-      </div>
-      <div class="cinfo reveal">
-        <div class="cinfo-card">
-          <h3>Our offices</h3>
-          <div class="detail">
-            <div class="detail-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
-            <div class="detail-tx"><strong>New York</strong><span>200 Park Avenue, Suite 3400<br>New York, NY 10166</span></div>
-          </div>
-          <div class="detail">
-            <div class="detail-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
-            <div class="detail-tx"><strong>London</strong><span>One Canada Square, Level 29<br>London E14 5DY, United Kingdom</span></div>
-          </div>
-          <div class="detail">
-            <div class="detail-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
-            <div class="detail-tx"><strong>Singapore</strong><span>1 Raffles Place, #20-01<br>Singapore 048616</span></div>
-          </div>
-        </div>
-        <div class="cinfo-card">
-          <h3>Reach us directly</h3>
-          <div class="detail">
-            <div class="detail-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
-            <div class="detail-tx"><strong>General enquiries</strong><span>hello@meridian-advisory.example</span></div>
-          </div>
-          <div class="detail">
-            <div class="detail-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg></div>
-            <div class="detail-tx"><strong>Switchboard</strong><span>+1 (555) 000-0000</span></div>
-          </div>
-          <div class="detail">
-            <div class="detail-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-            <div class="detail-tx"><strong>Hours</strong><span>Mon–Fri, 9:00–18:00 local time</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="container">
+    <div class="footer-divider"></div>
     <div class="footer-grid">
       <div class="footer-brand">
-        <button class="logo" data-scroll="hero" aria-label="MERIDIAN home">
-          <svg width="30" height="30" viewBox="0 0 32 32" fill="none" aria-hidden="true"><rect width="32" height="32" rx="7" fill="rgba(45,107,255,.12)"/><path d="M8 22V10l8 7 8-7v12" stroke="#2d6bff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          MERIDIAN
-        </button>
-        <p>Strategic advisory for ambitious organisations. Across industries and geographies, we turn complexity into competitive advantage.</p>
-        <div class="footer-soc">
-          <button aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-1 1.83-2 3.77-2 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.4c0-1.3 0-3-1.82-3s-2.1 1.4-2.1 2.9V21H9z"/></svg></button>
-          <button aria-label="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h3l-7.5 8.6L22 22h-6.8l-4.7-6-5.4 6H2l8-9.1L2 2h6.9l4.2 5.5L18 2zm-2.4 18h1.7L8.5 4H6.7z"/></svg></button>
-          <button aria-label="YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23 12s0-3.3-.4-4.9a2.6 2.6 0 00-1.8-1.8C19.2 5 12 5 12 5s-7.2 0-8.8.3a2.6 2.6 0 00-1.8 1.8C1 8.7 1 12 1 12s0 3.3.4 4.9a2.6 2.6 0 001.8 1.8C4.8 19 12 19 12 19s7.2 0 8.8-.3a2.6 2.6 0 001.8-1.8C23 15.3 23 12 23 12zM10 15.5v-7l6 3.5z"/></svg></button>
-        </div>
+        <h3><span class="logo-dot"></span>Tresmares</h3>
+        <p data-en="A pan-European alternative investment firm committed to driving growth in SMEs across the continent." data-es="Una firma paneuropea de inversión alternativa comprometida con impulsar el crecimiento de las PYMEs en todo el continente.">
+          A pan-European alternative investment firm committed to driving growth in SMEs across the continent.
+        </p>
       </div>
       <div class="footer-col">
-        <h4>Services</h4>
-        <ul>
-          <li><a data-scroll="services">Corporate Strategy</a></li>
-          <li><a data-scroll="services">Digital Transformation</a></li>
-          <li><a data-scroll="services">Risk &amp; Compliance</a></li>
-          <li><a data-scroll="services">M&amp;A Advisory</a></li>
-          <li><a data-scroll="services">Operational Excellence</a></li>
-        </ul>
+        <h4 data-en="Solutions" data-es="Soluciones">Solutions</h4>
+        <a href="#">Private Equity</a>
+        <a href="#">Direct Lending</a>
+        <a href="#">Fund of Funds</a>
+        <a href="#">Fund Financing</a>
       </div>
       <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a data-scroll="work">Selected Work</a></li>
-          <li><a data-scroll="leadership">Leadership</a></li>
-          <li><a data-scroll="contact">Contact</a></li>
-          <li><a data-scroll="hero">Overview</a></li>
-        </ul>
+        <h4 data-en="Company" data-es="Compañía">Company</h4>
+        <a href="#about" data-en="About Us" data-es="Nosotros">About Us</a>
+        <a href="#team" data-en="Team" data-es="Equipo">Team</a>
+        <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
       </div>
       <div class="footer-col">
-        <h4>Industries</h4>
-        <ul>
-          <li><a data-scroll="work">Financial Services</a></li>
-          <li><a data-scroll="work">Healthcare</a></li>
-          <li><a data-scroll="work">Technology</a></li>
-          <li><a data-scroll="work">Energy &amp; Industrials</a></li>
-        </ul>
+        <h4 data-en="Legal" data-es="Legal">Legal</h4>
+        <a href="#" data-en="Legal Notice" data-es="Aviso Legal">Legal Notice</a>
+        <a href="#" data-en="Privacy Policy" data-es="Política de Privacidad">Privacy Policy</a>
+        <a href="#" data-en="Cookie Policy" data-es="Política de Cookies">Cookie Policy</a>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>&copy; 2026 MERIDIAN Advisory. All rights reserved. (Fictional brand for portfolio.)</p>
-      <div class="fb-links">
-        <a data-scroll="hero">Privacy</a>
-        <a data-scroll="hero">Terms</a>
-        <a data-scroll="hero">Cookies</a>
+      <p>© 2025 Tresmares Capital. All rights reserved.</p>
+      <div class="footer-social">
+        <a href="#" aria-label="LinkedIn">in</a>
+        <a href="mailto:info@tresmarescapital.com" aria-label="Email">@</a>
       </div>
     </div>
   </div>
-</footer>
+</section>
 
 <script>
-(function(){
-  'use strict';
+document.addEventListener('DOMContentLoaded', function() {
+  // =====================
+  // 1. HERO LETTER-BY-LETTER REVEAL
+  // =====================
+  (function heroReveal() {
+    const titles = {
+      en: 'Drive to grow',
+      es: 'Impulso para crecer'
+    };
+    const h1 = document.getElementById('heroTitle');
+    let currentLang = 'en';
 
-  /* ===== SMOOTH SCROLL (internal, sandbox-safe) ===== */
-  function scrollToId(id){
-    var el=document.getElementById(id);
-    if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-  }
-  document.querySelectorAll('[data-scroll]').forEach(function(el){
-    el.addEventListener('click',function(){
-      scrollToId(el.getAttribute('data-scroll'));
-      navLinks.classList.remove('open');
-      navToggle.classList.remove('open');
-      navToggle.setAttribute('aria-expanded','false');
-    });
-  });
-
-  /* ===== MOBILE NAV ===== */
-  var navToggle=document.getElementById('navToggle');
-  var navLinks=document.getElementById('navLinks');
-  navToggle.addEventListener('click',function(){
-    var open=navLinks.classList.toggle('open');
-    navToggle.classList.toggle('open',open);
-    navToggle.setAttribute('aria-expanded',String(open));
-  });
-  document.addEventListener('click',function(e){
-    if(window.innerWidth<=768 && !e.target.closest('.nav') && navLinks.classList.contains('open')){
-      navLinks.classList.remove('open');
-      navToggle.classList.remove('open');
-      navToggle.setAttribute('aria-expanded','false');
+    function buildChars(text) {
+      h1.innerHTML = '';
+      const words = text.split(' ');
+      words.forEach((word, wi) => {
+        word.split('').forEach((ch, ci) => {
+          const span = document.createElement('span');
+          span.className = 'char';
+          span.textContent = ch === ' ' ? '\u00A0' : ch;
+          if (ch === ' ') span.innerHTML = '&nbsp;';
+          h1.appendChild(span);
+        });
+        if (wi < words.length - 1) {
+          const space = document.createElement('span');
+          space.className = 'char';
+          space.innerHTML = '&nbsp;';
+          h1.appendChild(space);
+        }
+      });
     }
-  });
 
-  /* ===== NAV SCROLLED STATE ===== */
-  var nav=document.getElementById('nav');
-  function onScroll(){ nav.classList.toggle('scrolled',window.scrollY>24); }
-  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+    function revealChars() {
+      const chars = h1.querySelectorAll('.char');
+      chars.forEach((ch, i) => {
+        setTimeout(() => {
+          ch.classList.add('revealed');
+        }, i * 60);
+      });
+    }
 
-  /* ===== SCROLL REVEAL ===== */
-  var io=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(en.isIntersecting){ en.target.classList.add('visible'); io.unobserve(en.target); }
-    });
-  },{threshold:.12,rootMargin:'0px 0px -50px 0px'});
-  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+    buildChars(titles[currentLang]);
+    setTimeout(revealChars, 400);
 
-  /* ===== COUNT-UP ===== */
-  var co=new IntersectionObserver(function(entries){
-    entries.forEach(function(en){
-      if(!en.isIntersecting) return;
-      var el=en.target; co.unobserve(el);
-      var target=parseInt(el.getAttribute('data-count'),10);
-      var suffix=el.getAttribute('data-suffix')||'';
-      var dur=1300, start=null;
-      function tick(ts){
-        if(!start) start=ts;
-        var p=Math.min((ts-start)/dur,1);
-        var eased=1-Math.pow(1-p,3);
-        el.textContent=Math.round(eased*target)+suffix;
-        if(p<1) requestAnimationFrame(tick);
+    // Expose for language toggle
+    window._heroReveal = function(lang) {
+      currentLang = lang;
+      h1.innerHTML = '';
+      buildChars(titles[lang]);
+      setTimeout(revealChars, 100);
+    };
+  })();
+
+  // =====================
+  // 2. ABOUT TEXT WORD REVEAL
+  // =====================
+  (function aboutReveal() {
+    const texts = {
+      en: 'A pan-European alternative investment firm focused on driving growth in SMEs. Founded in 2014, we have a team of over 60 professionals across our offices in Madrid, London, and Frankfurt, with the capacity to operate across Europe.',
+      es: 'Una firma paneuropea de inversión alternativa enfocada en impulsar el crecimiento de PYMEs. Fundada en 2014, actualmente cuenta con un equipo de más de 60 personas en sus tres oficinas de Madrid, Londres y Frankfurt, desde donde tiene la capacidad de hacer operaciones en toda Europa.'
+    };
+    const aboutP = document.getElementById('aboutPara');
+    let currentAboutLang = 'en';
+
+    function buildWords(text) {
+      aboutP.innerHTML = '';
+      const words = text.split(' ');
+      words.forEach((w, i) => {
+        const span = document.createElement('span');
+        span.className = 'word';
+        span.textContent = w + ' ';
+        aboutP.appendChild(span);
+      });
+    }
+
+    function revealWords() {
+      const words = aboutP.querySelectorAll('.word');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            words.forEach((w, i) => {
+              setTimeout(() => w.classList.add('revealed'), i * 40);
+            });
+            observer.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      observer.observe(aboutP);
+    }
+
+    buildWords(texts[currentAboutLang]);
+    setTimeout(revealWords, 500);
+
+    window._aboutReveal = function(lang) {
+      currentAboutLang = lang;
+      aboutP.innerHTML = '';
+      buildWords(texts[lang]);
+      setTimeout(revealWords, 100);
+    };
+  })();
+
+  // =====================
+  // 3. ANIMATED COUNTERS
+  // =====================
+  (function animateCounters() {
+    const counters = document.querySelectorAll('.counter');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const counter = entry.target;
+          const target = parseInt(counter.dataset.target);
+          if (isNaN(target)) return;
+          const duration = 2000;
+          const step = Math.max(1, Math.floor(target / 60));
+          let current = 0;
+          const timer = setInterval(() => {
+            current += step;
+            if (current >= target) {
+              counter.textContent = target.toLocaleString();
+              clearInterval(timer);
+            } else {
+              counter.textContent = current.toLocaleString();
+            }
+          }, duration / 60);
+          observer.unobserve(counter);
+        }
+      });
+    }, { threshold: 0.5 });
+    counters.forEach(c => observer.observe(c));
+  })();
+
+  // =====================
+  // 4. SCROLL REVEAL
+  // =====================
+  (function scrollReveal() {
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    reveals.forEach(el => observer.observe(el));
+  })();
+
+  // =====================
+  // 5. NAVBAR SCROLL EFFECT
+  // =====================
+  (function navScroll() {
+    const nav = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 80) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
       }
-      requestAnimationFrame(tick);
+    }, { passive: true });
+  })();
+
+  // =====================
+  // 6. HAMBURGER MENU
+  // =====================
+  (function hamburger() {
+    const btn = document.getElementById('hamburger');
+    const links = document.getElementById('navLinks');
+    btn.addEventListener('click', function() {
+      btn.classList.toggle('active');
+      links.classList.toggle('open');
+      if (links.classList.contains('open')) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = '';
+      }
     });
-  },{threshold:.5});
-  document.querySelectorAll('[data-count]').forEach(function(el){ co.observe(el); });
-
-  /* ===== FORM VALIDATION ===== */
-  var form=document.getElementById('contactForm');
-  var success=document.getElementById('formSuccess');
-  var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-
-  function setError(name,on){
-    var fg=document.getElementById(name).closest('.fg');
-    fg.classList.toggle('invalid',on);
-  }
-  function validateField(name){
-    var input=document.getElementById(name);
-    var v=input.value.trim();
-    var ok;
-    if(name==='email') ok=emailRe.test(v);
-    else if(name==='message') ok=v.length>=10;
-    else ok=v.length>=2;
-    setError(name,!ok);
-    return ok;
-  }
-
-  ['name','company','email','message'].forEach(function(name){
-    var input=document.getElementById(name);
-    input.addEventListener('blur',function(){ validateField(name); });
-    input.addEventListener('input',function(){
-      if(input.closest('.fg').classList.contains('invalid')) validateField(name);
+    // Close on link click
+    links.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', function() {
+        btn.classList.remove('active');
+        links.classList.remove('open');
+        document.body.style.overflow = '';
+      });
     });
-  });
+  })();
 
-  form.addEventListener('submit',function(e){
-    e.preventDefault();
-    var fields=['name','company','email','message'];
-    var allOk=true, firstBad=null;
-    fields.forEach(function(name){
-      var ok=validateField(name);
-      if(!ok && !firstBad) firstBad=name;
-      if(!ok) allOk=false;
-    });
-    if(!allOk){
-      if(firstBad) document.getElementById(firstBad).focus();
-      return;
+  // =====================
+  // 7. LANGUAGE TOGGLE
+  // =====================
+  (function langToggle() {
+    const langLinks = document.querySelectorAll('.lang-toggle a');
+    const html = document.documentElement;
+
+    function setLang(lang) {
+      html.setAttribute('data-lang', lang);
+      langLinks.forEach(l => l.classList.toggle('active', l.dataset.lang === lang));
+
+      // Update all data-en/data-es attributes
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.dataset[lang]) {
+          if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+            el.placeholder = el.dataset[lang];
+          } else if (el.classList.contains('counter') || el.classList.contains('char') || el.classList.contains('word') || el.closest('.char')) {
+            // skip animated elements handled separately
+          } else {
+            el.textContent = el.dataset[lang];
+          }
+        }
+      });
+
+      // Hero reveal
+      if (window._heroReveal) window._heroReveal(lang);
+      // About reveal
+      if (window._aboutReveal) window._aboutReveal(lang);
     }
-    form.style.display='none';
-    success.classList.add('show');
+
+    langLinks.forEach(a => {
+      a.addEventListener('click', function(e) {
+        e.preventDefault();
+        const lang = this.dataset.lang;
+        setLang(lang);
+      });
+    });
+  })();
+
+  // =====================
+  // 8. PARALLAX ON SCROLL
+  // =====================
+  (function parallax() {
+    window.addEventListener('scroll', function() {
+      const scrolled = window.pageYOffset;
+      document.querySelectorAll('.parallax-bg').forEach(bg => {
+        const speed = 0.3;
+        bg.style.transform = `translateY(${scrolled * speed}px)`;
+      });
+    }, { passive: true });
+  })();
+
+  // =====================
+  // 9. SMOOTH SCROLL FOR ANCHOR LINKS
+  // =====================
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
   });
-})();
+
+  console.log('Tresmares Capital clone initialized successfully ✓');
+});
 </script>
 </body>
 </html>

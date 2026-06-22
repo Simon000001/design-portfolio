@@ -1,1176 +1,838 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROAST — Artisan Cafe</title>
-<meta name="description" content="ROAST — a warm, intimate artisan cafe. Slow-roasted single-origin coffee, hand-laminated pastries, and the coziest corner of the city.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Escape Coffee — Go Against the Grain</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ===== RESET & BASE ===== */
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+      background:#F5F4F2;color:#151515;line-height:1.6;
+      overflow-x:hidden;-webkit-font-smoothing:antialiased;
+    }
+    h1,h2,h3,h4,h5,h6{font-family:'Cormorant Garamond',Georgia,serif;font-weight:600;line-height:1.15}
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button{cursor:pointer;border:none;background:none;font-family:inherit;color:inherit}
+    ul{list-style:none}
+    .container{max-width:1280px;margin:0 auto;padding:0 24px}
 
-<!-- Social meta -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="ROAST — Artisan Cafe">
-<meta property="og:description" content="Slow-roasted single-origin coffee, hand-laminated pastries, and the coziest corner of the city.">
-<meta property="og:image" content="https://images.example/roast-cafe-og.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="ROAST — Artisan Cafe">
-<meta name="twitter:description" content="Slow-roasted single-origin coffee, hand-laminated pastries, and the coziest corner of the city.">
-<meta name="twitter:image" content="https://images.example/roast-cafe-og.jpg">
+    /* ===== SPLIT TEXT (word-by-word reveal) ===== */
+    .split-text{overflow:hidden;display:block;line-height:1.2}
+    .split-text .word-wrap{display:inline-block;overflow:hidden;vertical-align:top}
+    .split-text .word{display:inline-block;transform:translateY(100%);opacity:0;transition:transform 0.8s cubic-bezier(0.16,1,0.3,1),opacity 0.8s ease}
+    .split-text.revealed .word{transform:translateY(0);opacity:1}
+    .split-text .word-wrap:nth-child(1) .word{transition-delay:0.0s}
+    .split-text .word-wrap:nth-child(2) .word{transition-delay:0.08s}
+    .split-text .word-wrap:nth-child(3) .word{transition-delay:0.16s}
+    .split-text .word-wrap:nth-child(4) .word{transition-delay:0.24s}
+    .split-text .word-wrap:nth-child(5) .word{transition-delay:0.32s}
+    .split-text .word-wrap:nth-child(6) .word{transition-delay:0.40s}
+    .split-text .word-wrap:nth-child(7) .word{transition-delay:0.48s}
+    .split-text .word-wrap:nth-child(8) .word{transition-delay:0.56s}
+    .split-text .word-wrap:nth-child(9) .word{transition-delay:0.64s}
+    .split-text .word-wrap:nth-child(10) .word{transition-delay:0.72s}
+    .split-text .word-wrap:nth-child(11) .word{transition-delay:0.80s}
+    .split-text .word-wrap:nth-child(12) .word{transition-delay:0.88s}
+    .split-text .word-wrap:nth-child(13) .word{transition-delay:0.96s}
+    .split-text .word-wrap:nth-child(14) .word{transition-delay:1.04s}
+    .split-text .word-wrap:nth-child(15) .word{transition-delay:1.12s}
+    .split-text .word-wrap:nth-child(16) .word{transition-delay:1.20s}
+    .split-text .word-wrap:nth-child(17) .word{transition-delay:1.28s}
+    .split-text .word-wrap:nth-child(18) .word{transition-delay:1.36s}
+    .split-text .word-wrap:nth-child(19) .word{transition-delay:1.44s}
+    .split-text .word-wrap:nth-child(20) .word{transition-delay:1.52s}
 
-<!-- Inline SVG favicon: a coffee bean -->
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%232c1810'/%3E%3Cellipse cx='16' cy='16' rx='8' ry='11' fill='none' stroke='%23d4a373' stroke-width='2'/%3E%3Cpath d='M16 6 C11 11 21 21 16 26' fill='none' stroke='%23d4a373' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+    /* ===== LANG TOGGLE ===== */
+    [data-lang="en"] .lang-fr{display:none!important}
+    [data-lang="fr"] .lang-en{display:none!important}
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,500&family=Nunito+Sans:ital,opsz,wght@0,6..12,300;0,6..12,400;0,6..12,600;0,6..12,700;1,6..12,400&display=swap" rel="stylesheet">
-<style>
-/* ===== RESET ===== */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
+    /* ===== HEADER ===== */
+    .site-header{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      padding:16px 24px;display:flex;align-items:center;justify-content:space-between;
+      background:rgba(245,244,242,0.85);backdrop-filter:blur(12px);
+      transition:background 0.3s,box-shadow 0.3s;
+    }
+    .site-header.scrolled{background:rgba(245,244,242,0.95);box-shadow:0 1px 8px rgba(0,0,0,0.06)}
+    .header-logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.5rem;font-weight:700;letter-spacing:-0.02em}
+    .header-nav{display:flex;align-items:center;gap:32px}
+    .header-nav a{font-size:0.85rem;font-weight:500;text-transform:uppercase;letter-spacing:0.08em;transition:opacity 0.2s}
+    .header-nav a:hover{opacity:0.6}
+    .header-actions{display:flex;align-items:center;gap:16px}
+    .lang-btn{font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;padding:4px 10px;border:1px solid #151515;border-radius:4px;transition:all 0.2s}
+    .lang-btn:hover{background:#151515;color:#F5F4F2}
+    .cart-btn{position:relative;font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.05em}
+    .cart-count{position:absolute;top:-8px;right:-12px;background:#151515;color:#F5F4F2;font-size:0.65rem;width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:600}
+    .hamburger{display:none;flex-direction:column;gap:5px;padding:4px}
+    .hamburger span{display:block;width:24px;height:2px;background:#151515;border-radius:2px;transition:transform 0.3s}
 
-/* ===== VARIABLES ===== */
-:root {
-  --beige: #f5e6d3;
-  --espresso: #2c1810;
-  --brown: #8b6f47;
-  --caramel: #d4a373;
-  --beige-light: #faf0e6;
-  --beige-dark: #e8d5be;
-  --brown-light: #a8895e;
-  --brown-dark: #6d5537;
-  --cream: #fff9f0;
-  --shadow: rgba(44, 24, 16, 0.10);
-  --shadow-strong: rgba(44, 24, 16, 0.20);
-}
+    /* ===== HERO ===== */
+    .hero{
+      position:relative;min-height:100vh;display:flex;align-items:center;
+      padding:120px 24px 80px;overflow:hidden;
+    }
+    .hero-bg{
+      position:absolute;inset:0;z-index:0;
+    }
+    .hero-bg img{
+      width:100%;height:100%;object-fit:cover;
+      filter:brightness(0.55);transform:scale(1.05);
+      transition:transform 8s cubic-bezier(0.16,1,0.3,1);
+    }
+    .hero:hover .hero-bg img{transform:scale(1)}
+    .hero-overlay{
+      position:absolute;inset:0;z-index:1;
+      background:linear-gradient(135deg,rgba(21,21,21,0.4) 0%,rgba(21,21,21,0.1) 60%,transparent 100%);
+    }
+    .hero-content{position:relative;z-index:2;max-width:900px}
+    .hero-tagline{
+      font-family:'Inter',sans-serif;font-size:0.85rem;font-weight:500;
+      text-transform:uppercase;letter-spacing:0.12em;color:rgba(245,244,242,0.7);margin-bottom:24px
+    }
+    .hero h1{
+      font-size:clamp(3rem,8vw,7rem);font-weight:600;color:#F5F4F2;
+      letter-spacing:-0.03em;line-height:1.05;
+    }
+    .hero-sub{
+      font-size:clamp(1rem,2vw,1.25rem);color:rgba(245,244,242,0.8);
+      margin-top:32px;max-width:520px
+    }
+    .hero-cta{
+      display:inline-flex;align-items:center;gap:8px;margin-top:40px;
+      padding:14px 36px;background:#F5F4F2;color:#151515;
+      font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;
+      border-radius:4px;transition:all 0.3s;
+    }
+    .hero-cta:hover{background:#fff;transform:translateY(-2px)}
+    .scroll-indicator{
+      position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:2;
+      display:flex;flex-direction:column;align-items:center;gap:8px;
+      color:rgba(245,244,242,0.6);font-size:0.7rem;text-transform:uppercase;letter-spacing:0.1em
+    }
+    .scroll-line{width:1px;height:40px;background:rgba(245,244,242,0.4);position:relative;overflow:hidden}
+    .scroll-line::after{content:'';position:absolute;top:-100%;left:0;width:100%;height:100%;background:#F5F4F2;animation:scrollLine 2s ease-in-out infinite}
+    @keyframes scrollLine{0%{top:-100%}100%{top:100%}}
 
-/* ===== BASE ===== */
-body {
-  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--beige);
-  color: var(--espresso);
-  line-height: 1.7;
-  font-weight: 400;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-}
+    /* ===== SECTION COMMON ===== */
+    section{padding:100px 24px}
+    .section-label{
+      font-size:0.75rem;font-weight:600;text-transform:uppercase;
+      letter-spacing:0.15em;color:rgba(21,21,21,0.4);margin-bottom:16px
+    }
+    .section-title{
+      font-size:clamp(2.2rem,5vw,4rem);margin-bottom:16px
+    }
+    .section-desc{
+      font-size:1.1rem;color:rgba(21,21,21,0.65);max-width:600px;margin-bottom:48px
+    }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Fraunces', Georgia, serif;
-  font-weight: 600;
-  line-height: 1.12;
-  color: var(--espresso);
-  letter-spacing: -0.01em;
-}
+    /* ===== PRODUCT CARDS ===== */
+    .products-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:32px}
+    .product-card{
+      background:#fff;border-radius:12px;overflow:hidden;
+      transition:transform 0.4s cubic-bezier(0.16,1,0.3,1),box-shadow 0.4s;
+    }
+    .product-card:hover{transform:translateY(-6px);box-shadow:0 20px 60px rgba(0,0,0,0.08)}
+    .product-card-img{width:100%;height:280px;object-fit:cover}
+    .product-card-body{padding:28px}
+    .product-card h3{font-size:1.6rem;margin-bottom:8px}
+    .product-card .origin{font-size:0.85rem;color:rgba(21,21,21,0.5);margin-bottom:16px}
+    .product-card .price{font-size:1.1rem;font-weight:600;margin-bottom:16px}
+    .spec-table{width:100%;border-collapse:collapse;margin-bottom:16px}
+    .spec-table td{padding:8px 0;border-bottom:1px solid rgba(21,21,21,0.06);font-size:0.85rem}
+    .spec-table td:first-child{font-weight:600;color:rgba(21,21,21,0.5);width:90px}
+    .add-btn{
+      width:100%;padding:12px;background:#151515;color:#F5F4F2;
+      font-size:0.8rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;
+      border-radius:4px;transition:all 0.2s;
+    }
+    .add-btn:hover{opacity:0.85}
 
-a { color: var(--brown); text-decoration: none; transition: color 0.3s ease; }
-a:hover { color: var(--brown-light); }
+    /* ===== COLLECTIONS CAROUSEL ===== */
+    .collections{overflow:hidden}
+    .carousel-track{display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:16px;-webkit-overflow-scrolling:touch}
+    .carousel-track::-webkit-scrollbar{height:4px}
+    .carousel-track::-webkit-scrollbar-track{background:rgba(21,21,21,0.06);border-radius:2px}
+    .carousel-track::-webkit-scrollbar-thumb{background:rgba(21,21,21,0.2);border-radius:2px}
+    .collection-card{
+      flex:0 0 calc(33.333% - 16px);min-width:300px;scroll-snap-align:start;
+      border-radius:12px;overflow:hidden;position:relative;height:420px;
+    }
+    .collection-card img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s}
+    .collection-card:hover img{transform:scale(1.05)}
+    .collection-overlay{
+      position:absolute;inset:0;background:linear-gradient(to top,rgba(21,21,21,0.7) 0%,transparent 50%);
+      display:flex;flex-direction:column;justify-content:flex-end;padding:28px;
+    }
+    .collection-overlay h3{font-size:1.8rem;color:#F5F4F2;margin-bottom:4px}
+    .collection-overlay p{font-size:0.85rem;color:rgba(245,244,242,0.7)}
+    .carousel-arrows{display:flex;gap:12px;margin-top:24px}
+    .carousel-arrow{
+      width:44px;height:44px;border-radius:50%;border:1px solid rgba(21,21,21,0.15);
+      display:flex;align-items:center;justify-content:center;transition:all 0.2s;
+      font-size:1.2rem;
+    }
+    .carousel-arrow:hover{background:#151515;color:#F5F4F2;border-color:#151515}
 
-img, svg { max-width: 100%; display: block; }
+    /* ===== MISSION ===== */
+    .mission{
+      background:#151515;color:#F5F4F2;
+      position:relative;overflow:hidden;
+    }
+    .mission::before{
+      content:'';position:absolute;top:-50%;right:-20%;width:600px;height:600px;
+      background:radial-gradient(circle,rgba(245,244,242,0.03) 0%,transparent 70%);
+      border-radius:50%;
+    }
+    .mission .section-label{color:rgba(245,244,242,0.4)}
+    .mission .section-desc{color:rgba(245,244,242,0.6)}
+    .mission-geo{
+      display:flex;align-items:center;gap:12px;margin-top:32px;
+      font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;letter-spacing:0.02em;
+      color:rgba(245,244,242,0.7);
+    }
+    .mission-geo .pin{font-size:1.5rem}
+    .mission-content{max-width:700px}
 
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.section { padding: 110px 0; position: relative; }
+    /* ===== SUBSCRIPTION ===== */
+    .sub-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:40px;margin-top:48px}
+    .sub-step{position:relative;padding-top:48px}
+    .sub-step-num{
+      font-family:'Cormorant Garamond',Georgia,serif;font-size:3rem;font-weight:700;
+      color:rgba(21,21,21,0.08);position:absolute;top:0;left:0;line-height:1
+    }
+    .sub-step h3{font-size:1.4rem;margin-bottom:8px}
+    .sub-step p{font-size:0.95rem;color:rgba(21,21,21,0.55)}
 
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 9px;
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.22em;
-  color: var(--brown);
-}
-.eyebrow svg { width: 16px; height: 16px; }
+    /* ===== CART DRAWER ===== */
+    .cart-overlay{
+      position:fixed;inset:0;z-index:2000;background:rgba(21,21,21,0.5);
+      opacity:0;pointer-events:none;transition:opacity 0.4s;
+    }
+    .cart-overlay.open{opacity:1;pointer-events:auto}
+    .cart-drawer{
+      position:fixed;top:0;right:0;bottom:0;width:420px;max-width:100vw;
+      z-index:2001;background:#F5F4F2;display:flex;flex-direction:column;
+      transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      box-shadow:-10px 0 40px rgba(0,0,0,0.08);
+    }
+    .cart-drawer.open{transform:translateX(0)}
+    .cart-header{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:24px;border-bottom:1px solid rgba(21,21,21,0.08);
+    }
+    .cart-header h2{font-size:1.4rem}
+    .cart-close{font-size:1.5rem;width:40px;height:40px;display:flex;align-items:center;justify-content:center;border-radius:50%;transition:background 0.2s}
+    .cart-close:hover{background:rgba(21,21,21,0.06)}
+    .cart-body{flex:1;overflow-y:auto;padding:24px}
+    .cart-empty{text-align:center;padding:60px 0;color:rgba(21,21,21,0.4)}
+    .cart-empty-icon{font-size:3rem;margin-bottom:16px}
+    .cart-item{display:flex;gap:16px;padding:16px 0;border-bottom:1px solid rgba(21,21,21,0.06)}
+    .cart-item-img{width:70px;height:70px;border-radius:8px;object-fit:cover}
+    .cart-item-info{flex:1}
+    .cart-item-info h4{font-size:1rem;margin-bottom:4px}
+    .cart-item-info p{font-size:0.85rem;color:rgba(21,21,21,0.5)}
+    .cart-item-qty{display:flex;align-items:center;gap:8px;margin-top:8px}
+    .cart-item-qty button{width:28px;height:28px;border-radius:50%;border:1px solid rgba(21,21,21,0.15);display:flex;align-items:center;justify-content:center;font-size:0.9rem;transition:all 0.2s}
+    .cart-item-qty button:hover{background:#151515;color:#F5F4F2;border-color:#151515}
+    .cart-item-qty span{font-size:0.9rem;font-weight:600;min-width:20px;text-align:center}
+    .cart-footer{padding:24px;border-top:1px solid rgba(21,21,21,0.08)}
+    .cart-total{display:flex;justify-content:space-between;font-size:1.1rem;font-weight:600;margin-bottom:16px}
+    .checkout-btn{
+      width:100%;padding:14px;background:#151515;color:#F5F4F2;
+      font-size:0.85rem;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;
+      border-radius:4px;transition:all 0.2s;
+    }
+    .checkout-btn:hover{opacity:0.85}
 
-.section-head { text-align: center; max-width: 640px; margin: 0 auto 64px; }
-.section-head .eyebrow { margin-bottom: 18px; }
-.section-title {
-  font-size: clamp(2.1rem, 4.6vw, 3.1rem);
-  margin-bottom: 0.6rem;
-}
-.section-title em { font-style: italic; color: var(--brown); font-weight: 500; }
-.section-subtitle {
-  font-size: 1.05rem;
-  color: rgba(44, 24, 16, 0.62);
-  font-weight: 400;
-  max-width: 560px;
-  margin: 0 auto;
-  line-height: 1.65;
-}
+    /* ===== FOOTER ===== */
+    .footer{
+      background:#151515;color:rgba(245,244,242,0.6);padding:60px 24px 32px;
+    }
+    .footer-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:40px;max-width:1280px;margin:0 auto}
+    .footer h4{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.2rem;color:#F5F4F2;margin-bottom:16px}
+    .footer a{display:block;font-size:0.9rem;margin-bottom:8px;transition:color 0.2s}
+    .footer a:hover{color:#F5F4F2}
+    .footer-bottom{border-top:1px solid rgba(245,244,242,0.08);padding-top:24px;margin-top:48px;text-align:center;font-size:0.8rem;max-width:1280px;margin-left:auto;margin-right:auto}
 
-/* ===== NAVBAR ===== */
-.navbar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 20px 0;
-  background: rgba(245, 230, 211, 0.82);
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border-bottom: 1px solid rgba(139, 111, 71, 0);
-  transition: padding 0.35s ease, background 0.35s ease, border-color 0.35s ease;
-}
-.navbar.scrolled {
-  padding: 13px 0;
-  background: rgba(245, 230, 211, 0.95);
-  border-bottom-color: rgba(139, 111, 71, 0.14);
-}
-.navbar .container { display: flex; align-items: center; justify-content: space-between; }
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:768px){
+      .header-nav{display:none}
+      .header-nav.mobile-open{display:flex;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:#F5F4F2;padding:24px;gap:16px;box-shadow:0 8px 24px rgba(0,0,0,0.06)}
+      .hamburger{display:flex}
+      section{padding:64px 16px}
+      .hero{padding:100px 16px 60px}
+      .hero h1{font-size:clamp(2.2rem,10vw,3.5rem)}
+      .products-grid{grid-template-columns:1fr}
+      .collection-card{flex:0 0 280px}
+      .cart-drawer{width:100vw}
+      .sub-steps{grid-template-columns:1fr}
+    }
+    @media(max-width:480px){
+      .hero h1{font-size:2rem}
+      .collection-card{flex:0 0 260px;height:340px}
+    }
 
-.nav-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  font-family: 'Fraunces', serif;
-  font-size: 1.55rem;
-  font-weight: 900;
-  color: var(--espresso);
-  letter-spacing: 0.04em;
-  background: none; border: none; cursor: pointer; padding: 0;
-}
-.nav-logo svg { width: 30px; height: 30px; }
-.nav-logo .word { line-height: 1; }
-
-.nav-links { display: flex; list-style: none; gap: 34px; align-items: center; }
-.nav-links a {
-  font-size: 0.82rem;
-  font-weight: 700;
-  color: var(--espresso);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  position: relative;
-  padding-bottom: 4px;
-}
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: 0; left: 0;
-  width: 0; height: 2px;
-  background: var(--caramel);
-  transition: width 0.3s ease;
-  border-radius: 1px;
-}
-.nav-links a:hover::after { width: 100%; }
-
-.nav-toggle {
-  display: none;
-  background: none; border: none; cursor: pointer; padding: 6px;
-}
-.nav-toggle span {
-  display: block; width: 26px; height: 2px;
-  background: var(--espresso);
-  margin: 6px 0;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-  border-radius: 1px;
-}
-.nav-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
-.nav-toggle.active span:nth-child(2) { opacity: 0; }
-.nav-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
-
-/* ===== HERO ===== */
-.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  position: relative;
-  overflow: hidden;
-  padding: 140px 0 90px;
-  background:
-    radial-gradient(ellipse 70% 55% at 78% 28%, rgba(212, 163, 115, 0.28) 0%, transparent 62%),
-    radial-gradient(ellipse 80% 70% at 12% 88%, rgba(139, 111, 71, 0.18) 0%, transparent 60%),
-    linear-gradient(165deg, var(--beige-light) 0%, var(--beige) 48%, var(--beige-dark) 100%);
-}
-/* organic blob shapes */
-.hero-blob {
-  position: absolute;
-  border-radius: 46% 54% 60% 40% / 52% 44% 56% 48%;
-  filter: blur(2px);
-  pointer-events: none;
-  z-index: 0;
-}
-.hero-blob.b1 {
-  width: 460px; height: 460px;
-  right: -90px; top: 6%;
-  background: radial-gradient(circle at 35% 35%, rgba(212, 163, 115, 0.55), rgba(139, 111, 71, 0.18));
-  opacity: 0.55;
-  animation: drift 18s ease-in-out infinite;
-}
-.hero-blob.b2 {
-  width: 300px; height: 300px;
-  left: -70px; bottom: -40px;
-  background: radial-gradient(circle at 50% 40%, rgba(139, 111, 71, 0.4), rgba(44, 24, 16, 0.06));
-  opacity: 0.45;
-  animation: drift 22s ease-in-out infinite reverse;
-}
-@keyframes drift {
-  0%, 100% { transform: translate(0,0) rotate(0deg); }
-  50% { transform: translate(-26px, 22px) rotate(8deg); }
-}
-/* grain overlay */
-.hero::after {
-  content: '';
-  position: absolute; inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
-  opacity: 0.06;
-  pointer-events: none;
-  z-index: 1;
-  mix-blend-mode: multiply;
-}
-.hero .container {
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 48px;
-  align-items: center;
-}
-.hero-copy { max-width: 580px; }
-.hero-copy .eyebrow { margin-bottom: 24px; }
-.hero h1 {
-  font-size: clamp(3rem, 7.2vw, 5.6rem);
-  font-weight: 900;
-  line-height: 0.98;
-  margin-bottom: 26px;
-  letter-spacing: -0.02em;
-}
-.hero h1 .accent { color: var(--brown); font-style: italic; font-weight: 500; }
-.hero p {
-  font-size: 1.18rem;
-  color: rgba(44, 24, 16, 0.72);
-  max-width: 480px;
-  margin-bottom: 38px;
-  line-height: 1.65;
-}
-.hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
-
-.btn {
-  display: inline-flex; align-items: center; gap: 9px;
-  padding: 15px 32px;
-  border-radius: 100px;
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 0.88rem;
-  font-weight: 700;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease, color 0.3s ease;
-  border: none;
-  letter-spacing: 0.03em;
-}
-.btn svg { width: 17px; height: 17px; }
-.btn-primary { background: var(--espresso); color: var(--beige); }
-.btn-primary:hover {
-  background: var(--brown);
-  color: var(--beige);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(139, 111, 71, 0.34);
-}
-.btn-primary:hover svg { transform: translateY(2px); }
-.btn-primary svg { transition: transform 0.3s ease; }
-.btn-secondary {
-  background: transparent; color: var(--espresso);
-  border: 1.5px solid rgba(44, 24, 16, 0.85);
-}
-.btn-secondary:hover {
-  background: var(--espresso); color: var(--beige);
-  transform: translateY(-3px);
-  border-color: var(--espresso);
-}
-
-/* hero art: cup + steam */
-.hero-art {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.hero-art .cup-frame {
-  width: min(420px, 88%);
-  filter: drop-shadow(0 26px 48px rgba(44, 24, 16, 0.22));
-}
-.steam-path {
-  stroke-dasharray: 60;
-  stroke-dashoffset: 60;
-  animation: steamFlow 3.4s ease-in-out infinite;
-}
-.steam-path.s2 { animation-delay: 0.7s; }
-.steam-path.s3 { animation-delay: 1.4s; }
-@keyframes steamFlow {
-  0% { stroke-dashoffset: 60; opacity: 0; }
-  35% { opacity: 0.85; }
-  100% { stroke-dashoffset: -60; opacity: 0; }
-}
-.hero-stats {
-  position: absolute;
-  bottom: 6%; left: -4%;
-  background: var(--cream);
-  border: 1px solid rgba(139, 111, 71, 0.16);
-  border-radius: 16px;
-  padding: 16px 22px;
-  box-shadow: 0 14px 36px var(--shadow);
-  display: flex;
-  gap: 22px;
-}
-.hero-stats .stat .num {
-  font-family: 'Fraunces', serif;
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--espresso);
-  line-height: 1;
-}
-.hero-stats .stat .lab {
-  font-size: 0.68rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--brown);
-  font-weight: 700;
-}
-
-/* ===== MENU SECTION ===== */
-#menu { background: var(--cream); }
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
-}
-.menu-category {
-  background: var(--beige);
-  border-radius: 22px;
-  padding: 34px 30px;
-  border: 1px solid rgba(139, 111, 71, 0.08);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-}
-.menu-category:hover {
-  transform: translateY(-7px);
-  box-shadow: 0 20px 50px var(--shadow);
-}
-.menu-illus {
-  width: 100%;
-  height: 150px;
-  border-radius: 16px;
-  margin-bottom: 22px;
-  overflow: hidden;
-  display: flex; align-items: center; justify-content: center;
-}
-.menu-illus svg { width: 100%; height: 100%; }
-.menu-cat-head {
-  display: flex; align-items: center; gap: 12px;
-  margin-bottom: 18px;
-}
-.menu-cat-head .ic {
-  width: 38px; height: 38px;
-  flex-shrink: 0;
-  background: var(--espresso);
-  border-radius: 10px;
-  display: flex; align-items: center; justify-content: center;
-}
-.menu-cat-head .ic svg { width: 21px; height: 21px; stroke: var(--caramel); }
-.menu-category h3 { font-size: 1.5rem; }
-
-.menu-item {
-  display: flex; justify-content: space-between; align-items: baseline;
-  padding: 13px 0;
-  border-bottom: 1px solid rgba(139, 111, 71, 0.12);
-}
-.menu-item:last-child { border-bottom: none; }
-.menu-item-name { font-weight: 700; font-size: 0.95rem; }
-.menu-item-desc {
-  display: block;
-  font-size: 0.8rem;
-  color: rgba(44, 24, 16, 0.55);
-  font-weight: 400;
-  margin-top: 2px;
-  line-height: 1.45;
-}
-.menu-item-price {
-  font-family: 'Fraunces', serif;
-  font-size: 1.05rem;
-  font-weight: 600;
-  color: var(--brown);
-  white-space: nowrap;
-  margin-left: 14px;
-}
-
-/* ===== DAILY SPECIALS ===== */
-#specials { background: var(--beige); }
-.specials-card {
-  max-width: 880px;
-  margin: 0 auto;
-  background: var(--espresso);
-  border-radius: 28px;
-  padding: 60px 56px;
-  position: relative;
-  overflow: hidden;
-}
-.specials-card::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(circle 420px at 18% 22%, rgba(212, 163, 115, 0.18) 0%, transparent 70%),
-    radial-gradient(circle 320px at 86% 84%, rgba(139, 111, 71, 0.16) 0%, transparent 70%);
-  pointer-events: none;
-}
-.specials-card > * { position: relative; z-index: 1; }
-.specials-card .section-head { margin-bottom: 44px; }
-.specials-card .section-title { color: var(--beige); }
-.specials-card .section-title em { color: var(--caramel); }
-.specials-card .section-subtitle { color: rgba(245, 230, 211, 0.6); }
-.specials-card .eyebrow { color: var(--caramel); }
-
-.special-item {
-  display: flex; align-items: center; gap: 22px;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(245, 230, 211, 0.1);
-}
-.special-item:last-child { border-bottom: none; }
-.special-badge {
-  flex-shrink: 0;
-  width: 54px; height: 54px;
-  background: rgba(212, 163, 115, 0.14);
-  border: 1px solid rgba(212, 163, 115, 0.35);
-  border-radius: 14px;
-  display: flex; align-items: center; justify-content: center;
-}
-.special-badge svg { width: 28px; height: 28px; stroke: var(--caramel); }
-.special-info h4 { color: var(--beige); font-size: 1.18rem; margin-bottom: 3px; }
-.special-info .tag {
-  display: inline-block;
-  font-size: 0.66rem; font-weight: 700;
-  text-transform: uppercase; letter-spacing: 0.14em;
-  color: var(--caramel);
-  margin-bottom: 5px;
-}
-.special-info p { color: rgba(245, 230, 211, 0.6); font-size: 0.85rem; }
-.special-price {
-  margin-left: auto;
-  font-family: 'Fraunces', serif;
-  font-size: 1.35rem;
-  font-weight: 700;
-  color: var(--caramel);
-  flex-shrink: 0;
-}
-
-/* ===== GALLERY ===== */
-#gallery { background: var(--cream); }
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-.gallery-item {
-  border-radius: 18px;
-  overflow: hidden;
-  aspect-ratio: 3/4;
-  position: relative;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
-  cursor: pointer;
-}
-.gallery-item:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 52px var(--shadow-strong);
-}
-.gallery-item svg { width: 100%; height: 100%; display: block; }
-.gallery-caption {
-  position: absolute;
-  left: 0; right: 0; bottom: 0;
-  padding: 16px 18px;
-  background: linear-gradient(to top, rgba(44, 24, 16, 0.82), transparent);
-  color: var(--beige);
-  font-family: 'Fraunces', serif;
-  font-weight: 600;
-  font-size: 1rem;
-  transform: translateY(6px);
-  opacity: 0.9;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-}
-.gallery-item:hover .gallery-caption { transform: translateY(0); opacity: 1; }
-
-/* ===== STORY ===== */
-#story { background: var(--beige); }
-.story-layout {
-  display: grid;
-  grid-template-columns: 0.9fr 1.1fr;
-  gap: 70px;
-  align-items: center;
-}
-.story-image {
-  border-radius: 22px;
-  overflow: hidden;
-  aspect-ratio: 4/5;
-  box-shadow: 0 24px 60px var(--shadow);
-}
-.story-image svg { width: 100%; height: 100%; }
-.story-text .eyebrow { margin-bottom: 18px; }
-.story-text h2 { font-size: clamp(2rem, 4vw, 2.9rem); margin-bottom: 22px; }
-.story-text h2 em { font-style: italic; color: var(--brown); font-weight: 500; }
-.story-text p {
-  font-size: 1.04rem;
-  color: rgba(44, 24, 16, 0.72);
-  margin-bottom: 18px;
-  line-height: 1.78;
-}
-.story-text .signature {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-size: 1.18rem;
-  color: var(--brown);
-  margin-top: 28px;
-}
-
-/* ===== LOCATION ===== */
-#location { background: var(--cream); }
-.location-card {
-  max-width: 640px;
-  margin: 0 auto;
-  background: var(--beige);
-  border-radius: 22px;
-  padding: 46px 46px;
-  box-shadow: 0 10px 40px var(--shadow);
-  border: 1px solid rgba(139, 111, 71, 0.1);
-}
-.location-detail {
-  display: flex; gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px solid rgba(139, 111, 71, 0.12);
-}
-.location-detail:last-child { border-bottom: none; }
-.location-detail-icon {
-  flex-shrink: 0;
-  width: 42px; height: 42px;
-  background: var(--espresso);
-  border-radius: 11px;
-  display: flex; align-items: center; justify-content: center;
-}
-.location-detail-icon svg { width: 21px; height: 21px; stroke: var(--caramel); }
-.location-detail-content h4 { font-size: 1rem; margin-bottom: 3px; }
-.location-detail-content p { font-size: 0.92rem; color: rgba(44, 24, 16, 0.62); }
-.hours-grid {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 5px 20px;
-  margin-top: 8px;
-}
-.hours-grid .day { font-weight: 600; font-size: 0.9rem; }
-.hours-grid .time { color: rgba(44, 24, 16, 0.6); font-size: 0.9rem; text-align: right; }
-.hours-grid .hl .day, .hours-grid .hl .time { color: var(--brown); font-weight: 700; }
-
-/* newsletter form */
-.location-form {
-  max-width: 640px;
-  margin: 28px auto 0;
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.location-form input {
-  flex: 1;
-  min-width: 200px;
-  padding: 14px 20px;
-  border-radius: 100px;
-  border: 1.5px solid rgba(139, 111, 71, 0.3);
-  background: var(--beige);
-  font-family: 'Nunito Sans', sans-serif;
-  font-size: 0.92rem;
-  color: var(--espresso);
-}
-.location-form input:focus { outline: none; border-color: var(--brown); }
-.location-form button { flex-shrink: 0; }
-.form-feedback {
-  max-width: 640px;
-  margin: 12px auto 0;
-  text-align: center;
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: var(--brown);
-  min-height: 1.2em;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.form-feedback.show { opacity: 1; }
-
-/* ===== FOOTER ===== */
-.footer {
-  background: var(--espresso);
-  color: rgba(245, 230, 211, 0.62);
-  padding: 56px 0 40px;
-  text-align: center;
-}
-.footer-logo {
-  display: inline-flex; align-items: center; gap: 10px;
-  font-family: 'Fraunces', serif;
-  font-size: 1.7rem;
-  font-weight: 900;
-  letter-spacing: 0.05em;
-  color: var(--beige);
-  margin-bottom: 10px;
-}
-.footer-logo svg { width: 30px; height: 30px; }
-.footer p { font-size: 0.85rem; }
-.footer-socials { margin: 22px 0; display: flex; gap: 14px; justify-content: center; }
-.footer-socials a {
-  width: 42px; height: 42px;
-  border: 1px solid rgba(245, 230, 211, 0.16);
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: rgba(245, 230, 211, 0.55);
-  transition: border-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-}
-.footer-socials a svg { width: 18px; height: 18px; }
-.footer-socials a:hover { border-color: var(--caramel); color: var(--caramel); transform: translateY(-3px); }
-
-/* ===== SCROLL ANIMATIONS ===== */
-.fade-in { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease, transform 0.8s ease; }
-.fade-in.visible { opacity: 1; transform: translateY(0); }
-.fade-in-delay-1 { transition-delay: 0.1s; }
-.fade-in-delay-2 { transition-delay: 0.2s; }
-.fade-in-delay-3 { transition-delay: 0.3s; }
-
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0.001ms !important; }
-  .fade-in { opacity: 1; transform: none; }
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 968px) {
-  .section { padding: 84px 0; }
-  .hero { padding: 130px 0 80px; }
-  .hero .container { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-  .hero-copy { max-width: 620px; margin: 0 auto; }
-  .hero-copy .eyebrow, .hero-actions { justify-content: center; }
-  .hero p { margin-left: auto; margin-right: auto; }
-  .hero-art { order: -1; }
-  .hero-art .cup-frame { width: min(300px, 70%); }
-  .hero-stats { left: 0; }
-  .menu-grid { grid-template-columns: 1fr 1fr; }
-  .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-  .story-layout { grid-template-columns: 1fr; gap: 44px; }
-  .story-image { order: -1; max-width: 420px; margin: 0 auto; }
-}
-@media (max-width: 640px) {
-  .nav-links {
-    display: none;
-    position: absolute;
-    top: 100%; left: 0; right: 0;
-    background: rgba(245, 230, 211, 0.98);
-    backdrop-filter: blur(16px);
-    flex-direction: column;
-    padding: 26px;
-    gap: 22px;
-    border-bottom: 1px solid rgba(139, 111, 71, 0.14);
-  }
-  .nav-links.open { display: flex; }
-  .nav-toggle { display: block; }
-  .menu-grid { grid-template-columns: 1fr; }
-  .specials-card { padding: 40px 26px; }
-  .special-item { flex-wrap: wrap; gap: 14px; }
-  .special-price { margin-left: 0; }
-  .gallery-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
-  .location-card { padding: 34px 24px; }
-  .hero-stats { display: none; }
-}
-</style>
+    /* ===== UTILITY ===== */
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+  </style>
 </head>
 <body>
 
-<!-- ===== NAVBAR ===== -->
-<nav class="navbar" id="navbar" role="navigation" aria-label="Primary">
-  <div class="container">
-    <button class="nav-logo" id="navLogo" aria-label="ROAST home">
-      <svg viewBox="0 0 32 32" aria-hidden="true" fill="none">
-        <rect width="32" height="32" rx="7" fill="#2c1810"/>
-        <ellipse cx="16" cy="16" rx="8" ry="11" stroke="#d4a373" stroke-width="2"/>
-        <path d="M16 6 C11 11 21 21 16 26" stroke="#d4a373" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      <span class="word">ROAST</span>
-    </button>
-    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#menu">Menu</a></li>
-      <li><a href="#specials">Specials</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#story">Our Story</a></li>
-      <li><a href="#location">Visit</a></li>
-    </ul>
-  </div>
-</nav>
-
-<!-- ===== HERO ===== -->
-<section class="hero" id="home">
-  <div class="hero-blob b1"></div>
-  <div class="hero-blob b2"></div>
-  <div class="container">
-    <div class="hero-copy">
-      <span class="eyebrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-          <ellipse cx="12" cy="12" rx="5" ry="8"/><path d="M12 5c-3 3 3 11 0 14"/>
-        </svg>
-        Est. 2024 · Small-Batch Roastery
-      </span>
-      <h1>Every cup,<br><span class="accent">slowly</span> made.</h1>
-      <p>Single-origin beans roasted in-house, pastries laminated by hand, and the coziest corner of the city waiting for you.</p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn btn-primary">
-          Explore the Menu
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M19 12l-7 7-7-7"/></svg>
-        </a>
-        <a href="#location" class="btn btn-secondary">Find Us</a>
-      </div>
+  <!-- ===== HEADER ===== -->
+  <header class="site-header" id="header">
+    <a href="#" class="header-logo">Escape Coffee</a>
+    <nav class="header-nav" id="mainNav">
+      <a href="#products" class="lang-en">Shop</a>
+      <a href="#products" class="lang-fr">Boutique</a>
+      <a href="#collections" class="lang-en">Collections</a>
+      <a href="#collections" class="lang-fr">Collections</a>
+      <a href="#mission" class="lang-en">Our Story</a>
+      <a href="#mission" class="lang-fr">Notre Histoire</a>
+      <a href="#subscription" class="lang-en">Subscribe</a>
+      <a href="#subscription" class="lang-fr">S'abonner</a>
+    </nav>
+    <div class="header-actions">
+      <button class="lang-btn" id="langToggle" aria-label="Toggle language">FR</button>
+      <button class="cart-btn" id="cartToggle" aria-label="Open cart">
+        <span class="lang-en">Cart</span>
+        <span class="lang-fr">Panier</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
-    <div class="hero-art">
-      <!-- designed coffee cup + steam -->
-      <svg class="cup-frame" viewBox="0 0 320 320" fill="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="cupBody" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0" stop-color="#fff9f0"/><stop offset="1" stop-color="#e8d5be"/>
-          </linearGradient>
-          <linearGradient id="coffee" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0" stop-color="#6d5537"/><stop offset="1" stop-color="#2c1810"/>
-          </linearGradient>
-          <radialGradient id="saucerG" cx="0.5" cy="0.4" r="0.7">
-            <stop offset="0" stop-color="#faf0e6"/><stop offset="1" stop-color="#d4a373"/>
-          </radialGradient>
-        </defs>
-        <!-- steam -->
-        <path class="steam-path s1" d="M132 64 C120 50 144 40 132 24" stroke="#8b6f47" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
-        <path class="steam-path s2" d="M160 60 C148 46 172 36 160 18" stroke="#8b6f47" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
-        <path class="steam-path s3" d="M188 64 C176 50 200 40 188 24" stroke="#8b6f47" stroke-width="3.5" stroke-linecap="round" opacity="0.7"/>
-        <!-- saucer -->
-        <ellipse cx="160" cy="276" rx="118" ry="26" fill="url(#saucerG)"/>
-        <ellipse cx="160" cy="270" rx="118" ry="24" fill="#f5e6d3"/>
-        <!-- cup body -->
-        <path d="M84 110 H236 L222 232 C220 250 200 262 160 262 C120 262 100 250 98 232 Z" fill="url(#cupBody)" stroke="#8b6f47" stroke-width="2.5"/>
-        <!-- coffee surface -->
-        <ellipse cx="160" cy="116" rx="74" ry="17" fill="url(#coffee)"/>
-        <ellipse cx="160" cy="116" rx="74" ry="17" fill="none" stroke="#8b6f47" stroke-width="2.5"/>
-        <!-- crema swirl -->
-        <path d="M126 116 C140 108 180 124 196 114" stroke="#d4a373" stroke-width="2.5" stroke-linecap="round" opacity="0.7" fill="none"/>
-        <ellipse cx="160" cy="116" rx="40" ry="9" fill="none" stroke="#d4a373" stroke-width="1.5" opacity="0.4"/>
-        <!-- handle -->
-        <path d="M236 138 C282 138 282 206 232 200" stroke="#8b6f47" stroke-width="11" fill="none" stroke-linecap="round"/>
-        <path d="M236 138 C282 138 282 206 232 200" stroke="#faf0e6" stroke-width="4" fill="none" stroke-linecap="round"/>
-      </svg>
-      <div class="hero-stats">
-        <div class="stat"><div class="num">12</div><div class="lab">Origins</div></div>
-        <div class="stat"><div class="num">Daily</div><div class="lab">Fresh Bake</div></div>
-      </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="hero">
+    <div class="hero-bg">
+      <img src="https://picsum.photos/seed/coffee-hero/1600/1000" alt="Coffee beans and brew" loading="eager">
     </div>
-  </div>
-</section>
-
-<!-- ===== MENU ===== -->
-<section class="section" id="menu">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 010 8h-1M6 8h12v9a4 4 0 01-4 4H10a4 4 0 01-4-4z"/><path d="M6 1v3M10 1v3M14 1v3"/></svg>
-        On the Menu
-      </span>
-      <h2 class="section-title">Made <em>in-house</em>, daily</h2>
-      <p class="section-subtitle">From carefully sourced espresso to buttery, flaky pastries — every item crafted by hand each morning.</p>
-    </div>
-
-    <div class="menu-grid">
-
-      <!-- Coffee -->
-      <div class="menu-category fade-in">
-        <div class="menu-illus" style="background:linear-gradient(150deg,#e8d5be,#d4a373);">
-          <svg viewBox="0 0 200 150" fill="none" aria-hidden="true">
-            <path class="steam-path s1" d="M86 44 C78 35 92 30 84 20" stroke="#6d5537" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
-            <path class="steam-path s3" d="M112 44 C104 35 118 30 110 20" stroke="#6d5537" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
-            <path d="M60 64 H132 L126 116 C125 124 116 128 96 128 C76 128 67 124 66 116 Z" fill="#fff9f0" stroke="#2c1810" stroke-width="2.5"/>
-            <ellipse cx="96" cy="66" rx="36" ry="9" fill="#2c1810"/>
-            <path d="M132 76 C158 76 158 108 128 104" stroke="#2c1810" stroke-width="7" fill="none" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="menu-cat-head">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 010 8h-1M4 8h14v9a4 4 0 01-4 4H8a4 4 0 01-4-4z"/></svg></span>
-          <h3>Coffee</h3>
-        </div>
-        <div class="menu-item"><div><span class="menu-item-name">Espresso</span><span class="menu-item-desc">Single-origin, double shot</span></div><span class="menu-item-price">$3.50</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Flat White</span><span class="menu-item-desc">Velvety microfoam over ristretto</span></div><span class="menu-item-price">$4.75</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Pour Over</span><span class="menu-item-desc">Hand-poured, rotating origins</span></div><span class="menu-item-price">$5.50</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Cold Brew</span><span class="menu-item-desc">24-hour steep, silky smooth</span></div><span class="menu-item-price">$5.00</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Oat Milk Latte</span><span class="menu-item-desc">Espresso, steamed oat milk</span></div><span class="menu-item-price">$5.25</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Cortado</span><span class="menu-item-desc">Equal parts espresso &amp; milk</span></div><span class="menu-item-price">$4.25</span></div>
-      </div>
-
-      <!-- Pastries -->
-      <div class="menu-category fade-in fade-in-delay-1">
-        <div class="menu-illus" style="background:linear-gradient(150deg,#f0dcc0,#d4a373);">
-          <svg viewBox="0 0 200 150" fill="none" aria-hidden="true">
-            <!-- croissant -->
-            <path d="M44 96 C54 70 86 56 120 60 C150 64 168 80 162 98 C158 110 140 112 130 104 C124 116 102 118 96 106 C90 118 66 116 60 104 C52 110 40 106 44 96 Z" fill="#fff9f0" stroke="#2c1810" stroke-width="2.5"/>
-            <path d="M70 92 C80 80 96 78 108 84" stroke="#8b6f47" stroke-width="2" stroke-linecap="round"/>
-            <path d="M104 96 C116 84 134 84 146 92" stroke="#8b6f47" stroke-width="2" stroke-linecap="round"/>
-            <path d="M60 102 C66 96 74 96 80 100" stroke="#8b6f47" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="menu-cat-head">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-4 4-7 8-7s8 3 8 7c0 2-2 3-4 3H8c-2 0-4-1-4-3z"/><path d="M8 10v-1M12 9v-1M16 10v-1"/></svg></span>
-          <h3>Pastries</h3>
-        </div>
-        <div class="menu-item"><div><span class="menu-item-name">Croissant</span><span class="menu-item-desc">72-hour lamination, French butter</span></div><span class="menu-item-price">$4.50</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Almond Croissant</span><span class="menu-item-desc">Frangipane filling, flaky top</span></div><span class="menu-item-price">$5.50</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Cinnamon Roll</span><span class="menu-item-desc">Brown-butter glaze, house-made</span></div><span class="menu-item-price">$5.00</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Banana Bread</span><span class="menu-item-desc">Sourdough discard, dark chocolate</span></div><span class="menu-item-price">$4.25</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Morning Bun</span><span class="menu-item-desc">Orange zest &amp; cardamom sugar</span></div><span class="menu-item-price">$4.75</span></div>
-      </div>
-
-      <!-- Specialty -->
-      <div class="menu-category fade-in fade-in-delay-2">
-        <div class="menu-illus" style="background:linear-gradient(150deg,#e2d0b8,#c4ad8a);">
-          <svg viewBox="0 0 200 150" fill="none" aria-hidden="true">
-            <!-- tall glass iced -->
-            <path d="M78 40 H122 L116 122 C115 128 108 130 100 130 C92 130 85 128 84 122 Z" fill="#fff9f0" stroke="#2c1810" stroke-width="2.5"/>
-            <path d="M80 74 H120 L116 122 C115 128 108 130 100 130 C92 130 85 128 84 122 Z" fill="#8b6f47" opacity="0.85"/>
-            <rect x="88" y="84" width="9" height="9" rx="2" fill="#fff9f0" opacity="0.7"/>
-            <rect x="104" y="96" width="9" height="9" rx="2" fill="#fff9f0" opacity="0.6"/>
-            <rect x="94" y="106" width="9" height="9" rx="2" fill="#fff9f0" opacity="0.55"/>
-            <line x1="112" y1="30" x2="106" y2="78" stroke="#d4a373" stroke-width="4" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <div class="menu-cat-head">
-          <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3l1.5 9.5a2 2 0 002 1.7h7a2 2 0 002-1.7L19 3z"/><path d="M12 14v5M8 21h8"/></svg></span>
-          <h3>Specialty</h3>
-        </div>
-        <div class="menu-item"><div><span class="menu-item-name">Honey Lavender Latte</span><span class="menu-item-desc">Local honey, culinary lavender</span></div><span class="menu-item-price">$6.25</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Brown Sugar Oat Milk Shaken</span><span class="menu-item-desc">Brown sugar syrup, oat milk, espresso</span></div><span class="menu-item-price">$6.50</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Matcha Latte</span><span class="menu-item-desc">Ceremonial grade, hand-whisked</span></div><span class="menu-item-price">$5.75</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Turmeric Golden</span><span class="menu-item-desc">Turmeric, ginger, pepper, oat milk</span></div><span class="menu-item-price">$5.50</span></div>
-        <div class="menu-item"><div><span class="menu-item-name">Smoked Maple Latte</span><span class="menu-item-desc">Smoked maple syrup, cinnamon</span></div><span class="menu-item-price">$6.25</span></div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===== DAILY SPECIALS ===== -->
-<section class="section" id="specials">
-  <div class="container">
-    <div class="specials-card fade-in">
-      <div class="section-head">
-        <span class="eyebrow">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-          Today's Board
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <p class="hero-tagline lang-en">Artisan Roastery</p>
+      <p class="hero-tagline lang-fr">Torréfacteur Artisanal</p>
+      <h1>
+        <span class="split-text" id="heroHeading">
+          <span class="word-wrap"><span class="word">Go</span></span>
+          <span class="word-wrap"><span class="word">Against</span></span>
+          <span class="word-wrap"><span class="word">the</span></span>
+          <span class="word-wrap"><span class="word">Grain</span></span>
         </span>
-        <h2 class="section-title">Daily <em>specials</em></h2>
-        <p class="section-subtitle">Hand-picked by our baristas — limited quantities, made fresh.</p>
-      </div>
-
-      <!-- AM special -->
-      <div class="special-item">
-        <div class="special-badge">
-          <!-- sun -->
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
-        </div>
-        <div class="special-info">
-          <span class="tag">AM · Morning</span>
-          <h4>Ethiopian Yirgacheffe Pour Over</h4>
-          <p>Bright floral notes · bergamot · honey finish</p>
-        </div>
-        <span class="special-price">$6.00</span>
-      </div>
-
-      <!-- AM special -->
-      <div class="special-item">
-        <div class="special-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4.5"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.5 1.5M17.5 17.5L19 19M19 5l-1.5 1.5M6.5 17.5L5 19"/></svg>
-        </div>
-        <div class="special-info">
-          <span class="tag">AM · Bakery</span>
-          <h4>Pistachio &amp; Rose Croissant</h4>
-          <p>House pistachio paste · dried rose petals</p>
-        </div>
-        <span class="special-price">$6.75</span>
-      </div>
-
-      <!-- PM special -->
-      <div class="special-item">
-        <div class="special-badge">
-          <!-- moon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1111.2 3 7 7 0 0021 12.8z"/></svg>
-        </div>
-        <div class="special-info">
-          <span class="tag">PM · Evening</span>
-          <h4>Bourbon Vanilla Cold Brew</h4>
-          <p>24-hour steep · Madagascar vanilla · oat milk</p>
-        </div>
-        <span class="special-price">$6.50</span>
-      </div>
+      </h1>
+      <p class="hero-sub lang-en">Single-origin coffee roasted with intention in the heart of the Gaspé Peninsula.</p>
+      <p class="hero-sub lang-fr">Café de spécialité torréfié avec intention au cœur de la Gaspésie.</p>
+      <a href="#products" class="hero-cta lang-en">Discover Our Coffee</a>
+      <a href="#products" class="hero-cta lang-fr">Découvrir Notre Café</a>
     </div>
-  </div>
-</section>
-
-<!-- ===== GALLERY ===== -->
-<section class="section" id="gallery">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20C7 20 4 17 4 13c0-5 7-9 7-9s7 4 7 9c0 4-3 7-7 7z"/><path d="M11 20v-7"/></svg>
-        Inside the Shop
-      </span>
-      <h2 class="section-title">The <em>atmosphere</em></h2>
-      <p class="section-subtitle">Warm light, soft music, and the quiet hum of conversation — find your corner.</p>
+    <div class="scroll-indicator">
+      <span class="lang-en">Scroll</span>
+      <span class="lang-fr">Défiler</span>
+      <div class="scroll-line"></div>
     </div>
+  </section>
 
-    <div class="gallery-grid">
-      <!-- Morning Light -->
-      <div class="gallery-item fade-in">
-        <svg viewBox="0 0 150 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="150" height="200" fill="#e8d5be"/>
-          <rect width="150" height="200" fill="#f5e6d3" opacity="0.4"/>
-          <circle cx="105" cy="48" r="30" fill="#d4a373" opacity="0.8"/>
-          <circle cx="105" cy="48" r="44" fill="#d4a373" opacity="0.25"/>
-          <rect x="20" y="90" width="110" height="80" rx="4" fill="#6d5537" opacity="0.18"/>
-          <line x1="75" y1="60" x2="75" y2="170" stroke="#6d5537" stroke-width="2" opacity="0.25"/>
-          <line x1="20" y1="120" x2="130" y2="120" stroke="#6d5537" stroke-width="2" opacity="0.25"/>
-          <path d="M40 150 q35 -40 70 0" stroke="#fff9f0" stroke-width="3" fill="none" opacity="0.5"/>
-        </svg>
-        <div class="gallery-caption">Morning Light</div>
-      </div>
-      <!-- The Bar -->
-      <div class="gallery-item fade-in fade-in-delay-1">
-        <svg viewBox="0 0 150 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="150" height="200" fill="#d4bd9e"/>
-          <rect x="0" y="130" width="150" height="70" fill="#6d5537"/>
-          <rect x="0" y="125" width="150" height="8" fill="#2c1810"/>
-          <rect x="30" y="60" width="40" height="60" rx="6" fill="#2c1810"/>
-          <rect x="38" y="70" width="24" height="20" rx="3" fill="#d4a373"/>
-          <circle cx="100" cy="100" r="14" fill="#fff9f0"/>
-          <path d="M114 95 q12 0 12 10 t-12 6" stroke="#fff9f0" stroke-width="4" fill="none"/>
-          <path class="steam-path s1" d="M48 50 q-6 -8 0 -16" stroke="#fff9f0" stroke-width="2.5" fill="none" opacity="0.6"/>
-        </svg>
-        <div class="gallery-caption">The Bar</div>
-      </div>
-      <!-- Evening Corner -->
-      <div class="gallery-item fade-in fade-in-delay-2">
-        <svg viewBox="0 0 150 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="150" height="200" fill="#6d5537"/>
-          <rect width="150" height="200" fill="#2c1810" opacity="0.35"/>
-          <path d="M118 38a20 20 0 10 6 24 16 16 0 01-6 -24z" fill="#d4a373" opacity="0.85"/>
-          <circle cx="40" cy="120" r="10" fill="#d4a373" opacity="0.5"/>
-          <rect x="24" y="130" width="32" height="50" rx="4" fill="#2c1810" opacity="0.5"/>
-          <rect x="80" y="150" width="50" height="30" rx="6" fill="#f5e6d3" opacity="0.25"/>
-          <circle cx="40" cy="118" r="22" fill="#d4a373" opacity="0.18"/>
-        </svg>
-        <div class="gallery-caption">Evening Corner</div>
-      </div>
-      <!-- Reading Nook -->
-      <div class="gallery-item fade-in fade-in-delay-3">
-        <svg viewBox="0 0 150 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="150" height="200" fill="#e2d0b8"/>
-          <rect x="22" y="40" width="106" height="120" rx="6" fill="#8b6f47" opacity="0.2"/>
-          <rect x="34" y="54" width="38" height="12" rx="2" fill="#6d5537" opacity="0.7"/>
-          <rect x="34" y="72" width="38" height="12" rx="2" fill="#d4a373" opacity="0.8"/>
-          <rect x="34" y="90" width="38" height="12" rx="2" fill="#2c1810" opacity="0.6"/>
-          <rect x="80" y="54" width="38" height="12" rx="2" fill="#d4a373" opacity="0.6"/>
-          <rect x="80" y="72" width="38" height="12" rx="2" fill="#6d5537" opacity="0.7"/>
-          <path d="M55 150 l40 0 0 26 -40 0 z" fill="#fff9f0" opacity="0.6"/>
-          <line x1="75" y1="150" x2="75" y2="176" stroke="#8b6f47" stroke-width="2" opacity="0.6"/>
-        </svg>
-        <div class="gallery-caption">Reading Nook</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== STORY ===== -->
-<section class="section" id="story">
-  <div class="container">
-    <div class="story-layout">
-      <div class="story-image fade-in">
-        <svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-          <rect width="400" height="500" fill="#d4bd9e"/>
-          <rect width="400" height="500" fill="#8b6f47" opacity="0.12"/>
-          <!-- window light -->
-          <rect x="40" y="40" width="150" height="200" rx="8" fill="#faf0e6" opacity="0.45"/>
-          <line x1="115" y1="40" x2="115" y2="240" stroke="#8b6f47" stroke-width="3" opacity="0.3"/>
-          <line x1="40" y1="140" x2="190" y2="140" stroke="#8b6f47" stroke-width="3" opacity="0.3"/>
-          <!-- counter -->
-          <rect x="0" y="330" width="400" height="170" fill="#6d5537"/>
-          <rect x="0" y="320" width="400" height="14" fill="#2c1810"/>
-          <!-- roaster machine -->
-          <circle cx="290" cy="200" r="60" fill="#2c1810"/>
-          <circle cx="290" cy="200" r="38" fill="#6d5537"/>
-          <circle cx="290" cy="200" r="20" fill="#d4a373"/>
-          <rect x="280" y="60" width="20" height="80" rx="6" fill="#2c1810"/>
-          <!-- cup on counter -->
-          <path d="M120 360 H180 L174 410 C173 418 160 420 150 420 C140 420 127 418 126 410 Z" fill="#faf0e6" stroke="#2c1810" stroke-width="3"/>
-          <ellipse cx="150" cy="362" rx="30" ry="7" fill="#2c1810"/>
-          <path class="steam-path s1" d="M140 340 q-8 -12 0 -24" stroke="#f5e6d3" stroke-width="3" fill="none" opacity="0.7"/>
-          <path class="steam-path s3" d="M162 340 q-8 -12 0 -24" stroke="#f5e6d3" stroke-width="3" fill="none" opacity="0.7"/>
-          <!-- beans -->
-          <ellipse cx="230" cy="380" rx="9" ry="13" fill="#2c1810" transform="rotate(20 230 380)"/>
-          <ellipse cx="255" cy="392" rx="9" ry="13" fill="#3d2415" transform="rotate(-15 255 392)"/>
-          <ellipse cx="242" cy="402" rx="9" ry="13" fill="#2c1810" transform="rotate(35 242 402)"/>
-        </svg>
-      </div>
-      <div class="story-text">
-        <span class="eyebrow fade-in">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="12" rx="5" ry="8"/><path d="M12 5c-3 3 3 11 0 14"/></svg>
-          Our Story
-        </span>
-        <h2 class="fade-in fade-in-delay-1">A small room, a <em>big</em> obsession</h2>
-        <p class="fade-in fade-in-delay-1">ROAST began with a single drum roaster in a borrowed back room and a stubborn belief that a great cup of coffee can quietly change your whole day.</p>
-        <p class="fade-in fade-in-delay-2">Every bean is ethically sourced in small batches from Ethiopia, Colombia, and Guatemala, then roasted here on the bench. Every pastry is laminated, folded, and baked in-house by hand.</p>
-        <p class="fade-in fade-in-delay-3">Whether you're here for a morning pour over, an afternoon pastry, or a quiet evening corner to read — pull up a chair and stay awhile.</p>
-        <div class="signature fade-in fade-in-delay-3">— Elena &amp; Marcus, founders</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== LOCATION / HOURS ===== -->
-<section class="section" id="location">
-  <div class="container">
-    <div class="section-head">
-      <span class="eyebrow">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Come Say Hi
-      </span>
-      <h2 class="section-title">Visit <em>ROAST</em></h2>
-      <p class="section-subtitle">Find your new favourite spot — and join the list for weekly bean drops.</p>
-    </div>
-
-    <div class="location-card fade-in">
-      <div class="location-detail">
-        <div class="location-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
-        <div class="location-detail-content">
-          <h4>Address</h4>
-          <p>247 Grindstone Avenue, Portland, OR 97201</p>
+  <!-- ===== PRODUCTS ===== -->
+  <section id="products">
+    <div class="container">
+      <p class="section-label lang-en">— Our Coffee</p>
+      <p class="section-label lang-fr">— Notre Café</p>
+      <h2 class="section-title split-text" data-reveal="true">
+        <span class="word-wrap"><span class="word lang-en">Currently</span><span class="word lang-fr">Notre</span></span>
+        <span class="word-wrap"><span class="word lang-en">Roasting</span><span class="word lang-fr">Sélection</span></span>
+      </h2>
+      <p class="section-desc lang-en">Ethically sourced, small-batch roasted coffees from the world's best growing regions.</p>
+      <p class="section-desc lang-fr">Cafés éthiques torréfiés en petits lots des meilleures régions productrices.</p>
+      <div class="products-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <img class="product-card-img" src="https://picsum.photos/seed/coffee-bag-ethiopia/600/400" alt="Ethiopia Yirgacheffe" loading="lazy">
+          <div class="product-card-body">
+            <h3 class="lang-en">Ethiopia Yirgacheffe</h3>
+            <h3 class="lang-fr">Éthiopie Yirgacheffe</h3>
+            <p class="origin lang-en">🇪🇹 Yirgacheffe, Ethiopia</p>
+            <p class="origin lang-fr">🇪🇹 Yirgacheffe, Éthiopie</p>
+            <p class="price">$22.00 <span style="font-size:0.8rem;font-weight:400;color:rgba(21,21,21,0.4)">CAD / 340g</span></p>
+            <table class="spec-table">
+              <tr><td class="lang-en">Origin</td><td class="lang-fr">Origine</td><td>Yirgacheffe, Ethiopia</td></tr>
+              <tr><td class="lang-en">Type</td><td class="lang-fr">Type</td><td>Single Origin</td></tr>
+              <tr><td class="lang-en">Process</td><td class="lang-fr">Procédé</td><td>Washed</td></tr>
+              <tr><td class="lang-en">Notes</td><td class="lang-fr">Notes</td><td class="lang-en">Bergamot · Jasmine · Honey</td><td class="lang-fr">Bergamote · Jasmin · Miel</td></tr>
+            </table>
+            <button class="add-btn" data-product="Ethiopia Yirgacheffe" data-price="22.00">
+              <span class="lang-en">Add to Cart</span>
+              <span class="lang-fr">Ajouter au Panier</span>
+            </button>
+          </div>
         </div>
-      </div>
-
-      <div class="location-detail">
-        <div class="location-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div>
-        <div class="location-detail-content">
-          <h4>Contact</h4>
-          <p>hello@roast.cafe · (555) 000-0000</p>
+        <!-- Product 2 -->
+        <div class="product-card">
+          <img class="product-card-img" src="https://picsum.photos/seed/coffee-bag-colombia/600/400" alt="Colombia Huila" loading="lazy">
+          <div class="product-card-body">
+            <h3 class="lang-en">Colombia Huila</h3>
+            <h3 class="lang-fr">Colombie Huila</h3>
+            <p class="origin lang-en">🇨🇴 Huila, Colombia</p>
+            <p class="origin lang-fr">🇨🇴 Huila, Colombie</p>
+            <p class="price">$20.00 <span style="font-size:0.8rem;font-weight:400;color:rgba(21,21,21,0.4)">CAD / 340g</span></p>
+            <table class="spec-table">
+              <tr><td class="lang-en">Origin</td><td class="lang-fr">Origine</td><td>Huila, Colombia</td></tr>
+              <tr><td class="lang-en">Type</td><td class="lang-fr">Type</td><td>Single Origin</td></tr>
+              <tr><td class="lang-en">Process</td><td class="lang-fr">Procédé</td><td>Natural</td></tr>
+              <tr><td class="lang-en">Notes</td><td class="lang-fr">Notes</td><td class="lang-en">Red Fruit · Chocolate · Caramel</td><td class="lang-fr">Fruits Rouges · Chocolat · Caramel</td></tr>
+            </table>
+            <button class="add-btn" data-product="Colombia Huila" data-price="20.00">
+              <span class="lang-en">Add to Cart</span>
+              <span class="lang-fr">Ajouter au Panier</span>
+            </button>
+          </div>
         </div>
-      </div>
-
-      <div class="location-detail">
-        <div class="location-detail-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
-        <div class="location-detail-content">
-          <h4>Hours</h4>
-          <div class="hours-grid">
-            <span class="day">Monday – Friday</span><span class="time">6:30 AM – 7:00 PM</span>
-            <span class="day">Saturday</span><span class="time">7:00 AM – 8:00 PM</span>
-            <div class="hl" style="display:contents;"><span class="day">Sunday</span><span class="time">8:00 AM – 5:00 PM</span></div>
+        <!-- Product 3 -->
+        <div class="product-card">
+          <img class="product-card-img" src="https://picsum.photos/seed/coffee-bag-kenya/600/400" alt="Kenya Nyeri" loading="lazy">
+          <div class="product-card-body">
+            <h3 class="lang-en">Kenya Nyeri</h3>
+            <h3 class="lang-fr">Kenya Nyeri</h3>
+            <p class="origin lang-en">🇰🇪 Nyeri, Kenya</p>
+            <p class="origin lang-fr">🇰🇪 Nyeri, Kenya</p>
+            <p class="price">$24.00 <span style="font-size:0.8rem;font-weight:400;color:rgba(21,21,21,0.4)">CAD / 340g</span></p>
+            <table class="spec-table">
+              <tr><td class="lang-en">Origin</td><td class="lang-fr">Origine</td><td>Nyeri, Kenya</td></tr>
+              <tr><td class="lang-en">Type</td><td class="lang-fr">Type</td><td>Single Origin</td></tr>
+              <tr><td class="lang-en">Process</td><td class="lang-fr">Procédé</td><td>Washed</td></tr>
+              <tr><td class="lang-en">Notes</td><td class="lang-fr">Notes</td><td class="lang-en">Blackcurrant · Tomato · Winey</td><td class="lang-fr">Cassis · Tomate · Viné</td></tr>
+            </table>
+            <button class="add-btn" data-product="Kenya Nyeri" data-price="24.00">
+              <span class="lang-en">Add to Cart</span>
+              <span class="lang-fr">Ajouter au Panier</span>
+            </button>
           </div>
         </div>
       </div>
     </div>
+  </section>
 
-    <form class="location-form fade-in" id="newsletterForm" novalidate>
-      <input type="email" id="emailInput" placeholder="your@email.com" aria-label="Email address" required>
-      <button type="submit" class="btn btn-primary">Join the List</button>
-    </form>
-    <p class="form-feedback" id="formFeedback" role="status" aria-live="polite"></p>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer-logo">
-      <svg viewBox="0 0 32 32" aria-hidden="true" fill="none">
-        <rect width="32" height="32" rx="7" fill="#3d2415"/>
-        <ellipse cx="16" cy="16" rx="8" ry="11" stroke="#d4a373" stroke-width="2"/>
-        <path d="M16 6 C11 11 21 21 16 26" stroke="#d4a373" stroke-width="2" stroke-linecap="round"/>
-      </svg>
-      ROAST
+  <!-- ===== COLLECTIONS ===== -->
+  <section id="collections" class="collections">
+    <div class="container">
+      <p class="section-label lang-en">— Collections</p>
+      <p class="section-label lang-fr">— Collections</p>
+      <h2 class="section-title split-text" data-reveal="true">
+        <span class="word-wrap"><span class="word lang-en">Find</span><span class="word lang-fr">Trouvez</span></span>
+        <span class="word-wrap"><span class="word lang-en">Your</span><span class="word lang-fr">Votre</span></span>
+        <span class="word-wrap"><span class="word lang-en">Perfect</span><span class="word lang-fr">Style</span></span>
+        <span class="word-wrap"><span class="word lang-en">Cup</span><span class="word lang-fr">Parfait</span></span>
+      </h2>
+      <div class="carousel-track" id="carouselTrack">
+        <div class="collection-card">
+          <img src="https://picsum.photos/seed/limited-collection/800/600" alt="Limited Series" loading="lazy">
+          <div class="collection-overlay">
+            <h3>Limited</h3>
+            <p class="lang-en">Rare microlots, exceptional seasons</p>
+            <p class="lang-fr">Microlots rares, saisons exceptionnelles</p>
+          </div>
+        </div>
+        <div class="collection-card">
+          <img src="https://picsum.photos/seed/bright-collection/800/600" alt="Bright Series" loading="lazy">
+          <div class="collection-overlay">
+            <h3>Bright</h3>
+            <p class="lang-en">Luminous, fruity, vibrant cups</p>
+            <p class="lang-fr">Tasses lumineuses, fruitées, vibrantes</p>
+          </div>
+        </div>
+        <div class="collection-card">
+          <img src="https://picsum.photos/seed/warm-collection/800/600" alt="Warm Series" loading="lazy">
+          <div class="collection-overlay">
+            <h3>Warm</h3>
+            <p class="lang-en">Rich, chocolatey, comforting</p>
+            <p class="lang-fr">Richesse, chocolat, réconfort</p>
+          </div>
+        </div>
+        <div class="collection-card">
+          <img src="https://picsum.photos/seed/espresso-collection/800/600" alt="Espresso Series" loading="lazy">
+          <div class="collection-overlay">
+            <h3>Espresso</h3>
+            <p class="lang-en">Bold blends built for pressure</p>
+            <p class="lang-fr">Mélanges audacieux pour l'espresso</p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-arrows">
+        <button class="carousel-arrow" id="carouselPrev" aria-label="Previous">←</button>
+        <button class="carousel-arrow" id="carouselNext" aria-label="Next">→</button>
+      </div>
     </div>
-    <div class="footer-socials">
-      <a href="#home" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1"/></svg></a>
-      <a href="#home" aria-label="X"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l16 16M20 4L4 20"/></svg></a>
-      <a href="#home" aria-label="Map"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0116 0z"/><circle cx="12" cy="10" r="3"/></svg></a>
+  </section>
+
+  <!-- ===== MISSION ===== -->
+  <section id="mission" class="mission">
+    <div class="container">
+      <p class="section-label lang-en">— Our Mission</p>
+      <p class="section-label lang-fr">— Notre Mission</p>
+      <div class="mission-content">
+        <h2 class="section-title split-text" data-reveal="true">
+          <span class="word-wrap"><span class="word lang-en">Coffee</span><span class="word lang-fr">Le</span></span>
+          <span class="word-wrap"><span class="word lang-en">That</span><span class="word lang-fr">Café</span></span>
+          <span class="word-wrap"><span class="word lang-en">Makes</span><span class="word lang-fr">Qui</span></span>
+          <span class="word-wrap"><span class="word lang-en">a</span><span class="word lang-fr">A</span></span>
+          <span class="word-wrap"><span class="word lang-en">Difference</span><span class="word lang-fr">du</span></span>
+          <span class="word-wrap"><span class="word lang-fr">Sens</span></span>
+        </h2>
+        <p class="section-desc lang-en">We believe in direct relationships with growers, sustainable farming practices, and the power of a perfectly roasted bean to bring people together. From our roastery on the Gaspé coast to your cup — every sip tells a story.</p>
+        <p class="section-desc lang-fr">Nous croyons aux relations directes avec les producteurs, aux pratiques agricoles durables et au pouvoir d'un grain parfaitement torréfié de rassembler les gens. De notre torréfaction sur la côte gaspésienne à votre tasse — chaque gorgée raconte une histoire.</p>
+        <div class="mission-geo">
+          <span class="pin">📍</span>
+          <span>48.8532° N — 66.0385° W</span>
+          <span style="font-size:0.85rem;font-family:'Inter',sans-serif;color:rgba(245,244,242,0.4)">· Gaspé, Québec</span>
+        </div>
+      </div>
     </div>
-    <p>© 2024 ROAST Artisan Cafe. Crafted with care, daily.</p>
+  </section>
+
+  <!-- ===== SUBSCRIPTION ===== -->
+  <section id="subscription">
+    <div class="container">
+      <p class="section-label lang-en">— Never Run Out</p>
+      <p class="section-label lang-fr">— Plus Jamais à Court</p>
+      <h2 class="section-title split-text" data-reveal="true">
+        <span class="word-wrap"><span class="word lang-en">Fresh</span><span class="word lang-fr">Du</span></span>
+        <span class="word-wrap"><span class="word lang-en">Coffee,</span><span class="word lang-fr">Café</span></span>
+        <span class="word-wrap"><span class="word lang-en">Delivered</span><span class="word lang-fr">Frais,</span></span>
+        <span class="word-wrap"><span class="word lang-en">Monthly</span><span class="word lang-fr">Livré</span></span>
+        <span class="word-wrap"><span class="word lang-fr">Chaque</span></span>
+        <span class="word-wrap"><span class="word lang-fr">Mois</span></span>
+      </h2>
+      <p class="section-desc lang-en">Choose your beans, set your schedule, and never worry about running out of great coffee again.</p>
+      <p class="section-desc lang-fr">Choisissez vos grains, fixez votre calendrier et ne vous souciez plus jamais de manquer de bon café.</p>
+      <div class="sub-steps">
+        <div class="sub-step">
+          <div class="sub-step-num">01</div>
+          <h3 class="lang-en">Pick Your Coffee</h3>
+          <h3 class="lang-fr">Choisissez Votre Café</h3>
+          <p class="lang-en">Choose from our rotating selection of single-origin and blend coffees.</p>
+          <p class="lang-fr">Choisissez parmi notre sélection tournante de cafés de spécialité.</p>
+        </div>
+        <div class="sub-step">
+          <div class="sub-step-num">02</div>
+          <h3 class="lang-en">Set Your Rhythm</h3>
+          <h3 class="lang-fr">Définissez Votre Rythme</h3>
+          <p class="lang-en">Weekly, bi-weekly, or monthly — roasted and shipped after your order.</p>
+          <p class="lang-fr">Hebdomadaire, bi-mensuel ou mensuel — torréfié et expédié après votre commande.</p>
+        </div>
+        <div class="sub-step">
+          <div class="sub-step-num">03</div>
+          <h3 class="lang-en">Enjoy Freshness</h3>
+          <h3 class="lang-fr">Savourez la Fraîcheur</h3>
+          <p class="lang-en">Always roasted within 48 hours of shipping. Peak flavour, every bag.</p>
+          <p class="lang-fr">Toujours torréfié dans les 48h avant l'expédition. Saveur optimale, chaque sac.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer-grid">
+      <div>
+        <h4>Escape Coffee</h4>
+        <p style="font-size:0.9rem;margin-bottom:16px;" class="lang-en">Artisan roasters based in Gaspé, Québec.</p>
+        <p style="font-size:0.9rem;margin-bottom:16px;" class="lang-fr">Torréfacteurs artisans basés à Gaspé, Québec.</p>
+        <p style="font-size:0.85rem;">48.8532° N — 66.0385° W</p>
+      </div>
+      <div>
+        <h4 class="lang-en">Shop</h4>
+        <h4 class="lang-fr">Boutique</h4>
+        <a href="#products" class="lang-en">All Coffee</a>
+        <a href="#products" class="lang-fr">Tous les Cafés</a>
+        <a href="#collections" class="lang-en">Collections</a>
+        <a href="#collections" class="lang-fr">Collections</a>
+        <a href="#subscription" class="lang-en">Subscribe</a>
+        <a href="#subscription" class="lang-fr">S'abonner</a>
+      </div>
+      <div>
+        <h4 class="lang-en">Learn</h4>
+        <h4 class="lang-fr">Apprendre</h4>
+        <a href="#" class="lang-en">Brew Guides</a>
+        <a href="#" class="lang-fr">Guides d'Infusion</a>
+        <a href="#" class="lang-en">Our Story</a>
+        <a href="#" class="lang-fr">Notre Histoire</a>
+        <a href="#" class="lang-en">Wholesale</a>
+        <a href="#" class="lang-fr">Vente en Gros</a>
+      </div>
+      <div>
+        <h4 class="lang-en">Connect</h4>
+        <h4 class="lang-fr">Contact</h4>
+        <a href="#">hello@escape.cafe</a>
+        <a href="#">Instagram</a>
+        <a href="#" class="lang-en">Shipping & Returns</a>
+        <a href="#" class="lang-fr">Livraison & Retours</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2024 Escape Coffee. <span class="lang-en">All rights reserved.</span><span class="lang-fr">Tous droits réservés.</span></p>
+    </div>
+  </footer>
+
+  <!-- ===== CART DRAWER ===== -->
+  <div class="cart-overlay" id="cartOverlay"></div>
+  <div class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2 class="lang-en">Your Cart</h2>
+      <h2 class="lang-fr">Votre Panier</h2>
+      <button class="cart-close" id="cartClose" aria-label="Close cart">✕</button>
+    </div>
+    <div class="cart-body" id="cartBody">
+      <div class="cart-empty" id="cartEmpty">
+        <div class="cart-empty-icon">☕</div>
+        <p class="lang-en">Your cart is empty</p>
+        <p class="lang-fr">Votre panier est vide</p>
+        <p style="font-size:0.85rem;margin-top:8px;color:rgba(21,21,21,0.3)" class="lang-en">Add some coffee to get started!</p>
+        <p style="font-size:0.85rem;margin-top:8px;color:rgba(21,21,21,0.3)" class="lang-fr">Ajoutez du café pour commencer!</p>
+      </div>
+      <div id="cartItems"></div>
+    </div>
+    <div class="cart-footer" id="cartFooter" style="display:none">
+      <div class="cart-total">
+        <span class="lang-en">Total</span>
+        <span class="lang-fr">Total</span>
+        <span id="cartTotal">$0.00</span>
+      </div>
+      <button class="checkout-btn lang-en">Checkout</button>
+      <button class="checkout-btn lang-fr">Commander</button>
+    </div>
   </div>
-</footer>
 
-<!-- ===== SCRIPTS ===== -->
-<script>
-(function() {
-  'use strict';
+  <script>
+    (function(){
+      'use strict';
 
-  // --- Mobile nav toggle ---
-  var toggle = document.getElementById('navToggle');
-  var links = document.getElementById('navLinks');
-  if (toggle && links) {
-    toggle.addEventListener('click', function() {
-      var open = links.classList.toggle('open');
-      toggle.classList.toggle('active', open);
-      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    });
-    links.querySelectorAll('a').forEach(function(a) {
-      a.addEventListener('click', function() {
-        links.classList.remove('open');
-        toggle.classList.remove('active');
-        toggle.setAttribute('aria-expanded', 'false');
+      // ===== SPLIT TEXT: IntersectionObserver Word-by-Word Reveal =====
+      function initSplitText() {
+        const splitEls = document.querySelectorAll('.split-text[data-reveal="true"], #heroHeading.split-text');
+        splitEls.forEach(el => {
+          // Skip hero heading — it's already split in HTML
+          if (el.id === 'heroHeading') return;
+          // Skip already-processed
+          if (el.dataset.processed) return;
+          el.dataset.processed = 'true';
+        });
+
+        // Observe all .split-text elements
+        const allSplitTexts = document.querySelectorAll('.split-text');
+        if (!allSplitTexts.length) return;
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
+
+        allSplitTexts.forEach(el => observer.observe(el));
+
+        // Immediately reveal hero heading
+        const heroHeading = document.getElementById('heroHeading');
+        if (heroHeading) {
+          heroHeading.classList.add('revealed');
+        }
+      }
+
+      // ===== LANGUAGE TOGGLE (EN/FR) =====
+      let currentLang = 'en';
+      const langToggle = document.getElementById('langToggle');
+      const htmlEl = document.documentElement;
+
+      function setLang(lang) {
+        currentLang = lang;
+        htmlEl.setAttribute('data-lang', lang);
+        langToggle.textContent = lang === 'en' ? 'FR' : 'EN';
+        localStorage.setItem('escape-cafe-lang', lang);
+      }
+
+      if (langToggle) {
+        langToggle.addEventListener('click', function() {
+          setLang(currentLang === 'en' ? 'fr' : 'en');
+        });
+      }
+
+      // Restore saved language
+      const savedLang = localStorage.getItem('escape-cafe-lang');
+      if (savedLang === 'en' || savedLang === 'fr') {
+        setLang(savedLang);
+      }
+
+      // ===== CART =====
+      const cart = [];
+      const cartToggle = document.getElementById('cartToggle');
+      const cartDrawer = document.getElementById('cartDrawer');
+      const cartOverlay = document.getElementById('cartOverlay');
+      const cartClose = document.getElementById('cartClose');
+      const cartBody = document.getElementById('cartBody');
+      const cartItems = document.getElementById('cartItems');
+      const cartEmpty = document.getElementById('cartEmpty');
+      const cartFooter = document.getElementById('cartFooter');
+      const cartTotal = document.getElementById('cartTotal');
+      const cartCount = document.getElementById('cartCount');
+
+      function openCart() {
+        cartDrawer.classList.add('open');
+        cartOverlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeCart() {
+        cartDrawer.classList.remove('open');
+        cartOverlay.classList.remove('open');
+        document.body.style.overflow = '';
+      }
+
+      if (cartToggle) cartToggle.addEventListener('click', openCart);
+      if (cartClose) cartClose.addEventListener('click', closeCart);
+      if (cartOverlay) cartOverlay.addEventListener('click', closeCart);
+
+      function renderCart() {
+        cartItems.innerHTML = '';
+        if (cart.length === 0) {
+          cartEmpty.style.display = 'block';
+          cartFooter.style.display = 'none';
+          cartCount.textContent = '0';
+          return;
+        }
+        cartEmpty.style.display = 'none';
+        cartFooter.style.display = 'block';
+
+        let total = 0;
+        cart.forEach((item, idx) => {
+          total += item.price * item.qty;
+          const div = document.createElement('div');
+          div.className = 'cart-item';
+          div.innerHTML = `
+            <img class="cart-item-img" src="https://picsum.photos/seed/${item.name.toLowerCase().replace(/\s+/g,'-')}/140/140" alt="${item.name}" loading="lazy">
+            <div class="cart-item-info">
+              <h4>${item.name}</h4>
+              <p>$${item.price.toFixed(2)}</p>
+              <div class="cart-item-qty">
+                <button data-idx="${idx}" data-action="dec">−</button>
+                <span>${item.qty}</span>
+                <button data-idx="${idx}" data-action="inc">+</button>
+                <button data-idx="${idx}" data-action="remove" style="margin-left:auto;font-size:0.75rem;color:rgba(21,21,21,0.3);border:none;background:none">✕</button>
+              </div>
+            </div>
+          `;
+          cartItems.appendChild(div);
+        });
+
+        // Qty buttons
+        cartItems.querySelectorAll('[data-action]').forEach(btn => {
+          btn.addEventListener('click', function() {
+            const idx = parseInt(this.dataset.idx);
+            const action = this.dataset.action;
+            if (action === 'inc') {
+              cart[idx].qty++;
+            } else if (action === 'dec') {
+              cart[idx].qty--;
+              if (cart[idx].qty <= 0) cart.splice(idx, 1);
+            } else if (action === 'remove') {
+              cart.splice(idx, 1);
+            }
+            renderCart();
+          });
+        });
+
+        const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
+        cartCount.textContent = totalItems;
+        cartTotal.textContent = '$' + total.toFixed(2);
+      }
+
+      // Add to cart buttons
+      document.querySelectorAll('.add-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const name = this.dataset.product;
+          const price = parseFloat(this.dataset.price);
+          const existing = cart.find(item => item.name === name);
+          if (existing) {
+            existing.qty++;
+          } else {
+            cart.push({ name, price, qty: 1 });
+          }
+          renderCart();
+          openCart();
+        });
       });
-    });
-  }
 
-  // --- Logo scrolls to top ---
-  var logo = document.getElementById('navLogo');
-  if (logo) {
-    logo.addEventListener('click', function() {
-      document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
-    });
-  }
+      // ===== HEADER SCROLL EFFECT =====
+      const header = document.getElementById('header');
+      let lastScroll = 0;
+      window.addEventListener('scroll', function() {
+        const sy = window.scrollY;
+        if (sy > 50) {
+          header.classList.add('scrolled');
+        } else {
+          header.classList.remove('scrolled');
+        }
+        lastScroll = sy;
+      }, { passive: true });
 
-  // --- Navbar shrink on scroll ---
-  var navbar = document.getElementById('navbar');
-  var ticking = false;
-  window.addEventListener('scroll', function() {
-    if (!ticking) {
-      window.requestAnimationFrame(function() {
-        navbar.classList.toggle('scrolled', window.scrollY > 50);
-        ticking = false;
+      // ===== HAMBURGER MENU =====
+      const hamburger = document.getElementById('hamburger');
+      const mainNav = document.getElementById('mainNav');
+      if (hamburger) {
+        hamburger.addEventListener('click', function() {
+          mainNav.classList.toggle('mobile-open');
+        });
+      }
+
+      // Close mobile nav on link click
+      mainNav.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', function() {
+          mainNav.classList.remove('mobile-open');
+        });
       });
-      ticking = true;
-    }
-  });
 
-  // --- Scroll reveal ---
-  var fadeEls = document.querySelectorAll('.fade-in');
-  if ('IntersectionObserver' in window && fadeEls.length) {
-    var observer = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
+      // ===== CAROUSEL SCROLL =====
+      const track = document.getElementById('carouselTrack');
+      const prevBtn = document.getElementById('carouselPrev');
+      const nextBtn = document.getElementById('carouselNext');
+
+      if (track && prevBtn && nextBtn) {
+        const scrollAmount = () => {
+          const card = track.querySelector('.collection-card');
+          return card ? card.offsetWidth + 24 : 324;
+        };
+
+        prevBtn.addEventListener('click', function() {
+          track.scrollBy({ left: -scrollAmount(), behavior: 'smooth' });
+        });
+
+        nextBtn.addEventListener('click', function() {
+          track.scrollBy({ left: scrollAmount(), behavior: 'smooth' });
+        });
+      }
+
+      // ===== ESC KEY CLOSE CART =====
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && cartDrawer.classList.contains('open')) {
+          closeCart();
         }
       });
-    }, { threshold: 0.15 });
-    fadeEls.forEach(function(el) { observer.observe(el); });
-  } else {
-    fadeEls.forEach(function(el) { el.classList.add('visible'); });
-  }
 
-  // --- Newsletter form (sandbox-safe) ---
-  var form = document.getElementById('newsletterForm');
-  var feedback = document.getElementById('formFeedback');
-  var emailInput = document.getElementById('emailInput');
-  if (form) {
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      var val = (emailInput.value || '').trim();
-      var valid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val);
-      if (valid) {
-        feedback.textContent = 'Thanks! Watch your inbox for this week’s bean drop.';
-        feedback.style.color = 'var(--brown)';
-        form.reset();
+      // ===== INIT ON DOM READY =====
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initSplitText);
       } else {
-        feedback.textContent = 'Please enter a valid email address.';
-        feedback.style.color = '#a4452f';
+        initSplitText();
       }
-      feedback.classList.add('show');
-    });
-  }
-})();
-</script>
+    })();
+  </script>
 </body>
 </html>
