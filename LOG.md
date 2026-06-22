@@ -23,3 +23,10 @@
 - IMG REALITY unchanged: no real city skylines in repo; offices reuse the one boardroom+skyline shot at 3 crops (honest best-available).
 - Verified: node --check both inline scripts OK; 0 emoji (grep); all 4 corp imgs exist; section tags balanced (6/6, 9/9); no Spanish in visible text (only in data-es attrs); DOM ids resolve. NOT browser-rendered (headless chrome launch gated by approval).
 - Left: ES toggle covers curated strings (slide h2 names/dropdown same both langs, intentionally untranslated); office phones are plausible placeholders; live browser console-error check not run.
+
+## 2026-06-22 — index.html: real site previews + nav arrow polish (claude-code)
+- Replaced cringe browser-chrome mockups w/ per-site CSS preview illustrations via buildPreview(id): Fauna(navy+nav pills+"Capable,safe,fun."+blue btn), Monolith(cream+dark sidebar+001+2 rects), Outfit(white+3 theme circles+Bag(0)+3 squares), Escape Coffee(cream+serif headline+Origin/Type/Process cards), Crav(beige+red CRAV+angled card+★), Tresmares(white+"Impulso para crecer"+red dot+PRIVATE EQUITY swatch). Removed .thumb-inner/.mock-* CSS + lighten() (dead).
+- All 6 card descs rewritten design-focused; dropped "Awwwards SOTD".
+- viewer-nav: 48→56px, bg .08→.15, border .25, font 24px, box-shadow, prev/next 16→24px from edge, Unicode →/← swapped for SVG chevrons. Mobile override 46px+20px svg.
+- Verified: grep clean (0 thumb-inner/mock-/lighten/&#8592). NOT browser-rendered.
+- Left: none.
