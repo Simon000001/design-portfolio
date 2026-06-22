@@ -283,6 +283,18 @@
     /* ===== UTILITY ===== */
     .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
   </style>
+
+/* Shimmer loading animation for images */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+img {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
 </head>
 <body>
 
@@ -315,7 +327,7 @@
   <!-- ===== HERO ===== -->
   <section class="hero" id="hero">
     <div class="hero-bg">
-      <img style="background-color:#8B7355" src="https://images.unsplash.com/photo-1744325955505-6b5d100fa0f3?w=800&h=600&fit=crop" alt="Coffee beans and brew" loading="lazy">
+      <img src="images/img_1744325955505-6b5d100fa0f3.jpg" alt="Coffee beans and brew" loading="lazy">
     </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
@@ -355,7 +367,7 @@
       <div class="products-grid">
         <!-- Product 1 -->
         <div class="product-card">
-          <img style="background-color:#8B7355" class="product-card-img" src="https://images.unsplash.com/photo-1720074084831-984c0aa5f7f8?w=800&h=600&fit=crop" alt="Ethiopia Yirgacheffe" loading="lazy">
+          <img class="product-card-img" src="images/img_1720074084831-984c0aa5f7f8.jpg" alt="Ethiopia Yirgacheffe" loading="lazy">
           <div class="product-card-body">
             <h3 class="lang-en">Ethiopia Yirgacheffe</h3>
             <h3 class="lang-fr">Éthiopie Yirgacheffe</h3>
@@ -376,7 +388,7 @@
         </div>
         <!-- Product 2 -->
         <div class="product-card">
-          <img style="background-color:#8B7355" class="product-card-img" src="https://images.unsplash.com/photo-1749590424261-2e5e149eb843?w=800&h=600&fit=crop" alt="Colombia Huila" loading="lazy">
+          <img class="product-card-img" src="images/img_1749590424261-2e5e149eb843.jpg" alt="Colombia Huila" loading="lazy">
           <div class="product-card-body">
             <h3 class="lang-en">Colombia Huila</h3>
             <h3 class="lang-fr">Colombie Huila</h3>
@@ -397,7 +409,7 @@
         </div>
         <!-- Product 3 -->
         <div class="product-card">
-          <img style="background-color:#8B7355" class="product-card-img" src="https://images.unsplash.com/photo-1744326619705-d7bb8c815f54?w=800&h=600&fit=crop" alt="Kenya Nyeri" loading="lazy">
+          <img class="product-card-img" src="images/img_1744326619705-d7bb8c815f54.jpg" alt="Kenya Nyeri" loading="lazy">
           <div class="product-card-body">
             <h3 class="lang-en">Kenya Nyeri</h3>
             <h3 class="lang-fr">Kenya Nyeri</h3>
@@ -433,7 +445,7 @@
       </h2>
       <div class="carousel-track" id="carouselTrack">
         <div class="collection-card">
-          <img style="background-color:#8B7355" src="https://images.unsplash.com/photo-1519978556112-ef795ceec8a5?w=800&h=600&fit=crop" alt="Limited Series" loading="lazy">
+          <img src="images/img_1519978556112-ef795ceec8a5.jpg" alt="Limited Series" loading="lazy">
           <div class="collection-overlay">
             <h3>Limited</h3>
             <p class="lang-en">Rare microlots, exceptional seasons</p>
@@ -441,7 +453,7 @@
           </div>
         </div>
         <div class="collection-card">
-          <img style="background-color:#8B7355" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=800&h=600&fit=crop" alt="Bright Series" loading="lazy">
+          <img src="images/img_1509042239860-f550ce710b93.jpg" alt="Bright Series" loading="lazy">
           <div class="collection-overlay">
             <h3>Bright</h3>
             <p class="lang-en">Luminous, fruity, vibrant cups</p>
@@ -449,7 +461,7 @@
           </div>
         </div>
         <div class="collection-card">
-          <img style="background-color:#8B7355" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=800&h=600&fit=crop" alt="Warm Series" loading="lazy">
+          <img src="images/img_1495474472287-4d71bcdd2085.jpg" alt="Warm Series" loading="lazy">
           <div class="collection-overlay">
             <h3>Warm</h3>
             <p class="lang-en">Rich, chocolatey, comforting</p>
@@ -457,7 +469,7 @@
           </div>
         </div>
         <div class="collection-card">
-          <img style="background-color:#8B7355" src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?w=800&h=600&fit=crop" alt="Espresso Series" loading="lazy">
+          <img src="images/img_1504630083234-14187a9df0f5.jpg" alt="Espresso Series" loading="lazy">
           <div class="collection-overlay">
             <h3>Espresso</h3>
             <p class="lang-en">Bold blends built for pressure</p>
@@ -718,7 +730,7 @@
           const div = document.createElement('div');
           div.className = 'cart-item';
           div.innerHTML = `
-            <img style="background-color:#8B7355" class="cart-item-img" src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=140&h=140&fit=crop" alt="${item.name}" loading="lazy">
+            <img class="cart-item-img" src="images/img_1509042239860-f550ce710b93.jpg" alt="${item.name}" loading="lazy">
             <div class="cart-item-info">
               <h4>${item.name}</h4>
               <p>$${item.price.toFixed(2)}</p>

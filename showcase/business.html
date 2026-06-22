@@ -675,6 +675,18 @@ footer{
   .footer-grid{grid-template-columns:1fr}
 }
 </style>
+
+/* Shimmer loading animation for images */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+img {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
 </head>
 <body>
 
@@ -682,7 +694,7 @@ footer{
 <nav>
   <div class="nav-inner">
     <a href="/" class="nav-logo">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?w=800&h=600&fit=crop" alt="Fauna Robotics" class="nav-logo-img" loading="lazy">
+      <img src="images/img_1518314916381-77a37c2a49ae.jpg" alt="Fauna Robotics" class="nav-logo-img" loading="lazy">
       Fauna
     </a>
     <button class="nav-toggle" aria-label="Toggle menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
@@ -705,7 +717,7 @@ footer{
     <div class="hero-inner">
       <h1>Capable, safe, fun.<br>Robots for everyone.</h1>
       <div class="hero-image-wrap">
-        <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=600&fit=crop" alt="Fauna humanoid robot" loading="lazy">
+        <img src="images/img_1555255707-c07966088b7b.jpg" alt="Fauna humanoid robot" loading="lazy">
       </div>
     </div>
   </div>
@@ -719,17 +731,17 @@ footer{
   <div class="trusted-carousel">
     <div class="trusted-gradient"></div>
     <div class="trusted-track" id="trustedTrack">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1527430253228-e93688616381?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1530893609608-32a9af3aa95c?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1488229297570-58520851e868?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
+      <img src="images/img_1527430253228-e93688616381.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1531747118685-ca8fa6e08806.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1485827404703-89b55fcc595e.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1530893609608-32a9af3aa95c.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1488229297570-58520851e868.jpg" alt="Partner logo" loading="lazy">
       <!-- Duplicate for seamless loop -->
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=600&fit=crop" alt="Partner logo" loading="lazy">
+      <img src="images/img_1504639725590-34d0984388bd.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1535378917042-10a22c95931a.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1507925921958-8a62f3d1a50d.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1518314916381-77a37c2a49ae.jpg" alt="Partner logo" loading="lazy">
+      <img src="images/img_1555255707-c07966088b7b.jpg" alt="Partner logo" loading="lazy">
     </div>
     <div class="trusted-gradient is-right"></div>
   </div>
@@ -743,7 +755,7 @@ footer{
         <h2>Create new experiences.<br>Shipping today.</h2>
       </div>
       <div class="demo-placeholder" onclick="alert('Video would play here')">
-        <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1527430253228-e93688616381?w=800&h=600&fit=crop" alt="Fauna robot demo" loading="lazy">
+        <img src="images/img_1527430253228-e93688616381.jpg" alt="Fauna robot demo" loading="lazy">
         <div class="demo-play">
           <div class="demo-play-btn">▶</div>
         </div>
@@ -789,7 +801,7 @@ footer{
           <p>Run your code on flexible compute with modular sensor and actuator support. Swap between onboard and edge AI processing seamlessly.</p>
         </div>
         <div class="platform-card-img" style="padding:0 16px">
-          <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?w=800&h=600&fit=crop" alt="Modular autonomy" loading="lazy" style="border-radius:12px;aspect-ratio:560/340;object-fit:cover;width:100%">
+          <img src="images/img_1531747118685-ca8fa6e08806.jpg" alt="Modular autonomy" loading="lazy" style="border-radius:12px;aspect-ratio:560/340;object-fit:cover;width:100%">
         </div>
         <div class="platform-tag" style="padding:12px 24px 24px">Ready for developers</div>
       </div>
@@ -797,7 +809,7 @@ footer{
       <!-- Compliant locomotion -->
       <div class="bento-item" style="display:flex;flex-direction:column">
         <div class="platform-card-img" style="padding:12px 12px 0">
-          <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop" alt="Compliant locomotion" loading="lazy" style="border-radius:12px;aspect-ratio:400/240;object-fit:cover;width:100%">
+          <img src="images/img_1485827404703-89b55fcc595e.jpg" alt="Compliant locomotion" loading="lazy" style="border-radius:12px;aspect-ratio:400/240;object-fit:cover;width:100%">
         </div>
         <div class="bento-content" style="padding:16px 24px 24px">
           <h3>Compliant, capable locomotion</h3>
@@ -820,7 +832,7 @@ footer{
           <p>Control every joint in real time with low-latency whole-body teleoperation. Fine-grained manipulation meets full-body awareness.</p>
         </div>
         <div style="flex:1;min-width:240px;padding:12px">
-          <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1530893609608-32a9af3aa95c?w=800&h=600&fit=crop" alt="Whole-body teleoperation" loading="lazy" style="border-radius:12px;aspect-ratio:500/300;object-fit:cover;width:100%">
+          <img src="images/img_1530893609608-32a9af3aa95c.jpg" alt="Whole-body teleoperation" loading="lazy" style="border-radius:12px;aspect-ratio:500/300;object-fit:cover;width:100%">
         </div>
         <div class="platform-tag" style="padding:12px 24px 24px;margin-left:auto">Socially engaging</div>
       </div>
@@ -864,13 +876,13 @@ footer{
     </div>
     <div class="about-grid">
       <div class="about-card">
-        <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1488229297570-58520851e868?w=800&h=600&fit=crop" alt="Designed in NYC" loading="lazy">
+        <img src="images/img_1488229297570-58520851e868.jpg" alt="Designed in NYC" loading="lazy">
         <h3>Designed in NYC<br>Assembled in America</h3>
         <p style="font-size:14px;color:rgba(24,1,2,.6);line-height:1.6">Our robots are designed in New York City and assembled in the United States, combining world-class design with American manufacturing.</p>
         <a href="#" class="about-link">More about us</a>
       </div>
       <div class="about-card" style="background:#D1E3FF">
-        <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop" alt="Community" loading="lazy">
+        <img src="images/img_1504639725590-34d0984388bd.jpg" alt="Community" loading="lazy">
         <h3>Join our community<br>of builders</h3>
         <p style="font-size:14px;color:rgba(24,1,2,.6);line-height:1.6">Connect with developers, researchers, and enthusiasts building the future of robotics on the Fauna platform.</p>
         <a href="#" class="about-link">Get involved</a>
@@ -889,23 +901,23 @@ footer{
   <div class="fun-carousel">
     <div class="fun-gradient"></div>
     <div class="fun-track" id="funTrack">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1527430253228-e93688616381?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1530893609608-32a9af3aa95c?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
+      <img src="images/img_1535378917042-10a22c95931a.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1507925921958-8a62f3d1a50d.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1518314916381-77a37c2a49ae.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1555255707-c07966088b7b.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1527430253228-e93688616381.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1531747118685-ca8fa6e08806.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1485827404703-89b55fcc595e.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1530893609608-32a9af3aa95c.jpg" alt="Robot in action" loading="lazy">
       <!-- Duplicate for seamless loop -->
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1488229297570-58520851e868?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1504639725590-34d0984388bd?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1535378917042-10a22c95931a?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1507925921958-8a62f3d1a50d?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1518314916381-77a37c2a49ae?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1555255707-c07966088b7b?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1527430253228-e93688616381?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
-      <img style="background-color:#2a3a6a" src="https://images.unsplash.com/photo-1531747118685-ca8fa6e08806?w=800&h=600&fit=crop" alt="Robot in action" loading="lazy">
+      <img src="images/img_1488229297570-58520851e868.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1504639725590-34d0984388bd.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1535378917042-10a22c95931a.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1507925921958-8a62f3d1a50d.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1518314916381-77a37c2a49ae.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1555255707-c07966088b7b.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1527430253228-e93688616381.jpg" alt="Robot in action" loading="lazy">
+      <img src="images/img_1531747118685-ca8fa6e08806.jpg" alt="Robot in action" loading="lazy">
     </div>
     <div class="fun-gradient is-right"></div>
   </div>

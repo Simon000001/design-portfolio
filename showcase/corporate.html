@@ -207,6 +207,18 @@ section{min-height:100vh;position:relative;overflow:hidden}
 /* Counter */
 .counter{display:inline-block}
 </style>
+
+/* Shimmer loading animation for images */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+img {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
 </head>
 <body>
 
@@ -474,7 +486,7 @@ section{min-height:100vh;position:relative;overflow:hidden}
     </div>
     <div class="team-grid">
       <div class="team-card reveal">
-        <img style="background-color:#2c3e50" class="team-img" src="https://images.unsplash.com/photo-1779700210487-a01758a3c55a?w=800&h=600&fit=crop" alt="Team member" loading="lazy">
+        <img class="team-img" src="images/img_1779700210487-a01758a3c55a.jpg" alt="Team member" loading="lazy">
         <div class="team-info">
           <div class="team-role" data-en="Partner" data-es="Socio">Partner</div>
           <div class="team-name">Rene Hartert</div>
@@ -482,7 +494,7 @@ section{min-height:100vh;position:relative;overflow:hidden}
         </div>
       </div>
       <div class="team-card reveal">
-        <img style="background-color:#2c3e50" class="team-img" src="https://images.unsplash.com/photo-1742585665960-4d2b6282ed10?w=800&h=600&fit=crop" alt="Team member" loading="lazy">
+        <img class="team-img" src="images/img_1742585665960-4d2b6282ed10.jpg" alt="Team member" loading="lazy">
         <div class="team-info">
           <div class="team-role" data-en="Fund Manager" data-es="Fund Manager">Fund Manager</div>
           <div class="team-name">Cristina Oñate</div>
@@ -490,7 +502,7 @@ section{min-height:100vh;position:relative;overflow:hidden}
         </div>
       </div>
       <div class="team-card reveal">
-        <img style="background-color:#2c3e50" class="team-img" src="https://images.unsplash.com/photo-1742585665885-26db9db770af?w=800&h=600&fit=crop" alt="Team member" loading="lazy">
+        <img class="team-img" src="images/img_1742585665885-26db9db770af.jpg" alt="Team member" loading="lazy">
         <div class="team-info">
           <div class="team-role" data-en="Analyst" data-es="Analista">Analyst</div>
           <div class="team-name">Vasil Peres</div>
@@ -498,7 +510,7 @@ section{min-height:100vh;position:relative;overflow:hidden}
         </div>
       </div>
       <div class="team-card reveal">
-        <img style="background-color:#2c3e50" class="team-img" src="https://images.unsplash.com/photo-1742585667037-9b4bcb898c4b?w=800&h=600&fit=crop" alt="Team member" loading="lazy">
+        <img class="team-img" src="images/img_1742585667037-9b4bcb898c4b.jpg" alt="Team member" loading="lazy">
         <div class="team-info">
           <div class="team-role" data-en="Investor Relations" data-es="Responsable de Relación con Inversores">Investor Relations</div>
           <div class="team-name">Eva Lozano</div>

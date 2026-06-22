@@ -103,6 +103,18 @@ footer{padding:48px 32px 32px;border-top:1px solid var(--border);transition:bord
 .footer-cta:hover{background:var(--text);color:var(--bg)}
 .footer-bottom{margin-top:40px;padding-top:20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;font-size:13px;opacity:0.5}
 </style>
+
+/* Shimmer loading animation for images */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+img {
+  background: linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
 </head>
 <body>
 
@@ -121,7 +133,7 @@ footer{padding:48px 32px 32px;border-top:1px solid var(--border);transition:bord
 <!-- Hero -->
 <section class="hero">
   <div class="hero-bg">
-    <img style="background-color:#1a1a1a" src="https://images.unsplash.com/photo-1771919328088-3476e8fe65b0?w=1600&h=900&fit=crop" alt="" loading="lazy">
+    <img src="images/img_1771919328088-3476e8fe65b0.jpg" alt="" loading="lazy">
   </div>
   <div class="hero-content">
     <h1 id="heroHeadline">
@@ -218,16 +230,16 @@ const products = [
 
 // Unsplash image URLs for product/cart images
 const unsplashImgs = [
-  'https://images.unsplash.com/photo-1771919328088-3476e8fe65b0?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1771920373490-2bf2f1f64b66?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1732299164330-5e9f0f933e05?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1771919374230-7e7aa59b3d86?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1593030761757-71fae45fa0e7?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1771919374215-f6995c8ce42b?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1581044777550-4c0edbb5e1cf?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1583394838336-acd977736f90?w=800&h=600&fit=crop',
-  'https://images.unsplash.com/photo-1529139574466-a303027c1d8b?w=800&h=600&fit=crop'
+  'images/img_1771919328088-3476e8fe65b0.jpg',
+  'images/img_1771920373490-2bf2f1f64b66.jpg',
+  'images/img_1732299164330-5e9f0f933e05.jpg',
+  'images/img_1771919374230-7e7aa59b3d86.jpg',
+  'images/img_1593030761757-71fae45fa0e7.jpg',
+  'images/img_1771919374215-f6995c8ce42b.jpg',
+  'images/img_1581044777550-4c0edbb5e1cf.jpg',
+  'images/img_1515886657613-9f3515b0c78f.jpg',
+  'images/img_1583394838336-acd977736f90.jpg',
+  'images/img_1529139574466-a303027c1d8b.jpg'
 ];
 
 // Theme system
@@ -256,8 +268,8 @@ products.forEach((p, i) => {
   card.href = '#';
   card.innerHTML = `
     <div class="img-wrap">
-      <img class="img-front" style="background-color:#1a1a1a" src="${unsplashImgs[i % 10]}" alt="${p.name}" loading="lazy">
-      <img class="img-back" style="background-color:#1a1a1a" src="${unsplashImgs[(i + 5) % 10]}" alt="${p.name}" loading="lazy">
+      <img class="img-front" src="${unsplashImgs[i % 10]}" alt="${p.name}" loading="lazy">
+      <img class="img-back" src="${unsplashImgs[(i + 5) % 10]}" alt="${p.name}" loading="lazy">
     </div>
     <div class="product-tag">${p.cat}</div>
     <div class="product-info">
@@ -318,7 +330,7 @@ function renderCartItems() {
     total += item.price * item.qty;
     html += `
       <div class="cart-item">
-        <img class="cart-item-img" style="background-color:#1a1a1a" src="${unsplashImgs[(item.id - 1) % 10]}" alt="${item.name}" loading="lazy">
+        <img class="cart-item-img" src="${unsplashImgs[(item.id - 1) % 10]}" alt="${item.name}" loading="lazy">
         <div class="cart-item-info">
           <div class="cart-item-name">${item.name}</div>
           <div class="cart-item-price">$${item.price.toFixed(2)}</div>
