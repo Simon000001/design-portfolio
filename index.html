@@ -456,6 +456,11 @@ footer{
   height:20px;
   z-index:2;
 }
+.survey-option-preview{
+  width:100%;
+  flex-shrink:0;
+  margin-bottom:4px;
+}
 .survey-option-label{
   font-size:13px;
   font-weight:500;
@@ -644,6 +649,48 @@ footer{
   transform:translateY(-1px);
   box-shadow:0 4px 12px rgba(0,0,0,0.06);
 }
+.survey-ref-block{
+  position:relative;
+  width:100%;
+  height:120px;
+  border-radius:8px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  background:#fafafa;
+  margin-bottom:8px
+}
+.survey-example-frame{
+  width:100%;
+  height:100%;
+  border:none;
+  display:block
+}
+.survey-ref-fallback{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:6px;
+  background:#fafafa;
+  color:var(--text-body);
+  font-size:13px;
+  pointer-events:none
+}
+.survey-ref-fallback a{
+  pointer-events:auto;
+  color:var(--text-heading);
+  text-decoration:none;
+  font-weight:500;
+  padding:4px 12px;
+  border-radius:6px;
+  border:1px solid var(--border);
+  transition:all 0.2s
+}
+.survey-ref-fallback a:hover{
+  background:rgba(0,0,0,0.03)
+}
 @media(max-width:600px){
   .survey-card{border-radius:16px;max-height:95vh}
   .survey-header{padding:16px 20px 0}
@@ -663,6 +710,10 @@ footer{
   .survey-reference-images{flex-direction:column;align-items:center}
   .survey-brand-tags{flex-wrap:wrap;justify-content:center}
   .survey-link-btn{font-size:11px;padding:5px 12px}
+}
+@keyframes surveyPulse{
+  0%,100%{opacity:0.4;transform:scale(0.8)}
+  50%{opacity:1;transform:scale(1.1)}
 }
 </style>
 </head>
@@ -874,52 +925,52 @@ viewer.addEventListener('click', function(e){
 
   var questions = [
     {question:'Which design philosophy resonates with you?',options:[
-      {label:'Minimalist',description:'Lots of whitespace, few elements, strong typography',aesthetic:'minimal-modern'},
-      {label:'Flat Design',description:'Bold colors, clean icons, minimal depth',aesthetic:'bold-playful'},
-      {label:'Glassmorphism',description:'Frosted glass, layered depth, blur effects',aesthetic:'tech-forward'},
-      {label:'Swiss Style',description:'Grid-based, clean hierarchy, sans-serif',aesthetic:'swiss-classic'},
-      {label:'Brutalism',description:'Raw aesthetics, bold frames, unconventional',aesthetic:'edge-brutalist'},
-      {label:'Organic',description:'Warm tones, natural shapes, handcrafted feel',aesthetic:'organic-warm'}
+      {label:'Minimalist',description:'Lots of whitespace, few elements, strong typography',aesthetic:'minimal-modern',preview:'<div style="width:100%;height:52px;border-radius:6px;background:#fff;border:1px solid #eee;display:flex;align-items:center;justify-content:center"><div style="width:30px;height:4px;border-radius:2px;background:#222"></div></div>'},
+      {label:'Flat Design',description:'Bold colors, clean icons, minimal depth',aesthetic:'bold-playful',preview:'<div style="width:100%;height:52px;border-radius:6px;background:#4F46E5;display:flex;align-items:center;justify-content:center"><span style="color:#fff;font-size:11px;font-weight:700;letter-spacing:1px">FLAT</span></div>'},
+      {label:'Glassmorphism',description:'Frosted glass, layered depth, blur effects',aesthetic:'tech-forward',preview:'<div style="width:100%;height:52px;border-radius:6px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center;position:relative"><div style="background:rgba(255,255,255,0.2);backdrop-filter:blur(4px);border-radius:4px;padding:6px 14px;border:1px solid rgba(255,255,255,0.3)"><span style="color:#fff;font-size:9px;font-weight:600">GLASS</span></div></div>'},
+      {label:'Swiss Style',description:'Grid-based, clean hierarchy, sans-serif',aesthetic:'swiss-classic',preview:'<div style="width:100%;height:52px;border-radius:6px;background:#fff;border:1px solid #ddd;display:flex;flex-direction:column;padding:6px;gap:3px"><div style="display:flex;gap:4px"><div style="width:12px;height:3px;background:#E30613"></div><div style="flex:1;height:3px;background:#eee"></div></div><div style="display:flex;gap:4px;flex:1"><div style="flex:1;background:#f5f5f5;border-radius:2px;display:flex;align-items:center;justify-content:center"><span style="font-size:14px;font-weight:700;color:#222;line-height:1">A</span></div><div style="flex:2;display:flex;flex-direction:column;gap:2px;padding:2px 0"><div style="height:3px;background:#ddd;width:70%"></div><div style="height:3px;background:#eee;width:50%"></div></div></div></div>'},
+      {label:'Brutalism',description:'Raw aesthetics, bold frames, unconventional',aesthetic:'edge-brutalist',preview:'<div style="width:100%;height:52px;border-radius:2px;background:#fff;border:2.5px solid #000;display:flex;align-items:center;justify-content:center;box-shadow:4px 4px 0 #000"><span style="color:#000;font-size:14px;font-weight:900;text-transform:uppercase">RAW</span></div>'},
+      {label:'Organic',description:'Warm tones, natural shapes, handcrafted feel',aesthetic:'organic-warm',preview:'<div style="width:100%;height:52px;border-radius:16px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);display:flex;align-items:center;justify-content:center;gap:4px"><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B"></div><div style="width:20px;height:6px;border-radius:10px;background:#F59E0B;opacity:0.4"></div><div style="width:10px;height:10px;border-radius:50%;background:#F59E0B;opacity:0.6"></div></div>'}
     ]},
     {question:'Pick your preferred logo style:',options:[
-      {label:'Wordmark',description:'Google, Coca-Cola — custom typography logos',aesthetic:'minimal-modern'},
-      {label:'Lettermark',description:'IBM, HP — single-letter monogram logos',aesthetic:'swiss-classic'},
-      {label:'Pictorial mark',description:'Apple, Twitter — recognizable icon logos',aesthetic:'edge-brutalist'},
-      {label:'Abstract mark',description:'Adidas, Pepsi — geometric symbolic logos',aesthetic:'tech-forward'},
-      {label:'Combination mark',description:'Starbucks, Lacoste — text meets icon',aesthetic:'organic-warm'},
-      {label:'Mascot',description:'Duolingo, KFC — character-driven logos',aesthetic:'bold-playful'}
+      {label:'Wordmark',description:'Google, Coca-Cola — custom typography logos',aesthetic:'minimal-modern',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><span style="font-family:serif;font-size:16px;font-weight:700;color:#222">Logo</span></div>'},
+      {label:'Lettermark',description:'IBM, HP — single-letter monogram logos',aesthetic:'swiss-classic',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><div style="width:28px;height:28px;background:#222;border-radius:6px;display:flex;align-items:center;justify-content:center"><span style="color:#fff;font-size:12px;font-weight:700">AB</span></div></div>'},
+      {label:'Pictorial mark',description:'Apple, Twitter — recognizable icon logos',aesthetic:'edge-brutalist',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><div style="width:18px;height:18px;border-radius:50%;background:#4F46E5"></div></div>'},
+      {label:'Abstract mark',description:'Adidas, Pepsi — geometric symbolic logos',aesthetic:'tech-forward',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><div style="width:0;height:0;border-left:10px solid transparent;border-right:10px solid transparent;border-bottom:18px solid #E30613"></div></div>'},
+      {label:'Combination mark',description:'Starbucks, Lacoste — text meets icon',aesthetic:'organic-warm',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;gap:5px"><div style="width:16px;height:16px;border-radius:50%;background:#036753"></div><span style="font-size:12px;font-weight:600;color:#222">Name</span></div>'},
+      {label:'Mascot',description:'Duolingo, KFC — character-driven logos',aesthetic:'bold-playful',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><div style="width:20px;height:20px;border-radius:50%;background:#F59E0B;position:relative"><div style="width:8px;height:4px;border-radius:50%;background:#fff;position:absolute;bottom:4px;left:6px"></div></div></div>'}
     ]},
     {question:'What layout structure suits you?',options:[
-      {label:'Card-based grid',description:'Organized content in uniform cards',aesthetic:'minimal-modern'},
-      {label:'Single-page scroll',description:'Continuous vertical narrative flow',aesthetic:'organic-warm'},
-      {label:'Split-screen',description:'Two balanced side-by-side panels',aesthetic:'swiss-classic'},
-      {label:'Asymmetric layout',description:'Dynamic off-balance compositions',aesthetic:'bold-playful'},
-      {label:'Dashboard layout',description:'Data-rich information at a glance',aesthetic:'tech-forward'},
-      {label:'Full-screen snap scroll',description:'Bold section-by-section presentation',aesthetic:'edge-brutalist'}
+      {label:'Card-based grid',description:'Organized content in uniform cards',aesthetic:'minimal-modern',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;gap:4px;padding:0 8px"><div style="flex:1;height:20px;background:#ddd;border-radius:3px"></div><div style="flex:1;height:20px;background:#ccc;border-radius:3px"></div><div style="flex:1;height:20px;background:#bbb;border-radius:3px"></div></div>'},
+      {label:'Single-page scroll',description:'Continuous vertical narrative flow',aesthetic:'organic-warm',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;flex-direction:column;padding:4px 30%;gap:3px"><div style="height:6px;background:#ddd;border-radius:2px;width:80%"></div><div style="height:6px;background:#ccc;border-radius:2px;width:60%"></div><div style="height:6px;background:#bbb;border-radius:2px;width:70%"></div><div style="height:6px;background:#ccc;border-radius:2px;width:50%"></div></div>'},
+      {label:'Split-screen',description:'Two balanced side-by-side panels',aesthetic:'swiss-classic',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex"><div style="flex:1;background:#4F46E5;border-radius:6px 0 0 6px"></div><div style="flex:1;background:#F59E0B;border-radius:0 6px 6px 0"></div></div>'},
+      {label:'Asymmetric layout',description:'Dynamic off-balance compositions',aesthetic:'bold-playful',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;padding:4px;gap:4px"><div style="width:35%;height:100%;background:#ddd;border-radius:3px"></div><div style="flex:1;height:70%;background:#ccc;border-radius:3px;align-self:flex-end"></div></div>'},
+      {label:'Dashboard layout',description:'Data-rich information at a glance',aesthetic:'tech-forward',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;gap:3px;padding:3px"><div style="width:20px;background:#ddd;border-radius:3px"></div><div style="flex:1;display:flex;flex-direction:column;gap:3px"><div style="height:8px;background:#eee;border-radius:2px"></div><div style="flex:1;background:#e8e8e8;border-radius:2px"></div></div></div>'},
+      {label:'Full-screen snap scroll',description:'Bold section-by-section presentation',aesthetic:'edge-brutalist',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;gap:3px;overflow:hidden"><div style="flex:1 0 60%;background:#333;border-radius:3px"></div><div style="flex:1 0 60%;background:#555;border-radius:3px"></div></div>'}
     ]},
     {question:"What's your typography personality?",options:[
-      {label:'Clean Sans-Serif',description:'Inter — modern, readable, versatile',aesthetic:'minimal-modern'},
-      {label:'Classic Serif',description:'Garamond — timeless, elegant, authoritative',aesthetic:'swiss-classic'},
-      {label:'Bold Display',description:'Bangers — loud, playful, attention-grabbing',aesthetic:'bold-playful'},
-      {label:'Tech Mono',description:'JetBrains Mono — precise, code-like, technical',aesthetic:'tech-forward'},
-      {label:'Handwritten Script',description:'Caveat — personal, warm, human',aesthetic:'organic-warm'},
-      {label:'Ultra-thin Elegant',description:'Thin weights, delicate strokes, refined',aesthetic:'edge-brutalist'}
+      {label:'Clean Sans-Serif',description:'Inter — modern, readable, versatile',aesthetic:'minimal-modern',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;font-family:sans-serif"><span style="font-size:14px;color:#222">Aa</span><span style="font-size:14px;font-weight:400;color:#999;margin-left:4px">Inter</span></div>'},
+      {label:'Classic Serif',description:'Garamond — timeless, elegant, authoritative',aesthetic:'swiss-classic',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;font-family:serif"><span style="font-size:14px;color:#222">Aa</span><span style="font-size:14px;font-weight:400;color:#999;margin-left:4px">Garamond</span></div>'},
+      {label:'Bold Display',description:'Bangers — loud, playful, attention-grabbing',aesthetic:'bold-playful',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><span style="font-size:18px;font-weight:900;color:#222;letter-spacing:1px">Aa</span></div>'},
+      {label:'Tech Mono',description:'JetBrains Mono — precise, code-like, technical',aesthetic:'tech-forward',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;font-family:monospace"><span style="font-size:14px;color:#222">Aa</span><span style="font-size:11px;font-weight:400;color:#999;margin-left:4px">Mono</span></div>'},
+      {label:'Handwritten Script',description:'Caveat — personal, warm, human',aesthetic:'organic-warm',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;font-family:cursive"><span style="font-size:16px;color:#222">Aa</span></div>'},
+      {label:'Ultra-thin Elegant',description:'Thin weights, delicate strokes, refined',aesthetic:'edge-brutalist',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><span style="font-size:14px;font-weight:200;color:#222;letter-spacing:2px">Aa</span></div>'}
     ]},
     {question:'What icon style catches your eye?',options:[
-      {label:'Outline/Stroke',description:'Clean, minimal, thin-line icons',aesthetic:'minimal-modern'},
-      {label:'Solid/Filled',description:'Bold, flat, monochrome filled shapes',aesthetic:'bold-playful'},
-      {label:'Duotone',description:'Two-color layered icon illustrations',aesthetic:'organic-warm'},
-      {label:'Glyph',description:'Simple, universal, system-style symbols',aesthetic:'swiss-classic'},
-      {label:'Isometric 3D',description:'Technical, dimensional, angled views',aesthetic:'tech-forward'},
-      {label:'Gradient Icons',description:'Vibrant, colorful, modern color blends',aesthetic:'edge-brutalist'}
+      {label:'Outline/Stroke',description:'Clean, minimal, thin-line icons',aesthetic:'minimal-modern',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;gap:4px"><div style="width:10px;height:10px;border-radius:50%;border:1.5px solid #222"></div><div style="width:10px;height:10px;border:1.5px solid #555;border-radius:2px"></div><div style="width:10px;height:10px;border:1.5px solid #888;transform:rotate(45deg)"></div></div>'},
+      {label:'Solid/Filled',description:'Bold, flat, monochrome filled shapes',aesthetic:'bold-playful',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;gap:4px"><div style="width:10px;height:10px;border-radius:50%;background:#222"></div><div style="width:10px;height:10px;background:#555;border-radius:2px"></div><div style="width:10px;height:10px;background:#888;transform:rotate(45deg)"></div></div>'},
+      {label:'Duotone',description:'Two-color layered icon illustrations',aesthetic:'organic-warm',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;gap:4px"><div style="position:relative;width:10px;height:10px"><div style="width:10px;height:10px;border-radius:50%;background:#4F46E5"></div><div style="width:5px;height:10px;border-radius:0 10px 10px 0;background:#818CF8;position:absolute;top:0;right:0"></div></div><div style="position:relative;width:10px;height:10px"><div style="width:10px;height:10px;background:#E30613;border-radius:2px"></div><div style="width:5px;height:10px;background:#F87171;border-radius:0 2px 2px 0;position:absolute;top:0;right:0"></div></div></div>'},
+      {label:'Glyph',description:'Simple, universal, system-style symbols',aesthetic:'swiss-classic',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;gap:6px;font-size:14px;color:#222"><span>★</span><span>✎</span><span>⚙</span></div>'},
+      {label:'Isometric 3D',description:'Technical, dimensional, angled views',aesthetic:'tech-forward',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;gap:4px"><div style="width:10px;height:10px;background:#222;transform:rotate(45deg) scaleY(0.58)"></div><div style="width:10px;height:10px;background:#555;transform:rotate(45deg) scaleY(0.58) translate(4px)"></div></div>'},
+      {label:'Gradient Icons',description:'Vibrant, colorful, modern color blends',aesthetic:'edge-brutalist',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;gap:4px"><div style="width:10px;height:10px;border-radius:50%;background:linear-gradient(135deg,#667eea,#764ba2)"></div><div style="width:10px;height:10px;border-radius:2px;background:linear-gradient(135deg,#f093fb,#f5576c)"></div><div style="width:10px;height:10px;transform:rotate(45deg);background:linear-gradient(135deg,#4facfe,#00f2fe)"></div></div>'}
     ]},
     {question:'Pick your favorite detail:',options:[
-      {label:'Subtle Shadows',description:'Soft depth through gentle drop shadows',aesthetic:'minimal-modern'},
-      {label:'Neumorphism',description:'Soft UI with inset/extruded shapes',aesthetic:'edge-brutalist'},
-      {label:'Frosted Glass',description:'Translucent blur with backdrop effects',aesthetic:'tech-forward'},
-      {label:'Bold Frames',description:'Thick borders and outlined containers',aesthetic:'bold-playful'},
-      {label:'Micro-animations',description:'Small, delightful hover and load effects',aesthetic:'swiss-classic'},
-      {label:'Smooth Curves',description:'Rounded corners and flowing organic shapes',aesthetic:'organic-warm'}
+      {label:'Subtle Shadows',description:'Soft depth through gentle drop shadows',aesthetic:'minimal-modern',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><div style="width:36px;height:20px;border-radius:4px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,0.12)"></div></div>'},
+      {label:'Neumorphism',description:'Soft UI with inset/extruded shapes',aesthetic:'edge-brutalist',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#e8e8e8;display:flex;align-items:center;justify-content:center"><div style="width:24px;height:24px;border-radius:6px;background:#e8e8e8;box-shadow:inset 2px 2px 5px rgba(0,0,0,0.1),inset -2px -2px 5px rgba(255,255,255,0.7),2px 2px 5px rgba(0,0,0,0.05),-2px -2px 5px rgba(255,255,255,0.8)"></div></div>'},
+      {label:'Frosted Glass',description:'Translucent blur with backdrop effects',aesthetic:'tech-forward',preview:'<div style="width:100%;height:40px;border-radius:6px;background:linear-gradient(135deg,#667eea,#764ba2);display:flex;align-items:center;justify-content:center"><div style="width:36px;height:16px;border-radius:4px;background:rgba(255,255,255,0.25);backdrop-filter:blur(2px);border:1px solid rgba(255,255,255,0.2)"></div></div>'},
+      {label:'Bold Frames',description:'Thick borders and outlined containers',aesthetic:'bold-playful',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><div style="width:36px;height:20px;border:2.5px solid #222;border-radius:3px;background:#fff"></div></div>'},
+      {label:'Micro-animations',description:'Small, delightful hover and load effects',aesthetic:'swiss-classic',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center;gap:4px"><div style="width:6px;height:6px;border-radius:50%;background:#222;animation:surveyPulse 1s infinite"></div><div style="width:6px;height:6px;border-radius:50%;background:#555;animation:surveyPulse 1s infinite 0.2s"></div><div style="width:6px;height:6px;border-radius:50%;background:#888;animation:surveyPulse 1s infinite 0.4s"></div></div>'},
+      {label:'Smooth Curves',description:'Rounded corners and flowing organic shapes',aesthetic:'organic-warm',preview:'<div style="width:100%;height:40px;border-radius:6px;background:#fafafa;display:flex;align-items:center;justify-content:center"><svg width="40" height="20" viewBox="0 0 40 20"><path d="M0,15 Q10,5 20,10 T40,8" fill="none" stroke="#222" stroke-width="1.5" stroke-linecap="round"/></svg></div>'}
     ]}
   ];
 
@@ -957,6 +1008,7 @@ viewer.addEventListener('click', function(e){
       var sel=selections[idx]===i?' selected':'';
       var checkmark=sel?'<svg class="checkmark-badge" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="11" fill="#000"/><path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>':'';
       html+='<div class="survey-option'+sel+'" data-q="'+idx+'" data-opt="'+i+'">'+checkmark;
+      html+='<div class="survey-option-preview">'+(opt.preview||'')+'</div>';
       html+='<span class="survey-option-label">'+opt.label+'</span>';
       html+='<span class="survey-option-desc">'+opt.description+'</span></div>';
     }
@@ -997,7 +1049,7 @@ viewer.addEventListener('click', function(e){
       for(var l=0;l<a.links.length;l++){
         var linkName=a.links[l][0];
         var linkUrl=a.links[l][1];
-        html+='<a class="survey-link-btn" href="'+linkUrl+'" target="_blank" rel="noopener noreferrer">Visit '+linkName+' &rarr;</a>';
+        html+='<div class="survey-ref-block"><iframe class="survey-example-frame" src="'+linkUrl+'" sandbox="allow-scripts" loading="lazy" title="'+linkName+'"></iframe><div class="survey-ref-fallback"><span>'+linkName+'</span><a href="'+linkUrl+'" target="_blank" rel="noopener">Open site ↗</a></div></div>';
       }
       html+='</div>';
     }
