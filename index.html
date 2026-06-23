@@ -430,20 +430,31 @@ footer{
   border:2px solid var(--border);
   border-radius:12px;
   cursor:pointer;
-  transition:all var(--transition);
+  transition:all 0.25s ease;
   text-align:center;
+  position:relative;
+  overflow:visible;
   -webkit-user-select:none;
   user-select:none;
 }
 .survey-option:hover{
-  transform:translateY(-3px);
-  box-shadow:0 8px 24px rgba(0,0,0,0.07);
-  border-color:rgba(0,0,0,0.12);
+  transform:translateY(-2px);
+  box-shadow:0 12px 32px rgba(0,0,0,0.10);
+  border-color:rgba(0,0,0,0.15);
 }
 .survey-option.selected{
-  border-color:var(--text-heading);
+  border:2px solid #333;
   background:rgba(0,0,0,0.02);
-  box-shadow:0 4px 16px rgba(0,0,0,0.06);
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+  transform:scale(1.03);
+}
+.survey-option .checkmark-badge{
+  position:absolute;
+  top:6px;
+  right:6px;
+  width:20px;
+  height:20px;
+  z-index:2;
 }
 .survey-option-label{
   font-size:13px;
@@ -478,6 +489,8 @@ footer{
   border-radius:8px;
   object-fit:cover;
   border:1px solid var(--border);
+  max-width:100%;
+  height:auto;
 }
 .survey-ref-label{
   font-size:10px;
@@ -609,6 +622,28 @@ footer{
   -webkit-font-smoothing:antialiased;
 }
 .survey-btn-close:hover{background:#000}
+.survey-link-btn{
+  display:inline-flex;
+  align-items:center;
+  gap:4px;
+  padding:6px 14px;
+  border-radius:20px;
+  background:#fff;
+  border:1px solid var(--border);
+  font-family:'Inter',sans-serif;
+  font-size:12px;
+  font-weight:500;
+  color:var(--text-heading);
+  cursor:pointer;
+  text-decoration:none;
+  transition:all 0.2s ease;
+}
+.survey-link-btn:hover{
+  background:rgba(0,0,0,0.03);
+  border-color:rgba(0,0,0,0.15);
+  transform:translateY(-1px);
+  box-shadow:0 4px 12px rgba(0,0,0,0.06);
+}
 @media(max-width:600px){
   .survey-card{border-radius:16px;max-height:95vh}
   .survey-header{padding:16px 20px 0}
@@ -625,6 +660,9 @@ footer{
   .survey-options{grid-template-columns:repeat(2,1fr)}
   .survey-question{font-size:16px}
   .survey-option{padding:12px 12px}
+  .survey-reference-images{flex-direction:column;align-items:center}
+  .survey-brand-tags{flex-wrap:wrap;justify-content:center}
+  .survey-link-btn{font-size:11px;padding:5px 12px}
 }
 </style>
 </head>
@@ -826,12 +864,12 @@ viewer.addEventListener('click', function(e){
 // ───── Design Style Survey ─────
 (function(){
   var aesthetics = {
-    'minimal-modern':{name:'Minimal Modern',description:'Clean, uncluttered design built on purposeful whitespace and restrained typography. Think Apple, Muji, and Google — brands that let content breathe. Every element serves a function, nothing is decorative for its own sake.',colors:['#D6CCC2','#111111','#F5F5F0','#888888'],badgeBg:'#D6CCC2',badgeColor:'#111111',referenceImage:'showcase/images/reference-minimal-modern-1.jpg',brands:['Apple','Muji','Google']},
-    'bold-playful':{name:'Bold & Playful',description:'Vibrant, energetic design that makes a confident statement with asymmetry and striking color combinations. Think Spotify, Duolingo, and Mailchimp — brands that arent afraid to have personality. The result is a memorable, approachable experience that stands out.',colors:['#9B5DE5','#F15BB5','#FEE440','#00BBF9'],badgeBg:'#9B5DE5',badgeColor:'#FFFFFF',referenceImage:'showcase/images/reference-bold-playful-1.jpg',brands:['Spotify','Duolingo','Mailchimp']},
-    'tech-forward':{name:'Tech-Forward',description:'Sleek, cutting-edge design with glassmorphic elements and cool-toned precision. Think Stripe, Notion, and Vercel — brands that feel innovative and sophisticated. Every detail suggests forward-thinking technology and polished craftsmanship.',colors:['#3D5A80','#98C1D9','#E0FBFC','#293241'],badgeBg:'#3D5A80',badgeColor:'#FFFFFF',brands:['Stripe','Notion','Vercel']},
-    'swiss-classic':{name:'Swiss Classic',description:'Timeless, grid-based design rooted in the Swiss typographic tradition of clarity and order. Think Braun, The New York Times, and Mies van der Rohe — brands built on structure and hierarchy. Clean lines and systematic layouts create an authoritative, reliable presence.',colors:['#264653','#E9ECEF','#6C757D','#D6CCC2'],badgeBg:'#264653',badgeColor:'#FFFFFF',brands:['Braun','The New York Times','Mies van der Rohe']},
-    'organic-warm':{name:'Organic Warm',description:'Natural, inviting design with earthy tones and handcrafted textures. Think Patagonia, Aesop, and Airbnb — brands that feel human and approachable. Curves, warm colors, and organic shapes create a sense of comfort and authenticity.',colors:['#E07A5F','#81B29A','#F2CC8F','#3D405B'],badgeBg:'#81B29A',badgeColor:'#FFFFFF',brands:['Patagonia','Aesop','Airbnb']},
-    'edge-brutalist':{name:'Edge/Brutalist',description:'Raw, unapologetic design that breaks conventions with bold frames and unconventional layouts. Think Balenciaga, The Outline, and Penthouse — brands that challenge the status quo. Its design that demands attention and makes a deliberate statement.',colors:['#111111','#333333','#666666','#CCCCCC'],badgeBg:'#111111',badgeColor:'#FFFFFF',brands:['Balenciaga','The Outline','Penthouse']}
+    'minimal-modern':{name:'Minimal Modern',description:'Clean, uncluttered design built on purposeful whitespace and restrained typography. Think Apple, Muji, and Google — brands that let content breathe. Every element serves a function, nothing is decorative for its own sake.',colors:['#D6CCC2','#111111','#F5F5F0','#888888'],badgeBg:'#D6CCC2',badgeColor:'#111111',brands:['Apple','Muji','Google'],links:[['Apple','https://apple.com'],['Stripe','https://stripe.com'],['Google','https://google.com']]},
+    'bold-playful':{name:'Bold & Playful',description:'Vibrant, energetic design that makes a confident statement with asymmetry and striking color combinations. Think Spotify, Duolingo, and Mailchimp — brands that arent afraid to have personality. The result is a memorable, approachable experience that stands out.',colors:['#9B5DE5','#F15BB5','#FEE440','#00BBF9'],badgeBg:'#9B5DE5',badgeColor:'#FFFFFF',brands:['Spotify','Duolingo','Mailchimp'],links:[['Duolingo','https://duolingo.com'],['Spotify','https://spotify.com'],['Mailchimp','https://mailchimp.com']]},
+    'tech-forward':{name:'Tech-Forward',description:'Sleek, cutting-edge design with glassmorphic elements and cool-toned precision. Think Stripe, Notion, and Vercel — brands that feel innovative and sophisticated. Every detail suggests forward-thinking technology and polished craftsmanship.',colors:['#3D5A80','#98C1D9','#E0FBFC','#293241'],badgeBg:'#3D5A80',badgeColor:'#FFFFFF',brands:['Stripe','Notion','Vercel'],links:[['Notion','https://notion.so'],['SpaceX','https://spacex.com'],['Figma','https://figma.com']]},
+    'swiss-classic':{name:'Swiss Classic',description:'Timeless, grid-based design rooted in the Swiss typographic tradition of clarity and order. Think Braun, The New York Times, and Mies van der Rohe — brands built on structure and hierarchy. Clean lines and systematic layouts create an authoritative, reliable presence.',colors:['#264653','#E9ECEF','#6C757D','#D6CCC2'],badgeBg:'#264653',badgeColor:'#FFFFFF',brands:['Braun','The New York Times','Mies van der Rohe'],links:[['IBM','https://ibm.com'],['McKinsey','https://mckinsey.com'],['The Guardian','https://theguardian.com']]},
+    'organic-warm':{name:'Organic Warm',description:'Natural, inviting design with earthy tones and handcrafted textures. Think Patagonia, Aesop, and Airbnb — brands that feel human and approachable. Curves, warm colors, and organic shapes create a sense of comfort and authenticity.',colors:['#E07A5F','#81B29A','#F2CC8F','#3D405B'],badgeBg:'#81B29A',badgeColor:'#FFFFFF',brands:['Patagonia','Aesop','Airbnb'],links:[['Headspace','https://headspace.com'],['Patagonia','https://patagonia.com'],['REI','https://rei.com']]},
+    'edge-brutalist':{name:'Edge/Brutalist',description:'Raw, unapologetic design that breaks conventions with bold frames and unconventional layouts. Think Balenciaga, The Outline, and Penthouse — brands that challenge the status quo. Its design that demands attention and makes a deliberate statement.',colors:['#111111','#333333','#666666','#CCCCCC'],badgeBg:'#111111',badgeColor:'#FFFFFF',brands:['Balenciaga','The Outline','Penthouse'],links:[['Bloomberg','https://bloomberg.com'],['Postlight','https://postlight.com'],['Brutalist Websites','https://brutalistwebsites.com']]}
   };
 
   var questions = [
@@ -917,7 +955,8 @@ viewer.addEventListener('click', function(e){
     for(var i=0;i<q.options.length;i++){
       var opt=q.options[i];
       var sel=selections[idx]===i?' selected':'';
-      html+='<div class="survey-option'+sel+'" data-q="'+idx+'" data-opt="'+i+'">';
+      var checkmark=sel?'<svg class="checkmark-badge" viewBox="0 0 24 24" width="20" height="20"><circle cx="12" cy="12" r="11" fill="#000"/><path d="M7 13l3 3 7-7" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>':'';
+      html+='<div class="survey-option'+sel+'" data-q="'+idx+'" data-opt="'+i+'">'+checkmark;
       html+='<span class="survey-option-label">'+opt.label+'</span>';
       html+='<span class="survey-option-desc">'+opt.description+'</span></div>';
     }
@@ -953,9 +992,13 @@ viewer.addEventListener('click', function(e){
       for(var t=0;t<a.brands.length;t++) html+='<span class="survey-brand-tag">'+a.brands[t]+'</span>';
     }
     html+='</div>';
-    if(a.referenceImage){
+    if(a.links){
       html+='<div class="survey-reference-images">';
-      html+='<div class="survey-reference-thumb"><img src="'+a.referenceImage+'" alt="'+a.name+' reference" loading="lazy"><span class="survey-ref-label">Inspiration</span></div>';
+      for(var l=0;l<a.links.length;l++){
+        var linkName=a.links[l][0];
+        var linkUrl=a.links[l][1];
+        html+='<a class="survey-link-btn" href="'+linkUrl+'" target="_blank" rel="noopener noreferrer">Visit '+linkName+' &rarr;</a>';
+      }
       html+='</div>';
     }
     html+='<div class="survey-palette">';
