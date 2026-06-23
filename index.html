@@ -283,6 +283,315 @@ footer{
   .hero h1{font-size:2rem}
   .card .body{padding:16px}
 }
+
+/* ───── Design Style Survey ───── */
+.survey-trigger{
+  position:fixed;
+  bottom:28px;
+  right:28px;
+  z-index:9999;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:12px 24px;
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:50px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.08);
+  cursor:pointer;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  font-weight:500;
+  color:var(--text-heading);
+  transition:all var(--transition);
+  -webkit-font-smoothing:antialiased;
+}
+.survey-trigger:hover{
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(0,0,0,0.12);
+}
+.survey-trigger svg{
+  width:18px;height:18px;
+  flex-shrink:0;
+}
+.survey-overlay{
+  position:fixed;
+  inset:0;
+  z-index:10000;
+  background:rgba(0,0,0,0.65);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  opacity:0;
+  visibility:hidden;
+  transition:opacity 0.35s ease,visibility 0.35s ease;
+  padding:20px;
+}
+.survey-overlay.open{
+  opacity:1;
+  visibility:visible;
+}
+.survey-card{
+  background:var(--card);
+  border-radius:20px;
+  max-width:680px;
+  width:100%;
+  max-height:90vh;
+  overflow-y:auto;
+  box-shadow:0 30px 80px rgba(0,0,0,0.25);
+  position:relative;
+  display:flex;
+  flex-direction:column;
+}
+.survey-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:20px 28px 0;
+  flex-shrink:0;
+}
+.survey-progress{
+  font-size:13px;
+  font-weight:500;
+  color:var(--text-body);
+  letter-spacing:0.02em;
+}
+.survey-progress-bar{
+  height:3px;
+  background:var(--border);
+  border-radius:2px;
+  margin:12px 28px 0;
+  overflow:hidden;
+  flex-shrink:0;
+}
+.survey-progress-fill{
+  height:100%;
+  background:var(--text-heading);
+  border-radius:2px;
+  transition:width 0.4s cubic-bezier(0.4,0,0.2,1);
+  width:0%;
+}
+.survey-close{
+  width:36px;height:36px;
+  border-radius:50%;
+  background:transparent;
+  border:none;
+  color:var(--text-body);
+  font-size:22px;
+  cursor:pointer;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  transition:background 0.2s,color 0.2s;
+  flex-shrink:0;
+}
+.survey-close:hover{
+  background:rgba(0,0,0,0.05);
+  color:var(--text-heading);
+}
+.survey-body{
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+  min-height:320px;
+  flex:1;
+}
+.survey-slide{
+  display:none;
+  animation:surveySlideIn 0.4s cubic-bezier(0.4,0,0.2,1);
+}
+.survey-slide.active{display:block}
+@keyframes surveySlideIn{
+  from{opacity:0;transform:translateX(40px)}
+  to{opacity:1;transform:translateX(0)}
+}
+.survey-question{
+  font-size:20px;
+  font-weight:500;
+  color:var(--text-heading);
+  margin-bottom:24px;
+  letter-spacing:-0.02em;
+  line-height:1.3;
+}
+.survey-options{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+.survey-option{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:12px;
+  padding:20px 16px;
+  background:var(--card);
+  border:2px solid var(--border);
+  border-radius:14px;
+  cursor:pointer;
+  transition:all var(--transition);
+  text-align:center;
+  -webkit-user-select:none;
+  user-select:none;
+}
+.survey-option:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 24px rgba(0,0,0,0.07);
+  border-color:rgba(0,0,0,0.12);
+}
+.survey-option.selected{
+  border-color:var(--text-heading);
+  background:rgba(0,0,0,0.02);
+  box-shadow:0 4px 16px rgba(0,0,0,0.06);
+}
+.survey-option-visual{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:64px;
+  height:64px;
+  flex-shrink:0;
+}
+.survey-option-label{
+  font-size:13px;
+  font-weight:500;
+  color:var(--text-heading);
+  line-height:1.3;
+}
+.swatch-circle{
+  width:56px;
+  height:56px;
+  border-radius:50%;
+  border:1px solid rgba(0,0,0,0.06);
+}
+.survey-footer{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 28px 20px;
+  gap:12px;
+  flex-shrink:0;
+}
+.survey-btn{
+  padding:10px 24px;
+  border-radius:10px;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all 0.2s;
+  border:none;
+  -webkit-font-smoothing:antialiased;
+}
+.survey-btn-back{
+  background:transparent;
+  color:var(--text-body);
+  border:1px solid var(--border);
+}
+.survey-btn-back:hover{
+  background:rgba(0,0,0,0.03);
+  color:var(--text-heading);
+}
+.survey-btn-next{
+  background:var(--text-heading);
+  color:#fff;
+  margin-left:auto;
+}
+.survey-btn-next:hover{background:#000}
+.survey-btn-next:disabled{
+  opacity:0.35;
+  cursor:not-allowed;
+}
+.survey-results{
+  text-align:center;
+  padding:10px 0;
+}
+.survey-badge{
+  display:inline-block;
+  padding:14px 32px;
+  border-radius:12px;
+  font-size:24px;
+  font-weight:600;
+  letter-spacing:-0.02em;
+  margin-bottom:16px;
+}
+.survey-description{
+  font-size:15px;
+  color:var(--text-body);
+  line-height:1.6;
+  max-width:520px;
+  margin:0 auto 24px;
+}
+.survey-palette{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  margin-bottom:28px;
+}
+.survey-palette-swatch{
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  border:1px solid rgba(0,0,0,0.06);
+}
+.survey-results-buttons{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+}
+.survey-btn-restart{
+  padding:10px 24px;
+  border-radius:10px;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all 0.2s;
+  border:1px solid var(--border);
+  background:transparent;
+  color:var(--text-body);
+  -webkit-font-smoothing:antialiased;
+}
+.survey-btn-restart:hover{
+  background:rgba(0,0,0,0.03);
+  color:var(--text-heading);
+}
+.survey-btn-close{
+  padding:10px 24px;
+  border-radius:10px;
+  font-family:'Inter',sans-serif;
+  font-size:14px;
+  font-weight:500;
+  cursor:pointer;
+  transition:all 0.2s;
+  border:none;
+  background:var(--text-heading);
+  color:#fff;
+  -webkit-font-smoothing:antialiased;
+}
+.survey-btn-close:hover{background:#000}
+@media(max-width:600px){
+  .survey-card{border-radius:16px;max-height:95vh}
+  .survey-header{padding:16px 20px 0}
+  .survey-progress-bar{margin:10px 20px 0}
+  .survey-body{padding:20px;min-height:280px}
+  .survey-footer{padding:0 20px 16px}
+  .survey-question{font-size:18px;margin-bottom:20px}
+  .survey-options{gap:10px}
+  .survey-option{padding:16px 12px}
+  .survey-trigger{bottom:20px;right:20px;padding:10px 18px;font-size:13px}
+  .survey-badge{font-size:20px;padding:12px 24px}
+}
+@media(max-width:480px){
+  .survey-options{grid-template-columns:1fr}
+  .survey-question{font-size:16px}
+  .survey-option{flex-direction:row;padding:14px 16px;gap:14px}
+  .survey-option-visual{width:48px;height:48px}
+  .swatch-circle{width:44px;height:44px}
+}
 </style>
 </head>
 <body>
@@ -313,6 +622,32 @@ footer{
     <iframe id="viewerIframe" title="Project Preview"></iframe>
     <button class="viewer-nav prev" id="viewerPrev" aria-label="Previous"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg></button>
     <button class="viewer-nav next" id="viewerNext" aria-label="Next"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg></button>
+  </div>
+</div>
+
+<!-- ───── Survey Trigger ───── -->
+<button class="survey-trigger" id="surveyTrigger" aria-label="Discover your style">
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+  </svg>
+  Discover your style
+</button>
+
+<!-- ───── Survey Overlay ───── -->
+<div class="survey-overlay" id="surveyOverlay">
+  <div class="survey-card">
+    <div class="survey-header">
+      <span class="survey-progress" id="surveyProgress">Q 1/6</span>
+      <button class="survey-close" id="surveyClose" aria-label="Close">&times;</button>
+    </div>
+    <div class="survey-progress-bar">
+      <div class="survey-progress-fill" id="surveyProgressFill"></div>
+    </div>
+    <div class="survey-body" id="surveyBody"></div>
+    <div class="survey-footer" id="surveyFooter">
+      <button class="survey-btn survey-btn-back" id="surveyBack" style="visibility:hidden">Back</button>
+      <button class="survey-btn survey-btn-next" id="surveyNext" disabled>Next</button>
+    </div>
   </div>
 </div>
 
@@ -453,6 +788,179 @@ document.addEventListener('keydown', function(e){
 viewer.addEventListener('click', function(e){
   if(e.target === viewer) closeViewer();
 });
+
+// ───── Design Style Survey ─────
+(function(){
+  var aesthetics = {
+    'minimal-modern':{name:'Minimal Modern',description:'Clean, uncluttered design with plenty of breathing room. This aesthetic values function over decoration, with a focus on purposeful whitespace and restrained typography. The result is a calm, intuitive experience that lets content shine.',colors:['#D6CCC2','#111111','#F5F5F0','#888888'],badgeBg:'#D6CCC2',badgeColor:'#111111'},
+    'bold-playful':{name:'Bold & Playful',description:'Vibrant, energetic design that makes a statement. This aesthetic embraces asymmetry, bold typography, and striking color combinations. The result is a confident, memorable experience that stands out from the crowd.',colors:['#9B5DE5','#F15BB5','#FEE440','#00BBF9'],badgeBg:'#9B5DE5',badgeColor:'#FFFFFF'},
+    'luxury-premium':{name:'Luxury Premium',description:'Refined, elegant design with a focus on sophistication and quality. This aesthetic leverages warm tones, classic typography, and rich imagery. The result is an aspirational experience that conveys prestige and craftsmanship.',colors:['#E07A5F','#3D405B','#F4F1DE','#D4A373'],badgeBg:'#E07A5F',badgeColor:'#FFFFFF'},
+    'tech-forward':{name:'Tech-Forward',description:'Sleek, modern design with a technical edge. This aesthetic favors cool tones, geometric precision, and glassmorphic elements. The result is a polished, innovative experience that feels cutting-edge and sophisticated.',colors:['#3D5A80','#98C1D9','#E0FBFC','#293241'],badgeBg:'#3D5A80',badgeColor:'#FFFFFF'},
+    'warm-organic':{name:'Warm & Organic',description:'Natural, inviting design with a human touch. This aesthetic combines warm earthy tones with organic shapes and illustrative elements. The result is a friendly, approachable experience that feels handcrafted and genuine.',colors:['#E07A5F','#81B29A','#F2CC8F','#3D405B'],badgeBg:'#81B29A',badgeColor:'#FFFFFF'},
+    'corporate-classic':{name:'Corporate Classic',description:'Professional, trustworthy design built on established conventions. This aesthetic favors neutral palettes, clean grids, and traditional typography. The result is a reliable, authoritative experience that inspires confidence.',colors:['#D6CCC2','#264653','#E9ECEF','#6C757D'],badgeBg:'#264653',badgeColor:'#FFFFFF'}
+  };
+
+  function renderVisual(opt){
+    var v=opt.visual;
+    if(v==='swatch') return '<div class="swatch-circle" style="background:'+opt.value+'"></div>';
+    if(v==='logo-minimal') return '<svg viewBox="0 0 64 64" fill="none"><rect x="12" y="12" width="40" height="40" rx="8" fill="#111"/><text x="32" y="40" text-anchor="middle" fill="#fff" font-family="Inter,sans-serif" font-weight="600" font-size="22">A</text></svg>';
+    if(v==='logo-geometric') return '<svg viewBox="0 0 64 64" fill="none"><polygon points="32,10 54,32 32,54 10,32" fill="#111"/></svg>';
+    if(v==='logo-wordmark') return '<svg viewBox="0 0 64 64" fill="none"><rect x="10" y="24" width="44" height="4" rx="2" fill="#111"/><rect x="10" y="34" width="34" height="4" rx="2" fill="#111"/><rect x="10" y="44" width="24" height="4" rx="2" fill="#111"/></svg>';
+    if(v==='logo-illustrative') return '<svg viewBox="0 0 64 64" fill="none"><path d="M12 40 C20 20, 30 50, 40 30 C50 10, 55 45, 52 48" stroke="#111" stroke-width="3" stroke-linecap="round" fill="none"/></svg>';
+    if(v==='layout-grid') return '<svg viewBox="0 0 64 64" fill="none"><rect x="8" y="8" width="20" height="20" rx="3" fill="#111" opacity=".7"/><rect x="36" y="8" width="20" height="20" rx="3" fill="#111" opacity=".5"/><rect x="8" y="36" width="20" height="20" rx="3" fill="#111" opacity=".7"/><rect x="36" y="36" width="20" height="20" rx="3" fill="#111" opacity=".5"/></svg>';
+    if(v==='layout-fullbleed') return '<svg viewBox="0 0 64 64" fill="none"><rect x="4" y="16" width="56" height="32" rx="4" fill="#111"/></svg>';
+    if(v==='layout-asymmetric') return '<svg viewBox="0 0 64 64" fill="none"><rect x="4" y="8" width="40" height="22" rx="3" fill="#111" opacity=".7"/><rect x="24" y="38" width="36" height="18" rx="3" fill="#111"/></svg>';
+    if(v==='layout-scroll') return '<svg viewBox="0 0 64 64" fill="none"><rect x="16" y="6" width="32" height="16" rx="3" fill="#111" opacity=".7"/><rect x="16" y="28" width="32" height="6" rx="2" fill="#111" opacity=".35"/><rect x="16" y="40" width="32" height="6" rx="2" fill="#111" opacity=".35"/><rect x="16" y="52" width="32" height="6" rx="2" fill="#111" opacity=".35"/></svg>';
+    if(v==='type-sans') return '<span style="font-size:28px;font-weight:500;font-family:Inter,sans-serif;color:#111;line-height:1">Aa</span>';
+    if(v==='type-serif') return '<span style="font-size:28px;font-weight:500;font-family:Georgia,serif;color:#111;line-height:1">Aa</span>';
+    if(v==='type-display') return '<span style="font-size:30px;font-weight:700;font-family:Inter,sans-serif;color:#111;line-height:1;letter-spacing:-.03em">Aa</span>';
+    if(v==='type-mono') return '<span style="font-size:26px;font-weight:400;font-family:monospace;color:#111;line-height:1">Aa</span>';
+    if(v==='space-generous') return '<svg viewBox="0 0 64 64" fill="none"><rect x="4" y="12" width="56" height="6" rx="2" fill="#111" opacity=".5"/><rect x="4" y="48" width="56" height="6" rx="2" fill="#111" opacity=".5"/></svg>';
+    if(v==='space-balanced') return '<svg viewBox="0 0 64 64" fill="none"><rect x="4" y="6" width="56" height="6" rx="2" fill="#111" opacity=".5"/><rect x="4" y="18" width="56" height="6" rx="2" fill="#111" opacity=".35"/><rect x="4" y="42" width="56" height="6" rx="2" fill="#111" opacity=".35"/><rect x="4" y="54" width="56" height="6" rx="2" fill="#111" opacity=".5"/></svg>';
+    if(v==='space-dense') return '<svg viewBox="0 0 64 64" fill="none"><rect x="4" y="4" width="56" height="5" rx="2" fill="#111" opacity=".5"/><rect x="4" y="13" width="56" height="5" rx="2" fill="#111" opacity=".35"/><rect x="4" y="22" width="56" height="5" rx="2" fill="#111" opacity=".5"/><rect x="4" y="31" width="56" height="5" rx="2" fill="#111" opacity=".35"/><rect x="4" y="40" width="56" height="5" rx="2" fill="#111" opacity=".5"/><rect x="4" y="49" width="56" height="5" rx="2" fill="#111" opacity=".35"/><rect x="4" y="58" width="40" height="4" rx="2" fill="#111" opacity=".3"/></svg>';
+    if(v==='space-varied') return '<svg viewBox="0 0 64 64" fill="none"><rect x="4" y="6" width="40" height="8" rx="2" fill="#111" opacity=".5"/><rect x="4" y="22" width="56" height="4" rx="2" fill="#111" opacity=".35"/><rect x="4" y="36" width="30" height="12" rx="2" fill="#111" opacity=".5"/><rect x="4" y="56" width="50" height="4" rx="2" fill="#111" opacity=".35"/></svg>';
+    if(v==='detail-layers') return '<svg viewBox="0 0 64 64" fill="none"><rect x="16" y="16" width="36" height="36" rx="4" fill="#111" opacity=".25"/><rect x="10" y="10" width="36" height="36" rx="4" fill="#111" opacity=".5"/><rect x="18" y="18" width="28" height="28" rx="4" fill="#111"/></svg>';
+    if(v==='detail-glass') return '<svg viewBox="0 0 64 64" fill="none"><rect x="14" y="14" width="36" height="36" rx="8" fill="rgba(0,0,0,.06)" stroke="#111" stroke-width="1.5"/><rect x="10" y="10" width="36" height="36" rx="8" fill="#111" opacity=".3"/></svg>';
+    if(v==='detail-frames') return '<svg viewBox="0 0 64 64" fill="none"><rect x="8" y="8" width="48" height="48" rx="4" stroke="#111" stroke-width="5" fill="none"/></svg>';
+    if(v==='detail-organic') return '<svg viewBox="0 0 64 64" fill="none"><path d="M12 32 C12 18, 22 12, 32 12 C42 12, 52 18, 52 32 C52 46, 42 52, 32 52 C22 52, 12 46, 12 32Z" fill="#111"/><path d="M12 28 C18 22, 28 20, 32 24 C36 28, 46 22, 52 28" stroke="#fff" stroke-width="2" stroke-linecap="round" fill="none"/></svg>';
+    return '';
+  }
+
+  var questions = [
+    {question:'Which color palette draws you in?',options:[
+      {label:'Warm & Inviting',scores:['luxury-premium','warm-organic'],visual:'swatch',value:'#E07A5F'},
+      {label:'Cool & Calm',scores:['tech-forward'],visual:'swatch',value:'#3D5A80'},
+      {label:'Neutral & Minimal',scores:['minimal-modern','corporate-classic'],visual:'swatch',value:'#D6CCC2'},
+      {label:'Bold & Vibrant',scores:['bold-playful'],visual:'swatch',value:'#9B5DE5'}
+    ]},
+    {question:'What logo style feels right?',options:[
+      {label:'Minimal Mark',scores:['minimal-modern'],visual:'logo-minimal'},
+      {label:'Geometric Icon',scores:['bold-playful','tech-forward'],visual:'logo-geometric'},
+      {label:'Clean Wordmark',scores:['luxury-premium','corporate-classic'],visual:'logo-wordmark'},
+      {label:'Illustrative',scores:['warm-organic'],visual:'logo-illustrative'}
+    ]},
+    {question:'Pick your UI vibe:',options:[
+      {label:'Cards & Grids',scores:['minimal-modern','tech-forward','corporate-classic'],visual:'layout-grid'},
+      {label:'Full-bleed Bold',scores:['luxury-premium','warm-organic'],visual:'layout-fullbleed'},
+      {label:'Asymmetric Edge',scores:['bold-playful'],visual:'layout-asymmetric'},
+      {label:'Minimal Scroll',scores:['minimal-modern'],visual:'layout-scroll'}
+    ]},
+    {question:"What's your typography personality?",options:[
+      {label:'Modern Sans',scores:['minimal-modern','corporate-classic'],visual:'type-sans'},
+      {label:'Classic Serif',scores:['luxury-premium','warm-organic'],visual:'type-serif'},
+      {label:'Bold Display',scores:['bold-playful'],visual:'type-display'},
+      {label:'Tech Mono',scores:['tech-forward'],visual:'type-mono'}
+    ]},
+    {question:'How much whitespace do you prefer?',options:[
+      {label:'Generous & Airy',scores:['minimal-modern','warm-organic'],visual:'space-generous'},
+      {label:'Balanced',scores:['luxury-premium','tech-forward','corporate-classic'],visual:'space-balanced'},
+      {label:'Content-forward',scores:['bold-playful'],visual:'space-dense'},
+      {label:'Dynamic & Playful',scores:['bold-playful'],visual:'space-varied'}
+    ]},
+    {question:'Pick a design detail:',options:[
+      {label:'Depth & Layers',scores:['minimal-modern'],visual:'detail-layers'},
+      {label:'Glassmorphism',scores:['tech-forward'],visual:'detail-glass'},
+      {label:'Bold Frames',scores:['bold-playful','corporate-classic'],visual:'detail-frames'},
+      {label:'Organic Shapes',scores:['luxury-premium','warm-organic'],visual:'detail-organic'}
+    ]}
+  ];
+
+  var surveyOpen=false, currentQ=0, selections=[];
+
+  function computeTopAesthetic(){
+    var scores={};
+    for(var k in aesthetics) scores[k]=0;
+    for(var qi=0;qi<selections.length;qi++){
+      if(selections[qi]!==undefined){
+        var opt=questions[qi].options[selections[qi]];
+        for(var si=0;si<opt.scores.length;si++) scores[opt.scores[si]]++;
+      }
+    }
+    var topKey=null,topScore=-1;
+    for(var k in scores){if(scores[k]>topScore){topScore=scores[k];topKey=k;}}
+    return topKey;
+  }
+
+  function renderQuestion(idx){
+    var body=document.getElementById('surveyBody');
+    var footer=document.getElementById('surveyFooter');
+    if(idx===-1){
+      footer.style.display='none';
+      renderResults();
+      return;
+    }
+    footer.style.display='flex';
+    var q=questions[idx];
+    var html='<div class="survey-slide active">';
+    html+='<h3 class="survey-question">'+q.question+'</h3>';
+    html+='<div class="survey-options">';
+    for(var i=0;i<q.options.length;i++){
+      var opt=q.options[i];
+      var sel=selections[idx]===i?' selected':'';
+      html+='<div class="survey-option'+sel+'" data-q="'+idx+'" data-opt="'+i+'">';
+      html+='<div class="survey-option-visual">'+renderVisual(opt)+'</div>';
+      html+='<span class="survey-option-label">'+opt.label+'</span></div>';
+    }
+    html+='</div></div>';
+    body.innerHTML=html;
+    document.getElementById('surveyProgress').textContent='Q '+(idx+1)+'/'+questions.length;
+    document.getElementById('surveyProgressFill').style.width=((idx+1)/questions.length*100)+'%';
+    document.getElementById('surveyBack').style.visibility=idx===0?'hidden':'visible';
+    document.getElementById('surveyNext').textContent=idx===questions.length-1?'See Results':'Next';
+    document.getElementById('surveyNext').disabled=selections[idx]===undefined;
+    var opts=body.querySelectorAll('.survey-option');
+    for(var j=0;j<opts.length;j++){
+      opts[j].addEventListener('click',function(){
+        var qi=parseInt(this.getAttribute('data-q'));
+        var oi=parseInt(this.getAttribute('data-opt'));
+        selections[qi]=oi;
+        renderQuestion(currentQ);
+      });
+    }
+  }
+
+  function renderResults(){
+    var body=document.getElementById('surveyBody');
+    var topKey=computeTopAesthetic();
+    var a=aesthetics[topKey];
+    document.getElementById('surveyProgress').textContent='Your Style';
+    document.getElementById('surveyProgressFill').style.width='100%';
+    var html='<div class="survey-results">';
+    html+='<div class="survey-badge" style="background:'+a.badgeBg+';color:'+a.badgeColor+'">'+a.name+'</div>';
+    html+='<p class="survey-description">'+a.description+'</p>';
+    html+='<div class="survey-palette">';
+    for(var c=0;c<a.colors.length;c++) html+='<div class="survey-palette-swatch" style="background:'+a.colors[c]+'"></div>';
+    html+='</div>';
+    html+='<div class="survey-results-buttons">';
+    html+='<button class="survey-btn-restart" id="surveyRestart">Restart Quiz</button>';
+    html+='<button class="survey-btn-close" id="surveyCloseResults">Close</button>';
+    html+='</div></div>';
+    body.innerHTML=html;
+    document.getElementById('surveyRestart').addEventListener('click',function(){resetSurvey();renderQuestion(0);});
+    document.getElementById('surveyCloseResults').addEventListener('click',closeSurvey);
+  }
+
+  function resetSurvey(){currentQ=0;selections=[];}
+
+  function goNext(){
+    if(selections[currentQ]===undefined) return;
+    if(currentQ<questions.length-1){currentQ++;renderQuestion(currentQ);}
+    else renderQuestion(-1);
+  }
+
+  function goBack(){if(currentQ>0){currentQ--;renderQuestion(currentQ);}}
+
+  function openSurvey(){resetSurvey();document.getElementById('surveyOverlay').classList.add('open');document.body.style.overflow='hidden';renderQuestion(0);}
+
+  function closeSurvey(){document.getElementById('surveyOverlay').classList.remove('open');document.body.style.overflow='';}
+
+  document.getElementById('surveyTrigger').addEventListener('click',openSurvey);
+  document.getElementById('surveyClose').addEventListener('click',closeSurvey);
+  document.getElementById('surveyNext').addEventListener('click',goNext);
+  document.getElementById('surveyBack').addEventListener('click',goBack);
+  document.getElementById('surveyOverlay').addEventListener('click',function(e){if(e.target===this) closeSurvey();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&document.getElementById('surveyOverlay').classList.contains('open')) closeSurvey();});
+})();
 </script>
 </body>
 </html>
