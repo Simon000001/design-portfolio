@@ -273,13 +273,11 @@ a{text-decoration:none;color:inherit}
 }
 
 /* ───── Photo Grid (Placeholder) ───── */
-.photo-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:16px;
   margin-bottom:28px;
 }
-.photo-placeholder-card{
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -293,24 +291,20 @@ a{text-decoration:none;color:inherit}
   text-align:center;
   transition:all 0.2s;
 }
-.photo-placeholder-card:hover{
   border-color:rgba(0,0,0,0.12);
   background:rgba(0,0,0,0.008);
 }
-.photo-placeholder-card svg{
   width:28px;
   height:28px;
   color:var(--text-body);
   opacity:0.5;
 }
-.photo-placeholder-note{
   font-size:11px;
   font-weight:500;
   color:var(--text-body);
   line-height:1.4;
   max-width:140px;
 }
-.photo-placeholder-cta{
   margin-top:4px;
   font-size:9px;
   font-weight:600;
@@ -323,7 +317,6 @@ a{text-decoration:none;color:inherit}
   background:var(--card);
   cursor:default;
 }
-.photo-connect-note{
   text-align:center;
   padding:12px 0 20px;
   font-size:13px;
@@ -344,7 +337,6 @@ footer{
 /* ───── Responsive ───── */
 @media(max-width:900px){
   .palettes-grid{grid-template-columns:repeat(2,1fr)}
-  .photo-grid{grid-template-columns:repeat(2,1fr)}
   .cat-grid{grid-template-columns:repeat(3,1fr)}
 }
 @media(max-width:600px){
@@ -352,7 +344,6 @@ footer{
   .nav{padding:14px 16px}
   .nav-title{font-size:14px}
   .palettes-grid{grid-template-columns:1fr}
-  .photo-grid{grid-template-columns:1fr}
   .cat-grid{grid-template-columns:repeat(2,1fr)}
   .tab-btn{font-size:13px;padding:7px 16px}
   .section-title{font-size:19px}
@@ -373,12 +364,6 @@ footer{
 
 /* ───── Animations ───── */
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.palette-card,.photo-placeholder-card{animation:fadeIn 0.4s ease both}
-.palette-card:nth-child(2),.photo-placeholder-card:nth-child(2){animation-delay:0.05s}
-.palette-card:nth-child(3),.photo-placeholder-card:nth-child(3){animation-delay:0.1s}
-.palette-card:nth-child(4),.photo-placeholder-card:nth-child(4){animation-delay:0.15s}
-.palette-card:nth-child(5),.photo-placeholder-card:nth-child(5){animation-delay:0.2s}
-.palette-card:nth-child(6),.photo-placeholder-card:nth-child(6){animation-delay:0.25s}
 </style>
 </head>
 <body>
@@ -397,7 +382,7 @@ footer{
   <!-- ───── Tab Switcher ───── -->
   <div class="tab-bar">
     <button class="tab-btn active" data-tab="color">Color Palette</button>
-    <button class="tab-btn" data-tab="photo">Photo Theme</button>
+    
   </div>
 
   <!-- ──── Tab 1: Color Palette Generator ──── -->
@@ -434,15 +419,7 @@ footer{
   </div>
 
   <!-- ──── Tab 2: Photo Theme Inspiration ──── -->
-  <div class="tab-content" id="tab-photo">
-    <h2 class="section-title">Photo Theme Inspiration</h2>
-
-    <div class="cat-grid" id="catGrid">
-      <div class="cat-card" data-category="portrait">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-8 8-8s8 4 8 8"/></svg>
-        <span class="cat-label">Portrait</span>
-      </div>
-      <div class="cat-card" data-category="landscape">
+  <div class="cat-card" data-category="landscape">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 17l5-6 4 5 4-7 5 8"/><rect x="2" y="3" width="20" height="18" rx="2"/></svg>
         <span class="cat-label">Landscape</span>
       </div>
@@ -484,7 +461,6 @@ footer{
       <button class="btn-generate" id="shuffleBtn">Shuffle</button>
     </div>
 
-    <div class="photo-grid" id="photoGrid"></div>
     <div class="photo-connect-note">Connect Instagram or Pinterest to see your feed here</div>
   </div>
 
@@ -735,21 +711,9 @@ footer{
 
   // ───── Tab Switching ─────
   var tabBtns = document.querySelectorAll('.tab-btn');
-  var tabContents = {
-    'color': document.getElementById('tab-color'),
-    'photo': document.getElementById('tab-photo')
-  };
+  var tabContent = document.getElementById('tab-color');
 
-  tabBtns.forEach(function(btn){
-    btn.addEventListener('click', function(){
-      tabBtns.forEach(function(b){b.classList.remove('active')});
-      this.classList.add('active');
-      var tab = this.getAttribute('data-tab');
-      for(var key in tabContents){
-        tabContents[key].classList.toggle('active', key === tab);
-      }
-    });
-  });
+  // Single view - no tab switching needed
 })();
 </script>
 </body>
