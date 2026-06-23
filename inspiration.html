@@ -104,6 +104,44 @@ a{text-decoration:none;color:inherit}
   margin-bottom:20px;
 }
 
+/* ───── Color Count Selector ───── */
+.count-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:12px;
+}
+.count-btn{
+  width:32px;
+  height:32px;
+  border-radius:50px;
+  border:1px solid var(--border);
+  background:var(--card);
+  font-family:'Inter',sans-serif;
+  font-size:13px;
+  font-weight:500;
+  color:var(--text-body);
+  cursor:pointer;
+  transition:all 0.2s;
+  -webkit-font-smoothing:antialiased;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.count-btn:hover{border-color:rgba(0,0,0,0.15);color:var(--text-heading)}
+.count-btn.active{
+  background:#111;
+  color:#fff;
+  border-color:#111;
+}
+.count-label{
+  font-size:12px;
+  color:var(--text-body);
+  display:flex;
+  align-items:center;
+  margin-right:4px;
+}
+
 /* ───── Theory Buttons ───── */
 .theory-row{
   display:flex;
@@ -148,6 +186,7 @@ a{text-decoration:none;color:inherit}
 }
 .btn-generate:hover{background:#000}
 .btn-generate:active{transform:scale(0.97)}
+.btn-generate:disabled{opacity:0.5;cursor:not-allowed;transform:none}
 
 /* ───── Palettes Grid ───── */
 .palettes-grid{
@@ -180,6 +219,16 @@ a{text-decoration:none;color:inherit}
   text-align:center;
   font-family:'SF Mono','Consolas','Monaco',monospace;
   letter-spacing:0.02em;
+}
+
+/* ───── Ding Animation ───── */
+@keyframes dingPulse {
+  0% { box-shadow: 0 0 0 0 rgba(17,17,17,0.15); transform: scale(1); }
+  50% { box-shadow: 0 0 0 12px rgba(17,17,17,0); transform: scale(1.015); }
+  100% { box-shadow: 0 0 0 0 rgba(17,17,17,0); transform: scale(1); }
+}
+.ding-anim .palette-card {
+  animation: dingPulse 0.5s ease;
 }
 
 /* ───── Photo Categories ───── */
@@ -223,23 +272,64 @@ a{text-decoration:none;color:inherit}
   line-height:1.2;
 }
 
-/* ───── Photo Grid ───── */
+/* ───── Photo Grid (Placeholder) ───── */
 .photo-grid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:16px;
   margin-bottom:28px;
 }
-.photo-grid img{
-  width:100%;
+.photo-placeholder-card{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
   aspect-ratio:4/3;
-  object-fit:cover;
   border-radius:var(--radius);
-  border:1px solid var(--border);
-  background:#f0f0f0;
-  transition:transform 0.3s ease;
+  border:1.5px dashed var(--border);
+  background:var(--card);
+  padding:24px 16px;
+  text-align:center;
+  transition:all 0.2s;
 }
-.photo-grid img:hover{transform:scale(1.015)}
+.photo-placeholder-card:hover{
+  border-color:rgba(0,0,0,0.12);
+  background:rgba(0,0,0,0.008);
+}
+.photo-placeholder-card svg{
+  width:28px;
+  height:28px;
+  color:var(--text-body);
+  opacity:0.5;
+}
+.photo-placeholder-note{
+  font-size:11px;
+  font-weight:500;
+  color:var(--text-body);
+  line-height:1.4;
+  max-width:140px;
+}
+.photo-placeholder-cta{
+  margin-top:4px;
+  font-size:9px;
+  font-weight:600;
+  color:#999;
+  text-transform:uppercase;
+  letter-spacing:0.08em;
+  padding:5px 12px;
+  border-radius:20px;
+  border:1px solid var(--border);
+  background:var(--card);
+  cursor:default;
+}
+.photo-connect-note{
+  text-align:center;
+  padding:12px 0 20px;
+  font-size:13px;
+  color:var(--text-body);
+  opacity:0.7;
+}
 
 /* ───── Footer ───── */
 footer{
@@ -283,12 +373,12 @@ footer{
 
 /* ───── Animations ───── */
 @keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
-.palette-card,.photo-grid img{animation:fadeIn 0.4s ease both}
-.photo-grid img:nth-child(2){animation-delay:0.05s}
-.photo-grid img:nth-child(3){animation-delay:0.1s}
-.photo-grid img:nth-child(4){animation-delay:0.15s}
-.photo-grid img:nth-child(5){animation-delay:0.2s}
-.photo-grid img:nth-child(6){animation-delay:0.25s}
+.palette-card,.photo-placeholder-card{animation:fadeIn 0.4s ease both}
+.palette-card:nth-child(2),.photo-placeholder-card:nth-child(2){animation-delay:0.05s}
+.palette-card:nth-child(3),.photo-placeholder-card:nth-child(3){animation-delay:0.1s}
+.palette-card:nth-child(4),.photo-placeholder-card:nth-child(4){animation-delay:0.15s}
+.palette-card:nth-child(5),.photo-placeholder-card:nth-child(5){animation-delay:0.2s}
+.palette-card:nth-child(6),.photo-placeholder-card:nth-child(6){animation-delay:0.25s}
 </style>
 </head>
 <body>
@@ -313,6 +403,19 @@ footer{
   <!-- ──── Tab 1: Color Palette Generator ──── -->
   <div class="tab-content active" id="tab-color">
     <h2 class="section-title">Color Palette Generator</h2>
+
+    <!-- Color Count Selector -->
+    <div class="count-row" id="countRow">
+      <span class="count-label">Colors:</span>
+      <button class="count-btn" data-count="1">1</button>
+      <button class="count-btn" data-count="2">2</button>
+      <button class="count-btn" data-count="3">3</button>
+      <button class="count-btn" data-count="4">4</button>
+      <button class="count-btn active" data-count="5">5</button>
+      <button class="count-btn" data-count="6">6</button>
+      <button class="count-btn" data-count="7">7</button>
+      <button class="count-btn" data-count="8">8</button>
+    </div>
 
     <div class="theory-row" id="theoryRow">
       <button class="theory-btn active" data-theory="complementary">Complementary</button>
@@ -382,6 +485,7 @@ footer{
     </div>
 
     <div class="photo-grid" id="photoGrid"></div>
+    <div class="photo-connect-note">Connect Instagram or Pinterest to see your feed here</div>
   </div>
 
 </div>
@@ -396,9 +500,15 @@ footer{
   var palettesGrid = document.getElementById('palettesGrid');
   var generateBtn = document.getElementById('generateBtn');
   var theoryBtns = document.querySelectorAll('.theory-btn');
+  var countBtns = document.querySelectorAll('.count-btn');
   var activeTheory = 'complementary';
+  var colorCount = 5;
+  var animating = false;
 
   function hslToHex(h, s, l){
+    // Normalize s and l from 0-100 to 0-1
+    s = s / 100;
+    l = l / 100;
     h = ((h % 360) + 360) % 360;
     var c = (1 - Math.abs(2 * l - 1)) * s;
     var x = c * (1 - Math.abs((h / 60) % 2 - 1));
@@ -418,7 +528,7 @@ footer{
     }).join('');
   }
 
-  function generatePalette(theory){
+  function generatePalette(theory, count){
     var baseHue = Math.random() * 360;
     var sat = 55 + Math.random() * 30;
     var lit = 40 + Math.random() * 20;
@@ -439,36 +549,41 @@ footer{
         hues = [baseHue, baseHue + 90, baseHue + 180, baseHue + 270];
         break;
       case 'monochromatic':
-        hues = [baseHue, baseHue, baseHue, baseHue, baseHue];
+        for(var mi = 0; mi < count; mi++){
+          hues.push(baseHue);
+        }
         break;
       case 'split-complementary':
         hues = [baseHue, baseHue + 150, baseHue + 210];
         break;
     }
 
-    // If we have fewer than 5 hues, interpolate/extend to 5
-    for(var i = 0; i < 5; i++){
+    for(var i = 0; i < count; i++){
       var h;
       if(theory === 'monochromatic'){
-        // Vary saturation/lightness for monochromatic
-        var sVar = sat + (i - 2) * 6 + (Math.random() * 8 - 4);
-        var lVar = lit + (i - 2) * 7 + (Math.random() * 6 - 3);
+        var half = Math.floor(count / 2);
+        var sVar = sat + (i - half) * 6 + (Math.random() * 8 - 4);
+        var lVar = lit + (i - half) * 7 + (Math.random() * 6 - 3);
         colors.push({
           hex: hslToHex(hues[i], clamp(sVar, 15, 90), clamp(lVar, 15, 85))
         });
         continue;
       }
-      if(hues.length === 2){
-        // Complementary: interleave middle colors
-        if(i === 0 || i === 3) h = hues[0];
-        else if(i === 1 || i === 4) h = hues[1];
-        else h = (hues[0] + hues[1]) / 2;
-      } else if(hues.length === 3){
-        var step = 4 / (hues.length - 1);
-        var idx = Math.min(Math.floor(i / step), hues.length - 1);
-        h = hues[idx];
+
+      if(hues.length === 1 || count === 1){
+        h = hues[0];
+      } else if(count <= hues.length){
+        // Pick evenly from available hues
+        var idx = Math.floor(i * (hues.length / count));
+        h = hues[Math.min(idx, hues.length - 1)];
       } else {
-        h = hues[i % hues.length];
+        // Interpolate between hues for more colors than base hues
+        var step = (hues.length - 1) / (count - 1);
+        var exactIdx = i * step;
+        var idxLow = Math.floor(exactIdx);
+        var idxHigh = Math.min(idxLow + 1, hues.length - 1);
+        var t = exactIdx - idxLow;
+        h = hues[idxLow] + (hues[idxHigh] - hues[idxLow]) * t;
       }
 
       var sVar = sat + (Math.random() * 16 - 8);
@@ -483,27 +598,89 @@ footer{
   function clamp(v, min, max){return Math.max(min, Math.min(max, v))}
 
   function renderPalettes(){
+    var realPalettes = [];
+    for(var p = 0; p < 6; p++){
+      realPalettes.push(generatePalette(activeTheory, colorCount));
+    }
+
+    // Create temp structure with random cycling colors
     var html = '';
     for(var p = 0; p < 6; p++){
-      var pal = generatePalette(activeTheory);
       html += '<div class="palette-card">';
       html += '<div class="palette-swatches">';
-      for(var s = 0; s < pal.length; s++){
-        html += '<div class="palette-swatch" style="background:' + pal[s].hex + '"></div>';
+      for(var s = 0; s < colorCount; s++){
+        var rh = Math.random() * 360;
+        var rs = 40 + Math.random() * 40;
+        var rl = 30 + Math.random() * 40;
+        html += '<div class="palette-swatch" style="background:' + hslToHex(rh, rs, rl) + '"></div>';
       }
       html += '</div>';
       html += '<div class="palette-codes">';
-      for(var c = 0; c < pal.length; c++){
-        html += '<span class="palette-code">' + pal[c].hex + '</span>';
+      for(var c = 0; c < colorCount; c++){
+        html += '<span class="palette-code">------</span>';
       }
       html += '</div>';
       html += '</div>';
     }
     palettesGrid.innerHTML = html;
+
+    var swatches = palettesGrid.querySelectorAll('.palette-swatch');
+
+    // Cycle random colors every 80ms
+    var interval = setInterval(function(){
+      swatches.forEach(function(el){
+        var h = Math.random() * 360;
+        var s = 40 + Math.random() * 40;
+        var l = 30 + Math.random() * 40;
+        el.style.backgroundColor = hslToHex(h, s, l);
+      });
+    }, 80);
+
+    // After 1.5s, show the real palette with ding effect
+    setTimeout(function(){
+      clearInterval(interval);
+
+      var finalHtml = '';
+      for(var p = 0; p < 6; p++){
+        var pal = realPalettes[p];
+        finalHtml += '<div class="palette-card">';
+        finalHtml += '<div class="palette-swatches">';
+        for(var s = 0; s < pal.length; s++){
+          finalHtml += '<div class="palette-swatch" style="background:' + pal[s].hex + '"></div>';
+        }
+        finalHtml += '</div>';
+        finalHtml += '<div class="palette-codes">';
+        for(var c = 0; c < pal.length; c++){
+          finalHtml += '<span class="palette-code">' + pal[c].hex + '</span>';
+        }
+        finalHtml += '</div>';
+        finalHtml += '</div>';
+      }
+      palettesGrid.innerHTML = finalHtml;
+
+      // Ding animation
+      palettesGrid.classList.add('ding-anim');
+      setTimeout(function(){
+        palettesGrid.classList.remove('ding-anim');
+      }, 600);
+
+      animating = false;
+      generateBtn.disabled = false;
+    }, 1500);
   }
+
+  // Color count buttons
+  countBtns.forEach(function(btn){
+    btn.addEventListener('click', function(){
+      countBtns.forEach(function(b){b.classList.remove('active')});
+      this.classList.add('active');
+      colorCount = parseInt(this.getAttribute('data-count'), 10);
+    });
+  });
 
   theoryBtns.forEach(function(btn){
     btn.addEventListener('click', function(){
+      if(animating) return;
       theoryBtns.forEach(function(b){b.classList.remove('active')});
       this.classList.add('active');
       activeTheory = this.getAttribute('data-theory');
@@ -511,7 +688,10 @@ footer{
     });
   });
 
-  generateBtn.addEventListener('click', renderPalettes);
+  generateBtn.addEventListener('click', function(){
+    if(animating) return;
+    renderPalettes();
+  });
 
   // Initial render
   renderPalettes();
@@ -525,9 +705,11 @@ footer{
   function loadPhotos(category){
     var html = '';
     for(var i = 0; i < 6; i++){
-      var r = Math.floor(Math.random() * 100);
-      var seed = category + (r + i);
-      html += '<img src="https://picsum.photos/seed/' + seed + '/600/450" alt="' + category + ' photo ' + (i+1) + '" loading="lazy">';
+      html += '<div class="photo-placeholder-card">';
+      html += '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></svg>';
+      html += '<span class="photo-placeholder-note">' + category.charAt(0).toUpperCase() + category.slice(1) + ' inspiration</span>';
+      html += '<span class="photo-placeholder-cta">Connect API</span>';
+      html += '</div>';
     }
     photoGrid.innerHTML = html;
   }
