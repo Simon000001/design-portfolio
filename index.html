@@ -459,6 +459,28 @@ footer{
   color:var(--text-heading);
   line-height:1.3;
 }
+.survey-option-example{
+  width:100%;
+  height:40px;
+  border-radius:8px;
+  background:rgba(0,0,0,0.03);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  overflow:hidden;
+  flex-shrink:0;
+  padding:0 6px;
+}
+.survey-option-example .ex-cir{
+  width:12px;height:12px;border-radius:50%;
+  border:1px solid rgba(0,0,0,0.06);
+  flex-shrink:0;
+}
+.survey-option-example .ex-label{
+  font-size:9px;color:#999;font-weight:500;
+  letter-spacing:0.03em;white-space:nowrap;
+}
 .swatch-circle{
   width:56px;
   height:56px;
@@ -828,40 +850,40 @@ viewer.addEventListener('click', function(e){
 
   var questions = [
     {question:'Which color palette draws you in?',options:[
-      {label:'Warm & Inviting',scores:['luxury-premium','warm-organic'],visual:'swatch',value:'#E07A5F'},
-      {label:'Cool & Calm',scores:['tech-forward'],visual:'swatch',value:'#3D5A80'},
-      {label:'Neutral & Minimal',scores:['minimal-modern','corporate-classic'],visual:'swatch',value:'#D6CCC2'},
-      {label:'Bold & Vibrant',scores:['bold-playful'],visual:'swatch',value:'#9B5DE5'}
+      {label:'Warm & Inviting',scores:['luxury-premium','warm-organic'],visual:'swatch',value:'#E07A5F',example:'<span class="ex-cir" style="background:#E07A5F"></span><span class="ex-cir" style="background:#3D405B"></span><span class="ex-cir" style="background:#F4F1DE"></span><div style="flex:1;height:18px;border-radius:3px;background:linear-gradient(135deg,#E07A5F,#3D405B)"></div>'},
+      {label:'Cool & Calm',scores:['tech-forward'],visual:'swatch',value:'#3D5A80',example:'<span class="ex-cir" style="background:#3D5A80"></span><span class="ex-cir" style="background:#98C1D9"></span><span class="ex-cir" style="background:#E0FBFC"></span><div style="flex:1;height:18px;border-radius:3px;background:linear-gradient(135deg,#3D5A80,#98C1D9)"></div>'},
+      {label:'Neutral & Minimal',scores:['minimal-modern','corporate-classic'],visual:'swatch',value:'#D6CCC2',example:'<span class="ex-cir" style="background:#D6CCC2"></span><span class="ex-cir" style="background:#111111"></span><span class="ex-cir" style="background:#F5F5F0"></span><div style="flex:1;height:18px;border-radius:3px;background:linear-gradient(135deg,#D6CCC2,#111111)"></div>'},
+      {label:'Bold & Vibrant',scores:['bold-playful'],visual:'swatch',value:'#9B5DE5',example:'<span class="ex-cir" style="background:#9B5DE5"></span><span class="ex-cir" style="background:#F15BB5"></span><span class="ex-cir" style="background:#FEE440"></span><div style="flex:1;height:18px;border-radius:3px;background:linear-gradient(135deg,#9B5DE5,#F15BB5)"></div>'}
     ]},
     {question:'What logo style feels right?',options:[
-      {label:'Minimal Mark',scores:['minimal-modern'],visual:'logo-minimal'},
-      {label:'Geometric Icon',scores:['bold-playful','tech-forward'],visual:'logo-geometric'},
-      {label:'Clean Wordmark',scores:['luxury-premium','corporate-classic'],visual:'logo-wordmark'},
-      {label:'Illustrative',scores:['warm-organic'],visual:'logo-illustrative'}
+      {label:'Minimal Mark',scores:['minimal-modern'],visual:'logo-minimal',example:'<span class="ex-label">Nike</span>'},
+      {label:'Geometric Icon',scores:['bold-playful','tech-forward'],visual:'logo-geometric',example:'<span class="ex-label">PlayStation</span>'},
+      {label:'Clean Wordmark',scores:['luxury-premium','corporate-classic'],visual:'logo-wordmark',example:'<span class="ex-label">IBM</span>'},
+      {label:'Illustrative',scores:['warm-organic'],visual:'logo-illustrative',example:'<span class="ex-label">Starbucks</span>'}
     ]},
     {question:'Pick your UI vibe:',options:[
-      {label:'Cards & Grids',scores:['minimal-modern','tech-forward','corporate-classic'],visual:'layout-grid'},
-      {label:'Full-bleed Bold',scores:['luxury-premium','warm-organic'],visual:'layout-fullbleed'},
-      {label:'Asymmetric Edge',scores:['bold-playful'],visual:'layout-asymmetric'},
-      {label:'Minimal Scroll',scores:['minimal-modern'],visual:'layout-scroll'}
+      {label:'Cards & Grids',scores:['minimal-modern','tech-forward','corporate-classic'],visual:'layout-grid',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="2" y="2" width="44" height="10" rx="2" fill="#111" opacity=".4"/><rect x="54" y="2" width="44" height="10" rx="2" fill="#111" opacity=".2"/><rect x="2" y="16" width="44" height="10" rx="2" fill="#111" opacity=".4"/><rect x="54" y="16" width="44" height="10" rx="2" fill="#111" opacity=".2"/></svg>'},
+      {label:'Full-bleed Bold',scores:['luxury-premium','warm-organic'],visual:'layout-fullbleed',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="0" y="4" width="100" height="20" rx="3" fill="#111" opacity=".35"/></svg>'},
+      {label:'Asymmetric Edge',scores:['bold-playful'],visual:'layout-asymmetric',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="0" y="2" width="60" height="10" rx="2" fill="#111" opacity=".5"/><rect x="30" y="16" width="70" height="10" rx="2" fill="#111" opacity=".3"/></svg>'},
+      {label:'Minimal Scroll',scores:['minimal-modern'],visual:'layout-scroll',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="20" y="2" width="60" height="8" rx="2" fill="#111" opacity=".5"/><rect x="20" y="13" width="60" height="4" rx="1.5" fill="#111" opacity=".2"/><rect x="20" y="20" width="60" height="4" rx="1.5" fill="#111" opacity=".2"/></svg>'}
     ]},
     {question:"What's your typography personality?",options:[
-      {label:'Modern Sans',scores:['minimal-modern','corporate-classic'],visual:'type-sans'},
-      {label:'Classic Serif',scores:['luxury-premium','warm-organic'],visual:'type-serif'},
-      {label:'Bold Display',scores:['bold-playful'],visual:'type-display'},
-      {label:'Tech Mono',scores:['tech-forward'],visual:'type-mono'}
+      {label:'Modern Sans',scores:['minimal-modern','corporate-classic'],visual:'type-sans',example:'<span style="font-size:11px;font-family:Inter,sans-serif;color:#888;line-height:1">Example</span>'},
+      {label:'Classic Serif',scores:['luxury-premium','warm-organic'],visual:'type-serif',example:'<span style="font-size:11px;font-family:Georgia,serif;color:#888;line-height:1">Example</span>'},
+      {label:'Bold Display',scores:['bold-playful'],visual:'type-display',example:'<span style="font-size:12px;font-weight:700;font-family:Inter,sans-serif;color:#888;line-height:1;letter-spacing:-.02em">Example</span>'},
+      {label:'Tech Mono',scores:['tech-forward'],visual:'type-mono',example:'<span style="font-size:10px;font-family:monospace;color:#888;line-height:1">Example</span>'}
     ]},
     {question:'How much whitespace do you prefer?',options:[
-      {label:'Generous & Airy',scores:['minimal-modern','warm-organic'],visual:'space-generous'},
-      {label:'Balanced',scores:['luxury-premium','tech-forward','corporate-classic'],visual:'space-balanced'},
-      {label:'Content-forward',scores:['bold-playful'],visual:'space-dense'},
-      {label:'Dynamic & Playful',scores:['bold-playful'],visual:'space-varied'}
+      {label:'Generous & Airy',scores:['minimal-modern','warm-organic'],visual:'space-generous',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="10" y="2" width="60" height="5" rx="2" fill="#111" opacity=".3"/><rect x="10" y="21" width="60" height="5" rx="2" fill="#111" opacity=".3"/></svg>'},
+      {label:'Balanced',scores:['luxury-premium','tech-forward','corporate-classic'],visual:'space-balanced',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="10" y="1" width="80" height="4" rx="2" fill="#111" opacity=".35"/><rect x="10" y="8" width="80" height="4" rx="2" fill="#111" opacity=".2"/><rect x="10" y="16" width="80" height="4" rx="2" fill="#111" opacity=".2"/><rect x="10" y="23" width="80" height="4" rx="2" fill="#111" opacity=".35"/></svg>'},
+      {label:'Content-forward',scores:['bold-playful'],visual:'space-dense',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="10" y="0" width="80" height="4" rx="2" fill="#111" opacity=".35"/><rect x="10" y="5" width="80" height="4" rx="2" fill="#111" opacity=".2"/><rect x="10" y="10" width="80" height="4" rx="2" fill="#111" opacity=".35"/><rect x="10" y="15" width="80" height="4" rx="2" fill="#111" opacity=".2"/><rect x="10" y="20" width="80" height="4" rx="2" fill="#111" opacity=".35"/><rect x="10" y="25" width="50" height="3" rx="1.5" fill="#111" opacity=".15"/></svg>'},
+      {label:'Dynamic & Playful',scores:['bold-playful'],visual:'space-varied',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="10" y="1" width="60" height="7" rx="2" fill="#111" opacity=".35"/><rect x="10" y="13" width="80" height="3" rx="1.5" fill="#111" opacity=".2"/><rect x="10" y="21" width="40" height="5" rx="2" fill="#111" opacity=".3"/></svg>'}
     ]},
     {question:'Pick a design detail:',options:[
-      {label:'Depth & Layers',scores:['minimal-modern'],visual:'detail-layers'},
-      {label:'Glassmorphism',scores:['tech-forward'],visual:'detail-glass'},
-      {label:'Bold Frames',scores:['bold-playful','corporate-classic'],visual:'detail-frames'},
-      {label:'Organic Shapes',scores:['luxury-premium','warm-organic'],visual:'detail-organic'}
+      {label:'Depth & Layers',scores:['minimal-modern'],visual:'detail-layers',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="32" y="4" width="44" height="20" rx="4" fill="#111" opacity=".15"/><rect x="26" y="6" width="44" height="18" rx="3" fill="#111" opacity=".3"/><rect x="38" y="5" width="28" height="18" rx="3" fill="#111" opacity=".6"/></svg>'},
+      {label:'Glassmorphism',scores:['tech-forward'],visual:'detail-glass',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="30" y="6" width="40" height="16" rx="6" fill="rgba(0,0,0,.04)" stroke="#111" stroke-width="1.5" stroke-opacity=".35"/><rect x="36" y="8" width="28" height="12" rx="4" fill="#111" opacity=".15"/></svg>'},
+      {label:'Bold Frames',scores:['bold-playful','corporate-classic'],visual:'detail-frames',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><rect x="32" y="6" width="36" height="16" rx="3" stroke="#111" stroke-width="3.5" fill="none"/></svg>'},
+      {label:'Organic Shapes',scores:['luxury-premium','warm-organic'],visual:'detail-organic',example:'<svg viewBox="0 0 100 28" width="100%" height="28" fill="none"><path d="M36 6 C44 4, 56 4, 62 8 C68 12, 70 18, 64 22 C58 26, 44 26, 38 22 C32 18, 28 8, 36 6Z" fill="#111" opacity=".5"/></svg>'}
     ]}
   ];
 
@@ -899,6 +921,7 @@ viewer.addEventListener('click', function(e){
       var sel=selections[idx]===i?' selected':'';
       html+='<div class="survey-option'+sel+'" data-q="'+idx+'" data-opt="'+i+'">';
       html+='<div class="survey-option-visual">'+renderVisual(opt)+'</div>';
+      html+='<div class="survey-option-example">'+(opt.example||'')+'</div>';
       html+='<span class="survey-option-label">'+opt.label+'</span></div>';
     }
     html+='</div></div>';
