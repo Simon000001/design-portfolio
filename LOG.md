@@ -1,4 +1,24 @@
-# LOG
+
+## 2026-06-26 — Full portfolio redesign to terminal/e-ink aesthetic
+- Redesigned index.html from minimal Inter-based white to IBM Plex Mono monospace terminal theme
+- Based on Figma design (v1): e-ink diffused with dot-matrix texture, grayscale #ffffff/#dcdcdc/#1e1e1e, color-coded pill tags
+- Terminal boot hero with typewriter animation (whoami/pwd/cat about.md sequence)
+- 7 new content sections: Engineering projects, Research, Art/Photography, Videos, Education/Experience, Side Quests, Footer (socails)
+- Preserved: 11 design clones with viewer overlay, Design Style Survey, Inspiration tool link
+- All showcase/*.html files untouched — loaded via iframe
+
+## 2026-06-25 — Add 5 diverse design showcase pages (multi-agent orchestration)
+- Research agents found 10 award-winning sites across 5 new aesthetic categories
+- Built 5 clones via parallel delegate_task build agents:
+  - **madrepunk.html**: Brutalist/anti-design — dark navy #040014, asymmetric grid, Bebas Neue + Inter
+  - **obys.html**: Swiss/international — white #fafafa, blue #0082f3 + red #ea384c, Inter
+  - **redcollar.html**: Glassmorphism/frosted UI — deep purple #0c041f, backdrop-filter blur panels
+  - **fitosauna.html**: Dark earthy tech — espresso #27221A, gold #D2942D, layered parallax
+  - **dobre.html**: Editorial minimal studio — off-white #F7F8EC, sage gray #CDCEC4
+- Visual audit agent verified batch 1: 0 console errors, 0 emoji, all images working, screenshots taken
+- Playwright screenshots captured for all 5 thumbnails
+- index.html updated: "Eleven website design projects", 5 new entries in designs[]
+- Pushed to GitHub: https://simon000001.github.io/design-portfolio/
 
 ## 2026-06-22 — Rebuild showcase/ecommerce.html (MØNA)
 - Full rewrite to Awwwards-quality. Single self-contained HTML, all CSS/JS inline.
@@ -33,6 +53,6 @@
 
 ## 2026-06-22 — index.html: real screenshots + cleaner nav arrows (claude-code)
 - Cards now use <img src="showcase/images/thumb-{id}.jpg"> (object-fit:cover, fills thumb; accent bg = fallback). Removed buildPreview()/cafeCard() + dead .preview CSS. (no lighten() existed this rev).
-- viewer-nav: 56→48px, bg .15→.12, border .25→.2, box-shadow removed entirely, hover .3→.22; SVG stroke-width 2.2→2.5. Mobile 46px override untouched.
+- viewer-nav: 56→48px, bg .08→.12, border .25→.2, box-shadow removed entirely, hover .3→.22; SVG stroke-width 2.2→2.5. Mobile 46px override untouched.
 - Verified: grep clean (0 buildPreview/cafeCard/lighten/.preview/mock-); all 6 thumb-*.jpg exist on disk. NOT browser-rendered.
 - Left: none.
