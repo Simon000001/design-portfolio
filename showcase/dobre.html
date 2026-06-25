@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dobre — Creative Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: #F7F8EC;
+    color: #1A1A1A;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Shimmer animation — inside style tag */
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+  .shimmer {
+    background: linear-gradient(90deg, #F7F8EC 25%, #e8e9dc 50%, #F7F8EC 75%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s infinite ease-in-out;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 100; padding: 1.25rem 3rem;
+    background: #F7F8EC;
+    display: flex; align-items: center; justify-content: space-between;
+    transition: border-bottom 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  nav.scrolled { border-bottom-color: #CDCEC4; }
+  .nav-logo {
+    font-size: 1.5rem; font-weight: 600; letter-spacing: -0.02em;
+    text-decoration: none; color: #1A1A1A;
+  }
+  .nav-right { display: flex; align-items: center; gap: 2rem; }
+  .nav-link {
+    font-size: 0.875rem; font-weight: 400; text-decoration: none;
+    color: #1A1A1A; letter-spacing: 0.01em; transition: opacity 0.2s;
+  }
+  .nav-link:hover { opacity: 0.6; }
+  .nav-cta {
+    display: inline-block; padding: 0.5rem 1.5rem;
+    font-size: 0.875rem; font-weight: 500; text-decoration: none;
+    color: #1A1A1A; border: 1.5px solid #CDCEC4; border-radius: 0;
+    transition: background 0.25s, color 0.25s;
+  }
+  .nav-cta:hover { background: #1A1A1A; color: #F7F8EC; border-color: #1A1A1A; }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh; display: flex; align-items: center; justify-content: center;
+    position: relative;
+    background: #1A1A1A url('https://picsum.photos/seed/dobrehero/1600/900') center/cover no-repeat;
+    background-blend-mode: overlay;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0;
+    background: rgba(26,26,26,0.55);
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative; z-index: 2;
+    text-align: center; color: #F7F8EC;
+    padding: 2rem;
+  }
+  .hero-title {
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    font-weight: 300; letter-spacing: -0.03em;
+    line-height: 1.05; margin-bottom: 1rem;
+  }
+  .hero-sub {
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    font-weight: 300; opacity: 0.75;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    margin-bottom: 2.5rem;
+  }
+  .hero-play {
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 72px; height: 72px; border-radius: 50%;
+    border: 2px solid rgba(247,248,236,0.4);
+    cursor: pointer; transition: border-color 0.3s, transform 0.3s;
+    background: transparent;
+  }
+  .hero-play:hover { border-color: #F7F8EC; transform: scale(1.05); }
+  .hero-play svg { width: 28px; height: 28px; fill: #F7F8EC; margin-left: 3px; }
+
+  /* Section common */
+  section { padding: 6rem 3rem; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+
+  /* WORK GRID */
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .work-card {
+    position: relative; overflow: hidden;
+    cursor: pointer; transition: transform 0.35s ease, box-shadow 0.35s ease;
+    background: #e8e9dc;
+  }
+  .work-card:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(0,0,0,0.08); }
+  .work-card img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+  .work-card:hover img { transform: scale(1.03); }
+  .work-card:nth-child(1) { aspect-ratio: 3 / 4; }
+  .work-card:nth-child(2) { aspect-ratio: 4 / 5; }
+  .work-card:nth-child(3) { aspect-ratio: 5 / 4; }
+  .work-card:nth-child(4) { aspect-ratio: 3 / 4; }
+  .work-card:nth-child(5) { aspect-ratio: 4 / 5; }
+  .work-card:nth-child(6) { aspect-ratio: 5 / 4; }
+  .work-card-info {
+    position: absolute; bottom: 0; left: 0; right: 0;
+    padding: 1.25rem; background: linear-gradient(transparent, rgba(26,26,26,0.75));
+    color: #F7F8EC; transform: translateY(8px); opacity: 0;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+  }
+  .work-card:hover .work-card-info { transform: translateY(0); opacity: 1; }
+  .work-card-title { font-size: 1.05rem; font-weight: 500; letter-spacing: -0.01em; }
+  .work-card-cat { font-size: 0.75rem; font-weight: 400; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.06em; margin-top: 0.2rem; }
+
+  /* STATS */
+  .stats { text-align: center; padding: 5rem 3rem; }
+  .stat-number { font-size: clamp(4rem, 10vw, 7rem); font-weight: 300; letter-spacing: -0.04em; line-height: 1; }
+  .stat-label { font-size: 1rem; font-weight: 300; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 0.5rem; color: #1A1A1A; opacity: 0.6; }
+
+  /* SERVICES */
+  .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 2rem; }
+  .service-item { border-top: 1px solid #CDCEC4; padding-top: 1.5rem; }
+  .service-num { font-size: 0.8rem; font-weight: 400; color: #CDCEC4; letter-spacing: 0.05em; margin-bottom: 0.75rem; }
+  .service-title { font-size: 1.15rem; font-weight: 500; letter-spacing: -0.01em; margin-bottom: 0.6rem; }
+  .service-desc { font-size: 0.875rem; font-weight: 300; line-height: 1.65; opacity: 0.7; }
+
+  /* CONTACT */
+  .contact { text-align: center; padding: 6rem 3rem 4rem; }
+  .contact-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 300; letter-spacing: -0.02em; margin-bottom: 1rem; }
+  .contact-text { font-size: 1rem; font-weight: 300; opacity: 0.7; max-width: 480px; margin: 0 auto 2rem; }
+  .contact-line { width: 40px; height: 1px; background: #CDCEC4; margin: 0 auto; }
+
+  /* FOOTER */
+  footer {
+    padding: 2.5rem 3rem;
+    background: #CDCEC4;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  footer .copy { font-size: 0.8rem; font-weight: 400; opacity: 0.7; }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 0.8rem; text-decoration: none; color: #1A1A1A; opacity: 0.7; transition: opacity 0.2s; }
+  .footer-links a:hover { opacity: 1; }
+
+  /* Reveal animations */
+  .reveal {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+  .reveal-delay-5 { transition-delay: 0.5s; }
+
+  /* RESPONSIVE */
+  @media (max-width: 1024px) {
+    .services-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-right { gap: 1.25rem; }
+    .nav-link { font-size: 0.8rem; }
+    .nav-cta { padding: 0.4rem 1rem; font-size: 0.8rem; }
+    section { padding: 4rem 1.5rem; }
+    .work-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .services-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+    .stats { padding: 3rem 1.5rem; }
+    .contact { padding: 4rem 1.5rem 3rem; }
+    footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+  }
+  @media (max-width: 375px) {
+    nav { padding: 0.75rem 1rem; }
+    .nav-right { gap: 0.75rem; }
+    .hero-content { padding: 1rem; }
+    section { padding: 3rem 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">Dobre</a>
+  <div class="nav-right">
+    <a href="#work" class="nav-link">Work</a>
+    <a href="#services" class="nav-link">Services</a>
+    <a href="#contact" class="nav-link">Contact</a>
+    <a href="#contact" class="nav-cta">Get in touch</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1 class="hero-title">Creativity meets craft.</h1>
+    <p class="hero-sub">Editorial minimalism for modern brands</p>
+    <div class="hero-play" aria-label="Play video">
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="8,5 19,12 8,19" fill="#F7F8EC"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- WORK GRID -->
+<section id="work">
+  <div class="section-inner">
+    <div class="work-grid">
+      <div class="work-card reveal reveal-delay-1">
+        <img src="https://picsum.photos/seed/dobreproj1/800/1067" alt="Project" loading="lazy">
+        <div class="work-card-info">
+          <div class="work-card-title">Silent Stories</div>
+          <div class="work-card-cat">Editorial</div>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay-2">
+        <img src="https://picsum.photos/seed/dobreproj2/800/1000" alt="Project" loading="lazy">
+        <div class="work-card-info">
+          <div class="work-card-title">Monochrome Space</div>
+          <div class="work-card-cat">Brand Identity</div>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay-3">
+        <img src="https://picsum.photos/seed/dobreproj3/800/640" alt="Project" loading="lazy">
+        <div class="work-card-info">
+          <div class="work-card-title">Raw Texture</div>
+          <div class="work-card-cat">Photography</div>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay-1">
+        <img src="https://picsum.photos/seed/dobreproj4/800/1067" alt="Project" loading="lazy">
+        <div class="work-card-info">
+          <div class="work-card-title">Gentle Form</div>
+          <div class="work-card-cat">Product Design</div>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay-2">
+        <img src="https://picsum.photos/seed/dobreproj5/800/1000" alt="Project" loading="lazy">
+        <div class="work-card-info">
+          <div class="work-card-title">Urban Calm</div>
+          <div class="work-card-cat">Architecture</div>
+        </div>
+      </div>
+      <div class="work-card reveal reveal-delay-3">
+        <img src="https://picsum.photos/seed/dobreproj6/800/640" alt="Project" loading="lazy">
+        <div class="work-card-info">
+          <div class="work-card-title">Light Study</div>
+          <div class="work-card-cat">Art Direction</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats reveal">
+  <div class="stat-number">90+</div>
+  <div class="stat-label">Projects delivered</div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="services-grid">
+      <div class="service-item reveal reveal-delay-1">
+        <div class="service-num">01</div>
+        <div class="service-title">Brand Identity</div>
+        <div class="service-desc">Strategic visual systems that communicate purpose with clarity and lasting impact.</div>
+      </div>
+      <div class="service-item reveal reveal-delay-2">
+        <div class="service-num">02</div>
+        <div class="service-title">Art Direction</div>
+        <div class="service-desc">Creative direction and visual storytelling crafted for editorial and digital spaces.</div>
+      </div>
+      <div class="service-item reveal reveal-delay-3">
+        <div class="service-num">03</div>
+        <div class="service-title">Web Design</div>
+        <div class="service-desc">Minimal, responsive interfaces built with editorial precision and subtle motion.</div>
+      </div>
+      <div class="service-item reveal reveal-delay-4">
+        <div class="service-num">04</div>
+        <div class="service-title">Content Strategy</div>
+        <div class="service-desc">Curated narratives and visual frameworks that amplify brand voice across channels.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <h2 class="contact-title reveal">Let's work together.</h2>
+  <p class="contact-text reveal reveal-delay-1">We partner with brands that value craft, editorial thinking, and the quiet power of restraint.</p>
+  <div class="contact-line reveal reveal-delay-2"></div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="copy">&copy; 2026 Dobre Studio. All rights reserved.</span>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">Twitter</a>
+    <a href="#">LinkedIn</a>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // Nav scroll effect
+  const nav = document.getElementById('navbar');
+  let lastScroll = 0;
+  window.addEventListener('scroll', function() {
+    const current = window.pageYOffset || document.documentElement.scrollTop;
+    if (current > 20) {
+      nav.classList.add('scrolled');
+    } else {
+      nav.classList.remove('scrolled');
+    }
+    lastScroll = current;
+  }, { passive: true });
+
+  // IntersectionObserver — staggered scroll reveals
+  const revealElements = document.querySelectorAll('.reveal');
+  if (revealElements.length > 0) {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -40px 0px'
+    });
+    revealElements.forEach(function(el) { observer.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Obys Agency — Experiments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; font-size:16px; }
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background:#fafafa;
+    color:#5d6c7b;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    overflow-x:hidden;
+  }
+  ::selection { background:#0082f3; color:#fff; }
+  a { color:inherit; text-decoration:none; }
+  img { max-width:100%; display:block; }
+  ul { list-style:none; }
+
+  /* ===== NAV ===== */
+  .nav {
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    background:#fff; border-bottom:1px solid #e2e2e2;
+    padding:0 2rem;
+    height:64px; display:flex; align-items:center; justify-content:space-between;
+  }
+  .nav-logo {
+    font-size:1.25rem; font-weight:700; color:#0082f3;
+    letter-spacing:-0.02em; display:flex; align-items:center; gap:0.5rem;
+  }
+  .nav-logo svg { width:28px; height:28px; }
+  .nav-links { display:flex; align-items:center; gap:2rem; }
+  .nav-links a {
+    font-size:0.85rem; font-weight:500; color:#5d6c7b;
+    transition:color 0.2s; letter-spacing:0.02em; text-transform:uppercase;
+  }
+  .nav-links a:hover { color:#0082f3; }
+
+  /* ===== SECTIONS ===== */
+  section { padding:6rem 2rem; }
+  .container { max-width:1200px; margin:0 auto; }
+
+  /* ===== HERO ===== */
+  .hero {
+    padding:10rem 2rem 5rem; background:#fff; text-align:center;
+    position:relative; overflow:hidden;
+  }
+  .hero-bg {
+    position:absolute; inset:0; z-index:0;
+    background:url('https://picsum.photos/seed/obyshero/1200/600') center/cover no-repeat;
+    opacity:0.06;
+  }
+  .hero .container { position:relative; z-index:1; }
+  .hero h1 {
+    font-size:clamp(3rem, 8vw, 7rem); font-weight:900;
+    color:#1a1a2e; letter-spacing:-0.04em; line-height:1;
+    margin-bottom:1rem;
+  }
+  .hero p {
+    font-size:1.15rem; color:#8a9aa8; max-width:560px; margin:0 auto 2.5rem;
+    font-weight:400; line-height:1.7;
+  }
+  .hero-line {
+    width:80px; height:4px; background:#0082f3;
+    margin:0 auto; border-radius:2px;
+  }
+
+  /* ===== PROJECT GRID ===== */
+  .projects { background:#fafafa; }
+  .section-label {
+    font-size:0.75rem; font-weight:600; text-transform:uppercase;
+    letter-spacing:0.15em; color:#c8c8c8; margin-bottom:0.5rem;
+  }
+  .section-title {
+    font-size:2rem; font-weight:700; color:#1a1a2e; margin-bottom:0.5rem;
+  }
+  .section-desc { color:#8a9aa8; margin-bottom:3rem; max-width:600px; }
+  .project-grid {
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:1.5rem;
+  }
+  .project-card {
+    background:#fff; border-radius:12px; overflow:hidden;
+    transition:transform 0.4s cubic-bezier(0.25,0.46,0.45,0.94), box-shadow 0.4s;
+    cursor:pointer; opacity:0; transform:translateY(30px);
+  }
+  .project-card.revealed {
+    opacity:1; transform:translateY(0);
+  }
+  .project-card:hover {
+    transform:scale(1.02); box-shadow:0 12px 40px rgba(0,0,0,0.08);
+  }
+  .project-card img { width:100%; height:220px; object-fit:cover; }
+  .project-card-body { padding:1.25rem; }
+  .project-card-body h3 { font-size:1.1rem; font-weight:600; color:#1a1a2e; margin-bottom:0.4rem; }
+  .project-card-body .tag {
+    display:inline-block; font-size:0.7rem; font-weight:500;
+    text-transform:uppercase; letter-spacing:0.08em;
+    color:#0082f3; background:rgba(0,130,243,0.08);
+    padding:0.2rem 0.6rem; border-radius:4px;
+  }
+
+  /* ===== EXPERIMENT CARDS ===== */
+  .experiments { background:#fff; }
+  .experiment-card {
+    display:flex; align-items:center; gap:3rem;
+    padding:2.5rem 0; border-left:4px solid #0082f3;
+    padding-left:2rem; margin-bottom:2rem;
+    opacity:0; transform:translateX(-40px);
+    transition:opacity 0.6s, transform 0.6s;
+  }
+  .experiment-card.revealed { opacity:1; transform:translateX(0); }
+  .experiment-card.reversed { flex-direction:row-reverse; border-left:none; border-right:4px solid #0082f3; padding-left:0; padding-right:2rem; transform:translateX(40px); }
+  .experiment-card.reversed.revealed { transform:translateX(0); }
+  .experiment-card .exp-img {
+    flex:0 0 45%; border-radius:10px; overflow:hidden;
+  }
+  .experiment-card .exp-img img { width:100%; height:280px; object-fit:cover; transition:transform 0.5s; }
+  .experiment-card:hover .exp-img img { transform:scale(1.04); }
+  .experiment-card .exp-text { flex:1; }
+  .experiment-card .exp-text .exp-num {
+    font-size:0.7rem; font-weight:600; text-transform:uppercase;
+    letter-spacing:0.12em; color:#0082f3; margin-bottom:0.5rem;
+  }
+  .experiment-card .exp-text h3 {
+    font-size:1.5rem; font-weight:700; color:#1a1a2e; margin-bottom:0.75rem;
+  }
+  .experiment-card .exp-text p {
+    color:#8a9aa8; line-height:1.7; font-size:0.95rem;
+  }
+
+  /* ===== ABOUT ===== */
+  .about { background:#fafafa; }
+  .about-grid { display:grid; grid-template-columns:1fr 2fr; gap:4rem; align-items:start; }
+  .about-left .section-title { margin-bottom:0; }
+  .about-left .accent-underline {
+    width:40px; height:3px; background:#ea384c; margin-top:0.75rem; border-radius:2px;
+  }
+  .about-right p {
+    font-size:1rem; line-height:1.9; color:#5d6c7b; margin-bottom:1.5rem; max-width:680px;
+  }
+  .about-right p:last-child { margin-bottom:0; }
+
+  /* ===== STATS ===== */
+  .stats { background:#1a1a2e; padding:4rem 2rem; }
+  .stats-grid { display:grid; grid-template-columns:repeat(3, 1fr); max-width:900px; margin:0 auto; }
+  .stat-item {
+    text-align:center; padding:1.5rem 0;
+    border-right:1px solid rgba(255,255,255,0.1);
+  }
+  .stat-item:last-child { border-right:none; }
+  .stat-number {
+    font-size:clamp(2.5rem, 4vw, 3.5rem); font-weight:800;
+    color:#fff; line-height:1; margin-bottom:0.5rem;
+  }
+  .stat-label {
+    font-size:0.8rem; font-weight:500; text-transform:uppercase;
+    letter-spacing:0.1em; color:rgba(255,255,255,0.55);
+  }
+
+  /* ===== CTA ===== */
+  .cta { background:#fff; text-align:center; padding:7rem 2rem; }
+  .cta h2 {
+    font-size:clamp(1.8rem, 3vw, 2.8rem); font-weight:700;
+    color:#1a1a2e; margin-bottom:1rem;
+  }
+  .cta p {
+    font-size:1.05rem; color:#8a9aa8; max-width:520px;
+    margin:0 auto 2.5rem; line-height:1.7;
+  }
+  .btn-outline {
+    display:inline-block; padding:0.85rem 2.5rem;
+    border:2px solid #0082f3; color:#0082f3; border-radius:6px;
+    font-size:0.85rem; font-weight:600; text-transform:uppercase;
+    letter-spacing:0.06em; transition:all 0.3s; cursor:pointer; background:transparent;
+  }
+  .btn-outline:hover { background:#0082f3; color:#fff; }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background:#eef0f2; padding:3rem 2rem 2rem;
+  }
+  .footer-grid {
+    display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:2rem;
+    max-width:1200px; margin:0 auto;
+  }
+  .footer-brand .nav-logo { margin-bottom:0.75rem; }
+  .footer-brand p { font-size:0.85rem; color:#8a9aa8; max-width:280px; line-height:1.6; }
+  .footer-col h4 {
+    font-size:0.7rem; font-weight:600; text-transform:uppercase;
+    letter-spacing:0.1em; color:#5d6c7b; margin-bottom:1rem;
+  }
+  .footer-col a {
+    display:block; font-size:0.85rem; color:#8a9aa8;
+    padding:0.3rem 0; transition:color 0.2s;
+  }
+  .footer-col a:hover { color:#0082f3; }
+  .footer-bottom {
+    max-width:1200px; margin:2rem auto 0; padding-top:1.5rem;
+    border-top:1px solid #d8d8d8; text-align:center;
+    font-size:0.78rem; color:#b0b8c0;
+  }
+
+  /* ===== SHIMMER ===== */
+  .shimmer {
+    background:linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size:200% 100%;
+    animation:shimmer 1.5s infinite;
+  }
+  @keyframes shimmer {
+    0% { background-position:200% 0; }
+    100% { background-position:-200% 0; }
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media(max-width:1024px) {
+    .project-grid { grid-template-columns:repeat(2,1fr); }
+    .about-grid { grid-template-columns:1fr; gap:2rem; }
+    .footer-grid { grid-template-columns:1fr 1fr; }
+  }
+  @media(max-width:768px) {
+    section { padding:4rem 1.25rem; }
+    .hero h1 { font-size:clamp(2.2rem, 10vw, 4rem); }
+    .project-grid { grid-template-columns:1fr; }
+    .experiment-card, .experiment-card.reversed {
+      flex-direction:column; gap:1.5rem;
+      padding-left:1.25rem; padding-right:0;
+      border-left:4px solid #0082f3; border-right:none;
+    }
+    .experiment-card.reversed { border-left:4px solid #0082f3; border-right:none; padding-right:0; }
+    .experiment-card .exp-img { flex:0 0 100%; width:100%; }
+    .experiment-card .exp-img img { height:200px; }
+    .stats-grid { grid-template-columns:1fr; gap:0; }
+    .stat-item { border-right:none; border-bottom:1px solid rgba(255,255,255,0.1); padding:1.5rem 0; }
+    .stat-item:last-child { border-bottom:none; }
+    .footer-grid { grid-template-columns:1fr; gap:1.5rem; }
+    .nav-links { gap:1rem; }
+    .nav-links a { font-size:0.75rem; }
+    .about-grid { grid-template-columns:1fr; }
+  }
+  @media(max-width:375px) {
+    .nav { padding:0 1rem; }
+    .hero { padding:8rem 1rem 3rem; }
+    .experiment-card .exp-text h3 { font-size:1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav class="nav">
+  <div class="nav-logo">
+    <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="2" y="2" width="28" height="28" rx="6" stroke="#0082f3" stroke-width="2.5" fill="none"/>
+      <path d="M10 22V10h4l4 8 4-8h4v12h-4V14l-4 8-4-8v8H10z" fill="#0082f3"/>
+    </svg>
+    Obys
+  </div>
+  <div class="nav-links">
+    <a href="#">Work</a>
+    <a href="#">Experiments</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="container">
+    <h1>Experiments</h1>
+    <p>Pushing the boundaries of digital design through iterative exploration, creative technology, and Swiss precision.</p>
+    <div class="hero-line"></div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<section class="projects" id="projects">
+  <div class="container">
+    <p class="section-label">Selected Work</p>
+    <h2 class="section-title">Recent projects</h2>
+    <p class="section-desc">A curated selection of experiments and explorations in interaction design.</p>
+    <div class="project-grid">
+      <div class="project-card" data-delay="0">
+        <img src="https://picsum.photos/seed/obysproj1/600/400" alt="Project 1" loading="lazy">
+        <div class="project-card-body">
+          <h3>Fluid Typography</h3>
+          <span class="tag">Typography</span>
+        </div>
+      </div>
+      <div class="project-card" data-delay="0.1">
+        <img src="https://picsum.photos/seed/obysproj2/600/400" alt="Project 2" loading="lazy">
+        <div class="project-card-body">
+          <h3>Morphing Grids</h3>
+          <span class="tag">Layout</span>
+        </div>
+      </div>
+      <div class="project-card" data-delay="0.2">
+        <img src="https://picsum.photos/seed/obysproj3/600/400" alt="Project 3" loading="lazy">
+        <div class="project-card-body">
+          <h3>Kinetic Scroll</h3>
+          <span class="tag">Animation</span>
+        </div>
+      </div>
+      <div class="project-card" data-delay="0.3">
+        <img src="https://picsum.photos/seed/obysproj4/600/400" alt="Project 4" loading="lazy">
+        <div class="project-card-body">
+          <h3>Generative Forms</h3>
+          <span class="tag">Generative</span>
+        </div>
+      </div>
+      <div class="project-card" data-delay="0.4">
+        <img src="https://picsum.photos/seed/obysproj5/600/400" alt="Project 5" loading="lazy">
+        <div class="project-card-body">
+          <h3>Data Texture</h3>
+          <span class="tag">Data Vis</span>
+        </div>
+      </div>
+      <div class="project-card" data-delay="0.5">
+        <img src="https://picsum.photos/seed/obysproj6/600/400" alt="Project 6" loading="lazy">
+        <div class="project-card-body">
+          <h3>Noise Fields</h3>
+          <span class="tag">Shader</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIMENTS ===== -->
+<section class="experiments" id="experiments">
+  <div class="container">
+    <p class="section-label">Featured</p>
+    <h2 class="section-title">Design experiments</h2>
+    <p class="section-desc">Each experiment explores a specific design principle through interactive, real-time applications.</p>
+
+    <div class="experiment-card" data-side="left">
+      <div class="exp-img"><img src="https://picsum.photos/seed/obysexp1/600/400" alt="Experiment 1" loading="lazy"></div>
+      <div class="exp-text">
+        <p class="exp-num">001 &middot; Interaction</p>
+        <h3>Responsive Cursor</h3>
+        <p>An exploration of dynamic cursor feedback that responds to underlying content density, color, and motion — creating a tactile sense of digital presence.</p>
+      </div>
+    </div>
+
+    <div class="experiment-card reversed" data-side="right">
+      <div class="exp-img"><img src="https://picsum.photos/seed/obysexp2/600/400" alt="Experiment 2" loading="lazy"></div>
+      <div class="exp-text">
+        <p class="exp-num">002 &middot; Layout</p>
+        <h3>Modular Grid System</h3>
+        <p>A generative layout engine based on Swiss grid principles, dynamically rearranging content blocks while maintaining rhythmic visual hierarchy.</p>
+      </div>
+    </div>
+
+    <div class="experiment-card" data-side="left">
+      <div class="exp-img"><img src="https://picsum.photos/seed/obysexp3/600/400" alt="Experiment 3" loading="lazy"></div>
+      <div class="exp-text">
+        <p class="exp-num">003 &middot; Motion</p>
+        <h3>Kinetic Type</h3>
+        <p>Variable-weight typography that responds to scroll velocity and ambient cursor motion, bridging the gap between static type and living form.</p>
+      </div>
+    </div>
+
+    <div class="experiment-card reversed" data-side="right">
+      <div class="exp-img"><img src="https://picsum.photos/seed/obysexp4/600/400" alt="Experiment 4" loading="lazy"></div>
+      <div class="exp-text">
+        <p class="exp-num">004 &middot; Color</p>
+        <h3>Chromatic Shift</h3>
+        <p>Real-time color palette generation using perceptual color spaces, creating harmonious gradients that adapt to user interaction patterns.</p>
+      </div>
+    </div>
+
+    <div class="experiment-card" data-side="left">
+      <div class="exp-img"><img src="https://picsum.photos/seed/obysexp5/600/400" alt="Experiment 5" loading="lazy"></div>
+      <div class="exp-text">
+        <p class="exp-num">005 &middot; Data</p>
+        <h3>Ambient Data</h3>
+        <p>Transforming live data streams into ambient visual textures — information design as atmospheric backdrop rather than explicit dashboard.</p>
+      </div>
+    </div>
+
+    <div class="experiment-card reversed" data-side="right">
+      <div class="exp-img"><img src="https://picsum.photos/seed/obysexp6/600/400" alt="Experiment 6" loading="lazy"></div>
+      <div class="exp-text">
+        <p class="exp-num">006 &middot; Sound</p>
+        <h3>Visual Resonance</h3>
+        <p>Audio-reactive visual systems that translate frequency, amplitude, and harmonic structures into geometric compositions in real time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-left">
+        <p class="section-label">Process</p>
+        <h2 class="section-title">Our approach</h2>
+        <div class="accent-underline"></div>
+      </div>
+      <div class="about-right">
+        <p>We operate at the intersection of Swiss design tradition and emerging technology. Our experimental space is dedicated to exploring interaction models, typographic systems, and generative aesthetics — with rigorous attention to craft, structure, and clarity.</p>
+        <p>Every experiment begins with a question about how people perceive and interact with digital interfaces. Through iterative prototyping, user observation, and cross-disciplinary collaboration, we develop novel interaction patterns that expand the vocabulary of screen-based design.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="stats" id="stats">
+  <div class="stats-grid">
+    <div class="stat-item">
+      <div class="stat-number" data-target="12">0</div>
+      <div class="stat-label">Years of practice</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="280">0</div>
+      <div class="stat-label">Projects delivered</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-number" data-target="38">0</div>
+      <div class="stat-label">Awards won</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta" id="cta">
+  <div class="container">
+    <h2>Have an idea worth exploring?</h2>
+    <p>We collaborate with forward-thinking brands to turn ambitious concepts into compelling digital experiences.</p>
+    <a href="#" class="btn-outline">Start a conversation</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <div class="nav-logo">
+        <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:24px;height:24px;">
+          <rect x="2" y="2" width="28" height="28" rx="6" stroke="#0082f3" stroke-width="2.5" fill="none"/>
+          <path d="M10 22V10h4l4 8 4-8h4v12h-4V14l-4 8-4-8v8H10z" fill="#0082f3"/>
+        </svg>
+        Obys
+      </div>
+      <p>An experimental design agency exploring the future of digital interaction through Swiss design principles.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Studio</h4>
+      <a href="#">About</a>
+      <a href="#">Work</a>
+      <a href="#">Careers</a>
+      <a href="#">Press</a>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <a href="#">Experiments</a>
+      <a href="#">Insights</a>
+      <a href="#">Docs</a>
+      <a href="#">GitHub</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#">Twitter</a>
+      <a href="#">LinkedIn</a>
+      <a href="#">Dribbble</a>
+      <a href="#">Email</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 Obys Agency. All rights reserved.
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  /* ===== INTERSECTION OBSERVER — STAGGERED REVEALS ===== */
+  const observerOptions = {
+    threshold: 0.12,
+    rootMargin: '0px 0px -40px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const delay = parseFloat(el.getAttribute('data-delay')) || 0;
+        setTimeout(function() {
+          el.classList.add('revealed');
+        }, delay * 1000);
+        observer.unobserve(el);
+      }
+    });
+  }, observerOptions);
+
+  /* Project cards */
+  document.querySelectorAll('.project-card').forEach(function(card) {
+    observer.observe(card);
+  });
+
+  /* Experiment cards — direction-based animation */
+  document.querySelectorAll('.experiment-card').forEach(function(card) {
+    /* Set initial transform based on data-side */
+    const side = card.getAttribute('data-side') || 'left';
+    if (side === 'left') {
+      card.style.transform = 'translateX(-40px)';
+      card.style.opacity = '0';
+    } else {
+      card.style.transform = 'translateX(40px)';
+      card.style.opacity = '0';
+    }
+    observer.observe(card);
+  });
+
+  /* Override experiment-card reveal to match direction */
+  const expObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        el.style.transition = 'opacity 0.7s cubic-bezier(0.25,0.46,0.45,0.94), transform 0.7s cubic-bezier(0.25,0.46,0.45,0.94)';
+        el.style.opacity = '1';
+        el.style.transform = 'translateX(0)';
+        expObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.experiment-card').forEach(function(card) {
+    expObserver.observe(card);
+  });
+
+  /* ===== STATS COUNTER ANIMATION ===== */
+  function animateCounter(el) {
+    var target = parseInt(el.getAttribute('data-target'), 10);
+    if (isNaN(target)) return;
+    var duration = 2000;
+    var startTime = null;
+
+    function step(timestamp) {
+      if (!startTime) startTime = timestamp;
+      var progress = Math.min((timestamp - startTime) / duration, 1);
+      /* ease-out cubic */
+      var eased = 1 - Math.pow(1 - progress, 3);
+      var current = Math.round(eased * target);
+      el.textContent = current;
+      if (progress < 1) {
+        requestAnimationFrame(step);
+      } else {
+        el.textContent = target;
+      }
+    }
+    requestAnimationFrame(step);
+  }
+
+  var statsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        var num = entry.target.querySelector('.stat-number');
+        if (num && !num.classList.contains('counted')) {
+          num.classList.add('counted');
+          animateCounter(num);
+        }
+      }
+    });
+  }, { threshold: 0.5 });
+
+  var statsSection = document.getElementById('stats');
+  if (statsSection) statsObserver.observe(statsSection);
+
+  /* ===== NAV SCROLL EFFECT ===== */
+  var nav = document.querySelector('.nav');
+  var lastScroll = 0;
+  window.addEventListener('scroll', function() {
+    var current = window.pageYOffset || document.documentElement.scrollTop;
+    if (current > 80) {
+      nav.style.boxShadow = '0 1px 6px rgba(0,0,0,0.06)';
+    } else {
+      nav.style.boxShadow = 'none';
+    }
+    lastScroll = current;
+  }, { passive: true });
+
+})();
+</script>
+</body>
+</html>

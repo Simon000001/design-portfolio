@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fitosauna — The Modern Heat Experience</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Libre Franklin', sans-serif;
+    background: #27221A;
+    color: #FFFFFF;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+  a { text-decoration: none; color: inherit; }
+
+  /* ===== UTILITY ===== */
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+  .section { padding: 100px 0; }
+  .section-dark { background: #27221A; }
+  .section-light { background: #F5F0EB; color: #27221A; }
+  .section-alt { background: #1f1b14; }
+
+  .shimmer {
+    position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(210,148,45,0.08), transparent);
+    animation: shimmerMove 3s ease-in-out infinite;
+    pointer-events: none;
+  }
+  @keyframes shimmerMove {
+    0%   { left: -60%; }
+    100% { left: 100%; }
+  }
+
+  /* ===== REVEAL ===== */
+  .reveal { opacity: 0; transform: translateY(48px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left { opacity: 0; transform: translateX(-60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right { opacity: 0; transform: translateX(60px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  .split-word {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    margin-right: 0.15em;
+  }
+  .split-word.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    height: 100vh;
+    min-height: 600px;
+    overflow: hidden;
+    background: #27221A;
+  }
+  .hero-layer {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 120%;
+    background-size: cover;
+    background-position: center;
+    will-change: transform;
+  }
+  .hero-bg {
+    background-image: url('https://picsum.photos/seed/fitosauna1/1920/1080');
+    opacity: 0.4;
+    z-index: 1;
+  }
+  .hero-product {
+    background-image: url('https://picsum.photos/seed/fitosauna2/1920/1080');
+    opacity: 0.7;
+    z-index: 2;
+  }
+  .hero-overlay {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 24px;
+  }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    color: #D2942D;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: 0.02em;
+  }
+  .hero p {
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-weight: 300;
+    max-width: 640px;
+    margin-bottom: 40px;
+    color: rgba(255,255,255,0.85);
+  }
+  .btn-outline {
+    display: inline-block;
+    padding: 16px 44px;
+    border: 2px solid #D2942D;
+    color: #D2942D;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: transparent;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+  }
+  .btn-outline:hover { background: #D2942D; color: #27221A; }
+  .btn-solid {
+    display: inline-block;
+    padding: 16px 44px;
+    background: #D2942D;
+    color: #27221A;
+    font-family: 'Libre Franklin', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: background 0.3s, opacity 0.3s;
+  }
+  .btn-solid:hover { opacity: 0.85; }
+
+  /* ===== FEATURES ===== */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 36px;
+    margin-top: 60px;
+  }
+  .feature-card {
+    background: #FFFFFF;
+    padding: 40px 32px;
+    border-left: 4px solid #D2942D;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    position: relative;
+    overflow: hidden;
+  }
+  .feature-card .icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 52px; height: 52px;
+    margin-bottom: 20px;
+    background: #F5F0EB;
+    border-radius: 50%;
+  }
+  .feature-card .icon-wrap svg { width: 26px; height: 26px; fill: #D2942D; }
+  .feature-card h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #27221A;
+  }
+  .feature-card p {
+    font-size: 0.92rem;
+    font-weight: 400;
+    color: #555;
+    line-height: 1.7;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 600;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .section-title.gold { color: #D2942D; }
+  .section-sub {
+    text-align: center;
+    font-weight: 300;
+    font-size: 1.05rem;
+    max-width: 600px;
+    margin: 0 auto 10px;
+    color: rgba(255,255,255,0.75);
+  }
+  .section-sub.dark { color: #666; }
+
+  /* ===== PRODUCTS ===== */
+  .product-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 60px;
+    padding: 60px 0;
+  }
+  .product-row.reverse { flex-direction: row-reverse; }
+  .product-img-wrap {
+    flex: 1 1 45%;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+  }
+  .product-img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 0.6s ease;
+  }
+  .product-img-wrap:hover img { transform: scale(1.04); }
+  .product-img-wrap .spec-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 20px 24px;
+    background: linear-gradient(transparent, rgba(39,34,26,0.9));
+    color: #fff;
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    font-size: 0.82rem;
+    font-weight: 300;
+  }
+  .product-img-wrap .spec-overlay span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .product-img-wrap .spec-overlay svg { width: 14px; height: 14px; fill: #D2942D; }
+  .product-content { flex: 1 1 40%; }
+  .product-content h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .product-content h2 .split-word-container { display: inline; }
+  .product-content h2.gold { color: #D2942D; }
+  .product-content h2.dark-text { color: #27221A; }
+  .product-content p {
+    font-size: 0.95rem;
+    font-weight: 400;
+    line-height: 1.75;
+    margin-bottom: 20px;
+  }
+  .product-content p.light-text { color: rgba(255,255,255,0.75); }
+  .product-content p.dark-text { color: #555; }
+
+  /* ===== TESTIMONIAL ===== */
+  .testimonial-carousel {
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
+  }
+  .testimonial-slide {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .testimonial-slide.active { display: flex; }
+  .testimonial-slide .quote-svg svg { width: 48px; height: 48px; fill: #D2942D; margin-bottom: 24px; }
+  .testimonial-slide blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+    font-weight: 400;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 32px;
+  }
+  .testimonial-slide .author {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #D2942D;
+    letter-spacing: 0.08em;
+  }
+  .testimonial-progress {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 40px;
+  }
+  .testimonial-progress .dot {
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.2);
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  .testimonial-progress .dot.active { background: #D2942D; }
+  .progress-bar-track {
+    width: 200px; height: 3px;
+    background: rgba(255,255,255,0.15);
+    border-radius: 4px;
+    margin: 0 auto 24px;
+    overflow: hidden;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: #D2942D;
+    border-radius: 4px;
+    transition: width 0.1s linear;
+  }
+
+  /* ===== STATS ===== */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+    text-align: center;
+  }
+  .stat-item {
+    padding: 40px 20px;
+    position: relative;
+  }
+  .stat-item + .stat-item { border-left: 1px solid rgba(210,148,45,0.35); }
+  .stat-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 5vw, 3.8rem);
+    font-weight: 700;
+    color: #D2942D;
+    line-height: 1.1;
+  }
+  .stat-label {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-top: 8px;
+  }
+
+  /* ===== CTA ===== */
+  .cta-section {
+    text-align: center;
+    padding: 120px 24px;
+  }
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.4rem);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .cta-section p {
+    font-weight: 300;
+    font-size: 1.1rem;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 40px;
+    max-width: 540px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* ===== FOOTER ===== */
+  .site-footer {
+    background: #1a1510;
+    padding: 60px 24px 30px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 40px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .footer-col h4 {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #D2942D;
+    margin-bottom: 16px;
+    letter-spacing: 0.05em;
+  }
+  .footer-col a {
+    display: block;
+    color: rgba(255,255,255,0.45);
+    font-size: 0.85rem;
+    font-weight: 400;
+    margin-bottom: 10px;
+    transition: color 0.3s;
+  }
+  .footer-col a:hover { color: #D2942D; }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    margin-top: 40px;
+    padding-top: 24px;
+    text-align: center;
+    font-size: 0.78rem;
+    color: rgba(255,255,255,0.3);
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+    .section { padding: 60px 0; }
+    .features-grid { grid-template-columns: 1fr; gap: 24px; }
+    .product-row { flex-direction: column !important; gap: 30px; }
+    .product-img-wrap { flex: 1 1 100%; }
+    .product-content { flex: 1 1 100%; }
+    .stats-grid { grid-template-columns: 1fr; }
+    .stat-item + .stat-item { border-left: none; border-top: 1px solid rgba(210,148,45,0.2); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+    .cta-section { padding: 80px 24px; }
+  }
+  @media (max-width: 480px) {
+    .footer-grid { grid-template-columns: 1fr; }
+    .hero h1 { font-size: 2.4rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav style="position:fixed;top:0;left:0;right:0;z-index:100;display:flex;align-items:center;justify-content:space-between;padding:16px 32px;background:rgba(39,34,26,0.85);backdrop-filter:blur(8px);">
+  <span style="font-family:'Playfair Display',serif;font-size:1.25rem;color:#D2942D;font-weight:600;">Fitosauna</span>
+  <div style="display:flex;gap:28px;font-size:0.82rem;font-weight:400;text-transform:uppercase;letter-spacing:0.08em;color:rgba(255,255,255,0.65);">
+    <a href="#features" style="transition:color 0.3s;">Features</a>
+    <a href="#products" style="transition:color 0.3s;">Products</a>
+    <a href="#testimonials" style="transition:color 0.3s;">Reviews</a>
+    <a href="#cta" style="transition:color 0.3s;">Order</a>
+  </div>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-layer hero-bg" id="parallaxBg"></div>
+  <div class="hero-layer hero-product" id="parallaxProduct"></div>
+  <div class="hero-overlay">
+    <h1 class="reveal" style="transition-delay:0.2s;">Redefine Your Heat</h1>
+    <p class="reveal" style="transition-delay:0.4s;">The world's first adaptive infrared sauna — precision-engineered for recovery, performance, and deep wellness. Experience heat that thinks.</p>
+    <a href="#products" class="btn-outline reveal" style="transition-delay:0.6s;">Discover the Craft</a>
+  </div>
+</section>
+
+<!-- ===== FEATURES ===== -->
+<section class="section section-light" id="features">
+  <div class="container">
+    <h2 class="section-title reveal" style="color:#27221A;">Engineered Around You</h2>
+    <p class="section-sub dark reveal">Every detail of Fitosauna is built from the ground up to deliver a deeper, smarter, more personal sauna experience.</p>
+    <div class="features-grid">
+      <div class="feature-card reveal-left" style="transition-delay:0.1s;">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h3>Adaptive Heat Zones</h3>
+        <p>Six independently controlled infrared panels dynamically adjust temperature across your body, targeting muscle groups and joints with precision gradients.</p>
+      </div>
+      <div class="feature-card reveal-left" style="transition-delay:0.25s;">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.49.49 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.48.48 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96c-.22-.08-.47 0-.59.22L2.74 8.87c-.12.21-.08.47.12.61l2.03 1.58c-.05.3-.07.62-.07.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.56 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32c.12-.22.07-.47-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z"/></svg>
+        </div>
+        <h3>Silent Airflow System</h3>
+        <p>A whisper-quiet ventilation design cycles fresh air without disturbing your space. Tempered airflow ensures even heat distribution with zero drafts.</p>
+      </div>
+      <div class="feature-card reveal-left" style="transition-delay:0.4s;">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
+        </div>
+        <h3>Biophilic Core Materials</h3>
+        <p>Crafted from sustainably sourced Canadian hemlock and Japanese hinoki with low-EMF heating elements. Every material chosen for safety, warmth, and longevity.</p>
+      </div>
+      <div class="feature-card reveal-left" style="transition-delay:0.55s;">
+        <div class="icon-wrap">
+          <svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+        </div>
+        <h3>Smart Control Hub</h3>
+        <p>Program your ideal session from anywhere via the Fitosauna app. Schedule warm-ups, adjust zones, track biometric trends, and receive post-session insights.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section class="section section-dark" id="products">
+  <div class="container">
+    <h2 class="section-title gold reveal">The Collection</h2>
+    <p class="section-sub reveal">Two machines. One philosophy — precision heat for every lifestyle.</p>
+
+    <div class="product-row">
+      <div class="product-img-wrap reveal-left">
+        <img src="https://picsum.photos/seed/fitosauna3/700/500" alt="Fitosauna Solo" loading="lazy">
+        <div class="spec-overlay">
+          <span><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg> Capsule Design</span>
+          <span><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> 45-min Cycle</span>
+          <span><svg viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H3V5h18v14zM4 6h9v7H4z"/></svg> 6-Panel Array</span>
+        </div>
+      </div>
+      <div class="product-content reveal-right">
+        <h2 class="gold"><span class="split-word-container">Solo</span></h2>
+        <p class="light-text">The personal sanctuary. Our compact capsule design fits into any room yet delivers the full adaptive heat experience. Six infrared panels, intelligent sequencing, and a handcrafted cedar interior that cradles you in warmth. Ideal for apartments, home gyms, and recovery spaces.</p>
+        <a href="#cta" class="btn-outline" style="font-size:0.82rem;">From $4,200</a>
+      </div>
+    </div>
+
+    <div class="product-row reverse">
+      <div class="product-img-wrap reveal-right">
+        <img src="https://picsum.photos/seed/fitosauna4/700/500" alt="Fitosauna Duo" loading="lazy">
+        <div class="spec-overlay">
+          <span><svg viewBox="0 0 24 24"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"/></svg> Dual Seating</span>
+          <span><svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/></svg> 7-ft Cabin</span>
+          <span><svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"/><path d="M12.5 7H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg> 60-min Cycle</span>
+        </div>
+      </div>
+      <div class="product-content reveal-left">
+        <h2 class="gold"><span class="split-word-container">Duo</span></h2>
+        <p class="light-text">Built for two. The Duo expands on the Solo with a full seven-foot cabin, dual-zone independent heat controls, and integrated Bluetooth audio. Share the experience without compromise — each side adjusts independently so both partners get their ideal session.</p>
+        <a href="#cta" class="btn-outline" style="font-size:0.82rem;">From $6,800</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TESTIMONIAL ===== -->
+<section class="section section-dark" id="testimonials">
+  <div class="container">
+    <h2 class="section-title gold reveal">Trusted by Athletes and Healers</h2>
+    <p class="section-sub reveal">Hear from those who make Fitosauna part of their daily ritual.</p>
+    <div class="testimonial-carousel reveal">
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+      <div class="testimonial-slide active" data-index="0">
+        <div class="quote-svg"><svg viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></div>
+        <blockquote>I've used infrared saunas for over a decade. Fitosauna is the first that actually adapts to how your body feels each day. The zone control changed how I approach recovery.</blockquote>
+        <div class="author">— Marcus Chen, Pro Triathlete</div>
+      </div>
+      <div class="testimonial-slide" data-index="1">
+        <div class="quote-svg"><svg viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></div>
+        <blockquote>My clients with chronic pain have seen remarkable improvements. The targeted heat zones let us focus on specific areas without overheating the whole body. A breakthrough tool.</blockquote>
+        <div class="author">— Dr. Amara Singh, Physical Therapist</div>
+      </div>
+      <div class="testimonial-slide" data-index="2">
+        <div class="quote-svg"><svg viewBox="0 0 24 24"><path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/></svg></div>
+        <blockquote>The craftsmanship is extraordinary. You can feel the attention to detail in every surface, every joint. It's not just a sauna — it's a piece of furniture that happens to transform how you feel.</blockquote>
+        <div class="author">— James Whitaker, Architect</div>
+      </div>
+      <div class="testimonial-progress">
+        <div class="dot active" data-slide="0"></div>
+        <div class="dot" data-slide="1"></div>
+        <div class="dot" data-slide="2"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== STATS ===== -->
+<section class="section section-alt" id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item reveal">
+        <div class="stat-number"><span class="counter" data-target="24000">0</span>+</div>
+        <div class="stat-label">Happy Users</div>
+      </div>
+      <div class="stat-item reveal" style="transition-delay:0.15s;">
+        <div class="stat-number"><span class="counter" data-target="36">0</span></div>
+        <div class="stat-label">Countries</div>
+      </div>
+      <div class="stat-item reveal" style="transition-delay:0.3s;">
+        <div class="stat-number"><span class="counter" data-target="18">0</span></div>
+        <div class="stat-label">Design Awards</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="section section-dark" id="cta">
+  <div class="cta-section">
+    <h2 class="gold reveal">Your Heat Awaits</h2>
+    <p class="reveal">Reserve your Fitosauna today. Limited production runs ensure every unit is crafted to order. Free shipping and white-glove installation included.</p>
+    <a href="#" class="btn-solid reveal" style="transition-delay:0.2s;">Place Your Order</a>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <h4>Fitosauna</h4>
+      <a href="#">About Us</a>
+      <a href="#">Journal</a>
+      <a href="#">Careers</a>
+      <a href="#">Sustainability</a>
+    </div>
+    <div class="footer-col">
+      <h4>Products</h4>
+      <a href="#">Solo</a>
+      <a href="#">Duo</a>
+      <a href="#">Accessories</a>
+      <a href="#">Comparisons</a>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <a href="#">FAQ</a>
+      <a href="#">Shipping & Returns</a>
+      <a href="#">Warranty</a>
+      <a href="#">Contact</a>
+    </div>
+    <div class="footer-col">
+      <h4>Connect</h4>
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="#">YouTube</a>
+      <a href="#">Newsletter</a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2026 Fitosauna. All rights reserved.
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== HERO PARALLAX =====
+  var bgLayer = document.getElementById('parallaxBg');
+  var productLayer = document.getElementById('parallaxProduct');
+  var ticking = false;
+
+  function onScroll() {
+    if (!ticking) {
+      requestAnimationFrame(function() {
+        var scrollY = window.pageYOffset || document.documentElement.scrollTop;
+        if (bgLayer) bgLayer.style.transform = 'translateY(' + (scrollY * 0.5) + 'px)';
+        if (productLayer) productLayer.style.transform = 'translateY(' + (scrollY * 0.2) + 'px)';
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  // ===== INTERSECTION OBSERVER REVEALS =====
+  var revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
+
+  if ('IntersectionObserver' in window) {
+    var revealObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    revealEls.forEach(function(el) { revealObserver.observe(el); });
+  } else {
+    revealEls.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  // ===== SPLIT-TEXT WORD-BY-WORD REVEAL ON PRODUCT HEADINGS =====
+  var splitHeadings = document.querySelectorAll('.product-content h2 .split-word-container');
+  splitHeadings.forEach(function(container) {
+    var text = container.textContent.trim();
+    var words = text.split(/\s+/);
+    container.innerHTML = '';
+    words.forEach(function(word, idx) {
+      var span = document.createElement('span');
+      span.className = 'split-word';
+      span.textContent = word;
+      span.style.transitionDelay = (idx * 0.08) + 's';
+      container.appendChild(span);
+      container.appendChild(document.createTextNode(' '));
+    });
+  });
+
+  if ('IntersectionObserver' in window) {
+    var splitObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var spans = entry.target.querySelectorAll('.split-word');
+          spans.forEach(function(span) {
+            span.classList.add('revealed');
+          });
+          splitObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    document.querySelectorAll('.product-content h2').forEach(function(h2) {
+      splitObserver.observe(h2);
+    });
+  }
+
+  // ===== TESTIMONIAL CAROUSEL =====
+  (function() {
+    var slides = document.querySelectorAll('.testimonial-slide');
+    var dots = document.querySelectorAll('.dot');
+    var progressFill = document.getElementById('progressFill');
+    var current = 0;
+    var total = slides.length;
+    var interval = 5000;
+    var timer;
+
+    function goTo(idx) {
+      slides.forEach(function(s) { s.classList.remove('active'); });
+      dots.forEach(function(d) { d.classList.remove('active'); });
+      slides[idx].classList.add('active');
+      dots[idx].classList.add('active');
+      current = idx;
+    }
+
+    function advance() {
+      goTo((current + 1) % total);
+    }
+
+    function startTimer() {
+      stopTimer();
+      timer = setInterval(advance, interval);
+    }
+
+    function stopTimer() {
+      if (timer) { clearInterval(timer); timer = null; }
+    }
+
+    // Progress bar
+    var progressStart;
+    var progressAnimId;
+
+    function animateProgress() {
+      progressFill.style.width = '0%';
+      if (progressAnimId) cancelAnimationFrame(progressAnimId);
+      progressStart = performance.now();
+      function tick(now) {
+        var elapsed = now - progressStart;
+        var pct = Math.min((elapsed / interval) * 100, 100);
+        progressFill.style.width = pct + '%';
+        if (pct < 100) {
+          progressAnimId = requestAnimationFrame(tick);
+        } else {
+          progressFill.style.width = '0%';
+        }
+      }
+      progressAnimId = requestAnimationFrame(tick);
+    }
+
+    dots.forEach(function(dot) {
+      dot.addEventListener('click', function() {
+        var idx = parseInt(this.getAttribute('data-slide'));
+        goTo(idx);
+        stopTimer();
+        startTimer();
+        animateProgress();
+      });
+    });
+
+    // Reset progress on auto-advance
+    var origAdvance = advance;
+    advance = function() {
+      origAdvance();
+      animateProgress();
+    };
+    goTo(0);
+    animateProgress();
+    startTimer();
+  })();
+
+  // ===== COUNTER ANIMATION =====
+  (function() {
+    var counters = document.querySelectorAll('.counter');
+    if (counters.length === 0) return;
+
+    var counterObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          var el = entry.target;
+          var target = parseInt(el.getAttribute('data-target'));
+          var start = 0;
+          var duration = 2000;
+          var startTime = null;
+
+          function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+          function animate(ts) {
+            if (!startTime) startTime = ts;
+            var elapsed = ts - startTime;
+            var progress = Math.min(elapsed / duration, 1);
+            var eased = easeOutCubic(progress);
+            var currentVal = Math.round(eased * target);
+            el.textContent = currentVal.toLocaleString();
+            if (progress < 1) {
+              requestAnimationFrame(animate);
+            } else {
+              el.textContent = target.toLocaleString();
+            }
+          }
+
+          requestAnimationFrame(animate);
+          counterObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    counters.forEach(function(c) { counterObserver.observe(c); });
+  })();
+
+  // ===== SMOOTH SCROLL FOR NAV LINKS =====
+  document.querySelectorAll('nav a[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = this.getAttribute('href').substring(1);
+      var targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+  document.querySelectorAll('.btn-outline[href^="#"], .btn-solid[href^="#"]').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = this.getAttribute('href').substring(1);
+      var targetEl = document.getElementById(targetId);
+      if (targetEl) {
+        targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+})();
+</script>
+</body>
+</html>

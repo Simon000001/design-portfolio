@@ -1,0 +1,1243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Red Collar Studio — Glassmorphism Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ===== RESET & BASE ===== */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  background:#0c041f;
+  color:#fafafa;
+  overflow-x:hidden;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale
+}
+a{color:#f51b1b;text-decoration:none;transition:color .3s}
+a:hover{color:#ff4d4d}
+img{max-width:100%;display:block}
+::selection{background:#f51b1b33;color:#fafafa}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:#0c041f}
+::-webkit-scrollbar-thumb{background:#343434;border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:#f51b1b}
+
+/* ===== GLASS UTILITY ===== */
+.glass{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+}
+.glass-light{
+  background:rgba(238,232,255,0.08);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+}
+.glass-red{
+  background:rgba(255,232,232,0.06);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(245,27,27,0.2);
+  border-radius:12px;
+}
+
+/* ===== SHIMMER ===== */
+@keyframes shimmer{
+  0%{background-position:-200% 0}
+  100%{background-position:200% 0}
+}
+.shimmer{
+  background:linear-gradient(90deg,transparent 0%,rgba(255,255,255,0.03) 50%,transparent 100%);
+  background-size:200% 100%;
+  animation:shimmer 3s ease-in-out infinite;
+}
+
+/* ===== FADE IN ANIMATION ===== */
+@keyframes fadeInUp{
+  from{opacity:0;transform:translateY(30px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes fadeIn{
+  from{opacity:0}
+  to{opacity:1}
+}
+.reveal{
+  opacity:0;
+  transform:translateY(30px);
+  transition:opacity .8s cubic-bezier(.22,1,.36,1),transform .8s cubic-bezier(.22,1,.36,1)
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0)
+}
+
+/* ===== GLOW EFFECTS ===== */
+@keyframes glowPulse{
+  0%,100%{box-shadow:0 0 20px rgba(245,27,27,0.15)}
+  50%{box-shadow:0 0 40px rgba(245,27,27,0.3)}
+}
+@keyframes gradientShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* ===== NAV ===== */
+nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:1000;
+  padding:1rem 2rem;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  background:rgba(12,4,31,0.8);
+  backdrop-filter:blur(8px);
+  -webkit-backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.nav-logo{
+  font-size:1.25rem;
+  font-weight:700;
+  color:#fafafa;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+}
+.nav-logo svg{width:24px;height:24px}
+.nav-links{
+  display:flex;
+  gap:2rem;
+  list-style:none;
+  align-items:center;
+}
+.nav-links a{
+  color:rgba(250,250,250,0.7);
+  font-size:.875rem;
+  font-weight:500;
+  transition:color .3s;
+  position:relative;
+}
+.nav-links a::after{
+  content:'';
+  position:absolute;
+  bottom:-4px;
+  left:0;
+  width:0;
+  height:2px;
+  background:#f51b1b;
+  transition:width .3s;
+}
+.nav-links a:hover::after{width:100%}
+.nav-links a:hover{color:#fafafa}
+.nav-cta{
+  background:#f51b1b;
+  color:#fafafa !important;
+  padding:.5rem 1.25rem;
+  border-radius:8px;
+  font-weight:600;
+  transition:background .3s,transform .2s !important;
+}
+.nav-cta:hover{background:#d41616 !important;transform:translateY(-1px)}
+.nav-cta::after{display:none !important}
+.menu-toggle{display:none;background:none;border:none;color:#fafafa;cursor:pointer;padding:.25rem}
+
+/* ===== HERO ===== */
+.hero{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:7rem 2rem 4rem;
+  position:relative;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  opacity:0.3;
+}
+.hero-bg img{width:100%;height:100%;object-fit:cover}
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:radial-gradient(ellipse at center,transparent 0%,#0c041f 70%);
+}
+.hero-content{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+}
+.hero h1{
+  font-size:clamp(4rem,10vw,8rem);
+  font-weight:700;
+  line-height:1.05;
+  letter-spacing:-0.03em;
+  margin-bottom:1rem;
+  background:linear-gradient(135deg,#fafafa 0%,rgba(250,250,250,0.8) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-accent{
+  width:80px;
+  height:4px;
+  background:#f51b1b;
+  border-radius:2px;
+  margin:0 auto 2rem;
+}
+.hero-glass{
+  max-width:640px;
+  margin:0 auto;
+  padding:2rem 2.5rem;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+}
+.hero-glass p{
+  font-size:1.1rem;
+  color:rgba(250,250,250,0.8);
+  margin-bottom:1.5rem;
+  line-height:1.7;
+}
+.btn-primary{
+  display:inline-block;
+  background:#f51b1b;
+  color:#fafafa;
+  padding:.85rem 2.5rem;
+  border-radius:8px;
+  font-weight:600;
+  font-size:.95rem;
+  border:none;
+  cursor:pointer;
+  transition:background .3s,transform .2s,box-shadow .3s;
+}
+.btn-primary:hover{
+  background:#d41616;
+  transform:translateY(-2px);
+  box-shadow:0 8px 30px rgba(245,27,27,0.35);
+}
+.btn-outline{
+  display:inline-block;
+  background:transparent;
+  color:#fafafa;
+  padding:.85rem 2.5rem;
+  border-radius:8px;
+  font-weight:600;
+  font-size:.95rem;
+  border:1px solid rgba(255,255,255,0.2);
+  cursor:pointer;
+  transition:all .3s;
+  margin-left:.75rem;
+}
+.btn-outline:hover{
+  border-color:#f51b1b;
+  background:rgba(245,27,27,0.1);
+  transform:translateY(-2px);
+}
+.hero-scroll{
+  position:absolute;
+  bottom:2rem;
+  left:50%;
+  transform:translateX(-50%);
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.5rem;
+  color:rgba(250,250,250,0.4);
+  font-size:.75rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  animation:bounce 2s infinite;
+}
+@keyframes bounce{
+  0%,20%,50%,80%,100%{transform:translateX(-50%) translateY(0)}
+  40%{transform:translateX(-50%) translateY(-8px)}
+  60%{transform:translateX(-50%) translateY(-4px)}
+}
+.hero-scroll svg{width:16px;height:16px}
+
+/* ===== SECTION COMMON ===== */
+section{padding:7rem 2rem;position:relative}
+.section-label{
+  display:inline-flex;
+  align-items:center;
+  gap:.5rem;
+  font-size:.75rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.15em;
+  color:#f51b1b;
+  margin-bottom:1rem;
+}
+.section-label::before{
+  content:'';
+  width:24px;
+  height:2px;
+  background:#f51b1b;
+}
+.section-title{
+  font-size:clamp(2rem,5vw,3.25rem);
+  font-weight:700;
+  line-height:1.15;
+  margin-bottom:1rem;
+  letter-spacing:-0.02em;
+}
+.section-sub{
+  font-size:1.05rem;
+  color:rgba(250,250,250,0.6);
+  max-width:560px;
+  line-height:1.7;
+}
+.container{max-width:1200px;margin:0 auto;width:100%}
+
+/* ===== SERVICES ===== */
+.services{background:linear-gradient(180deg,#0c041f 0%,#0f0624 50%,#0c041f 100%)}
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;
+  margin-top:3rem;
+}
+.service-card{
+  padding:2.5rem 2rem;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+  border-top:3px solid #f51b1b;
+  transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s;
+  position:relative;
+  overflow:hidden;
+}
+.service-card::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  background:linear-gradient(135deg,transparent 0%,rgba(245,27,27,0.03) 100%);
+  opacity:0;
+  transition:opacity .4s;
+  pointer-events:none;
+}
+.service-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(245,27,27,0.15);
+}
+.service-card:hover::before{opacity:1}
+.service-icon{
+  width:48px;
+  height:48px;
+  margin-bottom:1.25rem;
+  color:#f51b1b;
+}
+.service-card h3{
+  font-size:1.25rem;
+  font-weight:600;
+  margin-bottom:.75rem;
+}
+.service-card p{
+  color:rgba(250,250,250,0.65);
+  font-size:.925rem;
+  line-height:1.7;
+}
+
+/* ===== WORK / PROJECTS ===== */
+.work{background:#0c041f}
+.work-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:1.5rem;
+  margin-top:3rem;
+}
+.project-card{
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  aspect-ratio:4/3;
+  cursor:pointer;
+  group:true;
+}
+.project-card-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
+}
+.project-card-bg img{width:100%;height:100%;object-fit:cover}
+.project-card:hover .project-card-bg{transform:scale(1.05)}
+.project-overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(0deg,rgba(12,4,31,0.9) 0%,transparent 60%);
+  transition:background .4s;
+}
+.project-card:hover .project-overlay{
+  background:linear-gradient(0deg,rgba(12,4,31,0.95) 0%,rgba(12,4,31,0.2) 80%);
+}
+.project-info{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  z-index:2;
+  padding:1.75rem;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:0 0 12px 12px;
+  border-top:none;
+  transform:translateY(0);
+  transition:transform .4s cubic-bezier(.22,1,.36,1),padding .4s;
+}
+.project-card:hover .project-info{
+  transform:translateY(-4px);
+  padding:2rem 1.75rem;
+}
+.project-info h3{
+  font-size:1.15rem;
+  font-weight:600;
+  margin-bottom:.25rem;
+}
+.project-info .project-category{
+  font-size:.8rem;
+  color:rgba(250,250,250,0.5);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+}
+.project-hover-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s cubic-bezier(.22,1,.36,1),margin .4s;
+  color:rgba(250,250,250,0.6);
+  font-size:.85rem;
+  line-height:1.6;
+}
+.project-card:hover .project-hover-content{
+  max-height:80px;
+  margin-top:.75rem;
+}
+.project-tag{
+  display:inline-block;
+  padding:.2rem .6rem;
+  font-size:.7rem;
+  font-weight:500;
+  background:rgba(245,27,27,0.2);
+  color:#f51b1b;
+  border-radius:4px;
+  margin-right:.4rem;
+  margin-top:.5rem;
+}
+
+/* ===== ABOUT ===== */
+.about{
+  background:linear-gradient(135deg,#0c041f 0%,#1a0840 50%,#0c041f 100%);
+  background-size:200% 200%;
+  animation:gradientShift 15s ease infinite;
+  overflow:hidden;
+}
+.about .container{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:4rem;
+  align-items:center;
+}
+.about-image-wrap{
+  position:relative;
+  border-radius:12px;
+  overflow:hidden;
+}
+.about-image-wrap img{
+  width:100%;
+  height:auto;
+  display:block;
+  border-radius:12px;
+}
+.about-glare{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,transparent 50%);
+  pointer-events:none;
+  border-radius:12px;
+}
+.about-glass-layer{
+  position:absolute;
+  top:-20px;
+  right:-20px;
+  width:200px;
+  height:200px;
+  background:rgba(238,232,255,0.08);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:12px;
+  z-index:-1;
+}
+.about-glass-layer2{
+  position:absolute;
+  bottom:-30px;
+  left:-30px;
+  width:150px;
+  height:150px;
+  background:rgba(255,232,232,0.06);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(245,27,27,0.15);
+  border-radius:12px;
+  z-index:-1;
+}
+.about-text .section-sub{margin-bottom:2rem}
+.stats-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+  margin-top:2rem;
+  padding:1.5rem;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+}
+.stat-item{text-align:center}
+.stat-number{
+  font-size:2rem;
+  font-weight:700;
+  color:#fafafa;
+  line-height:1.2;
+}
+.stat-label{
+  font-size:.8rem;
+  color:rgba(250,250,250,0.5);
+  text-transform:uppercase;
+  letter-spacing:.08em;
+  margin-top:.25rem;
+}
+
+/* ===== HORIZONTAL SCROLL ===== */
+.scroll-section{
+  background:#0c041f;
+  padding:0;
+  overflow:hidden;
+}
+.scroll-header{padding:7rem 2rem 3rem}
+.scroll-container{
+  display:flex;
+  overflow-x:auto;
+  scroll-snap-type:x mandatory;
+  -webkit-overflow-scrolling:touch;
+  gap:0;
+  padding-bottom:7rem;
+}
+.scroll-container::-webkit-scrollbar{height:4px}
+.scroll-container::-webkit-scrollbar-track{background:rgba(255,255,255,0.05)}
+.scroll-container::-webkit-scrollbar-thumb{background:#f51b1b;border-radius:2px}
+.scroll-panel{
+  min-width:100vw;
+  height:70vh;
+  scroll-snap-align:start;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  position:relative;
+  padding:2rem;
+}
+.scroll-panel-bg{
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+}
+.scroll-panel-bg img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  filter:saturate(0.8);
+}
+.scroll-panel-overlay{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  background:linear-gradient(135deg,rgba(12,4,31,0.7) 0%,rgba(12,4,31,0.3) 100%);
+}
+.scroll-panel-content{
+  position:relative;
+  z-index:2;
+  max-width:500px;
+  padding:2.5rem;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:12px;
+  text-align:center;
+}
+.scroll-panel-content h3{
+  font-size:1.5rem;
+  font-weight:600;
+  margin-bottom:.75rem;
+}
+.scroll-panel-content p{
+  color:rgba(250,250,250,0.65);
+  font-size:.925rem;
+  line-height:1.7;
+}
+.scroll-panel-content .project-number{
+  font-size:.75rem;
+  font-weight:600;
+  color:#f51b1b;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  margin-bottom:.5rem;
+}
+.scroll-hint{
+  text-align:center;
+  padding:0 0 3rem;
+  color:rgba(250,250,250,0.3);
+  font-size:.8rem;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5rem;
+}
+.scroll-hint svg{width:14px;height:14px;animation:scrollHint 1.5s ease infinite}
+@keyframes scrollHint{
+  0%,100%{transform:translateX(0)}
+  50%{transform:translateX(6px)}
+}
+
+/* ===== CTA ===== */
+.cta{
+  text-align:center;
+  position:relative;
+  overflow:hidden;
+  background:linear-gradient(135deg,#0c041f,#1a0840,#0c041f);
+  background-size:400% 400%;
+  animation:gradientShift 8s ease infinite;
+}
+.cta::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(ellipse at center,rgba(245,27,27,0.1),transparent 70%);
+  z-index:0;
+}
+.cta .container{position:relative;z-index:1}
+.cta-glass{
+  max-width:680px;
+  margin:0 auto;
+  padding:3.5rem 3rem;
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;
+}
+.cta-glass h2{
+  font-size:clamp(1.75rem,4vw,2.5rem);
+  font-weight:700;
+  margin-bottom:1rem;
+}
+.cta-glass p{
+  color:rgba(250,250,250,0.65);
+  margin-bottom:2rem;
+  font-size:1.05rem;
+  line-height:1.7;
+}
+.cta-glass .btn-primary{
+  font-size:1.05rem;
+  padding:1rem 3rem;
+}
+
+/* ===== FOOTER ===== */
+footer{
+  background:#000000;
+  padding:4rem 2rem 2rem;
+}
+.footer-divider{
+  height:1px;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.1),transparent);
+  margin-bottom:3rem;
+}
+.footer-grid{
+  display:grid;
+  grid-template-columns:2fr 1fr 1fr 1fr;
+  gap:3rem;
+  margin-bottom:3rem;
+}
+.footer-brand p{
+  color:rgba(250,250,250,0.4);
+  font-size:.875rem;
+  margin-top:1rem;
+  max-width:300px;
+  line-height:1.7;
+}
+.footer-col h4{
+  font-size:.8rem;
+  font-weight:600;
+  text-transform:uppercase;
+  letter-spacing:.1em;
+  color:rgba(250,250,250,0.5);
+  margin-bottom:1.25rem;
+}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.75rem}
+.footer-col a{
+  color:rgba(250,250,250,0.5);
+  font-size:.875rem;
+  transition:color .3s;
+}
+.footer-col a:hover{color:#f51b1b}
+.footer-bottom{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding-top:2rem;
+  border-top:1px solid rgba(255,255,255,0.05);
+  font-size:.8rem;
+  color:rgba(250,250,250,0.3);
+}
+.footer-socials{
+  display:flex;
+  gap:1rem;
+}
+.footer-socials a{
+  width:36px;
+  height:36px;
+  border-radius:8px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:rgba(250,250,250,0.5);
+  transition:all .3s;
+}
+.footer-socials a:hover{
+  background:rgba(245,27,27,0.15);
+  border-color:#f51b1b;
+  color:#f51b1b;
+  transform:translateY(-2px);
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:968px){
+  .services-grid{grid-template-columns:1fr}
+  .about .container{grid-template-columns:1fr;gap:3rem}
+  .about-image-wrap{max-width:500px;margin:0 auto}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:2rem}
+}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .menu-toggle{display:block}
+  .nav-links.open{
+    display:flex;
+    position:absolute;
+    top:100%;
+    left:0;
+    right:0;
+    flex-direction:column;
+    padding:1.5rem 2rem;
+    gap:1.25rem;
+    background:rgba(12,4,31,0.95);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+    border-bottom:1px solid rgba(255,255,255,0.06);
+  }
+  .hero h1{font-size:clamp(3rem,12vw,5rem)}
+  .hero-glass{padding:1.5rem}
+  .hero-glass .btn-outline{margin-left:0;margin-top:.75rem}
+  .work-grid{grid-template-columns:1fr}
+  .stats-grid{grid-template-columns:1fr;gap:1.5rem}
+  .footer-grid{grid-template-columns:1fr;gap:2rem}
+  .footer-bottom{flex-direction:column;gap:1rem;text-align:center}
+  .scroll-panel{height:60vh}
+  .cta-glass{padding:2rem 1.5rem}
+  section{padding:4rem 1.5rem}
+}
+@media(max-width:480px){
+  nav{padding:.75rem 1rem}
+  .hero{padding:6rem 1rem 3rem}
+  .scroll-panel-content{padding:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="#" class="nav-logo">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="12" cy="12" r="10"/>
+      <circle cx="12" cy="12" r="4"/>
+      <line x1="12" y1="2" x2="12" y2="6"/>
+      <line x1="12" y1="18" x2="12" y2="22"/>
+      <line x1="2" y1="12" x2="6" y2="12"/>
+      <line x1="18" y1="12" x2="22" y2="12"/>
+    </svg>
+    Red Collar
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#showcase">Showcase</a></li>
+    <li><a href="#contact" class="nav-cta">Let's Talk</a></li>
+  </ul>
+  <button class="menu-toggle" id="menuToggle" aria-label="Menu">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+      <line x1="3" y1="6" x2="21" y2="6"/>
+      <line x1="3" y1="12" x2="21" y2="12"/>
+      <line x1="3" y1="18" x2="21" y2="18"/>
+    </svg>
+  </button>
+</nav>
+
+<!-- ===== HERO ===== -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="https://picsum.photos/seed/redhero/1400/800" alt="" loading="lazy">
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Red Collar</h1>
+    <div class="hero-accent"></div>
+    <div class="hero-glass reveal visible">
+      <p>We craft bold digital experiences at the intersection of design and technology. From brand identities to immersive web platforms — we build what matters.</p>
+      <div>
+        <a href="#work" class="btn-primary">View Our Work</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+    </svg>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section class="services" id="services">
+  <div class="container">
+    <div class="section-label reveal">What We Do</div>
+    <h2 class="section-title reveal">Services</h2>
+    <p class="section-sub reveal">Full-spectrum creative and technical services tailored to elevate your brand's digital presence.</p>
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="8" width="40" height="32" rx="4"/>
+            <path d="M16 32L20 24L24 28L28 18L32 32"/>
+            <circle cx="14" cy="18" r="2"/>
+          </svg>
+        </div>
+        <h3>Brand Identity</h3>
+        <p>Strategic brand development, visual identity systems, and cohesive storytelling that sets you apart in a crowded market.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 36L4 24L12 12"/>
+            <path d="M36 36L44 24L36 12"/>
+            <line x1="28" y1="10" x2="20" y2="38"/>
+          </svg>
+        </div>
+        <h3>Web Development</h3>
+        <p>High-performance web applications, interactive experiences, and responsive platforms built with modern technology stacks.</p>
+      </div>
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="24" cy="24" r="20"/>
+            <path d="M12 12L24 24L12 36"/>
+            <path d="M36 12L24 24L36 36"/>
+          </svg>
+        </div>
+        <h3>Motion & UI</h3>
+        <p>Fluid motion design, micro-interactions, and polished user interfaces that delight users and drive engagement.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== WORK ===== -->
+<section class="work" id="work">
+  <div class="container">
+    <div class="section-label reveal">Our Work</div>
+    <h2 class="section-title reveal">Featured Projects</h2>
+    <p class="section-sub reveal">A selection of projects we're proud to have crafted alongside ambitious teams.</p>
+    <div class="work-grid">
+      <div class="project-card reveal">
+        <div class="project-card-bg">
+          <img src="https://picsum.photos/seed/redproj1/800/600" alt="Project Aurora" loading="lazy">
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <h3>Project Aurora</h3>
+          <div class="project-category">Brand Identity / Web</div>
+          <div class="project-hover-content">
+            <p>A complete rebrand and digital presence for a forward-thinking tech startup. Full identity system, website, and motion toolkit.</p>
+            <span class="project-tag">Branding</span>
+            <span class="project-tag">Web Dev</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-card-bg">
+          <img src="https://picsum.photos/seed/redproj2/800/600" alt="Crimson Studio" loading="lazy">
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <h3>Crimson Studio</h3>
+          <div class="project-category">UI/UX / Motion</div>
+          <div class="project-hover-content">
+            <p>An immersive brand experience with custom motion design, interactive product showcases, and a bold visual language.</p>
+            <span class="project-tag">UI/UX</span>
+            <span class="project-tag">Motion</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-card-bg">
+          <img src="https://picsum.photos/seed/redproj3/800/600" alt="Obsidian Labs" loading="lazy">
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <h3>Obsidian Labs</h3>
+          <div class="project-category">Web App / Platform</div>
+          <div class="project-hover-content">
+            <p>A data-rich analytics platform with real-time visualization, complex dashboards, and a seamless user experience.</p>
+            <span class="project-tag">React</span>
+            <span class="project-tag">D3.js</span>
+          </div>
+        </div>
+      </div>
+      <div class="project-card reveal">
+        <div class="project-card-bg">
+          <img src="https://picsum.photos/seed/redproj4/800/600" alt="Vellum Agency" loading="lazy">
+        </div>
+        <div class="project-overlay"></div>
+        <div class="project-info">
+          <h3>Vellum Agency</h3>
+          <div class="project-category">Full Brand / Campaign</div>
+          <div class="project-hover-content">
+            <p>End-to-end brand campaign including identity, print materials, digital ads, and a microsite with integrated analytics.</p>
+            <span class="project-tag">Campaign</span>
+            <span class="project-tag">Strategy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ABOUT ===== -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-image-wrap reveal">
+      <img src="https://picsum.photos/seed/redabout/600/700" alt="About Red Collar" loading="lazy">
+      <div class="about-glare"></div>
+      <div class="about-glass-layer"></div>
+      <div class="about-glass-layer2"></div>
+    </div>
+    <div class="about-text">
+      <div class="section-label reveal">About Us</div>
+      <h2 class="section-title reveal">Built on craft, driven by purpose.</h2>
+      <p class="section-sub reveal">We are a small, focused studio of designers, engineers, and strategists who believe great work comes from collaboration, curiosity, and a relentless attention to detail.</p>
+      <p class="section-sub reveal" style="margin-bottom:0">Our approach is rooted in understanding the core of every challenge. We combine strategic thinking with technical excellence to create work that resonates, performs, and endures.</p>
+      <div class="stats-grid reveal">
+        <div class="stat-item">
+          <div class="stat-number">7+</div>
+          <div class="stat-label">Years</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">50+</div>
+          <div class="stat-label">Projects</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">24</div>
+          <div class="stat-label">Clients</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== HORIZONTAL SCROLL SHOWCASE ===== -->
+<section class="scroll-section" id="showcase">
+  <div class="scroll-header container">
+    <div class="section-label reveal">Showcase</div>
+    <h2 class="section-title reveal">In the Wild</h2>
+    <p class="section-sub reveal">A closer look at selected screens and moments from our recent work.</p>
+  </div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="transform:rotate(180deg)">
+      <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+    </svg>
+    <span>Drag to explore</span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/>
+    </svg>
+  </div>
+  <div class="scroll-container" id="scrollContainer">
+    <div class="scroll-panel">
+      <div class="scroll-panel-bg">
+        <img src="https://picsum.photos/seed/redshow1/1400/900" alt="" loading="lazy">
+      </div>
+      <div class="scroll-panel-overlay"></div>
+      <div class="scroll-panel-content">
+        <div class="project-number">01 / 04</div>
+        <h3>Dashboard Interface</h3>
+        <p>Real-time analytics dashboard with interactive data visualization and dark mode UI crafted for clarity and speed.</p>
+      </div>
+    </div>
+    <div class="scroll-panel">
+      <div class="scroll-panel-bg">
+        <img src="https://picsum.photos/seed/redshow2/1400/900" alt="" loading="lazy">
+      </div>
+      <div class="scroll-panel-overlay"></div>
+      <div class="scroll-panel-content">
+        <div class="project-number">02 / 04</div>
+        <h3>E-Commerce Platform</h3>
+        <p>Streamlined shopping experience with custom product configurator, seamless checkout, and rich media galleries.</p>
+      </div>
+    </div>
+    <div class="scroll-panel">
+      <div class="scroll-panel-bg">
+        <img src="https://picsum.photos/seed/redshow3/1400/900" alt="" loading="lazy">
+      </div>
+      <div class="scroll-panel-overlay"></div>
+      <div class="scroll-panel-content">
+        <div class="project-number">03 / 04</div>
+        <h3>Brand Microsite</h3>
+        <p>Immersive brand storytelling through parallax scrolling, cinematic transitions, and a bold red-and-dark visual palette.</p>
+      </div>
+    </div>
+    <div class="scroll-panel">
+      <div class="scroll-panel-bg">
+        <img src="https://picsum.photos/seed/redshow4/1400/900" alt="" loading="lazy">
+      </div>
+      <div class="scroll-panel-overlay"></div>
+      <div class="scroll-panel-content">
+        <div class="project-number">04 / 04</div>
+        <h3>Mobile Experience</h3>
+        <p>Native-feel mobile application with gesture-driven navigation, micro-animations, and a refined design system.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA ===== -->
+<section class="cta" id="contact">
+  <div class="container">
+    <div class="cta-glass reveal">
+      <h2>Let's build something bold.</h2>
+      <p>We're always looking for ambitious partners. Whether you have a clear vision or just a spark of an idea, we'd love to hear from you.</p>
+      <a href="#" class="btn-primary">Start a Conversation</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-divider"></div>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="4"/>
+            <line x1="12" y1="2" x2="12" y2="6"/>
+            <line x1="12" y1="18" x2="12" y2="22"/>
+            <line x1="2" y1="12" x2="6" y2="12"/>
+            <line x1="18" y1="12" x2="22" y2="12"/>
+          </svg>
+          Red Collar
+        </a>
+        <p>Crafting bold digital experiences at the intersection of design and technology since 2019.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="#">Brand Identity</a></li>
+          <li><a href="#">Web Development</a></li>
+          <li><a href="#">Motion Design</a></li>
+          <li><a href="#">UI/UX</a></li>
+          <li><a href="#">Strategy</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Work</a></li>
+          <li><a href="#">Blog</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <ul>
+          <li><a href="#">Privacy</a></li>
+          <li><a href="#">Terms</a></li>
+          <li><a href="#">Cookies</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Red Collar Studio. All rights reserved.</span>
+      <div class="footer-socials">
+        <a href="#" aria-label="Twitter">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="#" aria-label="GitHub">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+        </a>
+        <a href="#" aria-label="Dribbble">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 24C5.385 24 0 18.615 0 12S5.385 0 12 0s12 5.385 12 12-5.385 12-12 12zm10.12-10.358c-.35-.11-3.17-.953-6.384-.438 1.34 3.684 1.887 6.684 1.992 7.308 2.3-1.555 3.936-4.02 4.395-6.87zm-6.115 7.808c-.153-.9-.75-4.032-2.19-7.77l-.066.02c-5.79 2.015-7.86 6.025-8.04 6.4 1.73 1.358 3.92 2.166 6.29 2.166 1.42 0 2.77-.29 4-.816zm-11.62-2.58c.232-.4 3.045-5.055 8.332-6.765.135-.045.27-.084.405-.12-.26-.585-.54-1.167-.832-1.74C7.17 11.775 2.206 11.71 1.756 11.7l-.004.312c0 2.633.998 5.037 2.634 6.855zm-2.42-8.955c.46.008 4.683.026 9.477-1.248-1.698-3.018-3.53-5.558-3.8-5.928-2.868 1.35-5.01 3.99-5.676 7.17zM9.6 2.052c.282.38 2.145 2.914 3.822 6 3.645-1.365 5.19-3.44 5.373-3.702-1.81-1.61-4.19-2.586-6.795-2.586-.825 0-1.63.1-2.4.29zm10.335 3.483c-.218.29-1.91 2.493-5.724 4.04.24.49.47.985.68 1.486.08.18.15.36.22.53 3.41-.43 6.8.26 7.14.33-.02-2.42-.88-4.64-2.31-6.38z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // ===== MOBILE MENU =====
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+  if (menuToggle && navLinks) {
+    menuToggle.addEventListener('click', function() {
+      navLinks.classList.toggle('open');
+    });
+    document.querySelectorAll('.nav-links a').forEach(function(link) {
+      link.addEventListener('click', function() {
+        navLinks.classList.remove('open');
+      });
+    });
+  }
+
+  // ===== INTERSECTION OBSERVER — STAGGERED REVEAL =====
+  const revealElements = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -50px 0px' });
+    revealElements.forEach(function(el) { observer.observe(el); });
+  } else {
+    revealElements.forEach(function(el) { el.classList.add('visible'); });
+  }
+
+  // ===== SMOOTH SCROLL FOR NAV =====
+  document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+    anchor.addEventListener('click', function(e) {
+      const targetId = this.getAttribute('href');
+      if (targetId === '#') return;
+      const target = document.querySelector(targetId);
+      if (target) {
+        e.preventDefault();
+        const navH = document.querySelector('nav').offsetHeight || 70;
+        const top = target.getBoundingClientRect().top + window.scrollY - navH;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+      }
+    });
+  });
+
+  // ===== HORIZONTAL SCROLL SMOOTH WHEEL =====
+  const scrollContainer = document.getElementById('scrollContainer');
+  if (scrollContainer) {
+    scrollContainer.addEventListener('wheel', function(e) {
+      if (this.scrollWidth > this.clientWidth) {
+        e.preventDefault();
+        this.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
+  }
+
+  // ===== STAT COUNTER ANIMATION =====
+  function animateCounters() {
+    document.querySelectorAll('.stat-number').forEach(function(el) {
+      var text = el.textContent.trim();
+      var match = text.match(/(\d+)([+.]?)/);
+      if (!match) return;
+      var targetNum = parseInt(match[1], 10);
+      var suffix = match[2] || '';
+      var current = 0;
+      var increment = Math.ceil(targetNum / 40);
+      var timer = setInterval(function() {
+        current += increment;
+        if (current >= targetNum) {
+          current = targetNum;
+          clearInterval(timer);
+        }
+        el.textContent = current + suffix;
+      }, 30);
+    });
+  }
+
+  var statsObserved = false;
+  var statsObserver = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting && !statsObserved) {
+        statsObserved = true;
+        animateCounters();
+        statsObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  var statsGrid = document.querySelector('.stats-grid');
+  if (statsGrid) statsObserver.observe(statsGrid);
+
+  // ===== PARALLAX ON HERO MOUSE MOVE =====
+  var hero = document.querySelector('.hero');
+  if (hero) {
+    hero.addEventListener('mousemove', function(e) {
+      var bg = this.querySelector('.hero-bg');
+      if (!bg) return;
+      var x = (e.clientX / window.innerWidth - 0.5) * 10;
+      var y = (e.clientY / window.innerHeight - 0.5) * 10;
+      bg.style.transform = 'translate(' + x + 'px, ' + y + 'px)';
+    });
+  }
+})();
+</script>
+</body>
+</html>
