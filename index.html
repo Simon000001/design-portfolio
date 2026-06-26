@@ -43,8 +43,8 @@ a{text-decoration:none;color:inherit}
 body::before{
   content:'';
   position:fixed;inset:0;
-  opacity:0.012;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.5'/%3E%3C/svg%3E");
+  opacity:0.12;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.6'/%3E%3C/svg%3E");
   pointer-events:none;
   z-index:9999;
   mix-blend-mode:multiply;
@@ -83,19 +83,29 @@ nav.scrolled{
 /* ───── Container ───── */
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
 
-/* ───── Section Heading ───── */
+/* ───── Section Heading (terminal command style) ───── */
 .section-heading{
   font-size:14px;
-  font-weight:500;
+  font-weight:400;
   color:var(--text-dim);
-  padding:12px 24px;
+  padding:24px 24px 8px;
   max-width:1200px;
   margin:0 auto;
-  border-bottom:1px solid var(--border);
-  margin-bottom:24px;
+  border-bottom:none;
+  margin-bottom:4px;
 }
-.section-heading .prompt{color:var(--text-dim)}
-.section-heading .cmd{color:var(--text-bright);font-weight:700}
+.section-heading .prompt{color:var(--text-bright);font-weight:700;margin-right:4px}
+.section-heading .cmd{color:var(--text)}
+.section-heading::after{
+  content:'────────────────────────────────────────';
+  display:block;
+  font-size:10px;
+  color:var(--border);
+  letter-spacing:-1px;
+  margin-top:4px;
+  overflow:hidden;
+  white-space:nowrap;
+}
 
 /* ───── Hero / Terminal Boot ───── */
 .hero-terminal{
@@ -108,20 +118,25 @@ nav.scrolled{
   position:relative;
   max-width:740px;
   margin:0 auto;
+  background:#1e1e1e;
+  border:1px solid #444;
+  margin:24px auto 0;
+  border-radius:0;
 }
 .boot-container{
   font-size:clamp(14px,2vw,18px);
   line-height:1.6;
-  color:var(--text);
+  color:#d4d4d4;
   min-height:320px;
   width:100%;
+  padding:24px;
 }
 .boot-container .line{min-height:1.6em;white-space:pre-wrap;word-break:break-word}
 .boot-container .cursor{
   display:inline-block;
   width:10px;
   height:1.2em;
-  background:var(--text);
+  background:#00ff41;
   animation:blink 1s step-end infinite;
   vertical-align:text-bottom;
   margin-left:2px;
@@ -139,37 +154,48 @@ nav.scrolled{
   margin:0 auto;
 }
 
-/* ───── Card ───── */
+/* ───── Card (terminal log entry style) ───── */
 .card{
-  background:var(--card);
-  border:1px solid var(--border);
+  background:transparent;
+  border:none;
+  border-bottom:1px solid var(--border);
   cursor:pointer;
   transition:all 0.2s;
   opacity:0;
-  transform:translateY(20px);
-  padding:16px;
+  transform:translateY(12px);
+  padding:12px 0;
+  position:relative;
+}
+.card::before{
+  content:'> ';
+  position:absolute;
+  left:0;
+  top:12px;
+  color:var(--text-dim);
+  font-size:12px;
 }
 .card.visible{opacity:1;transform:translateY(0)}
-.card:hover{outline:2px solid var(--border-strong);outline-offset:-2px}
+.card:hover{background:#f0f0f0}
 
-/* Tag pill */
+/* Tag pill — terminal label style */
 .tag{
   display:inline-block;
-  padding:1px 8px;
+  padding:1px 6px;
   font-size:10px;
-  font-weight:500;
-  letter-spacing:0.05em;
-  border:1px solid var(--border);
+  font-weight:700;
+  letter-spacing:0.03em;
+  border:none;
   margin-bottom:8px;
+  color:var(--text-bright);
 }
-.tag-eng{background:var(--tag-engineering);border-color:var(--tag-engineering)}
-.tag-rd{background:var(--tag-research);border-color:var(--tag-research)}
-.tag-art{background:var(--tag-art);border-color:var(--tag-art)}
-.tag-side{background:var(--tag-sidequest);border-color:var(--tag-sidequest)}
-.tag-design{background:var(--tag-design);border-color:var(--tag-design)}
+.tag-eng{background:var(--tag-engineering)}
+.tag-rd{background:var(--tag-research)}
+.tag-art{background:var(--tag-art)}
+.tag-side{background:var(--tag-sidequest)}
+.tag-design{background:var(--tag-design)}
 
 /* Card body */
-.card .body{padding:0}
+.card .body{padding-left:18px}
 .card .body .years{
   font-size:11px;
   color:var(--text-dim);
